@@ -126,6 +126,7 @@ GEM
 
 PLATFORMS
   ruby
+  x64-mingw-ucrt
 
 DEPENDENCIES
   middleman (~> 4.4)
@@ -142,4 +143,4 @@ RUBY VERSION
    ruby 2.7.2p137
 
 BUNDLED WITH
-   2.2.22
+   2.4.19
