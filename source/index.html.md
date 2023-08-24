@@ -112,6 +112,30 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 | Trade Capture Report Request <AD>     | 4.4                   | N                | Y               |
 | Trade Capture Report Request Ack <AQ> | 4.4                   | N                | Y               |
 
+## Duplicate check
+There is always a possibility of duplicate trade being sent out, for example after a network disconnect. The client is expected to be able to identify duplicate trades and reject them, by using the tag 37 - OrderID
+
+## Header and Trailer 
+The following define the FIX messages standard header and trailer
+
+Header
+
+| Tag | Name         | Mandatory    | 
+|-----|--------------|--------------|
+| 8   | BeginString  | Y            |
+| 9   | BodyLength   | Y            |
+| 34  | MsgSeqNum    | Y            |
+| 35  | MsgType      | Y            |
+| 49  | SenderCompID | Y            |
+| 50  | SenderSubID  | Y            |
+| 52  | SendingTime  | Y            |
+| 56  | TargetCompID  | Y            |
+
+Trailer
+
+| Tag | Name      | Mandatory    | 
+|-----|-----------|--------------|
+| 10  | CheckSum  | Y            |
 
 
 ## Logon
