@@ -65,11 +65,10 @@ Kittn expects for the API key to be included in all API requests to the server i
 You must replace <code>meowmeowmeow</code> with your personal API key.
 </aside>
 
-# FIX 
+# FIX Taker API 
 
 ## Logon
 
-### Taker
 
 ```ruby
 require 'kittn'
@@ -135,7 +134,9 @@ This endpoint retrieves all kittens.
 Remember — a happy kitten is an authenticated kitten!
 </aside>
 
-## WebSocket
+## FIX Maker API
+
+## WebSocket Maker API
 
 ```ruby
 require 'kittn'
