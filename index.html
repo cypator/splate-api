@@ -295,7 +295,7 @@
     </script>
   </head>
 
-  <body class="index" data-languages="[&quot;plaintext&quot;,&quot;json&quot;]">
+  <body class="index" data-languages="[]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -304,10 +304,6 @@
     </a>
     <div class="toc-wrapper">
       <img src="images/logo-981ecdf1.png" class="logo" alt="" />
-        <div class="lang-selector">
-              <a href="#" data-language-name="plaintext">plaintext</a>
-              <a href="#" data-language-name="json">json</a>
-        </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
         </div>
@@ -628,14 +624,13 @@ Cypator -&gt; Client
 </code></pre></div>
 <blockquote>
 <p>FIX 4.2</p>
+</blockquote>
 <div class="highlight"><pre class="highlight plaintext tab-plaintext"><code>Client -&gt; Cypator
 8=FIX.4.2|9=58|35=A|49=cc21|56=cs1|34=1|52=20221031-07:41:49|98=0|108=20|10=102|
-</code></pre></div></blockquote>
 
-<p>Cypator -&gt; Client
+Cypator -&gt; Client
 8=FIX.4.2|9=62|35=A|34=1|49=cs1|52=20221031-07:41:50.005|56=cc21|98=0|108=20|10=028|
-```</p>
-
+</code></pre></div>
 <p>This message is sent to initiate a FIX session and establishes the communication session, authenticates the connecting client, and initializes the message sequence number.</p>
 
 <table><thead>
@@ -887,10 +882,6 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
 
       </div>
       <div class="dark-box">
-          <div class="lang-selector">
-                <a href="#" data-language-name="plaintext">plaintext</a>
-                <a href="#" data-language-name="json">json</a>
-          </div>
       </div>
     </div>
   </body>
