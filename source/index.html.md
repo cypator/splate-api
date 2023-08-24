@@ -1,9 +1,6 @@
 ---
 title: API Reference
 
-language_tabs: # must be one of https://github.com/rouge-ruby/rouge/wiki/List-of-supported-languages-and-lexers
-  - plaintext
-  - json
 
 toc_footers:
   - <a href='https://cyaptor.com'>Cypator</a>
@@ -157,7 +154,7 @@ Cypator -> Client
 ```
 
 > FIX 4.2
-> 
+
 ```plaintext 
 Client -> Cypator
 8=FIX.4.2|9=58|35=A|49=cc21|56=cs1|34=1|52=20221031-07:41:49|98=0|108=20|10=102|
