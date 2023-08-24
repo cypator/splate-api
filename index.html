@@ -295,7 +295,7 @@
     </script>
   </head>
 
-  <body class="index" data-languages="[&quot;FIX4.4&quot;,&quot;FIX4.2&quot;,&quot;WebSocket&quot;]">
+  <body class="index" data-languages="[&quot;plaintext&quot;,&quot;json&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -305,9 +305,8 @@
     <div class="toc-wrapper">
       <img src="images/logo-981ecdf1.png" class="logo" alt="" />
         <div class="lang-selector">
-              <a href="#" data-language-name="FIX4.4">FIX4.4</a>
-              <a href="#" data-language-name="FIX4.2">FIX4.2</a>
-              <a href="#" data-language-name="WebSocket">WebSocket</a>
+              <a href="#" data-language-name="plaintext">plaintext</a>
+              <a href="#" data-language-name="json">json</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -617,17 +616,26 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 startup. The purpose of this is simply to initialize the session. If the logon sequence causes resending to take place (as described in the FIX Protocol Specification v. 4.2+) then quotes will not be replayed – instead they will be replaced with a “Sequence Reset – Gap Fill” message.
 <a href="Cypator.com">Cypator</a> currently supports inbound connections only, meaning that Clients are responsible for
 logging into the electronic dealing platform</p>
-<h2 id='logon'>Logon</h2><div class="highlight"><pre class="highlight plaintext"><code>Client -&gt; Cypator
+<h2 id='logon'>Logon</h2>
+<blockquote>
+<p>FIX 4.4</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext tab-plaintext"><code>Client -&gt; Cypator
 8=FIX.4.4|9=79|35=A|49=cc11|56=cs1|34=1|52=20221031-07:40:55|98=0|108=20|553=User1|554=123456|10=034|
 
 Cypator -&gt; Client
 8=FIX.4.4|9=62|35=A|34=1|49=cs1|52=20221031-07:40:55.074|56=cc11|98=0|108=20|10=039|
-</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>Client -&gt; Cypator
-8=FIX.4.2|9=58|35=A|49=cc21|56=cs1|34=1|52=20221031-07:41:49|98=0|108=20|10=102|
-
-Cypator -&gt; Client
-8=FIX.4.2|9=62|35=A|34=1|49=cs1|52=20221031-07:41:50.005|56=cc21|98=0|108=20|10=028|
 </code></pre></div>
+<blockquote>
+<p>FIX 4.2</p>
+<div class="highlight"><pre class="highlight plaintext tab-plaintext"><code>Client -&gt; Cypator
+8=FIX.4.2|9=58|35=A|49=cc21|56=cs1|34=1|52=20221031-07:41:49|98=0|108=20|10=102|
+</code></pre></div></blockquote>
+
+<p>Cypator -&gt; Client
+8=FIX.4.2|9=62|35=A|34=1|49=cs1|52=20221031-07:41:50.005|56=cc21|98=0|108=20|10=028|
+```</p>
+
 <p>This message is sent to initiate a FIX session and establishes the communication session, authenticates the connecting client, and initializes the message sequence number.</p>
 
 <table><thead>
@@ -880,9 +888,8 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="FIX4.4">FIX4.4</a>
-                <a href="#" data-language-name="FIX4.2">FIX4.2</a>
-                <a href="#" data-language-name="WebSocket">WebSocket</a>
+                <a href="#" data-language-name="plaintext">plaintext</a>
+                <a href="#" data-language-name="json">json</a>
           </div>
       </div>
     </div>
