@@ -147,18 +147,6 @@ logging into the electronic dealing platform
 
 
 ## Logon
-This message is sent to initiate a FIX session and establishes the communication session, authenticates the connecting client, and initializes the message sequence number.
-
-| Tag | Name            | Mandatory | Description                                                                        | 
-|-----|-----------------|-----------|------------------------------------------------------------------------------------|
-| 35  | MsgType         | Y         | Y                                                                                  |
-| 98  | EncryptMethod   | Y         | Y                                                                                  |
-| 108 | HeartBtInt      | Y         | Y                                                                                  |
-| 141 | ResetSeqNumFlag | N         | Indicated that both parties of the FIX Session should reset their sequence numbers |
-| 553 | Username        | N         | Available only in FIX 4.4                                                          |
-| 554 | Password        | N         | Available only in FIX 4.4                                                          |
-
-
 
 ```FIX 4.4 
 Client -> Cypator
@@ -175,6 +163,17 @@ Client -> Cypator
 Cypator -> Client
 8=FIX.4.2|9=62|35=A|34=1|49=cs1|52=20221031-07:41:50.005|56=cc21|98=0|108=20|10=028|
 ```
+
+This message is sent to initiate a FIX session and establishes the communication session, authenticates the connecting client, and initializes the message sequence number.
+
+| Tag | Name            | Mandatory | Description                                                                        | 
+|-----|-----------------|-----------|------------------------------------------------------------------------------------|
+| 35  | MsgType         | Y         | Y                                                                                  |
+| 98  | EncryptMethod   | Y         | Y                                                                                  |
+| 108 | HeartBtInt      | Y         | Y                                                                                  |
+| 141 | ResetSeqNumFlag | N         | Indicated that both parties of the FIX Session should reset their sequence numbers |
+| 553 | Username        | N         | Available only in FIX 4.4                                                          |
+| 554 | Password        | N         | Available only in FIX 4.4                                                          |
 
 
 ## Logon
