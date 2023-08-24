@@ -614,27 +614,23 @@ startup. The purpose of this is simply to initialize the session. If the logon s
 logging into the electronic dealing platform</p>
 <h2 id='logon'>Logon</h2>
 <blockquote>
-<p>FIX 4.4 Client -&gt; Cypator
-<code>plaintext 
-8=FIX.4.4|9=79|35=A|49=cc11|56=cs1|34=1|52=20221031-07:40:55|98=0|108=20|553=User1|554=123456|10=034|
-</code></p>
-
-<p>FIX 4.4 Cypator -&gt; Client
-<code>plaintext
-8=FIX.4.4|9=62|35=A|34=1|49=cs1|52=20221031-07:40:55.074|56=cc11|98=0|108=20|10=039|
-</code></p>
-
-<p>FIX 4.2 Client -&gt; Cypator
-<code>plaintext
-8=FIX.4.2|9=58|35=A|49=cc21|56=cs1|34=1|52=20221031-07:41:49|98=0|108=20|10=102|
-</code></p>
-
-<p>FIX 4.2 Cypator -&gt; Client
-<code>plaintext
-8=FIX.4.2|9=62|35=A|34=1|49=cs1|52=20221031-07:41:50.005|56=cc21|98=0|108=20|10=028|
-</code></p>
+<p>FIX 4.4</p>
 </blockquote>
+<div class="highlight"><pre class="highlight plaintext tab-plaintext"><code>Client -&gt; Cypator
+8=FIX.4.4|9=79|35=A|49=cc11|56=cs1|34=1|52=20221031-07:40:55|98=0|108=20|553=User1|554=123456|10=034|
 
+Cypator -&gt; Client
+8=FIX.4.4|9=62|35=A|34=1|49=cs1|52=20221031-07:40:55.074|56=cc11|98=0|108=20|10=039|
+</code></pre></div>
+<blockquote>
+<p>FIX 4.2</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext tab-plaintext"><code>Client -&gt; Cypator
+8=FIX.4.2|9=58|35=A|49=cc21|56=cs1|34=1|52=20221031-07:41:49|98=0|108=20|10=102|
+
+Cypator -&gt; Client
+8=FIX.4.2|9=62|35=A|34=1|49=cs1|52=20221031-07:41:50.005|56=cc21|98=0|108=20|10=028|
+</code></pre></div>
 <p>This message is sent to initiate a FIX session and establishes the communication session, authenticates the connecting client, and initializes the message sequence number.</p>
 
 <table><thead>
