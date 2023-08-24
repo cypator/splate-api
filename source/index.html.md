@@ -94,10 +94,23 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
   * For fix 4.2 and 4.4 dual sessions - if we receive a message on the wrong session- it will be rejected. In addition, Fix4.2 doesn’t support all message types.
 
 
-| Parameter    | Default | Description                                                                      |
-| ------------ | ------- | -------------------------------------------------------------------------------- |
-| include_cats | false   | If set to true, the result will also include cats.                               |
-| available    | true    | If set to false, the result will include kittens that have already been adopted. |
+| Message type                          | Fix Version Supported | Market Session   | Trading Session | 
+| ------------------------------------- | --------------------- | ---------------- |-----------------|
+| Heartbeat <0>                         | 4.2/4.4               | Y                | Y               |
+| Test Request <1>                      | 4.2/4.4               | Y                | Y               |
+| Resend Request <2>                    | 4.2/4.4               | Y                | Y               |
+| Reject <3>                            | 4.2/4.4               | Y                | Y               |
+| Sequence Reset <4>                    | 4.2/4.4               | Y                | Y               |
+| Logout <5>                            | 4.2/4.4               | Y                | Y               |
+| Logon <A>                             | 4.2/4.4               | Y                | Y               |
+| Market Data Request <V>               | 4.2/4.4               | Y                | N               |
+| Market Data Request Reject <Y>        | 4.2/4.4               | Y                | N               |
+| Market Data-Snapshot/Full Refresh <W> | 4.2/4.4               | Y                | N               |
+| New Order Single <D>                  | 4.2/4.4               | N                | Y               |
+| Execution Report <8>                  | 4.2/4.4               | N                | Y               |
+| Trade Capture Report <AE>             | 4.4                   | N                | Y               |
+| Trade Capture Report Request <AD>     | 4.4                   | N                | Y               |
+| Trade Capture Report Request Ack <AQ> | 4.4                   | N                | Y               |
 
 
 
