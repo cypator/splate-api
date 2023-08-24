@@ -78,6 +78,14 @@ The following are the ways a client can connection to the API:
     How to generate .crt file using openSSL (see section Create Certificate Authority): https://devopscube.com/create-self-signed-certificates-openssl/
     How to generate .cer file using keytool: https://docs.oracle.com/cd/E19798-01/821-1841/gjrgy/
 
+* First
+  1. 1
+  1. 2
+* Second
+  * a
+  * b
+  * c
+
 
 
 
