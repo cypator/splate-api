@@ -332,6 +332,12 @@
                     <a href="#messages-products-and-fix-support" class="toc-h2 toc-link" data-title="Messages, Products and FIX Support">Messages, Products and FIX Support</a>
                   </li>
                   <li>
+                    <a href="#duplicate-check" class="toc-h2 toc-link" data-title="Duplicate check">Duplicate check</a>
+                  </li>
+                  <li>
+                    <a href="#header-and-trailer" class="toc-h2 toc-link" data-title="Header and Trailer">Header and Trailer</a>
+                  </li>
+                  <li>
                     <a href="#logon" class="toc-h2 toc-link" data-title="Logon">Logon</a>
                   </li>
                   <li>
@@ -529,6 +535,77 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 <td>Trade Capture Report Request Ack <AQ></td>
 <td>4.4</td>
 <td>N</td>
+<td>Y</td>
+</tr>
+</tbody></table>
+<h2 id='duplicate-check'>Duplicate check</h2>
+<p>There is always a possibility of duplicate trade being sent out, for example after a network disconnect. The client is expected to be able to identify duplicate trades and reject them, by using the tag 37 - OrderID</p>
+<h2 id='header-and-trailer'>Header and Trailer</h2>
+<p>The following define the FIX messages standard header and trailer</p>
+
+<p>Header</p>
+
+<table><thead>
+<tr>
+<th>Tag</th>
+<th>Name</th>
+<th>Mandatory</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>8</td>
+<td>BeginString</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>9</td>
+<td>BodyLength</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>34</td>
+<td>MsgSeqNum</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>35</td>
+<td>MsgType</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>49</td>
+<td>SenderCompID</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>50</td>
+<td>SenderSubID</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>52</td>
+<td>SendingTime</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>56</td>
+<td>TargetCompID</td>
+<td>Y</td>
+</tr>
+</tbody></table>
+
+<p>Trailer</p>
+
+<table><thead>
+<tr>
+<th>Tag</th>
+<th>Name</th>
+<th>Mandatory</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>10</td>
+<td>CheckSum</td>
 <td>Y</td>
 </tr>
 </tbody></table>
