@@ -295,7 +295,7 @@
     </script>
   </head>
 
-  <body class="index" data-languages="[&quot;FIX&quot;,&quot;WebSocket&quot;]">
+  <body class="index" data-languages="[&quot;FIX 4.4&quot;,&quot;FIX 4.2&quot;,&quot;WebSocket&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -305,7 +305,8 @@
     <div class="toc-wrapper">
       <img src="images/logo-981ecdf1.png" class="logo" alt="" />
         <div class="lang-selector">
-              <a href="#" data-language-name="FIX">FIX</a>
+              <a href="#" data-language-name="FIX 4.4">FIX 4.4</a>
+              <a href="#" data-language-name="FIX 4.2">FIX 4.2</a>
               <a href="#" data-language-name="WebSocket">WebSocket</a>
         </div>
         <div class="search">
@@ -337,6 +338,11 @@
                   <li>
                     <a href="#header-and-trailer" class="toc-h2 toc-link" data-title="Header and Trailer">Header and Trailer</a>
                   </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#session-messages" class="toc-h1 toc-link" data-title="Session Messages">Session Messages</a>
+              <ul class="toc-list-h2">
                   <li>
                     <a href="#logon" class="toc-h2 toc-link" data-title="Logon">Logon</a>
                   </li>
@@ -609,7 +615,76 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 <td>Y</td>
 </tr>
 </tbody></table>
-<h2 id='logon'>Logon</h2><h2 id='logon-2'>Logon</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<h1 id='session-messages'>Session Messages</h1>
+<p>The initialization sequence consists of two messages sent between the Client and Cypator during
+startup. The purpose of this is simply to initialize the session. If the logon sequence causes resending to take place (as described in the FIX Protocol Specification v. 4.2+) then quotes will not be replayed – instead they will be replaced with a “Sequence Reset – Gap Fill” message.
+<a href="Cypator.com">Cypator</a> currently supports inbound connections only, meaning that Clients are responsible for
+logging into the electronic dealing platform</p>
+<h2 id='logon'>Logon</h2>
+<p>This message is sent to initiate a FIX session and establishes the communication session, authenticates the connecting client, and initializes the message sequence number.</p>
+
+<table><thead>
+<tr>
+<th>Tag</th>
+<th>Name</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>35</td>
+<td>MsgType</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>98</td>
+<td>EncryptMethod</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>108</td>
+<td>HeartBtInt</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>141</td>
+<td>ResetSeqNumFlag</td>
+<td>N</td>
+<td>Indicated that both parties of the FIX Session should reset their sequence numbers</td>
+</tr>
+<tr>
+<td>553</td>
+<td>Username</td>
+<td>N</td>
+<td>Available only in FIX 4.4</td>
+</tr>
+<tr>
+<td>554</td>
+<td>Password</td>
+<td>N</td>
+<td>Available only in FIX 4.4</td>
+</tr>
+</tbody></table>
+
+<p>```FIX 4.4 
+Client -&gt; Cypator
+8=FIX.4.4|9=79|35=A|49=cc11|56=cs1|34=1|52=20221031-07:40:55|98=0|108=20|553=User1|554=123456|10=034|</p>
+
+<p>Cypator -&gt; Client
+8=FIX.4.4|9=62|35=A|34=1|49=cs1|52=20221031-07:40:55.074|56=cc11|98=0|108=20|10=039|
+```</p>
+
+<p>```FIX 4.2 
+Client -&gt; Cypator
+8=FIX.4.2|9=58|35=A|49=cc21|56=cs1|34=1|52=20221031-07:41:49|98=0|108=20|10=102|</p>
+
+<p>Cypator -&gt; Client
+8=FIX.4.2|9=62|35=A|34=1|49=cs1|52=20221031-07:41:50.005|56=cc21|98=0|108=20|10=028|
+```</p>
+<h2 id='logon-2'>Logon</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
 
 <span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
 <span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
@@ -814,7 +889,8 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="FIX">FIX</a>
+                <a href="#" data-language-name="FIX 4.4">FIX 4.4</a>
+                <a href="#" data-language-name="FIX 4.2">FIX 4.2</a>
                 <a href="#" data-language-name="WebSocket">WebSocket</a>
           </div>
       </div>
