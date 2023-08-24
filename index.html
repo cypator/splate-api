@@ -435,20 +435,101 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
+<th>Message type</th>
+<th>Fix Version Supported</th>
+<th>Market Session</th>
+<th>Trading Session</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
+<td>Heartbeat <0></td>
+<td>4.2/4.4</td>
+<td>Y</td>
+<td>Y</td>
 </tr>
 <tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
+<td>Test Request <1></td>
+<td>4.2/4.4</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>Resend Request <2></td>
+<td>4.2/4.4</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>Reject <3></td>
+<td>4.2/4.4</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>Sequence Reset <4></td>
+<td>4.2/4.4</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>Logout <5></td>
+<td>4.2/4.4</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>Logon <A></td>
+<td>4.2/4.4</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>Market Data Request <V></td>
+<td>4.2/4.4</td>
+<td>Y</td>
+<td>N</td>
+</tr>
+<tr>
+<td>Market Data Request Reject <Y></td>
+<td>4.2/4.4</td>
+<td>Y</td>
+<td>N</td>
+</tr>
+<tr>
+<td>Market Data-Snapshot/Full Refresh <W></td>
+<td>4.2/4.4</td>
+<td>Y</td>
+<td>N</td>
+</tr>
+<tr>
+<td>New Order Single <D></td>
+<td>4.2/4.4</td>
+<td>N</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>Execution Report <8></td>
+<td>4.2/4.4</td>
+<td>N</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>Trade Capture Report <AE></td>
+<td>4.4</td>
+<td>N</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>Trade Capture Report Request <AD></td>
+<td>4.4</td>
+<td>N</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>Trade Capture Report Request Ack <AQ></td>
+<td>4.4</td>
+<td>N</td>
+<td>Y</td>
 </tr>
 </tbody></table>
 <h2 id='logon'>Logon</h2><h2 id='logon-2'>Logon</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
