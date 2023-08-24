@@ -398,18 +398,19 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
     How to generate .cer file using keytool: https://docs.oracle.com/cd/E19798-01/821-1841/gjrgy/</p>
 
 <ul>
-<li>First
-
-<ol>
-<li>1</li>
-<li>2</li>
-</ol></li>
-<li>Second
+<li>The following are the ways a client can connection to the API:
 
 <ul>
-<li>a</li>
-<li>b</li>
-<li>c</li>
+<li>Internet over VPN</li>
+</ul></li>
+<li>VPN connectivity is routed to the nearest geographical instance - New York, London or Singapore.</li>
+<li>Access to the platform has to go through SSL encrypted TCP connection over the Internet. The client should provide a certificate signing request (CSR) in the format of .crt/.cer, which will be added to Cypator certification file.</li>
+<li>In case the client does not have a CSR file, please refer to the links below for additional instructions:
+
+<ul>
+<li>CSR information: https://www.globalsign.com/en/blog/what-is-a-certificate-signing-request-csr</li>
+<li>How to generate .crt file using openSSL (see section Create Certificate Authority): https://devopscube.com/create-self-signed-certificates-openssl/</li>
+<li>How to generate .cer file using keytool: https://docs.oracle.com/cd/E19798-01/821-1841/gjrgy/</li>
 </ul></li>
 </ul>
 <h2 id='logon'>Logon</h2><h2 id='logon-2'>Logon</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
