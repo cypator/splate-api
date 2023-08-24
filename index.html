@@ -432,6 +432,25 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 <li>For fix 4.2 and 4.4 dual sessions - if we receive a message on the wrong session- it will be rejected. In addition, Fix4.2 doesn’t support all message types.</li>
 </ul></li>
 </ul>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>include_cats</td>
+<td>false</td>
+<td>If set to true, the result will also include cats.</td>
+</tr>
+<tr>
+<td>available</td>
+<td>true</td>
+<td>If set to false, the result will include kittens that have already been adopted.</td>
+</tr>
+</tbody></table>
 <h2 id='logon'>Logon</h2><h2 id='logon-2'>Logon</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
 
 <span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
