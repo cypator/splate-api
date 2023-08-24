@@ -78,13 +78,14 @@ The following are the ways a client can connection to the API:
     How to generate .crt file using openSSL (see section Create Certificate Authority): https://devopscube.com/create-self-signed-certificates-openssl/
     How to generate .cer file using keytool: https://docs.oracle.com/cd/E19798-01/821-1841/gjrgy/
 
-* First
-  1. 1
-  1. 2
-* Second
-  * a
-  * b
-  * c
+* The following are the ways a client can connection to the API:
+  * Internet over VPN
+* VPN connectivity is routed to the nearest geographical instance - New York, London or Singapore.
+* Access to the platform has to go through SSL encrypted TCP connection over the Internet. The client should provide a certificate signing request (CSR) in the format of .crt/.cer, which will be added to Cypator certification file.
+* In case the client does not have a CSR file, please refer to the links below for additional instructions:
+  * CSR information: https://www.globalsign.com/en/blog/what-is-a-certificate-signing-request-csr
+  * How to generate .crt file using openSSL (see section Create Certificate Authority): https://devopscube.com/create-self-signed-certificates-openssl/
+  * How to generate .cer file using keytool: https://docs.oracle.com/cd/E19798-01/821-1841/gjrgy/
 
 
 
