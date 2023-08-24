@@ -2,9 +2,9 @@
 title: API Reference
 
 language_tabs: # must be one of https://github.com/rouge-ruby/rouge/wiki/List-of-supported-languages-and-lexers
-  - FIX1
-  - FIX2
-  - WebSocket
+  - ruby
+  - python
+  - shell
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
@@ -148,7 +148,7 @@ logging into the electronic dealing platform
 
 ## Logon
 
-```FIX1 
+```ruby 
 Client -> Cypator
 8=FIX.4.4|9=79|35=A|49=cc11|56=cs1|34=1|52=20221031-07:40:55|98=0|108=20|553=User1|554=123456|10=034|
 
@@ -156,7 +156,7 @@ Cypator -> Client
 8=FIX.4.4|9=62|35=A|34=1|49=cs1|52=20221031-07:40:55.074|56=cc11|98=0|108=20|10=039|
 ```
 
-```FIX2 
+```python 
 Client -> Cypator
 8=FIX.4.2|9=58|35=A|49=cc21|56=cs1|34=1|52=20221031-07:41:49|98=0|108=20|10=102|
 
