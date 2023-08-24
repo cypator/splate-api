@@ -68,24 +68,30 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 # FIX Taker API 
 
 ## Connectivity
-The following are the ways a client can connection to the API:
-* Internet over VPN
-    The following are key caveats:
-* VPN connectivity is routed to the nearest geographical instance - New York, London or Singapore.
-* Access to the platform has to go through SSL encrypted TCP connection over the Internet. The client should provide a certificate signing request (CSR) in the format of .crt/.cer, which will be added to Cypator certification file.
-* In case the client does not have a CSR file, please refer to the links below for additional instructions:
-    CSR information: https://www.globalsign.com/en/blog/what-is-a-certificate-signing-request-csr
-    How to generate .crt file using openSSL (see section Create Certificate Authority): https://devopscube.com/create-self-signed-certificates-openssl/
-    How to generate .cer file using keytool: https://docs.oracle.com/cd/E19798-01/821-1841/gjrgy/
 
 * The following are the ways a client can connection to the API:
   * Internet over VPN
 * VPN connectivity is routed to the nearest geographical instance - New York, London or Singapore.
 * Access to the platform has to go through SSL encrypted TCP connection over the Internet. The client should provide a certificate signing request (CSR) in the format of .crt/.cer, which will be added to Cypator certification file.
 * In case the client does not have a CSR file, please refer to the links below for additional instructions:
-  * CSR information: https://www.globalsign.com/en/blog/what-is-a-certificate-signing-request-csr
+  * [CSR information] https://www.globalsign.com/en/blog/what-is-a-certificate-signing-request-csr
   * How to generate .crt file using openSSL (see section Create Certificate Authority): https://devopscube.com/create-self-signed-certificates-openssl/
   * How to generate .cer file using keytool: https://docs.oracle.com/cd/E19798-01/821-1841/gjrgy/
+
+## Session Time
+* The session will be up the full week with a 3-minute scheduled restart on a weekly basis every Sunday. Exact time for restart will be scheduled with the client.
+  * StartDay=Sunday
+  * EndDay=Sunday
+  * StartTime=07:03:00
+  * EndTime=07:00:00
+
+## Messages, Products and FIX Support
+* The API supports the following:
+  * FIX version 4.4 (recommended) and 4.2
+  * Single session or Dual session
+  * Product type - Spot trading only
+  * Assets - any crypto coin and FIAT currency is supported. Limitations on what Assets are allowed are defined in the application and business agreement
+  * For fix 4.2 and 4.4 dual sessions - if we receive a message on the wrong session- it will be rejected. In addition, Fix4.2 doesn’t support all message types.
 
 
 
