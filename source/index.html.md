@@ -2,10 +2,8 @@
 title: API Reference
 
 language_tabs: # must be one of https://github.com/rouge-ruby/rouge/wiki/List-of-supported-languages-and-lexers
-  - shell
-  - ruby
-  - python
-  - javascript
+  - FIX 
+  - WebSocket
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
@@ -67,9 +65,9 @@ Kittn expects for the API key to be included in all API requests to the server i
 You must replace <code>meowmeowmeow</code> with your personal API key.
 </aside>
 
-# Kittens
+# FIX 
 
-## Get All Kittens
+## Logon
 
 ```ruby
 require 'kittn'
@@ -135,7 +133,7 @@ This endpoint retrieves all kittens.
 Remember — a happy kitten is an authenticated kitten!
 </aside>
 
-## Get a Specific Kitten
+## WebSocket
 
 ```ruby
 require 'kittn'
