@@ -2,8 +2,8 @@
 title: API Reference
 
 language_tabs: # must be one of https://github.com/rouge-ruby/rouge/wiki/List-of-supported-languages-and-lexers
-  - FIX 4.4
-  - FIX 4.2
+  - FIX1
+  - FIX2
   - WebSocket
 
 toc_footers:
@@ -139,7 +139,7 @@ Trailer
 | 10  | CheckSum  | Y            |
 
 
-# Session Messages
+## Session Messages
 The initialization sequence consists of two messages sent between the Client and Cypator during
 startup. The purpose of this is simply to initialize the session. If the logon sequence causes resending to take place (as described in the FIX Protocol Specification v. 4.2+) then quotes will not be replayed – instead they will be replaced with a “Sequence Reset – Gap Fill” message.
 [Cypator](Cypator.com) currently supports inbound connections only, meaning that Clients are responsible for
@@ -148,7 +148,7 @@ logging into the electronic dealing platform
 
 ## Logon
 
-```FIX 4.4 
+```FIX1 
 Client -> Cypator
 8=FIX.4.4|9=79|35=A|49=cc11|56=cs1|34=1|52=20221031-07:40:55|98=0|108=20|553=User1|554=123456|10=034|
 
@@ -156,7 +156,7 @@ Cypator -> Client
 8=FIX.4.4|9=62|35=A|34=1|49=cs1|52=20221031-07:40:55.074|56=cc11|98=0|108=20|10=039|
 ```
 
-```FIX 4.2 
+```FIX2 
 Client -> Cypator
 8=FIX.4.2|9=58|35=A|49=cc21|56=cs1|34=1|52=20221031-07:41:49|98=0|108=20|10=102|
 
