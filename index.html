@@ -295,7 +295,7 @@
     </script>
   </head>
 
-  <body class="index" data-languages="[&quot;FIX1&quot;,&quot;FIX2&quot;,&quot;WebSocket&quot;]">
+  <body class="index" data-languages="[&quot;ruby&quot;,&quot;python&quot;,&quot;shell&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -305,9 +305,9 @@
     <div class="toc-wrapper">
       <img src="images/logo-981ecdf1.png" class="logo" alt="" />
         <div class="lang-selector">
-              <a href="#" data-language-name="FIX1">FIX1</a>
-              <a href="#" data-language-name="FIX2">FIX2</a>
-              <a href="#" data-language-name="WebSocket">WebSocket</a>
+              <a href="#" data-language-name="ruby">ruby</a>
+              <a href="#" data-language-name="python">python</a>
+              <a href="#" data-language-name="shell">shell</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -618,16 +618,16 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 startup. The purpose of this is simply to initialize the session. If the logon sequence causes resending to take place (as described in the FIX Protocol Specification v. 4.2+) then quotes will not be replayed – instead they will be replaced with a “Sequence Reset – Gap Fill” message.
 <a href="Cypator.com">Cypator</a> currently supports inbound connections only, meaning that Clients are responsible for
 logging into the electronic dealing platform</p>
-<h2 id='logon'>Logon</h2><div class="highlight"><pre class="highlight plaintext"><code>Client -&gt; Cypator
-8=FIX.4.4|9=79|35=A|49=cc11|56=cs1|34=1|52=20221031-07:40:55|98=0|108=20|553=User1|554=123456|10=034|
+<h2 id='logon'>Logon</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="no">Client</span> <span class="o">-&gt;</span> <span class="no">Cypator</span>
+<span class="mi">8</span><span class="o">=</span><span class="no">FIX</span><span class="o">.</span><span class="mf">4.4</span><span class="o">|</span><span class="mi">9</span><span class="o">=</span><span class="mi">79</span><span class="o">|</span><span class="mi">35</span><span class="o">=</span><span class="no">A</span><span class="o">|</span><span class="mi">49</span><span class="o">=</span><span class="n">cc11</span><span class="o">|</span><span class="mi">56</span><span class="o">=</span><span class="n">cs1</span><span class="o">|</span><span class="mi">34</span><span class="o">=</span><span class="mi">1</span><span class="o">|</span><span class="mi">52</span><span class="o">=</span><span class="mi">20221031</span><span class="o">-</span><span class="mo">07</span><span class="p">:</span><span class="mi">40</span><span class="p">:</span><span class="mi">55</span><span class="o">|</span><span class="mi">98</span><span class="o">=</span><span class="mi">0</span><span class="o">|</span><span class="mi">108</span><span class="o">=</span><span class="mi">20</span><span class="o">|</span><span class="mi">553</span><span class="o">=</span><span class="no">User1</span><span class="o">|</span><span class="mi">554</span><span class="o">=</span><span class="mi">123456</span><span class="o">|</span><span class="mi">10</span><span class="o">=</span><span class="mo">034</span><span class="o">|</span>
 
-Cypator -&gt; Client
-8=FIX.4.4|9=62|35=A|34=1|49=cs1|52=20221031-07:40:55.074|56=cc11|98=0|108=20|10=039|
-</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>Client -&gt; Cypator
-8=FIX.4.2|9=58|35=A|49=cc21|56=cs1|34=1|52=20221031-07:41:49|98=0|108=20|10=102|
+<span class="no">Cypator</span> <span class="o">-&gt;</span> <span class="no">Client</span>
+<span class="mi">8</span><span class="o">=</span><span class="no">FIX</span><span class="o">.</span><span class="mf">4.4</span><span class="o">|</span><span class="mi">9</span><span class="o">=</span><span class="mi">62</span><span class="o">|</span><span class="mi">35</span><span class="o">=</span><span class="no">A</span><span class="o">|</span><span class="mi">34</span><span class="o">=</span><span class="mi">1</span><span class="o">|</span><span class="mi">49</span><span class="o">=</span><span class="n">cs1</span><span class="o">|</span><span class="mi">52</span><span class="o">=</span><span class="mi">20221031</span><span class="o">-</span><span class="mo">07</span><span class="p">:</span><span class="mi">40</span><span class="p">:</span><span class="mf">55.074</span><span class="o">|</span><span class="mi">56</span><span class="o">=</span><span class="n">cc11</span><span class="o">|</span><span class="mi">98</span><span class="o">=</span><span class="mi">0</span><span class="o">|</span><span class="mi">108</span><span class="o">=</span><span class="mi">20</span><span class="o">|</span><span class="mi">10</span><span class="o">=</span><span class="mo">03</span><span class="mi">9</span><span class="o">|</span>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="n">Client</span> <span class="o">-&gt;</span> <span class="n">Cypator</span>
+<span class="mi">8</span><span class="o">=</span><span class="n">FIX</span><span class="p">.</span><span class="mf">4.2</span><span class="o">|</span><span class="mi">9</span><span class="o">=</span><span class="mi">58</span><span class="o">|</span><span class="mi">35</span><span class="o">=</span><span class="n">A</span><span class="o">|</span><span class="mi">49</span><span class="o">=</span><span class="n">cc21</span><span class="o">|</span><span class="mi">56</span><span class="o">=</span><span class="n">cs1</span><span class="o">|</span><span class="mi">34</span><span class="o">=</span><span class="mi">1</span><span class="o">|</span><span class="mi">52</span><span class="o">=</span><span class="mi">20221031</span><span class="o">-</span><span class="mi">07</span><span class="p">:</span><span class="mi">41</span><span class="p">:</span><span class="mi">49</span><span class="o">|</span><span class="mi">98</span><span class="o">=</span><span class="mi">0</span><span class="o">|</span><span class="mi">108</span><span class="o">=</span><span class="mi">20</span><span class="o">|</span><span class="mi">10</span><span class="o">=</span><span class="mi">102</span><span class="o">|</span>
 
-Cypator -&gt; Client
-8=FIX.4.2|9=62|35=A|34=1|49=cs1|52=20221031-07:41:50.005|56=cc21|98=0|108=20|10=028|
+<span class="n">Cypator</span> <span class="o">-&gt;</span> <span class="n">Client</span>
+<span class="mi">8</span><span class="o">=</span><span class="n">FIX</span><span class="p">.</span><span class="mf">4.2</span><span class="o">|</span><span class="mi">9</span><span class="o">=</span><span class="mi">62</span><span class="o">|</span><span class="mi">35</span><span class="o">=</span><span class="n">A</span><span class="o">|</span><span class="mi">34</span><span class="o">=</span><span class="mi">1</span><span class="o">|</span><span class="mi">49</span><span class="o">=</span><span class="n">cs1</span><span class="o">|</span><span class="mi">52</span><span class="o">=</span><span class="mi">20221031</span><span class="o">-</span><span class="mi">07</span><span class="p">:</span><span class="mi">41</span><span class="p">:</span><span class="mf">50.005</span><span class="o">|</span><span class="mi">56</span><span class="o">=</span><span class="n">cc21</span><span class="o">|</span><span class="mi">98</span><span class="o">=</span><span class="mi">0</span><span class="o">|</span><span class="mi">108</span><span class="o">=</span><span class="mi">20</span><span class="o">|</span><span class="mi">10</span><span class="o">=</span><span class="mi">028</span><span class="o">|</span>
 </code></pre></div>
 <p>This message is sent to initiate a FIX session and establishes the communication session, authenticates the connecting client, and initializes the message sequence number.</p>
 
@@ -881,9 +881,9 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="FIX1">FIX1</a>
-                <a href="#" data-language-name="FIX2">FIX2</a>
-                <a href="#" data-language-name="WebSocket">WebSocket</a>
+                <a href="#" data-language-name="ruby">ruby</a>
+                <a href="#" data-language-name="python">python</a>
+                <a href="#" data-language-name="shell">shell</a>
           </div>
       </div>
     </div>
