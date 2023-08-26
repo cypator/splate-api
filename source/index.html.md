@@ -172,7 +172,7 @@ This message is sent to initiate a FIX session and establishes the communication
 
 | Tag | Name            | Mandatory | Description                                                                        | 
 |-----|-----------------|-----------|------------------------------------------------------------------------------------|
-| 35  | MsgType         | Y         | Y                                                                                  |
+| 35  | MsgType         | Y         | A                                                                                  |
 | 98  | EncryptMethod   | Y         | Y                                                                                  |
 | 108 | HeartBtInt      | Y         | Y                                                                                  |
 | 141 | ResetSeqNumFlag | N         | Indicated that both parties of the FIX Session should reset their sequence numbers |
@@ -180,8 +180,63 @@ This message is sent to initiate a FIX session and establishes the communication
 | 554 | Password        | N         | Available only in FIX 4.4                                                          |
 
 
-## Logon
+## Heartbeat
 
+This message is sent during periods of application inactivity to ensure connection validity. The receiving party should always respond with a heartbeat message.
+
+
+| Tag | Name       | Mandatory | Description                                                                | 
+|-----|------------|-----------|----------------------------------------------------------------------------|
+| 35  | MsgType    | Y         | 0                                                                          |
+| 98  | TestReqID  | N         | Required only when the heartbeat is in response to a Test Request Message  |
+
+
+## Test Request
+
+This message is used to verify connectivity and synchronize sequence numbers.  A test request should be responded to with a heartbeat from recipient
+
+| Tag | Name       | Mandatory | Description                                      | 
+|-----|------------|-----------|--------------------------------------------------|
+| 35  | MsgType    | Y         | 1                                                |
+| 98  | TestReqID  |           | Identifier to be returned in Heartbeat response  |
+
+
+## Logout
+
+This message signals the normal termination of the trading session. A session terminated without a Logout message will be considered an abnormal condition.
+
+| Tag | Name     | Mandatory | Description | 
+|-----|----------|-----------|-------------|
+| 35  | MsgType  | Y         | 5           |
+| 55  | Text     | N         |             |
+
+
+## Market Data Request
+Once the logon process is complete, Market Data Requests can be sent to the ECN. Cypator will respond immediately with either a Market Data Full Refresh (35=W) message or a Market Data Request Reject message (35=Y).
+Only a single product can be requested in each request. The client will receive both bid and ask prices  in a single message ).
+The ECN also supports layers (also known elsewhere as price bands or tiers). Quotes containing bid prices and quantities for all layers are always streamed in the same message, as is the case for quotes containing ask prices and quantities.
+
+This message is used to subscribe/unsubscribe to market data rate information.
+
+
+| Tag | Name                     | Mandatory | Description                                                                                                                                                                                | 
+|-----|--------------------------|-----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 35  | MsgType                  | Y         | V                                                                                                                                                                                          |
+| 262 | MDReqID                  | Y         | Unique Market Data Request ID.  This will be used in responses by Cypator or by the client to cancel a request. To unsubscribe from market data, the same ID must be sent with tag 263 = 2 |
+| 263 | SubscriptionRequestType  | Y         | 1 – Snapshot + Updates (Subscribe) 2 – Disable Snapshot + Updates (Unsubscribe)                                                                                                            |
+|     |                          |           |                                                                                                                                                                                            |
+|     |                          |           |                                                                                                                                                                                            |
+|     |                          |           |                                                                                                                                                                                            |
+|     |                          |           |                                                                                                                                                                                            |
+|     |                          |           |                                                                                                                                                                                            |
+|     |                          |           |                                                                                                                                                                                            |
+|     |                          |           |                                                                                                                                                                                            |
+|     |                          |           |                                                                                                                                                                                            |
+
+
+
+
+## TEEEEEEEEEEST
 
 ```ruby
 require 'kittn'
