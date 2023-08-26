@@ -340,7 +340,19 @@
                     <a href="#logon" class="toc-h2 toc-link" data-title="Logon">Logon</a>
                   </li>
                   <li>
-                    <a href="#logon-2" class="toc-h2 toc-link" data-title="Logon">Logon</a>
+                    <a href="#heartbeat" class="toc-h2 toc-link" data-title="Heartbeat">Heartbeat</a>
+                  </li>
+                  <li>
+                    <a href="#test-request" class="toc-h2 toc-link" data-title="Test Request">Test Request</a>
+                  </li>
+                  <li>
+                    <a href="#logout" class="toc-h2 toc-link" data-title="Logout">Logout</a>
+                  </li>
+                  <li>
+                    <a href="#market-data-request" class="toc-h2 toc-link" data-title="Market Data Request">Market Data Request</a>
+                  </li>
+                  <li>
+                    <a href="#teeeeeeeeeest" class="toc-h2 toc-link" data-title="TEEEEEEEEEEST">TEEEEEEEEEEST</a>
                   </li>
                   <li>
                     <a href="#fix-maker-api" class="toc-h2 toc-link" data-title="FIX Maker API">FIX Maker API</a>
@@ -647,7 +659,7 @@ logging into the electronic dealing platform</p>
 <td>35</td>
 <td>MsgType</td>
 <td>Y</td>
-<td>Y</td>
+<td>A</td>
 </tr>
 <tr>
 <td>98</td>
@@ -680,7 +692,161 @@ logging into the electronic dealing platform</p>
 <td>Available only in FIX 4.4</td>
 </tr>
 </tbody></table>
-<h2 id='logon-2'>Logon</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<h2 id='heartbeat'>Heartbeat</h2>
+<p>This message is sent during periods of application inactivity to ensure connection validity. The receiving party should always respond with a heartbeat message.</p>
+
+<table><thead>
+<tr>
+<th>Tag</th>
+<th>Name</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>35</td>
+<td>MsgType</td>
+<td>Y</td>
+<td>0</td>
+</tr>
+<tr>
+<td>98</td>
+<td>TestReqID</td>
+<td>N</td>
+<td>Required only when the heartbeat is in response to a Test Request Message</td>
+</tr>
+</tbody></table>
+<h2 id='test-request'>Test Request</h2>
+<p>This message is used to verify connectivity and synchronize sequence numbers.  A test request should be responded to with a heartbeat from recipient</p>
+
+<table><thead>
+<tr>
+<th>Tag</th>
+<th>Name</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>35</td>
+<td>MsgType</td>
+<td>Y</td>
+<td>1</td>
+</tr>
+<tr>
+<td>98</td>
+<td>TestReqID</td>
+<td></td>
+<td>Identifier to be returned in Heartbeat response</td>
+</tr>
+</tbody></table>
+<h2 id='logout'>Logout</h2>
+<p>This message signals the normal termination of the trading session. A session terminated without a Logout message will be considered an abnormal condition.</p>
+
+<table><thead>
+<tr>
+<th>Tag</th>
+<th>Name</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>35</td>
+<td>MsgType</td>
+<td>Y</td>
+<td>5</td>
+</tr>
+<tr>
+<td>55</td>
+<td>Text</td>
+<td>N</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='market-data-request'>Market Data Request</h2>
+<p>Once the logon process is complete, Market Data Requests can be sent to the ECN. Cypator will respond immediately with either a Market Data Full Refresh (35=W) message or a Market Data Request Reject message (35=Y).
+Only a single product can be requested in each request. The client will receive both bid and ask prices  in a single message ).
+The ECN also supports layers (also known elsewhere as price bands or tiers). Quotes containing bid prices and quantities for all layers are always streamed in the same message, as is the case for quotes containing ask prices and quantities.</p>
+
+<p>This message is used to subscribe/unsubscribe to market data rate information.</p>
+
+<table><thead>
+<tr>
+<th>Tag</th>
+<th>Name</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>35</td>
+<td>MsgType</td>
+<td>Y</td>
+<td>V</td>
+</tr>
+<tr>
+<td>262</td>
+<td>MDReqID</td>
+<td>Y</td>
+<td>Unique Market Data Request ID.  This will be used in responses by Cypator or by the client to cancel a request. To unsubscribe from market data, the same ID must be sent with tag 263 = 2</td>
+</tr>
+<tr>
+<td>263</td>
+<td>SubscriptionRequestType</td>
+<td>Y</td>
+<td>1 – Snapshot + Updates (Subscribe) 2 – Disable Snapshot + Updates (Unsubscribe)</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='teeeeeeeeeest'>TEEEEEEEEEEST</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
 
 <span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
 <span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
