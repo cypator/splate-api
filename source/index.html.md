@@ -216,12 +216,14 @@ This message signals the normal termination of the trading session. A session te
 > FIX 4.4 Client -> Cypator subscribe
 
 ```plaintext 
+
 8=FIX.4.4|9=99|35=V|49=cc12|56=cs1|34=8|52=20221031-07:43:44|262=1|263=1|264=0|146=1|55=BTC/USD|267=2|269=0|269=1|10=095|
 ```
 
 > FIX 4.2 Client -> Cypator subscribe
 
 ```plaintext 
+
 8=FIX.4.2|9=99|35=V|49=cc22|56=cs1|34=3|52=20221031-08:34:43|262=1|263=1|264=0|146=1|55=BTC/USD|267=2|269=0|269=1|10=089|
 ```
 
@@ -229,12 +231,14 @@ This message signals the normal termination of the trading session. A session te
 > FIX 4.4 Client -> Cypator Unsubscribe
 
 ```plaintext 
+
 8=FIX.4.4|9=99|35=V|49=cc12|56=cs1|34=7|52=20221031-08:35:17|262=1|263=2|264=0|146=1|55=BTC/USD|267=2|269=0|269=1|10=097|
 ```
 
 > FIX 4.4 Client -> Cypator Unsubscribe
 
 ```plaintext 
+
 8=FIX.4.2|9=99|35=V|49=cc22|56=cs1|34=5|52=20221031-08:34:55|262=1|263=2|264=0|146=1|55=BTC/USD|267=2|269=0|269=1|10=095|
 ```
 
