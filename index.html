@@ -765,6 +765,26 @@ logging into the electronic dealing platform</p>
 </tr>
 </tbody></table>
 <h2 id='market-data-request'>Market Data Request</h2>
+<blockquote>
+<p>FIX 4.4 Client -&gt; Cypator subscribe</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext tab-plaintext"><code>8=FIX.4.4|9=99|35=V|49=cc12|56=cs1|34=8|52=20221031-07:43:44|262=1|263=1|264=0|146=1|55=BTC/USD|267=2|269=0|269=1|10=095|
+</code></pre></div>
+<blockquote>
+<p>FIX 4.2 Client -&gt; Cypator subscribe</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext tab-plaintext"><code>8=FIX.4.2|9=99|35=V|49=cc22|56=cs1|34=3|52=20221031-08:34:43|262=1|263=1|264=0|146=1|55=BTC/USD|267=2|269=0|269=1|10=089|
+</code></pre></div>
+<blockquote>
+<p>FIX 4.4 Client -&gt; Cypator Unsubscribe</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext tab-plaintext"><code>8=FIX.4.4|9=99|35=V|49=cc12|56=cs1|34=7|52=20221031-08:35:17|262=1|263=2|264=0|146=1|55=BTC/USD|267=2|269=0|269=1|10=097|
+</code></pre></div>
+<blockquote>
+<p>FIX 4.4 Client -&gt; Cypator Unsubscribe</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext tab-plaintext"><code>8=FIX.4.2|9=99|35=V|49=cc22|56=cs1|34=5|52=20221031-08:34:55|262=1|263=2|264=0|146=1|55=BTC/USD|267=2|269=0|269=1|10=095|
+</code></pre></div>
 <p>Once the logon process is complete, Market Data Requests can be sent to the ECN. Cypator will respond immediately with either a Market Data Full Refresh (35=W) message or a Market Data Request Reject message (35=Y).
 Only a single product can be requested in each request. The client will receive both bid and ask prices  in a single message ).
 The ECN also supports layers (also known elsewhere as price bands or tiers). Quotes containing bid prices and quantities for all layers are always streamed in the same message, as is the case for quotes containing ask prices and quantities.</p>
@@ -828,22 +848,22 @@ The ECN also supports layers (also known elsewhere as price bands or tiers). Quo
 <td>Market Data entries types list: <br /> 0 - Bid <br /> 1 - Offer <br /> Repeated field: 269=0, 269=1</td>
 </tr>
 <tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td>146</td>
+<td>NoRelatedSym</td>
+<td>Y</td>
+<td>1 ( we allow only a single asset per subscription)</td>
 </tr>
 <tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td>-&gt;<br />55</td>
+<td>Symbol</td>
+<td>Y</td>
+<td>Asset - “BTC/USD”</td>
 </tr>
 <tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td>-&gt;<br />64</td>
+<td>FutSettDate</td>
+<td>N</td>
+<td>Value date YYYYMMDD. Currently unused, will be used once forward is supported.</td>
 </tr>
 </tbody></table>
 <h2 id='teeeeeeeeeest'>TEEEEEEEEEEST</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
