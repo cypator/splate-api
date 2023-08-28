@@ -798,34 +798,34 @@ The ECN also supports layers (also known elsewhere as price bands or tiers). Quo
 <td>1 – Snapshot + Updates (Subscribe) <br />  2 – Disable Snapshot + Updates (Unsubscribe)</td>
 </tr>
 <tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td>264</td>
+<td>MarketDepth</td>
+<td>Y</td>
+<td>0 - Full Book  <br /> 1 - Top of the Book</td>
 </tr>
 <tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td>265</td>
+<td>MDUpdateType</td>
+<td>N</td>
+<td>0 - Full refresh</td>
 </tr>
 <tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td>266</td>
+<td>AggregatedBook</td>
+<td>N</td>
+<td>Y - VWAP book <br /> N - Raw prices may or may not include the liquidity provider names.</td>
 </tr>
 <tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td>267</td>
+<td>NoMDEntryTypes</td>
+<td>Y</td>
+<td>Number of MDEntryType fields being requested. 2 - bid and offer <br /> Note – please make sure to request in tag 269 both Bid and Offer. Request for a single side will be rejected!!!</td>
 </tr>
 <tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td>-&gt;269</td>
+<td>MDEntryType</td>
+<td>Y</td>
+<td>Market Data entries types list: <br /> 0 - Bid <br /> 1 - Offer <br /> Repeated field: 269=0, 269=1</td>
 </tr>
 <tr>
 <td></td>
