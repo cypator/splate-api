@@ -219,19 +219,19 @@ The ECN also supports layers (also known elsewhere as price bands or tiers). Quo
 This message is used to subscribe/unsubscribe to market data rate information.
 
 
-| Tag | Name                     | Mandatory | Description                                                                                                                                                                                | 
-|-----|--------------------------|-----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 35  | MsgType                  | Y         | V                                                                                                                                                                                          |
-| 262 | MDReqID                  | Y         | Unique Market Data Request ID.  This will be used in responses by Cypator or by the client to cancel a request. To unsubscribe from market data, the same ID must be sent with tag 263 = 2 |
-| 263 | SubscriptionRequestType  | Y         | 1 – Snapshot + Updates (Subscribe) <br />  2 – Disable Snapshot + Updates (Unsubscribe)                                                                                                    |
-|     |                          |           |                                                                                                                                                                                            |
-|     |                          |           |                                                                                                                                                                                            |
-|     |                          |           |                                                                                                                                                                                            |
-|     |                          |           |                                                                                                                                                                                            |
-|     |                          |           |                                                                                                                                                                                            |
-|     |                          |           |                                                                                                                                                                                            |
-|     |                          |           |                                                                                                                                                                                            |
-|     |                          |           |                                                                                                                                                                                            |
+| Tag     | Name                    | Mandatory | Description                                                                                                                                                                                | 
+|---------|-------------------------|-----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 35      | MsgType                 | Y         | V                                                                                                                                                                                          |
+| 262     | MDReqID                 | Y         | Unique Market Data Request ID.  This will be used in responses by Cypator or by the client to cancel a request. To unsubscribe from market data, the same ID must be sent with tag 263 = 2 |
+| 263     | SubscriptionRequestType | Y         | 1 – Snapshot + Updates (Subscribe) <br />  2 – Disable Snapshot + Updates (Unsubscribe)                                                                                                    |
+| 264     | MarketDepth             | Y         | 0 - Full Book  <br /> 1 - Top of the Book                                                                                                                                                  |
+| 265     | MDUpdateType            | N         | 0 - Full refresh                                                                                                                                                                           | 
+| 266     | AggregatedBook          | N         | Y - VWAP book <br /> N - Raw prices may or may not include the liquidity provider names.                                                                                                   |
+| 267     | NoMDEntryTypes          | Y         | Number of MDEntryType fields being requested. 2 - bid and offer <br /> Note – please make sure to request in tag 269 both Bid and Offer. Request for a single side will be rejected!!!     |
+| ->269   | MDEntryType             | Y         | Market Data entries types list: <br /> 0 - Bid <br /> 1 - Offer <br /> Repeated field: 269=0, 269=1                                                                                        |
+|         |                         |           |                                                                                                                                                                                            |
+|         |                         |           |                                                                                                                                                                                            |
+|         |                         |           |                                                                                                                                                                                            |
 
 
 
