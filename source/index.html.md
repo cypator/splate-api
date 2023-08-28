@@ -264,6 +264,28 @@ This message is used to subscribe/unsubscribe to market data rate information.
 | -><br />64  | FutSettDate             | N         | Value date YYYYMMDD. Currently unused, will be used once forward is supported.                                                                                                             |
 
 
+## Market Data Request Reject
+
+> FIX 4.4 Cypator -> Client
+
+```plaintext 
+
+8=FIX.4.4|9=85|35=Y|34=106|49=cs1|52=20221031-09:03:57.488|56=cc12|58=Duplicate MDReqID|262=1|281=1|10=094|
+```
+
+> FIX 4.2 Cypator -> Client
+
+```plaintext 
+
+8=FIX.4.2|9=84|35=Y|34=84|49=cs1|52=20221031-08:58:35.817|56=cc22|58=Duplicate MDReqID|262=1|281=1|10=050|
+```
+
+
+| Tag | Name            | Mandatory | Description                                                                                                                                        | 
+|-----|-----------------|-----------|----------------------------------------------------------------------------------------------------------------------------------------------------|
+| 35  | MsgType         | Y         | Y                                                                                                                                                  |
+| 262 | MDReqID         | Y         | The  Unique ID of the received market data                                                                                                         |
+| 281 | MDReqRejReason  | N         | Reason for rejection <br />  0 - Unknown Symbol <br /> 1 - Duplicate MDReqID <br /> 2 - Request not supported <br /> 3 - Insufficient Permissions  |
 
 
 ## TEEEEEEEEEEST
