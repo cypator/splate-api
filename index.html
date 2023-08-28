@@ -352,6 +352,9 @@
                     <a href="#market-data-request" class="toc-h2 toc-link" data-title="Market Data Request">Market Data Request</a>
                   </li>
                   <li>
+                    <a href="#market-data-request-reject" class="toc-h2 toc-link" data-title="Market Data Request Reject">Market Data Request Reject</a>
+                  </li>
+                  <li>
                     <a href="#teeeeeeeeeest" class="toc-h2 toc-link" data-title="TEEEEEEEEEEST">TEEEEEEEEEEST</a>
                   </li>
                   <li>
@@ -868,6 +871,46 @@ The ECN also supports layers (also known elsewhere as price bands or tiers). Quo
 <td>FutSettDate</td>
 <td>N</td>
 <td>Value date YYYYMMDD. Currently unused, will be used once forward is supported.</td>
+</tr>
+</tbody></table>
+<h2 id='market-data-request-reject'>Market Data Request Reject</h2>
+<blockquote>
+<p>FIX 4.4 Cypator -&gt; Client</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext tab-plaintext"><code>
+8=FIX.4.4|9=85|35=Y|34=106|49=cs1|52=20221031-09:03:57.488|56=cc12|58=Duplicate MDReqID|262=1|281=1|10=094|
+</code></pre></div>
+<blockquote>
+<p>FIX 4.2 Cypator -&gt; Client</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext tab-plaintext"><code>
+8=FIX.4.2|9=84|35=Y|34=84|49=cs1|52=20221031-08:58:35.817|56=cc22|58=Duplicate MDReqID|262=1|281=1|10=050|
+</code></pre></div>
+<table><thead>
+<tr>
+<th>Tag</th>
+<th>Name</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>35</td>
+<td>MsgType</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>262</td>
+<td>MDReqID</td>
+<td>Y</td>
+<td>The  Unique ID of the received market data</td>
+</tr>
+<tr>
+<td>281</td>
+<td>MDReqRejReason</td>
+<td>N</td>
+<td>Reason for rejection <br />  0 - Unknown Symbol <br /> 1 - Duplicate MDReqID <br /> 2 - Request not supported <br /> 3 - Insufficient Permissions</td>
 </tr>
 </tbody></table>
 <h2 id='teeeeeeeeeest'>TEEEEEEEEEEST</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
