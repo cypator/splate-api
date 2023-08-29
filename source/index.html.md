@@ -40,6 +40,7 @@ This document defines the Capacitor FIX API for sending out market prices, recei
 * The FIX gateway supports subset of messages and tags listed in this document.
 * Price is represented in natural value (e.g. 2500.01 for BTCEUR).
 
+* VPN connectivity is routed to the nearest geographical instance - New York, London or Singapore.
 
 ## Connectivity
 
@@ -378,9 +379,9 @@ This endpoint retrieves all kittens.
 Remember — a happy kitten is an authenticated kitten!
 </aside>
 
-## FIX Maker API
+# FIX Maker API
 
-## WebSocket Maker API
+# WebSocket Maker API
 
 ```ruby
 require 'kittn'
