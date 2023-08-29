@@ -17,7 +17,7 @@ meta:
     content: Documentation for the Kittn API
 ---
 
-## Cypator Introduction
+# Cypator Introduction
 Bla Bla Bal
 
 # FIX Taker API 
