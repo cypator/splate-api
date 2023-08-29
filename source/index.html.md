@@ -316,8 +316,23 @@ This message is used to subscribe/unsubscribe to market data rate information.
 | -><br />271 | MDEntrySize        | Y         | Quantity  of entry                                                         |
 | -><br />282 | MDEntryOriginator  | N         | Liquidity provider name. In case of 266=N in Market Data Request Message.  |
 
+In the event Cypator disables an instrument, it will send a message to the Taker side to clear its book for that instrument. This is done in order to prevent a reject or timeout for an order generated after the disable of the instrument.
+The clear book message will be the standard 35=W message per instrument with 268=0.
+An example of the message:
 
+> FIX 4.4 Cypator -> Client
 
+```plaintext 
+
+8=FIX.4.4|9=100|35=W|34=268|49=cs1|52=20230619-09:45:58.883|56=cc12|55=ETH/USD|262=1|268=0|10=184| 
+```
+
+> FIX 4.2 Cypator -> Client
+
+```plaintext 
+
+8=FIX.4.2|9=100|35=W|34=268|49=cs1|52=20230619-09:45:58.883|56=cc12|55=ETH/USD|262=1|268=0|10=184| 
+```
 
 ## TEEEEEEEEEEST
 
