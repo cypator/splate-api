@@ -32,6 +32,7 @@ architecture.
 Cypator  provides two FIX sessions for interaction with Clients. The first session is specifically for price communication and the second is for trading. Clients need to ensure that the appropriate session is used when messages are sent to the ECN.
 <br />
 This document defines the Capacitor FIX API for sending out market prices, receiving orders  and providing trading execution notifications via the Cypator FIX gateway
+
 * The FIX gateway is accessible with an OpenVPN connection.
 * There are two interfaces: FIX Market data and FIX Trading.
 * FIX Trading and Fix Market data require a valid SenderCompId , login and password specified in the Logon message.
@@ -39,8 +40,6 @@ This document defines the Capacitor FIX API for sending out market prices, recei
 * FIX 4.2 is also supported, but is more limited and less recommended
 * The FIX gateway supports subset of messages and tags listed in this document.
 * Price is represented in natural value (e.g. 2500.01 for BTCEUR).
-
-* VPN connectivity is routed to the nearest geographical instance - New York, London or Singapore.
 
 ## Connectivity
 
