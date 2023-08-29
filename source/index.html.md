@@ -17,51 +17,29 @@ meta:
     content: Documentation for the Kittn API
 ---
 
-# Cypator Introduction
-
-Welcome to the Cypator API! You can use our API to access API endpoints.
-
-# Cypator code example
-
-> To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here" \
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require("kittn");
-
-let api = kittn.authorize("meowmeowmeow");
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
+## Cypator Introduction
+Bla Bla Bal
 
 # FIX Taker API 
+
+## Cypator FIX Introduction
+
+This document details the Financial Information eXchange (FIX) protocol used by the Cyaptor Crypto trading ECN. Cypator uses the FIX protocol to stream prices and handle orders for FX Spot with a counterparty, referred to generically in this document as the “Client”.
+To communicate with the ECN via the FIX protocol, there must be IP connectivity between Cyaptor and the Client, and the Client must initiate the connection. The Client must support the FIX 4.4 or FIX 4.2 protocol to communicate properly with the ECN.
+The diagram below presents a high-level overview of the FIX-based FX electronic dealing
+architecture.
+<br />
+Cypator  provides two FIX sessions for interaction with Clients. The first session is specifically for price communication and the second is for trading. Clients need to ensure that the appropriate session is used when messages are sent to the ECN.
+<br />
+This document defines the Capacitor FIX API for sending out market prices, receiving orders  and providing trading execution notifications via the Cypator FIX gateway
+* The FIX gateway is accessible with an OpenVPN connection.
+* There are two interfaces: FIX Market data and FIX Trading.
+* FIX Trading and Fix Market data require a valid SenderCompId , login and password specified in the Logon message.
+* The protocol is based on FIX protocol 4.4 (http://www.fixtradingcommunity.org/FIXimate/FIXimate3.0/). Refer to FIX 4.4 documentation if there is no tag information specified.
+* FIX 4.2 is also supported, but is more limited and less recommended
+* The FIX gateway supports subset of messages and tags listed in this document.
+* Price is represented in natural value (e.g. 2500.01 for BTCEUR).
+
 
 ## Connectivity
 
