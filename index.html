@@ -310,14 +310,11 @@
         <ul class="search-results"></ul>
       <ul id="toc" class="toc-list-h1">
           <li>
-            <a href="#cypator-introduction" class="toc-h1 toc-link" data-title="Cypator Introduction">Cypator Introduction</a>
-          </li>
-          <li>
-            <a href="#cypator-code-example" class="toc-h1 toc-link" data-title="Cypator code example">Cypator code example</a>
-          </li>
-          <li>
             <a href="#fix-taker-api" class="toc-h1 toc-link" data-title="FIX Taker API">FIX Taker API</a>
               <ul class="toc-list-h2">
+                  <li>
+                    <a href="#cypator-fix-introduction" class="toc-h2 toc-link" data-title="Cypator FIX Introduction">Cypator FIX Introduction</a>
+                  </li>
                   <li>
                     <a href="#connectivity" class="toc-h2 toc-link" data-title="Connectivity">Connectivity</a>
                   </li>
@@ -382,39 +379,25 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='cypator-introduction'>Cypator Introduction</h1>
-<p>Welcome to the Cypator API! You can use our API to access API endpoints.</p>
-<h1 id='cypator-code-example'>Cypator code example</h1>
-<blockquote>
-<p>To authorize, use this code:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">kittn</span><span class="dl">"</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">"</span><span class="s2">meowmeowmeow</span><span class="dl">"</span><span class="p">);</span>
-</code></pre></div>
-<blockquote>
-<p>Make sure to replace <code>meowmeowmeow</code> with your API key.</p>
-</blockquote>
-
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
-
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
-
-<p><code>Authorization: meowmeowmeow</code></p>
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-<h1 id='fix-taker-api'>FIX Taker API</h1><h2 id='connectivity'>Connectivity</h2>
+        <h2 id='cypator-introduction'>Cypator Introduction</h2>
+<p>Bla Bla Bal</p>
+<h1 id='fix-taker-api'>FIX Taker API</h1><h2 id='cypator-fix-introduction'>Cypator FIX Introduction</h2>
+<p>This document details the Financial Information eXchange (FIX) protocol used by the Cyaptor Crypto trading ECN. Cypator uses the FIX protocol to stream prices and handle orders for FX Spot with a counterparty, referred to generically in this document as the “Client”.
+To communicate with the ECN via the FIX protocol, there must be IP connectivity between Cyaptor and the Client, and the Client must initiate the connection. The Client must support the FIX 4.4 or FIX 4.2 protocol to communicate properly with the ECN.
+The diagram below presents a high-level overview of the FIX-based FX electronic dealing
+architecture.
+<br />
+Cypator  provides two FIX sessions for interaction with Clients. The first session is specifically for price communication and the second is for trading. Clients need to ensure that the appropriate session is used when messages are sent to the ECN.
+<br />
+This document defines the Capacitor FIX API for sending out market prices, receiving orders  and providing trading execution notifications via the Cypator FIX gateway
+* The FIX gateway is accessible with an OpenVPN connection.
+* There are two interfaces: FIX Market data and FIX Trading.
+* FIX Trading and Fix Market data require a valid SenderCompId , login and password specified in the Logon message.
+* The protocol is based on FIX protocol 4.4 (http://www.fixtradingcommunity.org/FIXimate/FIXimate3.0/). Refer to FIX 4.4 documentation if there is no tag information specified.
+* FIX 4.2 is also supported, but is more limited and less recommended
+* The FIX gateway supports subset of messages and tags listed in this document.
+* Price is represented in natural value (e.g. 2500.01 for BTCEUR).</p>
+<h2 id='connectivity'>Connectivity</h2>
 <ul>
 <li>The following are the ways a client can connection to the API:
 
