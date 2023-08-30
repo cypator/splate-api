@@ -129,7 +129,7 @@ The client will send a “New Order Single” message to place an order. Cypator
   * Market - Best attempt at market price
 
 
-<aside class="success">
+<aside class="notice">
 In the case where a Trade Acknowledgment and accompanying Trade Fill or Reject message are
 not received within 5 seconds, from the time the trade request was sent, the Client MUST
 contact Cyaptor using the following support email address: support@cypator.com. This support inbox is manned 24 hours a day 7 days a week, providing global support at all hours. Contact with Cypator should be made via an automated email alert from the Client’s trading system. However, in the event that the Client cannot support this, we would expect a manual email or a call to our
