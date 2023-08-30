@@ -140,6 +140,9 @@ support desk.
 
 > FIX 4.4 Client -> Cypator
 
+
+This message is sent to initiate a FIX session and establishes the communication session, authenticates the connecting client, and initializes the message sequence number.
+
 ```plaintext 
 8=FIX.4.4|9=79|35=A|49=cc11|56=cs1|34=1|52=20221031-07:40:55|98=0|108=20|553=User1|554=123456|10=034|
 ```
@@ -162,8 +165,6 @@ support desk.
 ```plaintext 
 8=FIX.4.2|9=62|35=A|34=1|49=cs1|52=20221031-07:41:50.005|56=cc21|98=0|108=20|10=028|
 ```
-
-This message is sent to initiate a FIX session and establishes the communication session, authenticates the connecting client, and initializes the message sequence number.
 
 | Tag | Name            | Mandatory | Description                                                                        | 
 |-----|-----------------|-----------|------------------------------------------------------------------------------------|
@@ -208,6 +209,12 @@ This message signals the normal termination of the trading session. A session te
 
 ## Market Data Request
 
+Once the logon process is complete, Market Data Requests can be sent to the ECN. Cypator will respond immediately with either a Market Data Full Refresh (35=W) message or a Market Data Request Reject message (35=Y).
+Only a single product can be requested in each request. The client will receive both bid and ask prices  in a single message ).
+The ECN also supports layers (also known elsewhere as price bands or tiers). Quotes containing bid prices and quantities for all layers are always streamed in the same message, as is the case for quotes containing ask prices and quantities.
+
+This message is used to subscribe/unsubscribe to market data rate information.
+
 > FIX 4.4 Client -> Cypator subscribe
 
 ```plaintext 
@@ -236,12 +243,6 @@ This message signals the normal termination of the trading session. A session te
 
 8=FIX.4.2|9=99|35=V|49=cc22|56=cs1|34=5|52=20221031-08:34:55|262=1|263=2|264=0|146=1|55=BTC/USD|267=2|269=0|269=1|10=095|
 ```
-
-Once the logon process is complete, Market Data Requests can be sent to the ECN. Cypator will respond immediately with either a Market Data Full Refresh (35=W) message or a Market Data Request Reject message (35=Y).
-Only a single product can be requested in each request. The client will receive both bid and ask prices  in a single message ).
-The ECN also supports layers (also known elsewhere as price bands or tiers). Quotes containing bid prices and quantities for all layers are always streamed in the same message, as is the case for quotes containing ask prices and quantities.
-
-This message is used to subscribe/unsubscribe to market data rate information.
 
 
 | Tag         | Name                    | Mandatory | Description                                                                                                                                                                                | 
@@ -331,9 +332,25 @@ An example of the message:
 
 
 ## New Order Single
+
+
 A new order single message enables the client to send a request for a trade to the ECN.
 Cypator requires that the ClOrdID <11> be unique.
 
+
+> FIX 4.4  Client -> Cypator
+
+```plaintext 
+
+8=FIX.4.4|9=133|35=D|49=cc11|56=cs1|34=113|52=20221031-09:10:46|11=1598950759|21=1|55=BTC/USD|54=1|60=20221031-09:10:46|40=2|44=19123.20|38=100|59=4|10=003|
+```
+
+> FIX 4.2 Client -> Cypator
+
+```plaintext 
+
+8=FIX.4.2|9=133|35=D|49=cc21|56=cs1|34=113|52=20221031-09:11:04|11=1805964193|21=1|55=BTC/USD|54=1|60=20221031-09:11:04|40=2|44=19123.20|38=100|59=4|10=23
+```
 
 | Tag | Name                                             | Mandatory | Description                                                                                                                                                                                                                                                                                              | 
 |-----|--------------------------------------------------|-----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -351,19 +368,6 @@ Cypator requires that the ClOrdID <11> be unique.
 | 64  | FutSettDate (FIX 4.2) <br /> SettlDate (FIX 4.4) | N         | Value date YYYYMMDD. Required for forward Will be supported in the future. Use FutSettDate if using FIX 4.2 Use SettlDate if using FIX 4.4                                                                                                                                                               |
 | 126 | ExpireTime                                       | N         | Not supported in phase 1- Required for Good-Till-Date order request. Date and Time of the order expiration specified in YYYYMMDD-HH:MM:SS format. Expressed in GMT.                                                                                                                                      |
 
-> FIX 4.4  Client -> Cypator
-
-```plaintext 
-
-8=FIX.4.4|9=133|35=D|49=cc11|56=cs1|34=113|52=20221031-09:10:46|11=1598950759|21=1|55=BTC/USD|54=1|60=20221031-09:10:46|40=2|44=19123.20|38=100|59=4|10=003|
-```
-
-> FIX 4.2 Client -> Cypator
-
-```plaintext 
-
-8=FIX.4.2|9=133|35=D|49=cc21|56=cs1|34=113|52=20221031-09:11:04|11=1805964193|21=1|55=BTC/USD|54=1|60=20221031-09:11:04|40=2|44=19123.20|38=100|59=4|10=23
-```
 
 ## TEEEEEEEEEEST
 
