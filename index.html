@@ -364,6 +364,9 @@
                     <a href="#new-order-single" class="toc-h2 toc-link" data-title="New Order Single">New Order Single</a>
                   </li>
                   <li>
+                    <a href="#order-reject" class="toc-h2 toc-link" data-title="Order Reject">Order Reject</a>
+                  </li>
+                  <li>
                     <a href="#teeeeeeeeeest" class="toc-h2 toc-link" data-title="TEEEEEEEEEEST">TEEEEEEEEEEST</a>
                   </li>
               </ul>
@@ -1136,6 +1139,54 @@ Cypator requires that the ClOrdID <11> be unique.</p>
 <td>ExpireTime</td>
 <td>N</td>
 <td>Not supported in phase 1- Required for Good-Till-Date order request. Date and Time of the order expiration specified in YYYYMMDD-HH:MM:SS format. Expressed in GMT.</td>
+</tr>
+</tbody></table>
+<h2 id='order-reject'>Order Reject</h2>
+<p>This message is used by Cypator to reject an order message. This can happen if the order doesn’t comply with the FIX dictionary, naming issue or acceding throughput limitation</p>
+
+<table><thead>
+<tr>
+<th>Tag</th>
+<th>Name</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>35</td>
+<td>MsgType</td>
+<td>Y</td>
+<td>3</td>
+</tr>
+<tr>
+<td>45</td>
+<td>RefSeqNum</td>
+<td>Y</td>
+<td>Integer value -reference of the rejected order header sequence number MsgSeqNum <34></td>
+</tr>
+<tr>
+<td>371</td>
+<td>RefTagID</td>
+<td>N</td>
+<td>The tag number of the FIX field being referenced</td>
+</tr>
+<tr>
+<td>372</td>
+<td>RefMsgType</td>
+<td>N</td>
+<td>The message type (35) OF THE Fix message being referenced (e.g “D” for 35=D)</td>
+</tr>
+<tr>
+<td>373</td>
+<td>SessionRejectReason</td>
+<td>N</td>
+<td>Code to identify reason for rejection: <br /> 0 = Invalid tag number <br /> 1 = Required tag missing <br /> 2 = Tag not defined for this message type <br /> 3 = Undefined Tag <br />4 = Tag specified without a value<br />5 = Value is incorrect (out of range) for this tag<br />6 = Incorrect data format for value<br />7 = Decryption problem<br />8 = Signature <89> problem<br />9 = CompID problem<br />10 = SendingTime <52> accuracy problem<br />11 = Invalid MsgType <35><br />12 = XML Validation error<br />13 = Tag appears more than once<br />14 = Tag specified out of required order<br />15 = Repeating group fields out of order<br />16 = Incorrect NumInGroup count for repeating group<br />17 = Non &quot;Data&quot; value includes field delimiter (<SOH> character)<br />99 = Other<br /></td>
+</tr>
+<tr>
+<td>58</td>
+<td>Text</td>
+<td>N</td>
+<td>Error message text</td>
 </tr>
 </tbody></table>
 <h2 id='teeeeeeeeeest'>TEEEEEEEEEEST</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
