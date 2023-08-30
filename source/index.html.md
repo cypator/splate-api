@@ -120,11 +120,6 @@ The client will send a “New Order Single” message to place an order. Cypator
 
 * The Cypator trading interface supports the two types of orders
   * Limit 
-  * Market 
- 
-
-* The Cypator trading interface supports the two types of orders:
-  * Limit
   * Market
 * The Cypator trading interface supports the following Time in force (TIF):
   * IOC - Immediate or Cancel
