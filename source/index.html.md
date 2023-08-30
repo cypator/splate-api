@@ -117,6 +117,12 @@ logging into the electronic dealing platform
 
 ## Trading Workflow
 The client will send a “New Order Single” message to place an order. Cypator will respond to the order with an Execution report message (35=8) of either Accept or Reject. If accepted, further execution report messages will indicate order fills until it is Done or Canceled.
+
+* The Cypator trading interface supports the two types of orders
+  * Limit 
+  * Market 
+ 
+
 * The Cypator trading interface supports the two types of orders:
   * Limit
   * Market
