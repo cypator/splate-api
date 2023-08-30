@@ -5,9 +5,6 @@ title: API Reference
 toc_footers:
   - <a href='https://cyaptor.com'>Cypator</a>
 
-includes:
-  - errors
-
 search: true
 
 code_clipboard: true
