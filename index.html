@@ -631,14 +631,29 @@ startup. The purpose of this is simply to initialize the session. If the logon s
 <a href="Cypator.com">Cypator</a> currently supports inbound connections only, meaning that Clients are responsible for
 logging into the electronic dealing platform</p>
 <h2 id='trading-workflow'>Trading Workflow</h2>
-<p>The client will send a “New Order Single” message to place an order. Cypator will respond to the order with an Execution report message (35=8) of either Accept or Reject. If accepted, further execution report messages will indicate order fills until it is Done or Canceled.
-* The Cypator trading interface supports the two types of orders:
-  * Limit
-  * Market
-* The Cypator trading interface supports the following Time in force (TIF):
-  * IOC - Immediate or Cancel
-  * FOK - Fill or kill
-  * Market - Best attempt at market price</p>
+<p>The client will send a “New Order Single” message to place an order. Cypator will respond to the order with an Execution report message (35=8) of either Accept or Reject. If accepted, further execution report messages will indicate order fills until it is Done or Canceled.</p>
+
+<ul>
+<li><p>The Cypator trading interface supports the two types of orders</p>
+
+<ul>
+<li>Limit </li>
+<li>Market </li>
+</ul></li>
+<li><p>The Cypator trading interface supports the two types of orders:</p>
+
+<ul>
+<li>Limit</li>
+<li>Market</li>
+</ul></li>
+<li><p>The Cypator trading interface supports the following Time in force (TIF):</p>
+
+<ul>
+<li>IOC - Immediate or Cancel</li>
+<li>FOK - Fill or kill</li>
+<li>Market - Best attempt at market price</li>
+</ul></li>
+</ul>
 
 <aside class="notice">
 In the case where a Trade Acknowledgment and accompanying Trade Fill or Reject message are
