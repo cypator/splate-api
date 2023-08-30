@@ -361,6 +361,9 @@
                     <a href="#market-data-snapshot-full" class="toc-h2 toc-link" data-title="Market Data Snapshot Full">Market Data Snapshot Full</a>
                   </li>
                   <li>
+                    <a href="#new-order-single" class="toc-h2 toc-link" data-title="New Order Single">New Order Single</a>
+                  </li>
+                  <li>
                     <a href="#teeeeeeeeeest" class="toc-h2 toc-link" data-title="TEEEEEEEEEEST">TEEEEEEEEEEST</a>
                   </li>
               </ul>
@@ -1023,6 +1026,109 @@ An example of the message:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight plaintext tab-plaintext"><code>
 8=FIX.4.2|9=100|35=W|34=268|49=cs1|52=20230619-09:45:58.883|56=cc12|55=ETH/USD|262=1|268=0|10=184| 
+</code></pre></div><h2 id='new-order-single'>New Order Single</h2>
+<p>A new order single message enables the client to send a request for a trade to the ECN.
+Cypator requires that the ClOrdID <11> be unique.</p>
+
+<table><thead>
+<tr>
+<th>Tag</th>
+<th>Name</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>35</td>
+<td>MsgType</td>
+<td>Y</td>
+<td>D</td>
+</tr>
+<tr>
+<td>11</td>
+<td>ClOrdID</td>
+<td>Y</td>
+<td>Client Order ID – must be unique</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Account</td>
+<td>N</td>
+<td>Client Account name</td>
+</tr>
+<tr>
+<td>60</td>
+<td>TransactTime</td>
+<td>Y</td>
+<td>The transaction timestamp of the orde</td>
+</tr>
+<tr>
+<td>15</td>
+<td>Currency</td>
+<td>Y</td>
+<td>The currency or coin unit that represents the quantity</td>
+</tr>
+<tr>
+<td>54</td>
+<td>Side</td>
+<td>Y</td>
+<td>1 (Buy) <br />  2 (Sell)</td>
+</tr>
+<tr>
+<td>55</td>
+<td>Symbol</td>
+<td>Y</td>
+<td>The Asset - Coin and currency combination, e.g EUR/USD, BTC/USD, ETH/BTC</td>
+</tr>
+<tr>
+<td>38</td>
+<td>OrderQty</td>
+<td>Y</td>
+<td>The order quantity</td>
+</tr>
+<tr>
+<td>40</td>
+<td>OrdType</td>
+<td>Y</td>
+<td>1 – Market <br />  2 – Limit <br /> 3 – Stop / Stop Los</td>
+</tr>
+<tr>
+<td>44</td>
+<td>Price</td>
+<td>Y</td>
+<td>Limit price if 40=2 <br /> Stop Price if 40 = 3 <br /> If 40=1 the price is required for pre trade credit check</td>
+</tr>
+<tr>
+<td>59</td>
+<td>TimeInForce</td>
+<td>N</td>
+<td>1 – Good Till Cancel -not supported phase1 <br /> 3 – Immediate or Cancel (Default if no value provided) <br /> 4 – Fill or Kill <br /> 6 – Good Till Date  -not supported phase <br /> Note: OrdType=1 only supports TimeInForce=3 (IOC) OrdType=3 (Stop) only supports TimeInForce=1 (GTC) and 6 (GTD)</td>
+</tr>
+<tr>
+<td>64</td>
+<td>FutSettDate (FIX 4.2) <br /> SettlDate (FIX 4.4)</td>
+<td>N</td>
+<td>Value date YYYYMMDD. Required for forward Will be supported in the future. Use FutSettDate if using FIX 4.2 Use SettlDate if using FIX 4.4</td>
+</tr>
+<tr>
+<td>126</td>
+<td>ExpireTime</td>
+<td>N</td>
+<td>Not supported in phase 1- Required for Good-Till-Date order request. Date and Time of the order expiration specified in YYYYMMDD-HH:MM:SS format. Expressed in GMT.</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>FIX 4.4  Client -&gt; Cypator</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext tab-plaintext"><code>
+8=FIX.4.4|9=133|35=D|49=cc11|56=cs1|34=113|52=20221031-09:10:46|11=1598950759|21=1|55=BTC/USD|54=1|60=20221031-09:10:46|40=2|44=19123.20|38=100|59=4|10=003|
+</code></pre></div>
+<blockquote>
+<p>FIX 4.2 Client -&gt; Cypator</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext tab-plaintext"><code>
+8=FIX.4.2|9=133|35=D|49=cc21|56=cs1|34=113|52=20221031-09:11:04|11=1805964193|21=1|55=BTC/USD|54=1|60=20221031-09:11:04|40=2|44=19123.20|38=100|59=4|10=23
 </code></pre></div><h2 id='teeeeeeeeeest'>TEEEEEEEEEEST</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
 
 <span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
