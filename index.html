@@ -652,6 +652,8 @@ support desk.
 <blockquote>
 <p>FIX 4.4 Client -&gt; Cypator</p>
 </blockquote>
+
+<p>This message is sent to initiate a FIX session and establishes the communication session, authenticates the connecting client, and initializes the message sequence number.</p>
 <div class="highlight"><pre class="highlight plaintext tab-plaintext"><code>8=FIX.4.4|9=79|35=A|49=cc11|56=cs1|34=1|52=20221031-07:40:55|98=0|108=20|553=User1|554=123456|10=034|
 </code></pre></div>
 <blockquote>
@@ -669,8 +671,6 @@ support desk.
 </blockquote>
 <div class="highlight"><pre class="highlight plaintext tab-plaintext"><code>8=FIX.4.2|9=62|35=A|34=1|49=cs1|52=20221031-07:41:50.005|56=cc21|98=0|108=20|10=028|
 </code></pre></div>
-<p>This message is sent to initiate a FIX session and establishes the communication session, authenticates the connecting client, and initializes the message sequence number.</p>
-
 <table><thead>
 <tr>
 <th>Tag</th>
@@ -789,6 +789,12 @@ support desk.
 </tr>
 </tbody></table>
 <h2 id='market-data-request'>Market Data Request</h2>
+<p>Once the logon process is complete, Market Data Requests can be sent to the ECN. Cypator will respond immediately with either a Market Data Full Refresh (35=W) message or a Market Data Request Reject message (35=Y).
+Only a single product can be requested in each request. The client will receive both bid and ask prices  in a single message ).
+The ECN also supports layers (also known elsewhere as price bands or tiers). Quotes containing bid prices and quantities for all layers are always streamed in the same message, as is the case for quotes containing ask prices and quantities.</p>
+
+<p>This message is used to subscribe/unsubscribe to market data rate information.</p>
+
 <blockquote>
 <p>FIX 4.4 Client -&gt; Cypator subscribe</p>
 </blockquote>
@@ -813,12 +819,6 @@ support desk.
 <div class="highlight"><pre class="highlight plaintext tab-plaintext"><code>
 8=FIX.4.2|9=99|35=V|49=cc22|56=cs1|34=5|52=20221031-08:34:55|262=1|263=2|264=0|146=1|55=BTC/USD|267=2|269=0|269=1|10=095|
 </code></pre></div>
-<p>Once the logon process is complete, Market Data Requests can be sent to the ECN. Cypator will respond immediately with either a Market Data Full Refresh (35=W) message or a Market Data Request Reject message (35=Y).
-Only a single product can be requested in each request. The client will receive both bid and ask prices  in a single message ).
-The ECN also supports layers (also known elsewhere as price bands or tiers). Quotes containing bid prices and quantities for all layers are always streamed in the same message, as is the case for quotes containing ask prices and quantities.</p>
-
-<p>This message is used to subscribe/unsubscribe to market data rate information.</p>
-
 <table><thead>
 <tr>
 <th>Tag</th>
@@ -1030,6 +1030,18 @@ An example of the message:</p>
 <p>A new order single message enables the client to send a request for a trade to the ECN.
 Cypator requires that the ClOrdID <11> be unique.</p>
 
+<blockquote>
+<p>FIX 4.4  Client -&gt; Cypator</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext tab-plaintext"><code>
+8=FIX.4.4|9=133|35=D|49=cc11|56=cs1|34=113|52=20221031-09:10:46|11=1598950759|21=1|55=BTC/USD|54=1|60=20221031-09:10:46|40=2|44=19123.20|38=100|59=4|10=003|
+</code></pre></div>
+<blockquote>
+<p>FIX 4.2 Client -&gt; Cypator</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext tab-plaintext"><code>
+8=FIX.4.2|9=133|35=D|49=cc21|56=cs1|34=113|52=20221031-09:11:04|11=1805964193|21=1|55=BTC/USD|54=1|60=20221031-09:11:04|40=2|44=19123.20|38=100|59=4|10=23
+</code></pre></div>
 <table><thead>
 <tr>
 <th>Tag</th>
@@ -1117,19 +1129,7 @@ Cypator requires that the ClOrdID <11> be unique.</p>
 <td>Not supported in phase 1- Required for Good-Till-Date order request. Date and Time of the order expiration specified in YYYYMMDD-HH:MM:SS format. Expressed in GMT.</td>
 </tr>
 </tbody></table>
-
-<blockquote>
-<p>FIX 4.4  Client -&gt; Cypator</p>
-</blockquote>
-<div class="highlight"><pre class="highlight plaintext tab-plaintext"><code>
-8=FIX.4.4|9=133|35=D|49=cc11|56=cs1|34=113|52=20221031-09:10:46|11=1598950759|21=1|55=BTC/USD|54=1|60=20221031-09:10:46|40=2|44=19123.20|38=100|59=4|10=003|
-</code></pre></div>
-<blockquote>
-<p>FIX 4.2 Client -&gt; Cypator</p>
-</blockquote>
-<div class="highlight"><pre class="highlight plaintext tab-plaintext"><code>
-8=FIX.4.2|9=133|35=D|49=cc21|56=cs1|34=113|52=20221031-09:11:04|11=1805964193|21=1|55=BTC/USD|54=1|60=20221031-09:11:04|40=2|44=19123.20|38=100|59=4|10=23
-</code></pre></div><h2 id='teeeeeeeeeest'>TEEEEEEEEEEST</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<h2 id='teeeeeeeeeest'>TEEEEEEEEEEST</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
 
 <span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
 <span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
