@@ -384,6 +384,24 @@ This message is used by Cypator to reject an order message. This can happen if t
 | 58  | Text                      | N         | Error message text                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 
 
+## Order Cancel Reques
+
+This message is used by the client to cancel any live order they may have. Applicable for orders of type GTC/GTD/GIS
+<aside class="warning"> Not supported in phase 1</aside>
+
+
+
+| Tag | Name          | Mandatory | Description                                                               | 
+|-----|---------------|-----------|---------------------------------------------------------------------------|
+| 35  | MsgType       | Y         | F                                                                         |
+| 1   | Account       | N         | Client Account name                                                       |
+| 11  | ClOrderID     | Y         | Client Order ID                                                           |
+| 37  | OrderID       | Y         | The order ID of the order to be canceled                                  |
+| 41  | OrigClOrdID   | Y         | Client Order ID of Order being replaced                                   |
+| 55  | Symbol        | N         | The Asset - Coin and currency combination, e.g. EUR/USD, BTC/USD, ETH/BTC |
+| 60  | TransactTime  | N         | The transaction timestamp of the order cancel request                     |
+
+
 ## TEEEEEEEEEEST
 
 ```ruby
