@@ -118,6 +118,29 @@ startup. The purpose of this is simply to initialize the session. If the logon s
 [Cypator](Cypator.com) currently supports inbound connections only, meaning that Clients are responsible for
 logging into the electronic dealing platform
 
+## Trading Workflow
+The client will send a “New Order Single” message to place an order. Cypator will respond to the order with an Execution report message (35=8) of either Accept or Reject. If accepted, further execution report messages will indicate order fills until it is Done or Canceled.
+* The Cypator trading interface supports the two types of orders:
+  * Limit
+  * Market
+* The Cypator trading interface supports the following Time in force (TIF):
+  * IOC - Immediate or Cancel
+  * FOK - Fill or kill
+  * Market - Best attempt at market price
+
+
+<aside class="success">
+In the case where a Trade Acknowledgment and accompanying Trade Fill or Reject message are
+not received within 5 seconds, from the time the trade request was sent, the Client MUST
+contact Cyaptor using the following support email address: support@cypator.com. This support inbox is manned 24 hours a day 7 days a week, providing global support at all hours. Contact with Cypator should be made via an automated email alert from the Client’s trading system. However, in the event that the Client cannot support this, we would expect a manual email or a call to our
+support desk.
+</aside>
+
+<aside class="warning">The Cypator trading interface currently does not support resting orders.</aside>
+
+
+
+
 
 ## Logon
 
@@ -311,6 +334,10 @@ An example of the message:
 
 8=FIX.4.2|9=100|35=W|34=268|49=cs1|52=20230619-09:45:58.883|56=cc12|55=ETH/USD|262=1|268=0|10=184| 
 ```
+
+
+
+
 
 ## TEEEEEEEEEEST
 
