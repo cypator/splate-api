@@ -139,9 +139,6 @@ support desk.
 <aside class="warning">The Cypator trading interface currently does not support resting orders.</aside>
 
 
-
-
-
 ## Logon
 
 > FIX 4.4 Client -> Cypator
