@@ -367,7 +367,10 @@
                     <a href="#order-reject" class="toc-h2 toc-link" data-title="Order Reject">Order Reject</a>
                   </li>
                   <li>
-                    <a href="#order-cancel-reques" class="toc-h2 toc-link" data-title="Order Cancel Reques">Order Cancel Reques</a>
+                    <a href="#order-cancel-request" class="toc-h2 toc-link" data-title="Order Cancel Request">Order Cancel Request</a>
+                  </li>
+                  <li>
+                    <a href="#cancel-rejected" class="toc-h2 toc-link" data-title="Cancel Rejected">Cancel Rejected</a>
                   </li>
                   <li>
                     <a href="#teeeeeeeeeest" class="toc-h2 toc-link" data-title="TEEEEEEEEEEST">TEEEEEEEEEEST</a>
@@ -1192,7 +1195,7 @@ Cypator requires that the ClOrdID <11> be unique.</p>
 <td>Error message text</td>
 </tr>
 </tbody></table>
-<h2 id='order-cancel-reques'>Order Cancel Reques</h2>
+<h2 id='order-cancel-request'>Order Cancel Request</h2>
 <p>This message is used by the client to cancel any live order they may have. Applicable for orders of type GTC/GTD/GIS
 <aside class="warning"> Not supported in phase 1</aside></p>
 
@@ -1244,6 +1247,79 @@ Cypator requires that the ClOrdID <11> be unique.</p>
 <td>60</td>
 <td>TransactTime</td>
 <td>N</td>
+<td>The transaction timestamp of the order cancel request</td>
+</tr>
+</tbody></table>
+<h2 id='cancel-rejected'>Cancel Rejected</h2>
+<p>This message is used by Cypator to reject a cancel order message. This can happen if the order is already filled or is in the process of getting filled.
+<aside class="warning"> Not supported in phase 1</aside></p>
+
+<table><thead>
+<tr>
+<th>Tag</th>
+<th>Name</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>35</td>
+<td>MsgType</td>
+<td>Y</td>
+<td>9</td>
+</tr>
+<tr>
+<td>11</td>
+<td>ClOrderID</td>
+<td>Y</td>
+<td>Client Order ID</td>
+</tr>
+<tr>
+<td>37</td>
+<td>OrderID</td>
+<td>Y</td>
+<td>The order ID of the order to be canceled</td>
+</tr>
+<tr>
+<td>39</td>
+<td>OrderStatus</td>
+<td>Y</td>
+<td>Status of the order cancel request (not of any order)</td>
+</tr>
+<tr>
+<td>41</td>
+<td>OrigClOrdID</td>
+<td>Y</td>
+<td>Client Order ID of Order being replaced</td>
+</tr>
+<tr>
+<td>55</td>
+<td>Symbol</td>
+<td>N</td>
+<td>The Asset - Coin and currency combination, e.g. EUR/USD, BTC/USD, ETH/BTC</td>
+</tr>
+<tr>
+<td>434</td>
+<td>CxlRejResponseTo</td>
+<td>Y</td>
+<td>1 – Order Cancel Request <br />2 – Order Cancel/Replace Request</td>
+</tr>
+<tr>
+<td>102</td>
+<td>CxlRejReason</td>
+<td>N</td>
+<td>Error Code</td>
+</tr>
+<tr>
+<td>58</td>
+<td>Text</td>
+<td>N</td>
+<td>Error message</td>
+</tr>
+<tr>
+<td>60</td>
+<td>TransactTime</td>
+<td>Y</td>
 <td>The transaction timestamp of the order cancel request</td>
 </tr>
 </tbody></table>
