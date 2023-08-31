@@ -589,6 +589,8 @@ Indicate that no trades were found that matched the selection criteria specified
 * In the event that system is unable to provide a response the AQ msg is provided with Tag 750=2 (Rejected) and a reason will be provided in Tag 58
 * In the event the order has been “Timed Out” the AQ msg is provided with Tag 750=0 and a reason will be provided in Tag 58 “Time out”. In this case you can continue every 5 seconds to retry the Trade capture request (AD) until a final response is received.
 
+<aside class="success"> support only for FIX 4.4</aside>
+
 > FIX 4.4  Cypator -> Client
 
 ```plaintext 
