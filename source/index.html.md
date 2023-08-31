@@ -384,7 +384,7 @@ This message is used by Cypator to reject an order message. This can happen if t
 | 58  | Text                      | N         | Error message text                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 
 
-## Order Cancel Reques
+## Order Cancel Request
 
 This message is used by the client to cancel any live order they may have. Applicable for orders of type GTC/GTD/GIS
 <aside class="warning"> Not supported in phase 1</aside>
@@ -400,6 +400,26 @@ This message is used by the client to cancel any live order they may have. Appli
 | 41  | OrigClOrdID   | Y         | Client Order ID of Order being replaced                                   |
 | 55  | Symbol        | N         | The Asset - Coin and currency combination, e.g. EUR/USD, BTC/USD, ETH/BTC |
 | 60  | TransactTime  | N         | The transaction timestamp of the order cancel request                     |
+
+
+## Cancel Rejected
+
+This message is used by Cypator to reject a cancel order message. This can happen if the order is already filled or is in the process of getting filled.
+<aside class="warning"> Not supported in phase 1</aside>
+
+
+| Tag | Name             | Mandatory | Description                                                               | 
+|-----|------------------|-----------|---------------------------------------------------------------------------|
+| 35  | MsgType          | Y         | 9                                                                         |
+| 11  | ClOrderID        | Y         | Client Order ID                                                           |
+| 37  | OrderID          | Y         | The order ID of the order to be canceled                                  |
+| 39  | OrderStatus      | Y         | Status of the order cancel request (not of any order)                     |
+| 41  | OrigClOrdID      | Y         | Client Order ID of Order being replaced                                   |
+| 55  | Symbol           | N         | The Asset - Coin and currency combination, e.g. EUR/USD, BTC/USD, ETH/BTC |
+| 434 | CxlRejResponseTo | Y         | 1 – Order Cancel Request <br />2 – Order Cancel/Replace Request           |
+| 102 | CxlRejReason     | N         | Error Code                                                                |
+| 58  | Text             | N         | Error message                                                             |
+| 60  | TransactTime     | Y         | The transaction timestamp of the order cancel request                     |
 
 
 ## TEEEEEEEEEEST
