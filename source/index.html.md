@@ -422,6 +422,100 @@ This message is used by Cypator to reject a cancel order message. This can happe
 | 60  | TransactTime     | Y         | The transaction timestamp of the order cancel request                     |
 
 
+
+## Execution Report
+
+This message is used to communicate Order Ack, Order Reject, Order Fill and Order Status Responses.
+
+* There are Four possible 35=8 responses to an order
+  * Ack - 150 =0
+  * NACK - 150=8
+  * Fill - partial - 150 =2/F, 39=1
+  * Fill - full - 150 =2/F, 39=2
+
+For a FOK type order there are two possible responses – as an example if the order is for 5  BTC/USD
+
+### Scenario 1 – FOK – order is not filled - CANCEL
+
+
+| Sequence                    | Message                                                                  |  
+|-----------------------------|--------------------------------------------------------------------------|
+| Cancel message is provided  | Execution report (35=8) <br /> ExecType (150=4) <br />  OrdStatus (39=4) |
+
+
+### Scenario 2 – FOK – order is fully filled - DONE
+
+| Sequence                                 | Message                                                                    |  
+|------------------------------------------|----------------------------------------------------------------------------|
+| Full Fill message is provided for 5 BTC  | Execution report (35=8) <br /> ExecType (150=2/F) <br />  OrdStatus (39=2) |
+
+
+For an IOC type order there are two additional possible responses in addition to the ones above which may happen in the case of multiple partial fills. We use the OrdStatus tag to indicate if the order is partial or fully complete – as an example if the order is for 5  BTCUSD
+
+### Scenario1 – IOC – order is fully filled - DONE
+
+| Sequence                                                      | Message                                                                    |  
+|---------------------------------------------------------------|----------------------------------------------------------------------------|
+| Fill message for 2 BTC is provided                            | Execution report (35=8) <br /> ExecType (150=2/F) <br />  OrdStatus (39=1) |
+| Cancel remaining message is provided for the remaining 3 BTC  | Execution report (35=8) <br /> ExecType (150=4) <br />  OrdStatus (39=1)   |
+
+
+
+> FIX 4.4  Cypator -> Client Ack
+
+```plaintext 
+
+8=FIX.4.4|9=197|35=8|34=112|49=cs1|52=20221031-09:10:46.686|56=cc11|11=1598950759|14=0|15=BTC|17=1598950759|32=0|37=A010tlPyxyg|39=0|41=1598950759|44=19123.2|54=1|55=BTC/USD|60=20221031-11:10:46.686|150=0|151=100|10=012|
+```
+
+
+> FIX 4.2  Cypator -> Client Ack
+
+```plaintext 
+
+8=FIX.4.2|9=197|35=8|34=113|49=cs1|52=20221031-09:11:04.479|56=cc21|11=1805964193|14=0|15=BTC|17=1805964193|20=0|32=0|37=A010tlPyxyh|39=0|41=1805964193|44=19123.2|54=1|55=BTC/USD|60=20221031-11:11:04.479|150=0|151=100|10=223|
+```
+
+> FIX 4.4  Cypator -> Client
+
+```plaintext 
+
+8=FIX.4.4|9=228|35=8|34=113|49=cs1|52=20221031-09:10:46.706|56=cc11|6=19123.2|11=1598950759|14=100|15=BTC|17=VuzGNOBG|31=19123.2|32=100|37=A010tlPyxyg|38=100|39=2|41=1598950759|44=19123.2|54=1|55=BTC/USD|60=20221031-11:10:46.706|64=202210304|150=F|151=0|10=153|
+```
+
+> FIX 4.2  Cypator -> Client
+
+```plaintext 
+
+8=FIX.4.2|9=228|35=8|34=114|49=cs1|52=20221031-09:11:04.480|56=cc21|6=19123.2|11=1805964193|14=100|15=BTC|17=CAfoHyfD|20=2|31=19123.2|32=100|37=A010tlPyxyh|38=100|39=2|41=1805964193|44=19123.2|54=1|55=BTC/USD|60=20221031-11:11:04.480|64=202210304|150=2|151=0|10=136|
+```
+
+| Tag | Name                                                | Mandatory                     | Description                                                                                                                                                                                                           | 
+|-----|-----------------------------------------------------|-------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 35  | MsgType                                             | Y                             | 8                                                                                                                                                                                                                     |
+| 1   | Account                                             | N                             | Client Account Name                                                                                                                                                                                                   |
+| 11  | ClOrdID                                             | Y                             | Client Order ID                                                                                                                                                                                                       |
+| 37  | OrderID                                             | Y                             | Cypator unique order ID for the Trade                                                                                                                                                                                 |
+| 41  | OrigClOrdID                                         | N                             | Required for response to Order Cancel or Order Replace                                                                                                                                                                |
+| 17  | ExecID                                              | Y                             | Cypator Execution ID. Unique ID in each execution report                                                                                                                                                              |
+| 20  | ExecTransType                                       | Y - FIX 4.2 <br /> N- FIX 4.4 | Only applicable to Fix 4.2 <br /> 0= New <br /> 1 = Cancel <br /> 2 = Correct                                                                                                                                         |
+| 150 | ExecType                                            | Y                             | FIX 4.2 <br /> 0 = New <br /> 1 = Partially Fill <br /> 2 = Fill <br /> 4 = Canceled <br /> 8 = Rejected <br /> FIX 4.4 <br /> 0 = New <br /> F = Trade (partial fill or fill)<br /> 4 = Canceled <br /> 8 = Rejected |
+| 39  | OrdStatus                                           | Y                             | 0 = New <br /> 1 = Partially Fill <br /> 2 = Fill <br /> 4 = Canceled <br /> 8 = Rejected                                                                                                                             |
+| 64  | FutSettDate                                         | N                             | Settlement date for order fills if exists.  In YYYYMMDD format                                                                                                                                                        |
+| 15  | Currency                                            | Y                             | The currency or coin unit that represents the quantity                                                                                                                                                                |
+| 54  | Side                                                | Y                             | 1 (Buy) <br /> 2 (Sell)                                                                                                                                                                                               |
+| 55  | Symbol                                              | Y                             | The Asset - Coin and currency combination, e.g. EUR/USD, BTC/USD, ETH/BTC                                                                                                                                             |
+| 38  | OrderQty                                            | N                             | Order quantity specified by the Client. Not present in Order Reject                                                                                                                                                   |
+| 14  | CumQty                                              | Y                             | The amount that has been filled so far                                                                                                                                                                                |
+| 6   | AvgPx                                               | N                             | Average price of all fills on for the order                                                                                                                                                                           |
+| 31  | LastPx                                              | N                             | Trade price.                                                                                                                                                                                                          |
+| 32  | LastQty (For Fix4.4) <br /> LastShares (For Fix4.2) | Y                             | Amount bought or sold on this fill                                                                                                                                                                                    |
+| 44  | Price                                               | Y                             | Order price                                                                                                                                                                                                           |
+| 151 | LeavesQty                                           | Y                             | Quantity remaining of this order                                                                                                                                                                                      |
+| 60  | TransactTime                                        | Y                             | The transaction timestamp of the order                                                                                                                                                                                |
+| 103 | OrdRejReason                                        | N                             | Error code. Present in Order Reject                                                                                                                                                                                   |
+| 58  | Text                                                | N                             | Error message. Present in Order Reject                                                                                                                                                                                |
+
 ## TEEEEEEEEEEST
 
 ```ruby
