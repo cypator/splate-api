@@ -136,6 +136,11 @@ support desk.
 
 <aside class="warning">The Cypator trading interface currently does not support resting orders.</aside>
 
+## Post Trade
+
+For clients or partners requiring a post trade message, and that can code to the Cypator FIX API the following Trade Capture Report (AE) message will be sent.
+In addition, in the event of a communication breakdown, the client can send a “Request Trade Capture Report” message and include in it all the Order Id’s for which they want to verify if a trade was created or not.
+
 
 ## Logon
 
@@ -516,71 +521,47 @@ For an IOC type order there are two additional possible responses in addition to
 | 103 | OrdRejReason                                        | N                             | Error code. Present in Order Reject                                                                                                                                                                                   |
 | 58  | Text                                                | N                             | Error message. Present in Order Reject                                                                                                                                                                                |
 
+## Trade Capture Report
+
+Used to report a trade between counterparties.
+
+<aside class="warning"> support only for FIX 4.4</aside>
+
+> FIX 4.4  Cypator -> Client Ack
+
+```plaintext 
+
+8=FIX.4.4|9=239|35=AE|34=2|49=cs1|52=20221031-09:43:02.535|56=cc11|17=s1|31=1234.56|32=0.00025|55=BTC/USD|60=20221030-10:10:28.629|75=20190824|150=F|487=0|568=HjdFFY13|571=A010tlPGF9S|748=1|912=Y|552=1|54=1|37=s3|11=123546|453=1|448=1|447=C|452=17|15=BTC|10=031
+```
+
+| Tag | Name                     | Mandatory | Description                                                                                                    | 
+|-----|--------------------------|-----------|----------------------------------------------------------------------------------------------------------------|
+| 35  | MsgType                  | Y         | AE                                                                                                             |
+| 571 | TradeReportID            | Y         | ID for this message                                                                                            |
+| 60  | TransactTime             | Y         | The transaction timestamp of the order UTC                                                                     |
+| 487 | TradeReportTransType     | Y         | 0-New                                                                                                          |
+| 75  | TradeDate                | Y         | Trade date in YYYYMMDD format. We use the creation date based on Transact time UTC                             |
+| 568 | TradeRequestID           | N         | Request ID if the Trade Capture Report <AE> is in response to a Trade Capture Report Request <AD>              |
+| 748 | TotNumTradeReports       | N         | Number of trade reports returned - if this report is part of a response to a Trade Capture Report Request <AD> |
+| 912 | LastRptRequested         | N         | Indicates if this is the last report in the response to a Trade Capture Report Request <AD>                    |
+| 150 | ExecType                 | N         | F - Trade                                                                                                      |
+| 55  | Symbol                   | Y         | The Asset - Coin and currency combination, e.g. EUR/USD, BTC/USD, ETH/BTC                                      |
+| 31  | LastPx                   | Y         | Price of the last fill. Only present in Fill report                                                            |
+| 32  | LastQuantity             | Y         | Amount bought or sold on this fill                                                                             |
+| 17  | ExecID                   | N         | Cypator Execution ID. Unique ID in each execution report                                                       |
+| 552 | NoSides                  | Y         | Number of sides                                                                                                |
+| 54  | -><br /> Side            | Y         | Trading Party                                                                                                  |
+| 11  | -><br /> ClOrdID         | Y         | Order ID of the Trading party                                                                                  |
+| 37  | -><br /> OrderID         | Y         | Cypator unique order ID for the Trade                                                                          |
+| 15  | -><br /> Currency/Coin   | N         | Identifies currency or coin used for price                                                                     |
+| 453 | -><br /> NoPartyIDs      | N         | Number of parties                                                                                              |
+| 448 | ->-><br /> PartyID       | N         | ID of the counterparty                                                                                         |
+| 447 | ->-><br /> PartyIDSource | N         | C – Generally accepted market participant                                                                      |
+| 452 | ->-><br /> PartyRole     | N         | The role of the party 17 – Contra Firm (the counterparty)                                                      |
+
+
 ## TEEEEEEEEEEST
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens" \
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require("kittn");
-
-let api = kittn.authorize("meowmeowmeow");
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-| Parameter    | Default | Description                                                                      |
-| ------------ | ------- | -------------------------------------------------------------------------------- |
-| include_cats | false   | If set to true, the result will also include cats.                               |
-| available    | true    | If set to false, the result will include kittens that have already been adopted. |
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
 
 # FIX Maker API
 
