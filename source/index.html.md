@@ -580,7 +580,31 @@ Please note – an Order (if not of type FOK) may result in several trades and m
 | 569 | TradeRequestType | Y         | 1 = Matched trades matching Criteria provided on request (parties, exec id, trade id, order id, instrument, input source, etc.)  |
 | 11  | ClOrdID          | Y         | Unique identifier for Order as assigned by the client.                                                                           |
 
-## TEEEEEEEEEEST
+
+## Trade Capture Report Request Ack
+
+Indicate that no trades were found that matched the selection criteria specified on the Trade Capture Report Request (AQ).
+
+* No Trade - In this case the AQ msg is provided with Tag 750 =1 (Completed).
+* In the event that system is unable to provide a response the AQ msg is provided with Tag 750=2 (Rejected) and a reason will be provided in Tag 58
+* In the event the order has been “Timed Out” the AQ msg is provided with Tag 750=0 and a reason will be provided in Tag 58 “Time out”. In this case you can continue every 5 seconds to retry the Trade capture request (AD) until a final response is received.
+
+> FIX 4.4  Cypator -> Client
+
+```plaintext 
+
+8=FIX.4.4|9=88|35=AQ|34=2|49=cs1|52=20221031-09:51:41.171|56=cc11|568=HjdFFY13|569=1|748=0|749=0|750=0|10=230
+```
+
+| Tag | Name               | Mandatory | Description                                                                                                                                                                                                                                                                                                                                                                                               | 
+|-----|--------------------|-----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 35  | MsgType            | Y         | AQ                                                                                                                                                                                                                                                                                                                                                                                                        |
+| 568 | TradeRequestID     | Y         | Identifier of the trade request                                                                                                                                                                                                                                                                                                                                                                           |
+| 569 | TradeRequestType   | Y         | Type of trade capture report:<br /> 1 = Matched trades matching Criteria provided on request (parties, exec id, trade id, order id, instrument, input source, etc.)                                                                                                                                                                                                                                       |
+| 748 | TotNumTradeReports | N         | Number of trade reports returned - if this report is part of a response to a Trade Capture Report Request <AD>                                                                                                                                                                                                                                                                                            |
+| 749 | TradeRequestResult | Y         | Result of trade request. Valid values: <br /> 0 = Successful (Default)<br /> 1 = Invalid or unknown instrument <br /> 2 = Invalid type of trade requested <br /> 3 = Invalid parties <br /> 4 = Invalid Transport Type requested <br /> 5 = Invalid Destination requested <br /> 8 = TradeRequestType <569> not supported <br /> 9 = Unauthorized for Trade Capture Report Request <AD> <br /> 99 = Other |
+| 750 | TradeRequestStatus | Y         | Status of trade request. Valid values <br /> 0 = Accepted   <br /> 1 = Completed <br /> 2 = Rejected                                                                                                                                                                                                                                                                                                      |
+| 58  | Text               | N         | Free text                                                                                                                                                                                                                                                                                                                                                                                                 |
 
 
 # FIX Maker API
