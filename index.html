@@ -373,6 +373,9 @@
                     <a href="#cancel-rejected" class="toc-h2 toc-link" data-title="Cancel Rejected">Cancel Rejected</a>
                   </li>
                   <li>
+                    <a href="#execution-report" class="toc-h2 toc-link" data-title="Execution Report">Execution Report</a>
+                  </li>
+                  <li>
                     <a href="#teeeeeeeeeest" class="toc-h2 toc-link" data-title="TEEEEEEEEEEST">TEEEEEEEEEEST</a>
                   </li>
               </ul>
@@ -1321,6 +1324,235 @@ Cypator requires that the ClOrdID <11> be unique.</p>
 <td>TransactTime</td>
 <td>Y</td>
 <td>The transaction timestamp of the order cancel request</td>
+</tr>
+</tbody></table>
+<h2 id='execution-report'>Execution Report</h2>
+<p>This message is used to communicate Order Ack, Order Reject, Order Fill and Order Status Responses.</p>
+
+<ul>
+<li>There are Four possible 35=8 responses to an order
+
+<ul>
+<li>Ack - 150 =0</li>
+<li>NACK - 150=8</li>
+<li>Fill - partial - 150 =2/F, 39=1</li>
+<li>Fill - full - 150 =2/F, 39=2</li>
+</ul></li>
+</ul>
+
+<p>For a FOK type order there are two possible responses – as an example if the order is for 5  BTC/USD</p>
+<h3 id='scenario-1-fok-order-is-not-filled-cancel'>Scenario 1 – FOK – order is not filled - CANCEL</h3>
+<table><thead>
+<tr>
+<th>Sequence</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Cancel message is provided</td>
+<td>Execution report (35=8) <br /> ExecType (150=4) <br />  OrdStatus (39=4)</td>
+</tr>
+</tbody></table>
+<h3 id='scenario-2-fok-order-is-fully-filled-done'>Scenario 2 – FOK – order is fully filled - DONE</h3>
+<table><thead>
+<tr>
+<th>Sequence</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Full Fill message is provided for 5 BTC</td>
+<td>Execution report (35=8) <br /> ExecType (150=2/F) <br />  OrdStatus (39=2)</td>
+</tr>
+</tbody></table>
+
+<p>For an IOC type order there are two additional possible responses in addition to the ones above which may happen in the case of multiple partial fills. We use the OrdStatus tag to indicate if the order is partial or fully complete – as an example if the order is for 5  BTCUSD</p>
+<h3 id='scenario1-ioc-order-is-fully-filled-done'>Scenario1 – IOC – order is fully filled - DONE</h3>
+<table><thead>
+<tr>
+<th>Sequence</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Fill message for 2 BTC is provided</td>
+<td>Execution report (35=8) <br /> ExecType (150=2/F) <br />  OrdStatus (39=1)</td>
+</tr>
+<tr>
+<td>Cancel remaining message is provided for the remaining 3 BTC</td>
+<td>Execution report (35=8) <br /> ExecType (150=4) <br />  OrdStatus (39=1)</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>FIX 4.4  Cypator -&gt; Client Ack</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext tab-plaintext"><code>
+8=FIX.4.4|9=197|35=8|34=112|49=cs1|52=20221031-09:10:46.686|56=cc11|11=1598950759|14=0|15=BTC|17=1598950759|32=0|37=A010tlPyxyg|39=0|41=1598950759|44=19123.2|54=1|55=BTC/USD|60=20221031-11:10:46.686|150=0|151=100|10=012|
+</code></pre></div>
+<blockquote>
+<p>FIX 4.2  Cypator -&gt; Client Ack</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext tab-plaintext"><code>
+8=FIX.4.2|9=197|35=8|34=113|49=cs1|52=20221031-09:11:04.479|56=cc21|11=1805964193|14=0|15=BTC|17=1805964193|20=0|32=0|37=A010tlPyxyh|39=0|41=1805964193|44=19123.2|54=1|55=BTC/USD|60=20221031-11:11:04.479|150=0|151=100|10=223|
+</code></pre></div>
+<blockquote>
+<p>FIX 4.4  Cypator -&gt; Client</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext tab-plaintext"><code>
+8=FIX.4.4|9=228|35=8|34=113|49=cs1|52=20221031-09:10:46.706|56=cc11|6=19123.2|11=1598950759|14=100|15=BTC|17=VuzGNOBG|31=19123.2|32=100|37=A010tlPyxyg|38=100|39=2|41=1598950759|44=19123.2|54=1|55=BTC/USD|60=20221031-11:10:46.706|64=202210304|150=F|151=0|10=153|
+</code></pre></div>
+<blockquote>
+<p>FIX 4.2  Cypator -&gt; Client</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext tab-plaintext"><code>
+8=FIX.4.2|9=228|35=8|34=114|49=cs1|52=20221031-09:11:04.480|56=cc21|6=19123.2|11=1805964193|14=100|15=BTC|17=CAfoHyfD|20=2|31=19123.2|32=100|37=A010tlPyxyh|38=100|39=2|41=1805964193|44=19123.2|54=1|55=BTC/USD|60=20221031-11:11:04.480|64=202210304|150=2|151=0|10=136|
+</code></pre></div>
+<table><thead>
+<tr>
+<th>Tag</th>
+<th>Name</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>35</td>
+<td>MsgType</td>
+<td>Y</td>
+<td>8</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Account</td>
+<td>N</td>
+<td>Client Account Name</td>
+</tr>
+<tr>
+<td>11</td>
+<td>ClOrdID</td>
+<td>Y</td>
+<td>Client Order ID</td>
+</tr>
+<tr>
+<td>37</td>
+<td>OrderID</td>
+<td>Y</td>
+<td>Cypator unique order ID for the Trade</td>
+</tr>
+<tr>
+<td>41</td>
+<td>OrigClOrdID</td>
+<td>N</td>
+<td>Required for response to Order Cancel or Order Replace</td>
+</tr>
+<tr>
+<td>17</td>
+<td>ExecID</td>
+<td>Y</td>
+<td>Cypator Execution ID. Unique ID in each execution report</td>
+</tr>
+<tr>
+<td>20</td>
+<td>ExecTransType</td>
+<td>Y - FIX 4.2 <br /> N- FIX 4.4</td>
+<td>Only applicable to Fix 4.2 <br /> 0= New <br /> 1 = Cancel <br /> 2 = Correct</td>
+</tr>
+<tr>
+<td>150</td>
+<td>ExecType</td>
+<td>Y</td>
+<td>FIX 4.2 <br /> 0 = New <br /> 1 = Partially Fill <br /> 2 = Fill <br /> 4 = Canceled <br /> 8 = Rejected <br /> FIX 4.4 <br /> 0 = New <br /> F = Trade (partial fill or fill)<br /> 4 = Canceled <br /> 8 = Rejected</td>
+</tr>
+<tr>
+<td>39</td>
+<td>OrdStatus</td>
+<td>Y</td>
+<td>0 = New <br /> 1 = Partially Fill <br /> 2 = Fill <br /> 4 = Canceled <br /> 8 = Rejected</td>
+</tr>
+<tr>
+<td>64</td>
+<td>FutSettDate</td>
+<td>N</td>
+<td>Settlement date for order fills if exists.  In YYYYMMDD format</td>
+</tr>
+<tr>
+<td>15</td>
+<td>Currency</td>
+<td>Y</td>
+<td>The currency or coin unit that represents the quantity</td>
+</tr>
+<tr>
+<td>54</td>
+<td>Side</td>
+<td>Y</td>
+<td>1 (Buy) <br /> 2 (Sell)</td>
+</tr>
+<tr>
+<td>55</td>
+<td>Symbol</td>
+<td>Y</td>
+<td>The Asset - Coin and currency combination, e.g. EUR/USD, BTC/USD, ETH/BTC</td>
+</tr>
+<tr>
+<td>38</td>
+<td>OrderQty</td>
+<td>N</td>
+<td>Order quantity specified by the Client. Not present in Order Reject</td>
+</tr>
+<tr>
+<td>14</td>
+<td>CumQty</td>
+<td>Y</td>
+<td>The amount that has been filled so far</td>
+</tr>
+<tr>
+<td>6</td>
+<td>AvgPx</td>
+<td>N</td>
+<td>Average price of all fills on for the order</td>
+</tr>
+<tr>
+<td>31</td>
+<td>LastPx</td>
+<td>N</td>
+<td>Trade price.</td>
+</tr>
+<tr>
+<td>32</td>
+<td>LastQty (For Fix4.4) <br /> LastShares (For Fix4.2)</td>
+<td>Y</td>
+<td>Amount bought or sold on this fill</td>
+</tr>
+<tr>
+<td>44</td>
+<td>Price</td>
+<td>Y</td>
+<td>Order price</td>
+</tr>
+<tr>
+<td>151</td>
+<td>LeavesQty</td>
+<td>Y</td>
+<td>Quantity remaining of this order</td>
+</tr>
+<tr>
+<td>60</td>
+<td>TransactTime</td>
+<td>Y</td>
+<td>The transaction timestamp of the order</td>
+</tr>
+<tr>
+<td>103</td>
+<td>OrdRejReason</td>
+<td>N</td>
+<td>Error code. Present in Order Reject</td>
+</tr>
+<tr>
+<td>58</td>
+<td>Text</td>
+<td>N</td>
+<td>Error message. Present in Order Reject</td>
 </tr>
 </tbody></table>
 <h2 id='teeeeeeeeeest'>TEEEEEEEEEEST</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
