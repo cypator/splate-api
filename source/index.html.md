@@ -525,9 +525,9 @@ For an IOC type order there are two additional possible responses in addition to
 
 Used to report a trade between counterparties.
 
-<aside class="warning"> support only for FIX 4.4</aside>
+<aside class="success"> support only for FIX 4.4</aside>
 
-> FIX 4.4  Cypator -> Client Ack
+> FIX 4.4  Cypator -> Client
 
 ```plaintext 
 
@@ -559,6 +559,26 @@ Used to report a trade between counterparties.
 | 447 | ->-><br /> PartyIDSource | N         | C – Generally accepted market participant                                                                      |
 | 452 | ->-><br /> PartyRole     | N         | The role of the party 17 – Contra Firm (the counterparty)                                                      |
 
+
+## Request Trade Capture Report
+In the event of a communication breakdown, or any other prerogative the client can send a “Request Trade Capture Report” message and include in it the Order Id for which they want to verify if a trade was created or not using ClOrdID <11>. The system will respond with AE drop copy messages for all created trades.
+Please note – an Order (if not of type FOK) may result in several trades and may be partially filled. The system will respond with all trades related to an order.
+
+<aside class="success"> support only for FIX 4.4</aside>
+
+> FIX 4.4  Client -> Cypator
+
+```plaintext 
+
+8=FIX.4.4|9=76|35=AD|49=cc11|56=cs1|34=3|52=20221031-09:43:02|568=HjdFFY13|569=1|11=123546|10=182|
+```
+
+| Tag | Name             | Mandatory | Description                                                                                                                      | 
+|-----|------------------|-----------|----------------------------------------------------------------------------------------------------------------------------------|
+| 35  | MsgType          | Y         | AD                                                                                                                               |
+| 568 | TradeRequestID   | Y         | Identifier of the trade request                                                                                                  |
+| 569 | TradeRequestType | Y         | 1 = Matched trades matching Criteria provided on request (parties, exec id, trade id, order id, instrument, input source, etc.)  |
+| 11  | ClOrdID          | Y         | Unique identifier for Order as assigned by the client.                                                                           |
 
 ## TEEEEEEEEEEST
 
