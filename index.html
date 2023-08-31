@@ -385,7 +385,7 @@
                     <a href="#request-trade-capture-report" class="toc-h2 toc-link" data-title="Request Trade Capture Report">Request Trade Capture Report</a>
                   </li>
                   <li>
-                    <a href="#teeeeeeeeeest" class="toc-h2 toc-link" data-title="TEEEEEEEEEEST">TEEEEEEEEEEST</a>
+                    <a href="#trade-capture-report-request-ack" class="toc-h2 toc-link" data-title="Trade Capture Report Request Ack">Trade Capture Report Request Ack</a>
                   </li>
               </ul>
           </li>
@@ -1764,7 +1764,73 @@ Please note – an Order (if not of type FOK) may result in several trades and m
 <td>Unique identifier for Order as assigned by the client.</td>
 </tr>
 </tbody></table>
-<h2 id='teeeeeeeeeest'>TEEEEEEEEEEST</h2><h1 id='fix-maker-api'>FIX Maker API</h1><h1 id='websocket-maker-api'>WebSocket Maker API</h1><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<h2 id='trade-capture-report-request-ack'>Trade Capture Report Request Ack</h2>
+<p>Indicate that no trades were found that matched the selection criteria specified on the Trade Capture Report Request (AQ).</p>
+
+<ul>
+<li>No Trade - In this case the AQ msg is provided with Tag 750 =1 (Completed).</li>
+<li>In the event that system is unable to provide a response the AQ msg is provided with Tag 750=2 (Rejected) and a reason will be provided in Tag 58</li>
+<li>In the event the order has been “Timed Out” the AQ msg is provided with Tag 750=0 and a reason will be provided in Tag 58 “Time out”. In this case you can continue every 5 seconds to retry the Trade capture request (AD) until a final response is received.</li>
+</ul>
+
+<blockquote>
+<p>FIX 4.4  Cypator -&gt; Client</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext tab-plaintext"><code>
+8=FIX.4.4|9=88|35=AQ|34=2|49=cs1|52=20221031-09:51:41.171|56=cc11|568=HjdFFY13|569=1|748=0|749=0|750=0|10=230
+</code></pre></div>
+<table><thead>
+<tr>
+<th>Tag</th>
+<th>Name</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>35</td>
+<td>MsgType</td>
+<td>Y</td>
+<td>AQ</td>
+</tr>
+<tr>
+<td>568</td>
+<td>TradeRequestID</td>
+<td>Y</td>
+<td>Identifier of the trade request</td>
+</tr>
+<tr>
+<td>569</td>
+<td>TradeRequestType</td>
+<td>Y</td>
+<td>Type of trade capture report:<br /> 1 = Matched trades matching Criteria provided on request (parties, exec id, trade id, order id, instrument, input source, etc.)</td>
+</tr>
+<tr>
+<td>748</td>
+<td>TotNumTradeReports</td>
+<td>N</td>
+<td>Number of trade reports returned - if this report is part of a response to a Trade Capture Report Request <AD></td>
+</tr>
+<tr>
+<td>749</td>
+<td>TradeRequestResult</td>
+<td>Y</td>
+<td>Result of trade request. Valid values: <br /> 0 = Successful (Default)<br /> 1 = Invalid or unknown instrument <br /> 2 = Invalid type of trade requested <br /> 3 = Invalid parties <br /> 4 = Invalid Transport Type requested <br /> 5 = Invalid Destination requested <br /> 8 = TradeRequestType <569> not supported <br /> 9 = Unauthorized for Trade Capture Report Request <AD> <br /> 99 = Other</td>
+</tr>
+<tr>
+<td>750</td>
+<td>TradeRequestStatus</td>
+<td>Y</td>
+<td>Status of trade request. Valid values <br /> 0 = Accepted   <br /> 1 = Completed <br /> 2 = Rejected</td>
+</tr>
+<tr>
+<td>58</td>
+<td>Text</td>
+<td>N</td>
+<td>Free text</td>
+</tr>
+</tbody></table>
+<h1 id='fix-maker-api'>FIX Maker API</h1><h1 id='websocket-maker-api'>WebSocket Maker API</h1><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
 
 <span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
 <span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
