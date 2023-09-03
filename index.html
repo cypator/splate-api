@@ -407,6 +407,17 @@
                   <li>
                     <a href="#login" class="toc-h2 toc-link" data-title="Login">Login</a>
                   </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#test" class="toc-h1 toc-link" data-title="Test">Test</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#http-request" class="toc-h2 toc-link" data-title="HTTP Request">HTTP Request</a>
+                  </li>
+                  <li>
+                    <a href="#url-parameters" class="toc-h2 toc-link" data-title="URL Parameters">URL Parameters</a>
+                  </li>
                   <li>
                     <a href="#delete-a-specific-kitten" class="toc-h2 toc-link" data-title="Delete a Specific Kitten">Delete a Specific Kitten</a>
                   </li>
@@ -1911,43 +1922,59 @@ Timestamp needs to be within current times 30 second range.</p>
 </tbody></table>
 <h3 id='response'>Response</h3>
 <blockquote>
-<p>Success Response
-<code>json
-{
-  &quot;op&quot;: &quot;logon&quot;,
-  &quot;arg&quot;: {
-    &quot;code&quot;: 0
-  },
-  &quot;ts&quot;: 1682346263287
-}
-</code></p>
-
-<p>Error response
-```json
-{
-  &quot;op&quot;: &quot;logon&quot;,
-  &quot;arg&quot;: {
-    &quot;code&quot;: 50104,
-    &quot;errMsg&quot;: &quot;Invalid credentials&quot;
-  },
-  &quot;ts&quot;: &quot;1682346263287&quot;
-}</p>
+<p>Success Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight plaintext"><code>
-| Parameter | Type   | Required | Description                                     | 
-|-----------|--------|----------|-------------------------------------------------|
-| op        | String | Yes      | Operation logon                                 |
-| code      | int    | Yes      | 0 - success &lt;br / &gt; non zero for failure        |
-| errMsg    | String | Yes      | Error message, populated only in case of error  |
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"logon"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"arg"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1682346263287</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Error response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"logon"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"arg"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">50104</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"errMsg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invalid credentials"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1682346263287"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>String</td>
+<td>Yes</td>
+<td>Operation logon</td>
+</tr>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>Yes</td>
+<td>0 - success <br / > non zero for failure</td>
+</tr>
+<tr>
+<td>errMsg</td>
+<td>String</td>
+<td>Yes</td>
+<td>Error message, populated only in case of error</td>
+</tr>
+</tbody></table>
+<h1 id='test'>Test</h1><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
 
-
-# Test
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
+<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
+<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 </code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
 
 <span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
