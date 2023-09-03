@@ -739,7 +739,7 @@ Subscription request sent from Cypator to Maker
 
 | Parameter                         | Type    | Required | Description                          | 
 |-----------------------------------|---------|----------|--------------------------------------|
-| op                                | String  | Yes      | Operation logon                      |
+| op                                | String  | Yes      | Operation subscribe                      |
 | arg                               | Object  | Yes      | Operation subscribe                  |
 | -> <be /> instrument              | String  | Yes      | subscription details                 |
 | -> <be /> side                    | String  | Yes      | Instrument name                      |
@@ -789,7 +789,7 @@ Subscription request sent from Cypator to Maker
 
 | Parameter                             | Type   | Required | Description                                                                                                                                             | 
 |---------------------------------------|--------|----------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| op                                    | String | Yes      | Operation logon                                                                                                                                         |
+| op                                    | String | Yes      | Operation subscribe                                                                                                                                         |
 | arg                                   | Object | Yes      | subscription details                                                                                                                                    |
 | -> <br /> instrument                  | String | Yes      | Instrument name                                                                                                                                         |
 | -> <br /> side                        | String | Yes      | side, possible value: BOTH                                                                                                                              |
@@ -799,6 +799,55 @@ Subscription request sent from Cypator to Maker
 | -> <br /> code                        | String | Yes      | Zero for success, non zero in case of failure, refer error codes table for standard error. In case of missing error code any non zero value is accepted |
 | -> <br /> errMsg                      | String | Yes      | To be populate in case of failure only. Standard error defined in table. In case of missing error code custom error message is accepted                 |
 | ts                                    | String | Yes      | Unix epoch time                                                                                                                                         |
+
+## Market Data
+
+For snapshot message Cypator won’t send an acknowledgement.
+
+> snapshot
+
+```json
+{
+  "op": "snapshot",
+  "arg": {
+    "instrument": "BTC/USD",
+    "subscriptionId": "FhervfD"
+  },
+  "data": [
+    {
+      "bids": [
+        [191235,1],
+        [191234,2],
+        [191233,3],
+        [191232,4],
+        [191231,5]
+      ],
+      "asks": [
+        [201231,1],
+        [201232,2],
+        [201233,3],
+        [201234,4],
+        [201235,5]
+      ]
+    }
+  ],
+  "ts": "1667835722653"
+}
+
+```
+
+| Parameter                | Type            | Required | Description                                               | 
+|--------------------------|-----------------|----------|-----------------------------------------------------------|
+| op                       | String          | Yes      | Operation snapshot                                        |
+| arg                      | Object          | Yes      | snapshot details                                          |
+| -> <br /> instrument     | String          | Yes      | Instrument name                                           |
+| -> <br /> subscriptionId | String          | Yes      | Ignored                                                   |
+| data                     | Array           | Yes      | List of items                                             |
+| -> <br /> array item     | Object          | Yes      | Item consisting of bids and asks                          |
+| --> <br /> bids          | Array of double | Yes      | List of double, first parameter is price, second quantity |
+| --> <br /> asks          | Array of double | Yes      | List of double, first parameter is price, second quantity |
+| ts                       | String          | Yes      | Unix epoch time                                           |
+
 
 # Test
 
