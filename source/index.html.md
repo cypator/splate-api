@@ -690,6 +690,116 @@ Both market and trade session needs to be authenticated before any requests can 
 | errMsg    | String | Yes      | Error message, populated only in case of error  |
 
 
+## Ping
+
+To keep connection alive client needs to send a heart beat message ping once every 30 seconds. If no heart beat message is received for 30 seconds connection will be dropped.
+
+> Request
+
+```json
+{
+  "op": "ping"
+}
+```
+
+> Response
+
+```json
+{
+  "op": "ping"
+}
+```
+
+| Parameter | Type   | Required | Description    | 
+|-----------|--------|----------|----------------|
+| op        | String | Yes      | Operation ping |
+
+
+## Subscription
+Subscription request sent from Cypator to Maker
+
+### Request parameter
+
+> Request
+
+```json
+{
+  "op": "subscribe",
+  "arg": {
+    "instrument": "ETH/USD",
+    "side": "BOTH",
+    "subscriptionId": "",
+    "subscriptionRequestType": "snapshot",
+    "typeBook": "SPOT"
+  },
+  "ts": 1667835722651
+}
+
+```
+
+| Parameter                         | Type    | Required | Description                          | 
+|-----------------------------------|---------|----------|--------------------------------------|
+| op                                | String  | Yes      | Operation logon                      |
+| arg                               | Object  | Yes      | Operation subscribe                  |
+| -> <be /> instrument              | String  | Yes      | subscription details                 |
+| -> <be /> side                    | String  | Yes      | Instrument name                      |
+| -> <be /> subscriptionId          | String  | Yes      | side, possible value: BOTH           |
+| -> <be /> subscriptionRequestType | String  | Yes      | NA                                   |
+| -> <be /> typeBook                | String  | Yes      | Subscription type, values : snapshot |
+| ts                                | String  | Yes      | Type of book, values : SPOT          |
+|                                   |         |          | Unix epoch time                      |
+
+
+### Response parameter
+
+> Acknowledgement success response
+
+```json
+{
+  "op": "subscribe",
+  "arg": {
+    "instrument": "ETH/USD",
+    "side": "BOTH",
+    "subscriptionId": "",
+    "subscriptionRequestType": "snapshot",
+    "typeBook": "SPOT",
+    "code" : 0
+  },
+  "ts": 1667835722651
+}
+```
+
+> Acknowledgement failure response
+
+```json
+  {
+  "op": "subscribe",
+  "arg": {
+    "instrument": "ETH/USD",
+    "side": "BOTH",
+    "subscriptionId": "",
+    "subscriptionRequestType": "snapshot",
+    "typeBook": "SPOT",
+    "code" : 50202,
+    "errMsg" : "Unknown symbol"
+  },
+  "ts": 1667835722651
+}
+```
+
+| Parameter                             | Type   | Required | Description                                                                                                                                             | 
+|---------------------------------------|--------|----------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
+| op                                    | String | Yes      | Operation logon                                                                                                                                         |
+| arg                                   | Object | Yes      | subscription details                                                                                                                                    |
+| -> <br /> instrument                  | String | Yes      | Instrument name                                                                                                                                         |
+| -> <br /> side                        | String | Yes      | side, possible value: BOTH                                                                                                                              |
+| -> <br /> subscriptionId              | String | Yes      | NA                                                                                                                                                      |
+| -> <br /> subscriptionRequestType     | String | Yes      | Subscription type, values : snapshot                                                                                                                    |
+| -> <br /> typeBook                    | String | Yes      | Type of book, values : SPOT                                                                                                                             |
+| -> <br /> code                        | String | Yes      | Zero for success, non zero in case of failure, refer error codes table for standard error. In case of missing error code any non zero value is accepted |
+| -> <br /> errMsg                      | String | Yes      | To be populate in case of failure only. Standard error defined in table. In case of missing error code custom error message is accepted                 |
+| ts                                    | String | Yes      | Unix epoch time                                                                                                                                         |
+
 # Test
 
 ```ruby
