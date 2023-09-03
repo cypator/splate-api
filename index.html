@@ -407,6 +407,12 @@
                   <li>
                     <a href="#login" class="toc-h2 toc-link" data-title="Login">Login</a>
                   </li>
+                  <li>
+                    <a href="#ping" class="toc-h2 toc-link" data-title="Ping">Ping</a>
+                  </li>
+                  <li>
+                    <a href="#subscription" class="toc-h2 toc-link" data-title="Subscription">Subscription</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -1969,6 +1975,223 @@ Timestamp needs to be within current times 30 second range.</p>
 <td>String</td>
 <td>Yes</td>
 <td>Error message, populated only in case of error</td>
+</tr>
+</tbody></table>
+<h2 id='ping'>Ping</h2>
+<p>To keep connection alive client needs to send a heart beat message ping once every 30 seconds. If no heart beat message is received for 30 seconds connection will be dropped.</p>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ping"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ping"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>String</td>
+<td>Yes</td>
+<td>Operation ping</td>
+</tr>
+</tbody></table>
+<h2 id='subscription'>Subscription</h2>
+<p>Subscription request sent from Cypator to Maker</p>
+<h3 id='request-parameter'>Request parameter</h3>
+<blockquote>
+<p>Request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"subscribe"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"arg"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"instrument"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH/USD"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BOTH"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"subscriptionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"subscriptionRequestType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"snapshot"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"typeBook"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SPOT"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1667835722651</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>String</td>
+<td>Yes</td>
+<td>Operation logon</td>
+</tr>
+<tr>
+<td>arg</td>
+<td>Object</td>
+<td>Yes</td>
+<td>Operation subscribe</td>
+</tr>
+<tr>
+<td>-&gt; <be /> instrument</td>
+<td>String</td>
+<td>Yes</td>
+<td>subscription details</td>
+</tr>
+<tr>
+<td>-&gt; <be /> side</td>
+<td>String</td>
+<td>Yes</td>
+<td>Instrument name</td>
+</tr>
+<tr>
+<td>-&gt; <be /> subscriptionId</td>
+<td>String</td>
+<td>Yes</td>
+<td>side, possible value: BOTH</td>
+</tr>
+<tr>
+<td>-&gt; <be /> subscriptionRequestType</td>
+<td>String</td>
+<td>Yes</td>
+<td>NA</td>
+</tr>
+<tr>
+<td>-&gt; <be /> typeBook</td>
+<td>String</td>
+<td>Yes</td>
+<td>Subscription type, values : snapshot</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>String</td>
+<td>Yes</td>
+<td>Type of book, values : SPOT</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>Unix epoch time</td>
+</tr>
+</tbody></table>
+<h3 id='response-parameter'>Response parameter</h3>
+<blockquote>
+<p>Acknowledgement success response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"subscribe"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"arg"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"instrument"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH/USD"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BOTH"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"subscriptionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"subscriptionRequestType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"snapshot"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"typeBook"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SPOT"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"code"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1667835722651</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Acknowledgement failure response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"subscribe"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"arg"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"instrument"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH/USD"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BOTH"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"subscriptionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"subscriptionRequestType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"snapshot"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"typeBook"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SPOT"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"code"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">50202</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"errMsg"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Unknown symbol"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1667835722651</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>String</td>
+<td>Yes</td>
+<td>Operation logon</td>
+</tr>
+<tr>
+<td>arg</td>
+<td>Object</td>
+<td>Yes</td>
+<td>subscription details</td>
+</tr>
+<tr>
+<td>-&gt; <br /> instrument</td>
+<td>String</td>
+<td>Yes</td>
+<td>Instrument name</td>
+</tr>
+<tr>
+<td>-&gt; <br /> side</td>
+<td>String</td>
+<td>Yes</td>
+<td>side, possible value: BOTH</td>
+</tr>
+<tr>
+<td>-&gt; <br /> subscriptionId</td>
+<td>String</td>
+<td>Yes</td>
+<td>NA</td>
+</tr>
+<tr>
+<td>-&gt; <br /> subscriptionRequestType</td>
+<td>String</td>
+<td>Yes</td>
+<td>Subscription type, values : snapshot</td>
+</tr>
+<tr>
+<td>-&gt; <br /> typeBook</td>
+<td>String</td>
+<td>Yes</td>
+<td>Type of book, values : SPOT</td>
+</tr>
+<tr>
+<td>-&gt; <br /> code</td>
+<td>String</td>
+<td>Yes</td>
+<td>Zero for success, non zero in case of failure, refer error codes table for standard error. In case of missing error code any non zero value is accepted</td>
+</tr>
+<tr>
+<td>-&gt; <br /> errMsg</td>
+<td>String</td>
+<td>Yes</td>
+<td>To be populate in case of failure only. Standard error defined in table. In case of missing error code custom error message is accepted</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>String</td>
+<td>Yes</td>
+<td>Unix epoch time</td>
 </tr>
 </tbody></table>
 <h1 id='test'>Test</h1><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
