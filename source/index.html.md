@@ -633,6 +633,7 @@ Both market and trade session needs to be authenticated before any requests can 
 
 
 > Request
+
 ```json
 {
   "op": "logon",
