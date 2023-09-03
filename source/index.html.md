@@ -659,6 +659,7 @@ Both market and trade session needs to be authenticated before any requests can 
 ### Response
 
 > Success Response
+
 ```json
 {
   "op": "logon",
@@ -670,6 +671,7 @@ Both market and trade session needs to be authenticated before any requests can 
 ```
 
 > Error response
+
 ```json
 {
   "op": "logon",
@@ -679,7 +681,6 @@ Both market and trade session needs to be authenticated before any requests can 
   },
   "ts": "1682346263287"
 }
-
 ```
 
 | Parameter | Type   | Required | Description                                     | 
