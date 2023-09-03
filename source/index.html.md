@@ -843,112 +843,110 @@ For snapshot message Cypator won’t send an acknowledgement.
 | -> <br /> instrument     | String          | Yes      | Instrument name                                           |
 | -> <br /> subscriptionId | String          | Yes      | Ignored                                                   |
 | data                     | Array           | Yes      | List of items                                             |
-| -> <br /> array item     | Object          | Yes      | Item consisting of bids and asks                          |
 | --> <br /> bids          | Array of double | Yes      | List of double, first parameter is price, second quantity |
 | --> <br /> asks          | Array of double | Yes      | List of double, first parameter is price, second quantity |
 | ts                       | String          | Yes      | Unix epoch time                                           |
 
+## Order
+
+### Request
+
+> Order create request sent from Cypator
+
+```json
+{
+
+  "op": "order",
+  "arg": {
+    "instrument": "BTC/USD",
+    "side": "BUY",
+    "clOrderId": "VeYQxMUFGdtljI",
+    "orderType": "LIMIT",
+    "tif": "FOK",
+    "account": "tag1",
+    "quantity": 2.0,
+    "price": 201232.0
+  },
+  "ts": "1682422430612"
+}
+```
+
+| Parameter            | Type    | Required | Description                           | 
+|----------------------|---------|----------|---------------------------------------|
+| op                   | String  | Yes      | Operation order                       |
+| arg                  | Object  | Yes      | Order details                         |
+| -> <br /> instrument | String  | Yes      | Instrument name                       |
+| -> <br /> side       | String  | Yes      | Side of the order. Values : BUY, SELL |
+| -> <br /> clOrderId  | String  | Yes      | Order id                              |
+| -> <br /> orderType  | String  | Yes      | Type of order. Values: LIMIT, MARKET  |
+| -> <br /> tif        | String  | Yes      | Time in force. Values; FOK, IOC       |
+| -> <br /> account    | String  | Yes      | Optional tag, could be null           |
+| -> <br /> quantity   | Double  | Yes      | Order quantity                        |
+| -> <br /> price      | Double  | Yes      | Order price                           |
+| ts                   | String  | Yes      | Unix epoch time                       |
+
+### Response (Acknowledgement)
+
+> Order acknowledgement success response
+
+```json
+{
+
+  "op": "order",
+  "arg": {
+    "instrument": "BTC/USD",
+    "side": "BUY",
+    "clOrderId": "VeYQxMUFGdtljI",
+    "orderType": "LIMIT",
+    "tif": "FOK",
+    "account": "tag1",
+    "quantity": 2.0,
+    "price": 201232.0,
+    "code" : 0
+  },
+  "ts": "1682422430612"
+}
+```
+
+> Order Single acknowledgement failure response
+
+
+```json
+{
+
+  "op": "order",
+  "arg": {
+    "instrument": "BT/USD",
+    "side": "BUY",
+    "clOrderId": "VeYQxMUFGdtljI",
+    "orderType": "LIMIT",
+    "tif": "FOK",
+    "account": "tag1",
+    "quantity": 2.0,
+    "price": 201232.0,
+    "code" : 50202,
+    "errMsg": "Unknown symbol"
+  },
+  "ts": "1682422430612"
+}
+```
+
+| Parameter            | Type    | Required | Description                                                                                                                                             | 
+|----------------------|---------|----------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
+| op                   | String  | Yes      | Operation order                                                                                                                                         |
+| arg                  | Object  | Yes      | Order details                                                                                                                                           |
+| -> <br /> instrument | String  | Yes      | Instrument name                                                                                                                                         |
+| -> <br /> side       | String  | Yes      | Side of the order. Values : <br />BUY, SELL                                                                                                             |
+| -> <br /> clOrderId  | String  | Yes      | Order id                                                                                                                                                |
+| -> <br /> orderType  | String  | Yes      | Type of order. Values: <br /> LIMIT, MARKET                                                                                                             |
+| -> <br /> tif        | String  | Yes      | Time in force. Values: <br /> FOK, IOC                                                                                                                  |
+| -> <br /> account    | String  | No       | Optional tag, could be null                                                                                                                             |
+| -> <br /> quantity   | Double  | Yes      | Order quantity                                                                                                                                          |
+| -> <br /> price      | Double  | Yes      | Order price                                                                                                                                             |
+| -> <br /> code       | String  | Yes      | Zero for success, non zero in case of failure, refer error codes table for standard error. In case of missing error code any non zero value is accepted |
+| -> <br /> errMsg     | String  | Yes      | To be populate in case of failure only. Standard error defined in table. In case of missing error code custom error message is accepted                 |
+| ts                   | String  | Yes      | Unix epoch time                                                                                                                                         |
+
 
 # Test
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2" \
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require("kittn");
-
-let api = kittn.authorize("meowmeowmeow");
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
-```
-
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-| Parameter | Description                      |
-| --------- | -------------------------------- |
-| ID        | The ID of the kitten to retrieve |
-
-## Delete a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2" \
-  -X DELETE \
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require("kittn");
-
-let api = kittn.authorize("meowmeowmeow");
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "deleted": ":("
-}
-```
-
-This endpoint deletes a specific kitten.
-
-### HTTP Request
-
-`DELETE http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-| Parameter | Description                    |
-| --------- | ------------------------------ |
-| ID        | The ID of the kitten to delete |
