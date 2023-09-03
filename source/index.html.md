@@ -613,6 +613,83 @@ Indicate that no trades were found that matched the selection criteria specified
 
 # WebSocket Maker API
 
+## Cypator WebSocket Introduction
+
+## Connectivity
+
+* Only one market and trade connection per client supported, on new connection previous connection will be dropped
+* When trade session goes down market data feed will not be consumed even if market session is connected. Market data snapshot consumption will resume after trade session is reconnected
+
+## Sign generation for authentication
+Use HMAC SHA256 method to hash the below string with password and then perform Base64 encoding
+String to be encrypted = timestamp + "/verify"
+Timestamp needs to be within current times 30 second range.
+
+## Login
+
+Both market and trade session needs to be authenticated before any requests can be made.
+
+### Request parameters
+
+
+> Request
+```json
+{
+  "op": "logon",
+  "arg": {
+    "apiKey": "User1",
+    "sign": "7L+zFQ+CEgGu5rzCj4+BdV2/uUHGqddA9pI6ztsRRPs=",
+    "server": "cs1",
+    "client": "cc11"
+  },
+  "ts": 1667835722651
+}
+```
+
+| Parameter        | Type    | Required | Description      | 
+|------------------|---------|----------|------------------|
+| op               | String  | Yes      | Operation logon  |
+| arg              | Object  | Yes      | Login details    |
+| -> <br /> apiKey | String  | Yes      | API Key          |
+| -> <br /> server | String  | Yes      | Server id        |
+| -> <br /> client | String  | Yes      | Client id        |
+| ts               | String  | Yes      | Unix epoch time  |
+
+### Response
+
+> Success Response
+```json
+{
+  "op": "logon",
+  "arg": {
+    "code": 0
+  },
+  "ts": 1682346263287
+}
+```
+
+> Error response
+```json
+{
+  "op": "logon",
+  "arg": {
+    "code": 50104,
+    "errMsg": "Invalid credentials"
+  },
+  "ts": "1682346263287"
+}
+
+```
+
+| Parameter | Type   | Required | Description                                     | 
+|-----------|--------|----------|-------------------------------------------------|
+| op        | String | Yes      | Operation logon                                 |
+| code      | int    | Yes      | 0 - success <br / > non zero for failure        |
+| errMsg    | String | Yes      | Error message, populated only in case of error  |
+
+
+# Test
+
 ```ruby
 require 'kittn'
 
