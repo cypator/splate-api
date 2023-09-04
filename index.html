@@ -422,6 +422,12 @@
               </ul>
           </li>
           <li>
+            <a href="#trade" class="toc-h1 toc-link" data-title="Trade">Trade</a>
+          </li>
+          <li>
+            <a href="#error-codes" class="toc-h1 toc-link" data-title="Error Codes">Error Codes</a>
+          </li>
+          <li>
             <a href="#test" class="toc-h1 toc-link" data-title="Test">Test</a>
           </li>
       </ul>
@@ -2502,6 +2508,220 @@ Timestamp needs to be within current times 30 second range.</p>
 <td>String</td>
 <td>Yes</td>
 <td>Unix epoch time</td>
+</tr>
+</tbody></table>
+<h1 id='trade'>Trade</h1><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"trade"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"arg"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"instrument"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USD"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BUY"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"clOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uNQMAdtbxnVGJi"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DF34rfswe32"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"tradeId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sada24DSGF"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"orderType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FOK"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FILLED"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"cumQty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"lastQty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"leaveQty"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">201232</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1667835722653</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>String</td>
+<td>Yes</td>
+<td>Operation trade</td>
+</tr>
+<tr>
+<td>arg</td>
+<td>Object</td>
+<td>Yes</td>
+<td>Trade details</td>
+</tr>
+<tr>
+<td>-&gt; <br /> instrument</td>
+<td>String</td>
+<td>Yes</td>
+<td>Instrument name</td>
+</tr>
+<tr>
+<td>-&gt; <br /> side</td>
+<td>String</td>
+<td>Yes</td>
+<td>Side of the order. Values : <br /> BUY <br /> SELL</td>
+</tr>
+<tr>
+<td>-&gt; <br /> clOrderId</td>
+<td>String</td>
+<td>Yes</td>
+<td>client order id</td>
+</tr>
+<tr>
+<td>-&gt; <br /> orderId</td>
+<td>String</td>
+<td>Yes</td>
+<td>Order id</td>
+</tr>
+<tr>
+<td>-&gt; <br /> tradeId</td>
+<td>String</td>
+<td>Yes</td>
+<td>Trade id</td>
+</tr>
+<tr>
+<td>-&gt; <br /> orderType</td>
+<td>String</td>
+<td>Yes</td>
+<td>Type of order. Values: <br /> LIMIT  <br /> MARKET</td>
+</tr>
+<tr>
+<td>-&gt; <br /> tif</td>
+<td>String</td>
+<td>Yes</td>
+<td>Time in force. Values: <br /> FOK <br />  IOC</td>
+</tr>
+<tr>
+<td>-&gt; <br /> quantity</td>
+<td>Double</td>
+<td>Yes</td>
+<td>Quantity</td>
+</tr>
+<tr>
+<td>-&gt; <br /> cumQty</td>
+<td>Double</td>
+<td>Yes</td>
+<td>Cumulative quantity</td>
+</tr>
+<tr>
+<td>-&gt; <br /> lastQty</td>
+<td>Double</td>
+<td>Yes</td>
+<td>Last quantity</td>
+</tr>
+<tr>
+<td>-&gt; <br /> leaveQty</td>
+<td>Double</td>
+<td>Yes</td>
+<td>Leaves quantity</td>
+</tr>
+<tr>
+<td>-&gt; <br /> price</td>
+<td>Double</td>
+<td>Yes</td>
+<td>Price</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>String</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h1 id='error-codes'>Error Codes</h1>
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>50100</td>
+<td>Invalid authorization</td>
+</tr>
+<tr>
+<td>50101</td>
+<td>Already logged in</td>
+</tr>
+<tr>
+<td>50102</td>
+<td>Invalid login message</td>
+</tr>
+<tr>
+<td>50103</td>
+<td>Invalid credentials</td>
+</tr>
+<tr>
+<td>50201</td>
+<td>Invalid market data message</td>
+</tr>
+<tr>
+<td>50202</td>
+<td>Unknown symbol</td>
+</tr>
+<tr>
+<td>50203</td>
+<td>Unsupported subscription type</td>
+</tr>
+<tr>
+<td>50204</td>
+<td>Unsupported type book</td>
+</tr>
+<tr>
+<td>50205</td>
+<td>Duplicated market data request id</td>
+</tr>
+<tr>
+<td>50206</td>
+<td>Duplicate market data symbol</td>
+</tr>
+<tr>
+<td>50250</td>
+<td>Invalid market data unsubscribe message</td>
+</tr>
+<tr>
+<td>50251</td>
+<td>Invalid subscription id</td>
+</tr>
+<tr>
+<td>50300</td>
+<td>Invalid new order single message</td>
+</tr>
+<tr>
+<td>50301</td>
+<td>Unsupported side</td>
+</tr>
+<tr>
+<td>50302</td>
+<td>Invalid quantity</td>
+</tr>
+<tr>
+<td>50303</td>
+<td>Invalid order type</td>
+</tr>
+<tr>
+<td>50304</td>
+<td>Invalid time in force</td>
+</tr>
+<tr>
+<td>50305</td>
+<td>Missing time in force</td>
+</tr>
+<tr>
+<td>50306</td>
+<td>Invalid price</td>
+</tr>
+<tr>
+<td>50307</td>
+<td>Order throttling exceeded</td>
+</tr>
+<tr>
+<td>50308</td>
+<td>Invalid time stamp</td>
+</tr>
+<tr>
+<td>50400</td>
+<td>Invalid request</td>
 </tr>
 </tbody></table>
 <h1 id='test'>Test</h1>
