@@ -948,7 +948,7 @@ For snapshot message Cypator won’t send an acknowledgement.
 | ts                   | String  | Yes      | Unix epoch time                                                                                                                                         |
 
 
-# Trade
+## Trade
 
 ```json
 {
