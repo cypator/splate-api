@@ -89,10 +89,7 @@ For clients or partners requiring a post trade message, and that can code to the
 In addition, in the event of a communication breakdown, the client can send a “Request Trade Capture Report” message and include in it all the Order Id’s for which they want to verify if a trade was created or not.
 
 
-# FIX Taker API 
-
-
-## Messages, Products and FIX Support
+## FIX Messages, Products and Support
 * The API supports the following:
   * FIX version 4.4 (recommended) and 4.2
   * Single session or Dual session
@@ -118,10 +115,10 @@ In addition, in the event of a communication breakdown, the client can send a �
 | Trade Capture Report Request <AD>     | 4.4                   | N                | Y               |
 | Trade Capture Report Request Ack <AQ> | 4.4                   | N                | Y               |
 
-## Duplicate check
+## FIX Duplicate check
 There is always a possibility of duplicate trade being sent out, for example after a network disconnect. The client is expected to be able to identify duplicate trades and reject them, by using the tag 37 - OrderID
 
-## Header and Trailer 
+## FIX Header and Trailer
 The following define the FIX messages standard header and trailer
 
 Header
@@ -142,6 +139,10 @@ Trailer
 | Tag | Name      | Mandatory    | 
 |-----|-----------|--------------|
 | 10  | CheckSum  | Y            |
+
+
+
+# FIX Taker API 
 
 
 ## Logon
