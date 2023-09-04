@@ -990,7 +990,7 @@ For snapshot message Cypator won’t send an acknowledgement.
 | ts                    | String  |          |                                                    |
 
 
-# Error Codes
+## Error Codes
 
 | Error Code | Description                             | 
 |------------|-----------------------------------------|
