@@ -311,19 +311,30 @@
       <ul id="toc" class="toc-list-h1">
           <li>
             <a href="#cypator-introduction" class="toc-h1 toc-link" data-title="Cypator Introduction">Cypator Introduction</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#fix-introduction" class="toc-h2 toc-link" data-title="FIX Introduction">FIX Introduction</a>
+                  </li>
+                  <li>
+                    <a href="#fix-connectivity" class="toc-h2 toc-link" data-title="FIX Connectivity">FIX Connectivity</a>
+                  </li>
+                  <li>
+                    <a href="#fix-session-time" class="toc-h2 toc-link" data-title="FIX Session Time">FIX Session Time</a>
+                  </li>
+                  <li>
+                    <a href="#fix-session-messages" class="toc-h2 toc-link" data-title="FIX Session Messages">FIX Session Messages</a>
+                  </li>
+                  <li>
+                    <a href="#fix-trading-workflow" class="toc-h2 toc-link" data-title="FIX Trading Workflow">FIX Trading Workflow</a>
+                  </li>
+                  <li>
+                    <a href="#fix-post-trade" class="toc-h2 toc-link" data-title="FIX Post Trade">FIX Post Trade</a>
+                  </li>
+              </ul>
           </li>
           <li>
             <a href="#fix-taker-api" class="toc-h1 toc-link" data-title="FIX Taker API">FIX Taker API</a>
               <ul class="toc-list-h2">
-                  <li>
-                    <a href="#cypator-fix-introduction" class="toc-h2 toc-link" data-title="Cypator FIX Introduction">Cypator FIX Introduction</a>
-                  </li>
-                  <li>
-                    <a href="#connectivity" class="toc-h2 toc-link" data-title="Connectivity">Connectivity</a>
-                  </li>
-                  <li>
-                    <a href="#session-time" class="toc-h2 toc-link" data-title="Session Time">Session Time</a>
-                  </li>
                   <li>
                     <a href="#messages-products-and-fix-support" class="toc-h2 toc-link" data-title="Messages, Products and FIX Support">Messages, Products and FIX Support</a>
                   </li>
@@ -332,15 +343,6 @@
                   </li>
                   <li>
                     <a href="#header-and-trailer" class="toc-h2 toc-link" data-title="Header and Trailer">Header and Trailer</a>
-                  </li>
-                  <li>
-                    <a href="#session-messages" class="toc-h2 toc-link" data-title="Session Messages">Session Messages</a>
-                  </li>
-                  <li>
-                    <a href="#trading-workflow" class="toc-h2 toc-link" data-title="Trading Workflow">Trading Workflow</a>
-                  </li>
-                  <li>
-                    <a href="#post-trade" class="toc-h2 toc-link" data-title="Post Trade">Post Trade</a>
                   </li>
                   <li>
                     <a href="#logon" class="toc-h2 toc-link" data-title="Logon">Logon</a>
@@ -399,7 +401,7 @@
                     <a href="#cypator-websocket-introduction" class="toc-h2 toc-link" data-title="Cypator WebSocket Introduction">Cypator WebSocket Introduction</a>
                   </li>
                   <li>
-                    <a href="#connectivity-2" class="toc-h2 toc-link" data-title="Connectivity">Connectivity</a>
+                    <a href="#connectivity" class="toc-h2 toc-link" data-title="Connectivity">Connectivity</a>
                   </li>
                   <li>
                     <a href="#sign-generation-for-authentication" class="toc-h2 toc-link" data-title="Sign generation for authentication">Sign generation for authentication</a>
@@ -438,9 +440,7 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='cypator-introduction'>Cypator Introduction</h1>
-<p>Bla Bla Bal</p>
-<h1 id='fix-taker-api'>FIX Taker API</h1><h2 id='cypator-fix-introduction'>Cypator FIX Introduction</h2>
+        <h1 id='cypator-introduction'>Cypator Introduction</h1><h2 id='fix-introduction'>FIX Introduction</h2>
 <p>This document details the Financial Information eXchange (FIX) protocol used by the Cyaptor Crypto trading ECN. Cypator uses the FIX protocol to stream prices and handle orders for FX Spot with a counterparty, referred to generically in this document as the “Client”.
 To communicate with the ECN via the FIX protocol, there must be IP connectivity between Cyaptor and the Client, and the Client must initiate the connection. The Client must support the FIX 4.4 or FIX 4.2 protocol to communicate properly with the ECN.
 The diagram below presents a high-level overview of the FIX-based FX electronic dealing
@@ -459,7 +459,7 @@ This document defines the Capacitor FIX API for sending out market prices, recei
 <li>The FIX gateway supports subset of messages and tags listed in this document.</li>
 <li>Price is represented in natural value (e.g. 2500.01 for BTCEUR).</li>
 </ul>
-<h2 id='connectivity'>Connectivity</h2>
+<h2 id='fix-connectivity'>FIX Connectivity</h2>
 <ul>
 <li>The following are the ways a client can connection to the API:
 
@@ -471,12 +471,12 @@ This document defines the Capacitor FIX API for sending out market prices, recei
 <li>In case the client does not have a CSR file, please refer to the links below for additional instructions:
 
 <ul>
-<li><a href="https://www.globalsign.com/en/blog/what-is-a-certificate-signing-request-csr">CSR information</a><br></li>
+<li><a href="https://www.globalsign.com/en/blog/what-is-a-certificate-signing-request-csr">CSR information</a></li>
 <li>How to generate .crt file using openSSL (see section Create Certificate Authority): https://devopscube.com/create-self-signed-certificates-openssl/</li>
 <li>How to generate .cer file using keytool: https://docs.oracle.com/cd/E19798-01/821-1841/gjrgy/</li>
 </ul></li>
 </ul>
-<h2 id='session-time'>Session Time</h2>
+<h2 id='fix-session-time'>FIX Session Time</h2>
 <ul>
 <li>The session will be up the full week with a 3-minute scheduled restart on a weekly basis every Sunday. Exact time for restart will be scheduled with the client.
 
@@ -487,7 +487,42 @@ This document defines the Capacitor FIX API for sending out market prices, recei
 <li>EndTime=07:00:00</li>
 </ul></li>
 </ul>
-<h2 id='messages-products-and-fix-support'>Messages, Products and FIX Support</h2>
+<h2 id='fix-session-messages'>FIX Session Messages</h2>
+<p>The initialization sequence consists of two messages sent between the Client and Cypator during
+startup. The purpose of this is simply to initialize the session. If the logon sequence causes resending to take place (as described in the FIX Protocol Specification v. 4.2+) then quotes will not be replayed – instead they will be replaced with a “Sequence Reset – Gap Fill” message.
+<a href="Cypator.com">Cypator</a> currently supports inbound connections only, meaning that Clients are responsible for
+logging into the electronic dealing platform</p>
+<h2 id='fix-trading-workflow'>FIX Trading Workflow</h2>
+<p>The client will send a “New Order Single” message to place an order. Cypator will respond to the order with an Execution report message (35=8) of either Accept or Reject. If accepted, further execution report messages will indicate order fills until it is Done or Canceled.</p>
+
+<ul>
+<li>The Cypator trading interface supports the two types of orders
+
+<ul>
+<li>Limit</li>
+<li>Market</li>
+</ul></li>
+<li>The Cypator trading interface supports the following Time in force (TIF):
+
+<ul>
+<li>IOC - Immediate or Cancel</li>
+<li>FOK - Fill or kill</li>
+<li>Market - Best attempt at market price</li>
+</ul></li>
+</ul>
+
+<aside class="notice">
+In the case where a Trade Acknowledgment and accompanying Trade Fill or Reject message are
+not received within 5 seconds, from the time the trade request was sent, the Client MUST
+contact Cyaptor using the following support email address: support@cypator.com. This support inbox is manned 24 hours a day 7 days a week, providing global support at all hours. Contact with Cypator should be made via an automated email alert from the Client’s trading system. However, in the event that the Client cannot support this, we would expect a manual email or a call to our
+support desk.
+</aside>
+
+<aside class="warning">The Cypator trading interface currently does not support resting orders.</aside>
+<h2 id='fix-post-trade'>FIX Post Trade</h2>
+<p>For clients or partners requiring a post trade message, and that can code to the Cypator FIX API the following Trade Capture Report (AE) message will be sent.
+In addition, in the event of a communication breakdown, the client can send a “Request Trade Capture Report” message and include in it all the Order Id’s for which they want to verify if a trade was created or not.</p>
+<h1 id='fix-taker-api'>FIX Taker API</h1><h2 id='messages-products-and-fix-support'>Messages, Products and FIX Support</h2>
 <ul>
 <li>The API supports the following:
 
@@ -670,41 +705,6 @@ This document defines the Capacitor FIX API for sending out market prices, recei
 <td>Y</td>
 </tr>
 </tbody></table>
-<h2 id='session-messages'>Session Messages</h2>
-<p>The initialization sequence consists of two messages sent between the Client and Cypator during
-startup. The purpose of this is simply to initialize the session. If the logon sequence causes resending to take place (as described in the FIX Protocol Specification v. 4.2+) then quotes will not be replayed – instead they will be replaced with a “Sequence Reset – Gap Fill” message.
-<a href="Cypator.com">Cypator</a> currently supports inbound connections only, meaning that Clients are responsible for
-logging into the electronic dealing platform</p>
-<h2 id='trading-workflow'>Trading Workflow</h2>
-<p>The client will send a “New Order Single” message to place an order. Cypator will respond to the order with an Execution report message (35=8) of either Accept or Reject. If accepted, further execution report messages will indicate order fills until it is Done or Canceled.</p>
-
-<ul>
-<li>The Cypator trading interface supports the two types of orders
-
-<ul>
-<li>Limit </li>
-<li>Market</li>
-</ul></li>
-<li>The Cypator trading interface supports the following Time in force (TIF):
-
-<ul>
-<li>IOC - Immediate or Cancel</li>
-<li>FOK - Fill or kill</li>
-<li>Market - Best attempt at market price</li>
-</ul></li>
-</ul>
-
-<aside class="notice">
-In the case where a Trade Acknowledgment and accompanying Trade Fill or Reject message are
-not received within 5 seconds, from the time the trade request was sent, the Client MUST
-contact Cyaptor using the following support email address: support@cypator.com. This support inbox is manned 24 hours a day 7 days a week, providing global support at all hours. Contact with Cypator should be made via an automated email alert from the Client’s trading system. However, in the event that the Client cannot support this, we would expect a manual email or a call to our
-support desk.
-</aside>
-
-<aside class="warning">The Cypator trading interface currently does not support resting orders.</aside>
-<h2 id='post-trade'>Post Trade</h2>
-<p>For clients or partners requiring a post trade message, and that can code to the Cypator FIX API the following Trade Capture Report (AE) message will be sent.
-In addition, in the event of a communication breakdown, the client can send a “Request Trade Capture Report” message and include in it all the Order Id’s for which they want to verify if a trade was created or not.</p>
 <h2 id='logon'>Logon</h2>
 <blockquote>
 <p>FIX 4.4 Client -&gt; Cypator</p>
@@ -1856,7 +1856,7 @@ Please note – an Order (if not of type FOK) may result in several trades and m
 <td>Free text</td>
 </tr>
 </tbody></table>
-<h1 id='fix-maker-api'>FIX Maker API</h1><h1 id='websocket-maker-api'>WebSocket Maker API</h1><h2 id='cypator-websocket-introduction'>Cypator WebSocket Introduction</h2><h2 id='connectivity-2'>Connectivity</h2>
+<h1 id='fix-maker-api'>FIX Maker API</h1><h1 id='websocket-maker-api'>WebSocket Maker API</h1><h2 id='cypator-websocket-introduction'>Cypator WebSocket Introduction</h2><h2 id='connectivity'>Connectivity</h2>
 <ul>
 <li>Only one market and trade connection per client supported, on new connection previous connection will be dropped</li>
 <li>When trade session goes down market data feed will not be consumed even if market session is connected. Market data snapshot consumption will resume after trade session is reconnected</li>
