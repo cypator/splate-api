@@ -330,20 +330,20 @@
                   <li>
                     <a href="#fix-post-trade" class="toc-h2 toc-link" data-title="FIX Post Trade">FIX Post Trade</a>
                   </li>
+                  <li>
+                    <a href="#fix-messages-products-and-support" class="toc-h2 toc-link" data-title="FIX Messages, Products and Support">FIX Messages, Products and Support</a>
+                  </li>
+                  <li>
+                    <a href="#fix-duplicate-check" class="toc-h2 toc-link" data-title="FIX Duplicate check">FIX Duplicate check</a>
+                  </li>
+                  <li>
+                    <a href="#fix-header-and-trailer" class="toc-h2 toc-link" data-title="FIX Header and Trailer">FIX Header and Trailer</a>
+                  </li>
               </ul>
           </li>
           <li>
             <a href="#fix-taker-api" class="toc-h1 toc-link" data-title="FIX Taker API">FIX Taker API</a>
               <ul class="toc-list-h2">
-                  <li>
-                    <a href="#messages-products-and-fix-support" class="toc-h2 toc-link" data-title="Messages, Products and FIX Support">Messages, Products and FIX Support</a>
-                  </li>
-                  <li>
-                    <a href="#duplicate-check" class="toc-h2 toc-link" data-title="Duplicate check">Duplicate check</a>
-                  </li>
-                  <li>
-                    <a href="#header-and-trailer" class="toc-h2 toc-link" data-title="Header and Trailer">Header and Trailer</a>
-                  </li>
                   <li>
                     <a href="#logon" class="toc-h2 toc-link" data-title="Logon">Logon</a>
                   </li>
@@ -522,7 +522,7 @@ support desk.
 <h2 id='fix-post-trade'>FIX Post Trade</h2>
 <p>For clients or partners requiring a post trade message, and that can code to the Cypator FIX API the following Trade Capture Report (AE) message will be sent.
 In addition, in the event of a communication breakdown, the client can send a ‚ÄúRequest Trade Capture Report‚Äù message and include in it all the Order Id‚Äôs for which they want to verify if a trade was created or not.</p>
-<h1 id='fix-taker-api'>FIX Taker API</h1><h2 id='messages-products-and-fix-support'>Messages, Products and FIX Support</h2>
+<h2 id='fix-messages-products-and-support'>FIX Messages, Products and Support</h2>
 <ul>
 <li>The API supports the following:
 
@@ -634,9 +634,9 @@ In addition, in the event of a communication breakdown, the client can send a ‚Ä
 <td>Y</td>
 </tr>
 </tbody></table>
-<h2 id='duplicate-check'>Duplicate check</h2>
+<h2 id='fix-duplicate-check'>FIX Duplicate check</h2>
 <p>There is always a possibility of duplicate trade being sent out, for example after a network disconnect. The client is expected to be able to identify duplicate trades and reject them, by using the tag 37 - OrderID</p>
-<h2 id='header-and-trailer'>Header and Trailer</h2>
+<h2 id='fix-header-and-trailer'>FIX Header and Trailer</h2>
 <p>The following define the FIX messages standard header and trailer</p>
 
 <p>Header</p>
@@ -705,7 +705,7 @@ In addition, in the event of a communication breakdown, the client can send a ‚Ä
 <td>Y</td>
 </tr>
 </tbody></table>
-<h2 id='logon'>Logon</h2>
+<h1 id='fix-taker-api'>FIX Taker API</h1><h2 id='logon'>Logon</h2>
 <blockquote>
 <p>FIX 4.4 Client -&gt; Cypator</p>
 </blockquote>
