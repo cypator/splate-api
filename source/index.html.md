@@ -948,5 +948,74 @@ For snapshot message Cypator won’t send an acknowledgement.
 | ts                   | String  | Yes      | Unix epoch time                                                                                                                                         |
 
 
+# Trade
+
+```json
+{
+  "op": "trade",
+  "arg": {
+    "instrument": "BTC/USD",
+    "side": "BUY",
+    "clOrderId": "uNQMAdtbxnVGJi",
+    "orderId": "DF34rfswe32",
+    "tradeId": "sada24DSGF",
+    "orderType": "FOK",
+    "state": "FILLED",
+    "quantity": 2,
+    "cumQty": 1,
+    "lastQty": 1,
+    "leaveQty": 0,
+    "price": 201232
+  },
+  "ts": 1667835722653
+}
+```
+
+| Parameter             | Type    | Required | Description                                        | 
+|-----------------------|---------|----------|----------------------------------------------------|
+| op                    | String  | Yes      | Operation trade                                    |
+| arg                   | Object  | Yes      | Trade details                                      |
+| -> <br /> instrument  | String  | Yes      | Instrument name                                    |
+| -> <br /> side        | String  | Yes      | Side of the order. Values : <br /> BUY <br /> SELL |
+| -> <br /> clOrderId   | String  | Yes      | client order id                                    |
+| -> <br /> orderId     | String  | Yes      | Order id                                           |
+| -> <br /> tradeId     | String  | Yes      | Trade id                                           |
+| -> <br /> orderType   | String  | Yes      | Type of order. Values: <br /> LIMIT  <br /> MARKET |
+| -> <br /> tif         | String  | Yes      | Time in force. Values: <br /> FOK <br />  IOC      |
+| -> <br /> quantity    | Double  | Yes      | Quantity                                           |
+| -> <br /> cumQty      | Double  | Yes      | Cumulative quantity                                |
+| -> <br /> lastQty     | Double  | Yes      | Last quantity                                      |
+| -> <br /> leaveQty    | Double  | Yes      | Leaves quantity                                    |
+| -> <br /> price       | Double  | Yes      | Price                                              |
+| ts                    | String  |          |                                                    |
+
+
+# Error Codes
+
+| Error Code | Description                             | 
+|------------|-----------------------------------------|
+| 50100      | Invalid authorization                   |
+| 50101      | Already logged in                       |
+| 50102      | Invalid login message                   |
+| 50103      | Invalid credentials                     |
+| 50201      | Invalid market data message             |
+| 50202      | Unknown symbol                          |
+| 50203      | Unsupported subscription type           |
+| 50204      | Unsupported type book                   |
+| 50205      | Duplicated market data request id       |
+| 50206      | Duplicate market data symbol            |
+| 50250      | Invalid market data unsubscribe message |
+| 50251      | Invalid subscription id                 |
+| 50300      | Invalid new order single message        |
+| 50301      | Unsupported side                        |
+| 50302      | Invalid quantity                        |
+| 50303      | Invalid order type                      |
+| 50304      | Invalid time in force                   |
+| 50305      | Missing time in force                   |
+| 50306      | Invalid price                           |
+| 50307      | Order throttling exceeded               |
+| 50308      | Invalid time stamp                      |
+| 50400      | Invalid request                         |
+
 # Test
 
