@@ -141,6 +141,16 @@ Trailer
 | 10  | CheckSum  | Y            |
 
 
+## WebSocket Connectivity
+
+* Only one market and trade connection per client supported, on new connection previous connection will be dropped
+* When trade session goes down market data feed will not be consumed even if market session is connected. Market data snapshot consumption will resume after trade session is reconnected
+
+## WebSocket Sign generation for authentication
+Use HMAC SHA256 method to hash the below string with password and then perform Base64 encoding
+String to be encrypted = timestamp + "/verify"
+Timestamp needs to be within current times 30 second range.
+
 
 # FIX Taker API 
 
@@ -614,19 +624,78 @@ Indicate that no trades were found that matched the selection criteria specified
 
 # FIX Maker API
 
+## Logon
+
+This message is sent to initiate a FIX session and establishes the communication session, authenticates the connecting Maker, and initializes the message sequence number.
+
+> FIX 4.4 Client -> Cypator
+
+
+```plaintext 
+8=FIX.4.4|9=79|35=A|49=cc11|56=cs1|34=1|52=20221031-07:40:55|98=0|108=20|553=User1|554=123456|10=034|
+```
+
+> FIX 4.4 Cypator -> Client
+
+```plaintext 
+8=FIX.4.4|9=62|35=A|34=1|49=cs1|52=20221031-07:40:55.074|56=cc11|98=0|108=20|10=039|
+```
+
+
+> FIX 4.2 Client -> Cypator
+
+```plaintext 
+8=FIX.4.2|9=58|35=A|49=cc21|56=cs1|34=1|52=20221031-07:41:49|98=0|108=20|10=102|
+```
+
+> FIX 4.2 Cypator -> Client
+
+```plaintext 
+8=FIX.4.2|9=62|35=A|34=1|49=cs1|52=20221031-07:41:50.005|56=cc21|98=0|108=20|10=028|
+```
+
+| Tag | Name            | Mandatory | Description                                                                        | 
+|-----|-----------------|-----------|------------------------------------------------------------------------------------|
+| 35  | MsgType         | Y         | A                                                                                  |
+| 98  | EncryptMethod   | Y         | Y                                                                                  |
+| 108 | HeartBtInt      | Y         | Y                                                                                  |
+| 141 | ResetSeqNumFlag | N         | Indicated that both parties of the FIX Session should reset their sequence numbers |
+| 553 | Username        | N         | Available only in FIX 4.4                                                          |
+| 554 | Password        | N         | Available only in FIX 4.4                                                          |
+
+
+## Heartbeat
+
+This message is sent during periods of application inactivity to ensure connection validity. The receiving party should always respond with a heartbeat message.
+
+| Tag | Name       | Mandatory | Description                                                                | 
+|-----|------------|-----------|----------------------------------------------------------------------------|
+| 35  | MsgType    | Y         | 0                                                                          |
+| 98  | TestReqID  | N         | Required only when the heartbeat is in response to a Test Request Message  |
+
+
+## Test Request
+
+This message is used to verify connectivity and synchronize sequence numbers.  A test request should be responded to with a heartbeat from recipient
+
+| Tag | Name       | Mandatory | Description                                      | 
+|-----|------------|-----------|--------------------------------------------------|
+| 35  | MsgType    | Y         | 1                                                |
+| 98  | TestReqID  | Y         | Identifier to be returned in Heartbeat response  |
+
+
+
+## Logout
+
+This message signals the normal termination of the trading session. A session terminated without a Logout message will be considered an abnormal condition.
+
+| Tag | Name     | Mandatory | Description | 
+|-----|----------|-----------|-------------|
+| 35  | MsgType  | Y         | 5           |
+| 55  | Text     | N         |             |
+
+
 # WebSocket Maker API
-
-## Cypator WebSocket Introduction
-
-## Connectivity
-
-* Only one market and trade connection per client supported, on new connection previous connection will be dropped
-* When trade session goes down market data feed will not be consumed even if market session is connected. Market data snapshot consumption will resume after trade session is reconnected
-
-## Sign generation for authentication
-Use HMAC SHA256 method to hash the below string with password and then perform Base64 encoding
-String to be encrypted = timestamp + "/verify"
-Timestamp needs to be within current times 30 second range.
 
 ## Login
 
