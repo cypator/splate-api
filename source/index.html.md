@@ -14,7 +14,7 @@ meta:
     content: Documentation for the Kittn API
 ---
 
-# Cypator Introduction
+# Introduction
 
 ## FIX Introduction
 
