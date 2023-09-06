@@ -141,12 +141,12 @@ Trailer
 | 10  | CheckSum  | Y            |
 
 
-## WebSocket Connectivity
+## Websocket API Connectivity
 
 * Only one market and trade connection per client supported, on new connection previous connection will be dropped
 * When trade session goes down market data feed will not be consumed even if market session is connected. Market data snapshot consumption will resume after trade session is reconnected
 
-## WebSocket Sign generation for authentication
+## Websocket API Sign generation for authentication
 Use HMAC SHA256 method to hash the below string with password and then perform Base64 encoding
 String to be encrypted = timestamp + "/verify"
 Timestamp needs to be within current times 30 second range.
@@ -802,7 +802,7 @@ This message is used to subscribe/unsubscribe to market data rate information.
 | -><br />282 | MDEntryOriginator  | N         | Liquidity provider name. In case of 266=N in Market Data Request Message.  |
 
 
-# WebSocket Maker API
+# Websocket Maker API
 
 ## Login
 
@@ -1196,5 +1196,7 @@ For snapshot message Cypator won’t send an acknowledgement.
 | 50308      | Invalid time stamp                      |
 | 50400      | Invalid request                         |
 
-# Test
+# Changelog
 
+### V1.0.0 - Wed, 6 Sep 2023
+First issue
