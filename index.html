@@ -340,10 +340,10 @@
                     <a href="#fix-header-and-trailer" class="toc-h2 toc-link" data-title="FIX Header and Trailer">FIX Header and Trailer</a>
                   </li>
                   <li>
-                    <a href="#websocket-connectivity" class="toc-h2 toc-link" data-title="WebSocket Connectivity">WebSocket Connectivity</a>
+                    <a href="#websocket-api-connectivity" class="toc-h2 toc-link" data-title="Websocket API Connectivity">Websocket API Connectivity</a>
                   </li>
                   <li>
-                    <a href="#websocket-sign-generation-for-authentication" class="toc-h2 toc-link" data-title="WebSocket Sign generation for authentication">WebSocket Sign generation for authentication</a>
+                    <a href="#websocket-api-sign-generation-for-authentication" class="toc-h2 toc-link" data-title="Websocket API Sign generation for authentication">Websocket API Sign generation for authentication</a>
                   </li>
               </ul>
           </li>
@@ -424,7 +424,7 @@
               </ul>
           </li>
           <li>
-            <a href="#websocket-maker-api" class="toc-h1 toc-link" data-title="WebSocket Maker API">WebSocket Maker API</a>
+            <a href="#websocket-maker-api" class="toc-h1 toc-link" data-title="Websocket Maker API">Websocket Maker API</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#login" class="toc-h2 toc-link" data-title="Login">Login</a>
@@ -450,7 +450,12 @@
               </ul>
           </li>
           <li>
-            <a href="#test" class="toc-h1 toc-link" data-title="Test">Test</a>
+            <a href="#changelog" class="toc-h1 toc-link" data-title="Changelog">Changelog</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#v1-0-0-wed-6-sep-2023" class="toc-h2 toc-link" data-title="V1.0.0 - Wed, 6 Sep 2023">V1.0.0 - Wed, 6 Sep 2023</a>
+                  </li>
+              </ul>
           </li>
       </ul>
         <ul class="toc-footer">
@@ -725,12 +730,12 @@ In addition, in the event of a communication breakdown, the client can send a â€
 <td>Y</td>
 </tr>
 </tbody></table>
-<h2 id='websocket-connectivity'>WebSocket Connectivity</h2>
+<h2 id='websocket-api-connectivity'>Websocket API Connectivity</h2>
 <ul>
 <li>Only one market and trade connection per client supported, on new connection previous connection will be dropped</li>
 <li>When trade session goes down market data feed will not be consumed even if market session is connected. Market data snapshot consumption will resume after trade session is reconnected</li>
 </ul>
-<h2 id='websocket-sign-generation-for-authentication'>WebSocket Sign generation for authentication</h2>
+<h2 id='websocket-api-sign-generation-for-authentication'>Websocket API Sign generation for authentication</h2>
 <p>Use HMAC SHA256 method to hash the below string with password and then perform Base64 encoding
 String to be encrypted = timestamp + &quot;/verify&quot;
 Timestamp needs to be within current times 30 second range.</p>
@@ -2247,7 +2252,7 @@ The ECN also supports layers (also known elsewhere as price bands or tiers). Quo
 <td>Liquidity provider name. In case of 266=N in Market Data Request Message.</td>
 </tr>
 </tbody></table>
-<h1 id='websocket-maker-api'>WebSocket Maker API</h1><h2 id='login'>Login</h2>
+<h1 id='websocket-maker-api'>Websocket Maker API</h1><h2 id='login'>Login</h2>
 <p>Both market and trade session needs to be authenticated before any requests can be made.</p>
 <h3 id='request-parameters'>Request parameters</h3>
 <blockquote>
@@ -3106,7 +3111,9 @@ The ECN also supports layers (also known elsewhere as price bands or tiers). Quo
 <td>Invalid request</td>
 </tr>
 </tbody></table>
-<h1 id='test'>Test</h1>
+<h1 id='changelog'>Changelog</h1><h3 id='v1-0-0-wed-6-sep-2023'>V1.0.0 - Wed, 6 Sep 2023</h3>
+<p>First issue</p>
+
       </div>
       <div class="dark-box">
       </div>
