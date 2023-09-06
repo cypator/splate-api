@@ -802,7 +802,46 @@ This message is used to subscribe/unsubscribe to market data rate information.
 | -><br />282 | MDEntryOriginator  | N         | Liquidity provider name. In case of 266=N in Market Data Request Message.  |
 
 
+## New Order Single
+
+A new order single message enables the ECN to send a request for a trade to the Maker.
+Cypator will provide a unique ClOrdID <11>.
+
+
+> FIX 4.4  Cypator -> Client
+
+```plaintext 
+
+8=FIX.4.4|9=133|35=D|49=cc11|56=cs1|34=113|52=20221031-09:10:46|11=1598950759|21=1|55=BTC/USD|54=1|60=20221031-09:10:46|40=2|44=19123.20|38=100|59=4|10=003|
+```
+
+> FIX 4.2 Cypator -> Client
+
+```plaintext 
+
+8=FIX.4.2|9=133|35=D|49=cc21|56=cs1|34=113|52=20221031-09:11:04|11=1805964193|21=1|55=BTC/USD|54=1|60=20221031-09:11:04|40=2|44=19123.20|38=100|59=4|10=236|
+```
+
+| Tag | Name                                             | Mandatory | Description                                                                                                                                                                                                                                                                                              | 
+|-----|--------------------------------------------------|-----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 35  | MsgType                                          | Y         | D                                                                                                                                                                                                                                                                                                        |
+| 11  | ClOrdID                                          | Y         | Client Order ID – must be unique                                                                                                                                                                                                                                                                         |
+| 1   | Account                                          | N         | Client Account name                                                                                                                                                                                                                                                                                      |
+| 60  | TransactTime                                     | Y         | The transaction timestamp of the orde                                                                                                                                                                                                                                                                    |
+| 15  | Currency                                         | Y         | The currency or coin unit that represents the quantity                                                                                                                                                                                                                                                   |
+| 54  | Side                                             | Y         | 1 (Buy) <br />  2 (Sell)                                                                                                                                                                                                                                                                                 |
+| 55  | Symbol                                           | Y         | The Asset - Coin and currency combination, e.g EUR/USD, BTC/USD, ETH/BTC                                                                                                                                                                                                                                 |
+| 38  | OrderQty                                         | Y         | The order quantity                                                                                                                                                                                                                                                                                       |
+| 40  | OrdType                                          | Y         | 1 – Market <br />  2 – Limit <br /> 3 – Stop / Stop Los                                                                                                                                                                                                                                                  |
+| 44  | Price                                            | Y         | Limit price if 40=2 <br /> Stop Price if 40 = 3 <br /> If 40=1 the price is required for pre trade credit check                                                                                                                                                                                          |
+| 59  | TimeInForce                                      | N         | 1 – Good Till Cancel -not supported phase1 <br /> 3 – Immediate or Cancel (Default if no value provided) <br /> 4 – Fill or Kill <br /> 6 – Good Till Date  -not supported phase <br /> Note: OrdType=1 only supports TimeInForce=3 (IOC) OrdType=3 (Stop) only supports TimeInForce=1 (GTC) and 6 (GTD) |
+| 64  | FutSettDate (FIX 4.2) <br /> SettlDate (FIX 4.4) | N         | Value date YYYYMMDD. Required for forward Will be supported in the future. Use FutSettDate if using FIX 4.2 Use SettlDate if using FIX 4.4                                                                                                                                                               |
+| 126 | ExpireTime                                       | N         | Not supported in phase 1- Required for Good-Till-Date order request. Date and Time of the order expiration specified in YYYYMMDD-HH:MM:SS format. Expressed in GMT.                                                                                                                                      |
+
+
 # Websocket Maker API
+
+<aside class="warning"> Not yet supported</aside>
 
 ## Login
 
