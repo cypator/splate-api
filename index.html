@@ -412,6 +412,15 @@
                   <li>
                     <a href="#logout-2" class="toc-h2 toc-link" data-title="Logout">Logout</a>
                   </li>
+                  <li>
+                    <a href="#market-data-request-2" class="toc-h2 toc-link" data-title="Market Data Request">Market Data Request</a>
+                  </li>
+                  <li>
+                    <a href="#market-data-request-reject-2" class="toc-h2 toc-link" data-title="Market Data Request Reject">Market Data Request Reject</a>
+                  </li>
+                  <li>
+                    <a href="#market-data-snapshot-full-2" class="toc-h2 toc-link" data-title="Market Data Snapshot Full">Market Data Snapshot Full</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -2014,6 +2023,228 @@ Please note – an Order (if not of type FOK) may result in several trades and m
 <td>Text</td>
 <td>N</td>
 <td></td>
+</tr>
+</tbody></table>
+<h2 id='market-data-request-2'>Market Data Request</h2>
+<p>Once the logon process is complete, Market Data Requests can be sent to the Maker. The  Maker will respond immediately with either a Market Data Full Refresh (35=W) message or a Market Data Request Reject message (35=Y).
+Only a single request will be sent for each market data request.
+The ECN also supports layers (also known elsewhere as price bands or tiers). Quotes containing bid prices and quantities for all layers are always streamed in the same message, as is the case for quotes containing ask prices and quantities.</p>
+
+<p>This message is used to subscribe/unsubscribe to market data rate information.</p>
+
+<blockquote>
+<p>FIX 4.4 Cypator -&gt; Client subscribe</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext tab-plaintext"><code>
+8=FIX.4.4|9=99|35=V|49=cc12|56=cs1|34=8|52=20221031-07:43:44|262=1|263=1|264=0|146=1|55=BTC/USD|267=2|269=0|269=1|10=095|
+</code></pre></div>
+<blockquote>
+<p>FIX 4.2 Cypator -&gt; Client subscribe</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext tab-plaintext"><code>
+8=FIX.4.2|9=99|35=V|49=cc22|56=cs1|34=3|52=20221031-08:34:43|262=1|263=1|264=0|146=1|55=BTC/USD|267=2|269=0|269=1|10=089|
+</code></pre></div>
+<blockquote>
+<p>FIX 4.4 Cypator -&gt; Client Unsubscribe</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext tab-plaintext"><code>
+8=FIX.4.4|9=99|35=V|49=cc12|56=cs1|34=7|52=20221031-08:35:17|262=1|263=2|264=0|146=1|55=BTC/USD|267=2|269=0|269=1|10=097|
+</code></pre></div>
+<blockquote>
+<p>FIX 4.4 Cypator -&gt; Client Unsubscribe</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext tab-plaintext"><code>
+8=FIX.4.2|9=99|35=V|49=cc22|56=cs1|34=5|52=20221031-08:34:55|262=1|263=2|264=0|146=1|55=BTC/USD|267=2|269=0|269=1|10=095|
+</code></pre></div>
+<table><thead>
+<tr>
+<th>Tag</th>
+<th>Name</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>35</td>
+<td>MsgType</td>
+<td>Y</td>
+<td>V</td>
+</tr>
+<tr>
+<td>262</td>
+<td>MDReqID</td>
+<td>Y</td>
+<td>Unique Market Data Request ID.  This will be used in responses by Cypator or by the client to cancel a request. To unsubscribe from market data, the same ID must be sent with tag 263 = 2</td>
+</tr>
+<tr>
+<td>263</td>
+<td>SubscriptionRequestType</td>
+<td>Y</td>
+<td>1 – Snapshot + Updates (Subscribe) <br />  2 – Disable Snapshot + Updates (Unsubscribe)</td>
+</tr>
+<tr>
+<td>264</td>
+<td>MarketDepth</td>
+<td>Y</td>
+<td>0 - Full Book  <br /> 1 - Top of the Book</td>
+</tr>
+<tr>
+<td>265</td>
+<td>MDUpdateType</td>
+<td>N</td>
+<td>0 - Full refresh</td>
+</tr>
+<tr>
+<td>266</td>
+<td>AggregatedBook</td>
+<td>N</td>
+<td>Y - VWAP book <br /> N - Raw prices may or may not include the liquidity provider names.</td>
+</tr>
+<tr>
+<td>267</td>
+<td>NoMDEntryTypes</td>
+<td>Y</td>
+<td>Number of MDEntryType fields being requested. 2 - bid and offer <br /> Note – please make sure to request in tag 269 both Bid and Offer. Request for a single side will be rejected!!!</td>
+</tr>
+<tr>
+<td>-&gt;<br />269</td>
+<td>MDEntryType</td>
+<td>Y</td>
+<td>Market Data entries types list: <br /> 0 - Bid <br /> 1 - Offer <br /> Repeated field: 269=0, 269=1</td>
+</tr>
+<tr>
+<td>146</td>
+<td>NoRelatedSym</td>
+<td>Y</td>
+<td>1 ( we allow only a single asset per subscription)</td>
+</tr>
+<tr>
+<td>-&gt;<br />55</td>
+<td>Symbol</td>
+<td>Y</td>
+<td>Asset - “BTC/USD”</td>
+</tr>
+<tr>
+<td>-&gt;<br />64</td>
+<td>FutSettDate</td>
+<td>N</td>
+<td>Value date YYYYMMDD. Currently unused, will be used once forward is supported.</td>
+</tr>
+</tbody></table>
+<h2 id='market-data-request-reject-2'>Market Data Request Reject</h2>
+<blockquote>
+<p>FIX 4.4 Client -&gt; Cypator</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext tab-plaintext"><code>
+8=FIX.4.4|9=85|35=Y|34=106|49=cs1|52=20221031-09:03:57.488|56=cc12|58=Duplicate MDReqID|262=1|281=1|10=094
+</code></pre></div>
+<blockquote>
+<p>FIX 4.2 Client -&gt; Cypator</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext tab-plaintext"><code>
+8=FIX.4.2|9=84|35=Y|34=84|49=cs1|52=20221031-08:58:35.817|56=cc22|58=Duplicate MDReqID|262=1|281=1|10=050|
+</code></pre></div>
+<table><thead>
+<tr>
+<th>Tag</th>
+<th>Name</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>35</td>
+<td>MsgType</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>262</td>
+<td>MDReqID</td>
+<td>Y</td>
+<td>The  Unique ID of the received market data</td>
+</tr>
+<tr>
+<td>281</td>
+<td>MDReqRejReason</td>
+<td>N</td>
+<td>Reason for rejection <br />  0 - Unknown Symbol <br /> 1 - Duplicate MDReqID <br /> 2 - Request not supported <br /> 3 - Insufficient Permissions</td>
+</tr>
+</tbody></table>
+<h2 id='market-data-snapshot-full-2'>Market Data Snapshot Full</h2>
+<blockquote>
+<p>FIX 4.4 Client -&gt; Cypator</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext tab-plaintext"><code>
+8=FIX.4.4|9=710|35=W|34=8|49=cs1|52=20221031-08:35:11.416|56=cc12|55=BTC/USD|262=1|268=20|269=0|270=202.15|271=0.00000001|269=0|270=202.16|271=0.00000002|269=0|270=202.17|271=0.00000003|269=0|270=202.18|271=0.00000004|269=0|270=202.19|271=0.00000005|269=0|270=202.2|271=0.00000006|269=0|270=202.21|271=0.00000007|269=0|270=202.22|271=0.00000008|269=0|270=202.23|271=0.00000009|269=0|270=202.24|271=0.0000001|269=1|270=202.35|271=0.00000001|269=1|270=202.36|271=0.00000002|269=1|270=202.37|271=0.00000003|269=1|270=202.38|271=0.00000004|269=1|270=202.39|271=0.00000005|269=1|270=202.4|271=0.00000006|269=1|270=202.41|271=0.00000007|269=1|270=202.42|271=0.00000008|269=1|270=202.43|271=0.00000009|269=1|270=202.44|271=0.0000001|10=073|
+</code></pre></div>
+<blockquote>
+<p>FIX 4.2 Client -&gt; Cypator</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext tab-plaintext"><code>
+8=FIX.4.2|9=710|35=W|34=3|49=cs1|52=20221031-08:34:44.164|56=cc22|55=BTC/USD|262=1|268=20|269=0|270=202.15|271=0.00000001|269=0|270=202.16|271=0.00000002|269=0|270=202.17|271=0.00000003|269=0|270=202.18|271=0.00000004|269=0|270=202.19|271=0.00000005|269=0|270=202.2|271=0.00000006|269=0|270=202.21|271=0.00000007|269=0|270=202.22|271=0.00000008|269=0|270=202.23|271=0.00000009|269=0|270=202.24|271=0.0000001|269=1|270=202.35|271=0.00000001|269=1|270=202.36|271=0.00000002|269=1|270=202.37|271=0.00000003|269=1|270=202.38|271=0.00000004|269=1|270=202.39|271=0.00000005|269=1|270=202.4|271=0.00000006|269=1|270=202.41|271=0.00000007|269=1|270=202.42|271=0.00000008|269=1|270=202.43|271=0.00000009|269=1|270=202.44|271=0.0000001|10=072|
+</code></pre></div>
+<table><thead>
+<tr>
+<th>Tag</th>
+<th>Name</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>35</td>
+<td>MsgType</td>
+<td>Y</td>
+<td>W</td>
+</tr>
+<tr>
+<td>262</td>
+<td>MDReqID</td>
+<td>Y</td>
+<td>The  Unique ID of the received market data request</td>
+</tr>
+<tr>
+<td>55</td>
+<td>Symbol</td>
+<td>Y</td>
+<td>e.g “BTC/USD”</td>
+</tr>
+<tr>
+<td>64</td>
+<td>FutSettDate</td>
+<td>N</td>
+<td>Value date YYYYMMDD. Required for forward. Will be supported in the future</td>
+</tr>
+<tr>
+<td>268</td>
+<td>NoMDEntries</td>
+<td>Y</td>
+<td>No. of market data updates in the message</td>
+</tr>
+<tr>
+<td>-&gt;<br />269</td>
+<td>MDEntryType</td>
+<td>Y</td>
+<td>‘0’ (Bid) <br /> ‘1’ (Offer)</td>
+</tr>
+<tr>
+<td>-&gt;<br />270</td>
+<td>MDEntryPx</td>
+<td>Y</td>
+<td>Price of entry</td>
+</tr>
+<tr>
+<td>-&gt;<br />271</td>
+<td>MDEntrySize</td>
+<td>Y</td>
+<td>Quantity  of entry</td>
+</tr>
+<tr>
+<td>-&gt;<br />282</td>
+<td>MDEntryOriginator</td>
+<td>N</td>
+<td>Liquidity provider name. In case of 266=N in Market Data Request Message.</td>
 </tr>
 </tbody></table>
 <h1 id='websocket-maker-api'>WebSocket Maker API</h1><h2 id='login'>Login</h2>
