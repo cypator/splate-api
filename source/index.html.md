@@ -35,7 +35,7 @@ This document defines the Capacitor FIX API for sending out market prices, recei
 * The FIX gateway supports subset of messages and tags listed in this document.
 * Price is represented in natural value (e.g. 2500.01 for BTCEUR).
 
-![High-level overview](images/high_level_overview_diagram.png)
+![High-level overview](images/high_level_overview_diagram.png "High-level overview")
 
 
 ## FIX Connectivity
