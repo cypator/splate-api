@@ -744,6 +744,18 @@ Timestamp needs to be within the current times 30-second range.</p>
   <span class="nc">SecretKeySpec</span> <span class="n">secretKeySpec</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SecretKeySpec</span><span class="o">(</span><span class="n">passPhrase</span><span class="o">.</span><span class="na">getBytes</span><span class="o">(),</span> <span class="s">"HmacSHA256"</span><span class="o">);</span>
   <span class="n">sha256HMAC</span><span class="o">.</span><span class="na">init</span><span class="o">(</span><span class="n">secretKeySpec</span><span class="o">);</span>
   <span class="nc">String</span> <span class="n">hash</span> <span class="o">=</span> <span class="nc">Base64</span><span class="o">.</span><span class="na">getEncoder</span><span class="o">().</span><span class="na">encodeToString</span><span class="o">(</span><span class="n">sha256HMAC</span><span class="o">.</span><span class="na">doFinal</span><span class="o">(</span><span class="n">stringToHashAndEncode</span><span class="o">.</span><span class="na">getBytes</span><span class="o">()));</span>
+</code></pre></div>
+<blockquote>
+<p>Python Example</p>
+</blockquote>
+<div class="highlight"><pre class="highlight python tab-python"><code>
+  <span class="kn">import</span> <span class="nn">hashlib</span>
+  <span class="kn">import</span> <span class="nn">hmac</span>
+  <span class="kn">import</span> <span class="nn">base64</span>
+
+  <span class="n">string_to_hash_and_encode</span> <span class="o">=</span> <span class="n">timeStamp</span> <span class="o">+</span> <span class="s">"/verify"</span>
+  <span class="n">hash_obj</span> <span class="o">=</span> <span class="n">hmac</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="n">secret_key</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">hashlib</span><span class="p">.</span><span class="n">sha256</span><span class="p">)</span>
+  <span class="n">hash_value</span> <span class="o">=</span> <span class="n">base64</span><span class="p">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">hash_obj</span><span class="p">.</span><span class="n">digest</span><span class="p">()).</span><span class="n">decode</span><span class="p">(</span><span class="s">"utf-8"</span><span class="p">)</span>
 </code></pre></div><h1 id='fix-taker-api'>FIX Taker API</h1><h2 id='logon'>Logon</h2>
 <blockquote>
 <p>FIX 4.4 Client -&gt; Cypator</p>
@@ -802,13 +814,13 @@ Timestamp needs to be within the current times 30-second range.</p>
 <tr>
 <td>553</td>
 <td>Username</td>
-<td>N</td>
+<td>Y</td>
 <td>Available only in FIX 4.4</td>
 </tr>
 <tr>
 <td>554</td>
 <td>Password</td>
-<td>N</td>
+<td>Y</td>
 <td>Available only in FIX 4.4</td>
 </tr>
 </tbody></table>
@@ -837,7 +849,7 @@ Timestamp needs to be within the current times 30-second range.</p>
 </tr>
 </tbody></table>
 <h2 id='test-request'>Test Request</h2>
-<p>This message is used to verify connectivity and synchronize sequence numbers.  A test request should be responded to with a heartbeat from recipient</p>
+<p>This message is used to verify connectivity and synchronize sequence numbers.  A test request should be responded to with a heartbeat from the recipient</p>
 
 <table><thead>
 <tr>
@@ -886,7 +898,7 @@ Timestamp needs to be within the current times 30-second range.</p>
 </tbody></table>
 <h2 id='market-data-request'>Market Data Request</h2>
 <p>Once the logon process is complete, Market Data Requests can be sent to the ECN. Cypator will respond immediately with either a Market Data Full Refresh (35=W) message or a Market Data Request Reject message (35=Y).
-Only a single product can be requested in each request. The client will receive both bid and ask prices  in a single message ).
+Only a single product can be requested in each request. The client will receive both bid and ask prices in a single message.
 The ECN also supports layers (also known elsewhere as price bands or tiers). Quotes containing bid prices and quantities for all layers are always streamed in the same message, as is the case for quotes containing ask prices and quantities.</p>
 
 <p>This message is used to subscribe/unsubscribe to market data rate information.</p>
