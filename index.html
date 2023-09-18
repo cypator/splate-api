@@ -1204,7 +1204,7 @@ Cypator requires that the ClOrdID <11> be unique.</p>
 <td>44</td>
 <td>Price</td>
 <td>Y</td>
-<td>Limit price if 40=2 <br /> Stop Price if 40 = 3 <br /> If 40=1 the price is required for pre trade credit check</td>
+<td>Limit price if 40=2 <br /> If 40=1 the price is required for pre trade credit check</td>
 </tr>
 <tr>
 <td>59</td>
@@ -1226,7 +1226,7 @@ Cypator requires that the ClOrdID <11> be unique.</p>
 </tr>
 </tbody></table>
 <h2 id='order-reject'>Order Reject</h2>
-<p>This message is used by Cypator to reject an order message. This can happen if the order doesn’t comply with the FIX dictionary, naming issue or acceding throughput limitation</p>
+<p>This message is used by Cypator to reject an order message. This can happen if the order doesn’t comply with the FIX dictionary, naming issue, or acceding throughput limitation</p>
 
 <table><thead>
 <tr>
@@ -1415,7 +1415,7 @@ Cypator requires that the ClOrdID <11> be unique.</p>
 </ul></li>
 </ul>
 
-<p>For a FOK type order there are two possible responses – as an example if the order is for 5  BTC/USD</p>
+<p>For a FOK type order, there are two possible responses – as an example if the order is for 5  BTC/USD</p>
 <h3 id='scenario-1-fok-order-is-not-filled-cancel'>Scenario 1 – FOK – order is not filled - CANCEL</h3>
 <table><thead>
 <tr>
@@ -1441,7 +1441,7 @@ Cypator requires that the ClOrdID <11> be unique.</p>
 </tr>
 </tbody></table>
 
-<p>For an IOC type order there are two additional possible responses in addition to the ones above which may happen in the case of multiple partial fills. We use the OrdStatus tag to indicate if the order is partial or fully complete – as an example if the order is for 5  BTCUSD</p>
+<p>For an IOC type order, there are two additional possible responses in addition to the ones above which may happen in the case of multiple partial fills. We use the OrdStatus tag to indicate if the order is partial or fully complete – as an example if the order is for 5  BTCUSD</p>
 <h3 id='scenario1-ioc-order-is-fully-filled-done'>Scenario1 – IOC – order is fully filled - DONE</h3>
 <table><thead>
 <tr>
@@ -1514,12 +1514,6 @@ Cypator requires that the ClOrdID <11> be unique.</p>
 <td>OrderID</td>
 <td>Y</td>
 <td>Cypator unique order ID for the Trade</td>
-</tr>
-<tr>
-<td>41</td>
-<td>OrigClOrdID</td>
-<td>N</td>
-<td>Required for response to Order Cancel or Order Replace</td>
 </tr>
 <tr>
 <td>17</td>
@@ -1724,7 +1718,7 @@ support desk.
 </tr>
 <tr>
 <td>32</td>
-<td>LastQuantity</td>
+<td>LastQty</td>
 <td>Y</td>
 <td>Amount bought or sold on this fill</td>
 </tr>
@@ -2356,7 +2350,7 @@ Cypator will provide a unique ClOrdID <11>.</p>
 </tr>
 </tbody></table>
 <h2 id='order-reject-2'>Order Reject</h2>
-<p>This message is used by the Maker to reject an order message. This can happen if the order doesn’t comply with the FIX dictionary, naming issue or acceding throughput limitation</p>
+<p>This message is used by the Maker to reject an order message. This can happen if the order doesn’t comply with the FIX dictionary, naming issue, or acceding throughput limitation</p>
 
 <table><thead>
 <tr>
@@ -2545,7 +2539,7 @@ Cypator will provide a unique ClOrdID <11>.</p>
 </ul></li>
 </ul>
 
-<p>For a FOK type order there are two possible responses – as an example if the order is for 5  BTC/USD</p>
+<p>For a FOK type order, there are two possible responses – as an example if the order is for 5  BTC/USD</p>
 <h3 id='scenario-1-fok-order-is-not-filled-cancel-2'>Scenario 1 – FOK – order is not filled - CANCEL</h3>
 <table><thead>
 <tr>
@@ -2571,7 +2565,7 @@ Cypator will provide a unique ClOrdID <11>.</p>
 </tr>
 </tbody></table>
 
-<p>For an IOC type order there are two additional possible responses in addition to the ones above which may happen in the case of multiple partial fills. We use the OrdStatus tag to indicate if the order is partial or fully complete – as an example if the order is for 5  BTC/USD</p>
+<p>For an IOC type order, there are two additional possible responses in addition to the ones above which may happen in the case of multiple partial fills. We use the OrdStatus tag to indicate if the order is partial or fully complete – as an example if the order is for 5  BTC/USD</p>
 <h3 id='scenario1-ioc-order-is-fully-filled-done-2'>Scenario1 – IOC – order is fully filled - DONE</h3>
 <table><thead>
 <tr>
@@ -2644,12 +2638,6 @@ Cypator will provide a unique ClOrdID <11>.</p>
 <td>OrderID</td>
 <td>Y</td>
 <td>Cypator unique order ID for the Trade</td>
-</tr>
-<tr>
-<td>41</td>
-<td>OrigClOrdID</td>
-<td>N</td>
-<td>Required for response to Order Cancel or Order Replace</td>
 </tr>
 <tr>
 <td>17</td>
