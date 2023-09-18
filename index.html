@@ -478,20 +478,20 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1><h2 id='fix-introduction'>FIX Introduction</h2>
-<p>This document details the Financial Information eXchange (FIX) protocol used by the <a href="Cypator.com">Cypator</a> Crypto trading ECN. <a href="Cypator.com">Cypator</a> uses the FIX protocol to stream (Taker API), and retrieve (Maker API) prices and handle orders for FX Spot with a counterparty, referred to generically in this document as the “Client”.
-To communicate with the ECN via the FIX protocol, there must be IP connectivity between <a href="Cypator.com">Cypator</a> and the Client, and the Client must initiate the connection. The Client must support the FIX 4.4 or FIX 4.2 protocol to communicate properly with the ECN.
+<p>This document details the Financial Information eXchange (FIX) protocol used by the Cypator Crypto trading ECN. Cypator uses the FIX protocol to stream (Taker API), and retrieve (Maker API) prices and handle orders for FX Spot with a counterparty, referred to generically in this document as the “Client”.
+To communicate with the ECN via the FIX protocol, there must be IP connectivity between Cypator and the Client, and the Client must initiate the connection. The Client must support the FIX 4.4 or FIX 4.2 protocol to communicate properly with the ECN.
 The diagram below presents a high-level overview of the FIX-based FX electronic dealing
 architecture.
 <br />
 Cypator  provides two FIX sessions for interaction with Clients. The first session is specifically for price communication and the second is for trading. Clients need to ensure that the appropriate session is used when messages are sent to the ECN.
 <br />
-This document defines the Capacitor FIX API for sending out market prices, receiving orders  and providing trading execution notifications via the <a href="Cypator.com">Cypator</a> FIX gateway</p>
+This document defines the Capacitor FIX API for sending out market prices, receiving orders  and providing trading execution notifications via the Cypator FIX gateway</p>
 
 <ul>
 <li>The FIX gateway is accessible with an OpenVPN connection.</li>
 <li>There are two interfaces: FIX Market data (price) and FIX Trading (orders).</li>
 <li>FIX Trading and Fix Market data require a valid SenderCompId , login and password specified in the Logon message.</li>
-<li>The protocol is based on FIX protocol 4.4 <a href="http://www.fixtradingcommunity.org/FIXimate/FIXimate3.0/">FIX protocol 4.4</a>. Refer to FIX 4.4 documentation if there is no tag information specified.</li>
+<li>The protocol is based on FIX protocol 4.4 <a href="http://www.fixtradingcommunity.org/">FIX protocol 4.4</a>. Refer to FIX 4.4 documentation if there is no tag information specified.</li>
 <li>FIX 4.2 is also supported, but is more limited and less recommended</li>
 <li>The FIX gateway supports subset of messages and tags listed in this document.</li>
 <li>Price is represented in natural value (e.g. 25000.01 for BTC/USD).</li>
@@ -506,7 +506,7 @@ This document defines the Capacitor FIX API for sending out market prices, recei
 <li>Internet over VPN</li>
 </ul></li>
 <li>VPN connectivity is routed to the nearest geographical instance - New York, London or Singapore.</li>
-<li>Access to the platform has to go through SSL encrypted TCP connection over the Internet. If needed, <a href="Cypator.com">Cypator</a> can provide all necessary keys and certifications.<br></li>
+<li>Access to the platform has to go through SSL encrypted TCP connection over the Internet. If needed, Cypator can provide all necessary keys and certifications.<br></li>
 </ul>
 <h2 id='fix-session-time'>FIX Session Time</h2>
 <ul>
