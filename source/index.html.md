@@ -849,7 +849,7 @@ Cypator will provide a unique ClOrdID <11>.
 | 38  | OrderQty                                         | Y         | The order quantity                                                                                                                                                                                                                                                                                                              |
 | 40  | OrdType                                          | Y         | 1 – Market <br />  2 – Limit <br />                                                                                                                                                                                                                                                                                             |
 | 44  | Price                                            | Y         | Limit price if 40=2 <br /> If 40=1 the price is required for pre trade credit check                                                                                                                                                                                                                                             |
-| 59  | TimeInForce                                      | N         | 1 – Good Till Cancel -not supported phase1 <br /> 3 – Immediate or Cancel (Default if no value provided) -not supported phase1 <br /> 4 – Fill or Kill <br /> 6 – Good Till Date  -not supported phase1 <br /> Note: OrdType=1 only supports TimeInForce=3 (IOC) OrdType=3 (Stop) only supports TimeInForce=1 (GTC) and 6 (GTD) |
+| 59  | TimeInForce                                      | Y         | 1 – Good Till Cancel -not supported phase1 <br /> 3 – Immediate or Cancel (Default if no value provided) -not supported phase1 <br /> 4 – Fill or Kill <br /> 6 – Good Till Date  -not supported phase1 <br /> Note: OrdType=1 only supports TimeInForce=3 (IOC) OrdType=3 (Stop) only supports TimeInForce=1 (GTC) and 6 (GTD) |
 | 64  | FutSettDate (FIX 4.2) <br /> SettlDate (FIX 4.4) | N         | Value date YYYYMMDD. Required for forward Will be supported in the future. Use FutSettDate if using FIX 4.2 Use SettlDate if using FIX 4.4                                                                                                                                                                                      |
 | 126 | ExpireTime                                       | N         | Not supported in phase 1- Required for Good-Till-Date order request. Date and Time of the order expiration specified in YYYYMMDD-HH:MM:SS format. Expressed in GMT.                                                                                                                                                             |
 
@@ -1066,7 +1066,7 @@ Both market and trade session needs to be authenticated before any requests can 
 
 ## Ping
 
-To keep connection alive client needs to send a heart beat message ping once every 30 seconds. If no heart beat message is received for 30 seconds connection will be dropped.
+To keep the connection alive client needs to send a heartbeat message ping once every 30 seconds. If no heartbeat message is received for 30 seconds connection will be dropped.
 
 > Request
 
@@ -1090,7 +1090,7 @@ To keep connection alive client needs to send a heart beat message ping once eve
 
 
 ## Subscription
-Subscription request sent from Cypator to Maker
+Subscription request sent from Cypator to Maker.
 
 ### Request parameter
 
@@ -1113,7 +1113,7 @@ Subscription request sent from Cypator to Maker
 
 | Parameter                         | Type    | Required | Description                          | 
 |-----------------------------------|---------|----------|--------------------------------------|
-| op                                | String  | Yes      | Operation subscribe                      |
+| op                                | String  | Yes      | Operation subscribe                  |
 | arg                               | Object  | Yes      | Operation subscribe                  |
 | -> <be /> instrument              | String  | Yes      | subscription details                 |
 | -> <be /> side                    | String  | Yes      | Instrument name                      |
@@ -1161,22 +1161,22 @@ Subscription request sent from Cypator to Maker
 }
 ```
 
-| Parameter                             | Type   | Required | Description                                                                                                                                             | 
-|---------------------------------------|--------|----------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| op                                    | String | Yes      | Operation subscribe                                                                                                                                         |
-| arg                                   | Object | Yes      | subscription details                                                                                                                                    |
-| -> <br /> instrument                  | String | Yes      | Instrument name                                                                                                                                         |
-| -> <br /> side                        | String | Yes      | side, possible value: BOTH                                                                                                                              |
-| -> <br /> subscriptionId              | String | Yes      | NA                                                                                                                                                      |
-| -> <br /> subscriptionRequestType     | String | Yes      | Subscription type, values : snapshot                                                                                                                    |
-| -> <br /> typeBook                    | String | Yes      | Type of book, values : SPOT                                                                                                                             |
-| -> <br /> code                        | String | Yes      | Zero for success, non zero in case of failure, refer error codes table for standard error. In case of missing error code any non zero value is accepted |
-| -> <br /> errMsg                      | String | Yes      | To be populate in case of failure only. Standard error defined in table. In case of missing error code custom error message is accepted                 |
-| ts                                    | String | Yes      | Unix epoch time                                                                                                                                         |
+| Parameter                             | Type   | Required | Description                                                                                                                                                | 
+|---------------------------------------|--------|----------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| op                                    | String | Yes      | Operation subscribe                                                                                                                                        |
+| arg                                   | Object | Yes      | subscription details                                                                                                                                       |
+| -> <br /> instrument                  | String | Yes      | Instrument name                                                                                                                                            |
+| -> <br /> side                        | String | Yes      | side, possible value: BOTH                                                                                                                                 |
+| -> <br /> subscriptionId              | String | Yes      | NA                                                                                                                                                         |
+| -> <br /> subscriptionRequestType     | String | Yes      | Subscription type, values : snapshot                                                                                                                       |
+| -> <br /> typeBook                    | String | Yes      | Type of book, values : SPOT                                                                                                                                |
+| -> <br /> code                        | String | Yes      | Zero for success, non-zero in case of failure, refer error codes table for standard error. In case of a missing error code, any-non zero value is accepted |
+| -> <br /> errMsg                      | String | Yes      | To be populate in case of failure only. Standard error defined in the table. In case of missing error code custom error message is accepted                |
+| ts                                    | String | Yes      | Unix epoch time                                                                                                                                            |
 
 ## Market Data
 
-For snapshot message Cypator won’t send an acknowledgement.
+For snapshot message, Cypator won’t send an acknowledgement.
 
 > snapshot
 
@@ -1245,19 +1245,19 @@ For snapshot message Cypator won’t send an acknowledgement.
 }
 ```
 
-| Parameter            | Type    | Required | Description                           | 
-|----------------------|---------|----------|---------------------------------------|
-| op                   | String  | Yes      | Operation order                       |
-| arg                  | Object  | Yes      | Order details                         |
-| -> <br /> instrument | String  | Yes      | Instrument name                       |
-| -> <br /> side       | String  | Yes      | Side of the order. Values : BUY, SELL |
-| -> <br /> clOrderId  | String  | Yes      | Order id                              |
-| -> <br /> orderType  | String  | Yes      | Type of order. Values: LIMIT, MARKET  |
-| -> <br /> tif        | String  | Yes      | Time in force. Values; FOK, IOC       |
-| -> <br /> account    | String  | Yes      | Optional tag, could be null           |
-| -> <br /> quantity   | Double  | Yes      | Order quantity                        |
-| -> <br /> price      | Double  | Yes      | Order price                           |
-| ts                   | String  | Yes      | Unix epoch time                       |
+| Parameter            | Type    | Required | Description                          | 
+|----------------------|---------|----------|--------------------------------------|
+| op                   | String  | Yes      | Operation order                      |
+| arg                  | Object  | Yes      | Order details                        |
+| -> <br /> instrument | String  | Yes      | Instrument name                      |
+| -> <br /> side       | String  | Yes      | Side of the order. Values: BUY, SELL |
+| -> <br /> clOrderId  | String  | Yes      | Order id                             |
+| -> <br /> orderType  | String  | Yes      | Type of order. Values: LIMIT, MARKET |
+| -> <br /> tif        | String  | Yes      | Time in force. Values; FOK, IOC      |
+| -> <br /> account    | String  | Yes      | Optional tag, could be null          |
+| -> <br /> quantity   | Double  | Yes      | Order quantity                       |
+| -> <br /> price      | Double  | Yes      | Order price                          |
+| ts                   | String  | Yes      | Unix epoch time                      |
 
 ### Response (Acknowledgement)
 
@@ -1305,21 +1305,21 @@ For snapshot message Cypator won’t send an acknowledgement.
 }
 ```
 
-| Parameter            | Type    | Required | Description                                                                                                                                             | 
-|----------------------|---------|----------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| op                   | String  | Yes      | Operation order                                                                                                                                         |
-| arg                  | Object  | Yes      | Order details                                                                                                                                           |
-| -> <br /> instrument | String  | Yes      | Instrument name                                                                                                                                         |
-| -> <br /> side       | String  | Yes      | Side of the order. Values : <br />BUY, SELL                                                                                                             |
-| -> <br /> clOrderId  | String  | Yes      | Order id                                                                                                                                                |
-| -> <br /> orderType  | String  | Yes      | Type of order. Values: <br /> LIMIT, MARKET                                                                                                             |
-| -> <br /> tif        | String  | Yes      | Time in force. Values: <br /> FOK, IOC                                                                                                                  |
-| -> <br /> account    | String  | No       | Optional tag, could be null                                                                                                                             |
-| -> <br /> quantity   | Double  | Yes      | Order quantity                                                                                                                                          |
-| -> <br /> price      | Double  | Yes      | Order price                                                                                                                                             |
-| -> <br /> code       | String  | Yes      | Zero for success, non zero in case of failure, refer error codes table for standard error. In case of missing error code any non zero value is accepted |
-| -> <br /> errMsg     | String  | Yes      | To be populate in case of failure only. Standard error defined in table. In case of missing error code custom error message is accepted                 |
-| ts                   | String  | Yes      | Unix epoch time                                                                                                                                         |
+| Parameter            | Type    | Required | Description                                                                                                                                                | 
+|----------------------|---------|----------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| op                   | String  | Yes      | Operation order                                                                                                                                            |
+| arg                  | Object  | Yes      | Order details                                                                                                                                              |
+| -> <br /> instrument | String  | Yes      | Instrument name                                                                                                                                            |
+| -> <br /> side       | String  | Yes      | Side of the order. Values : <br />BUY, SELL                                                                                                                |
+| -> <br /> clOrderId  | String  | Yes      | Order id                                                                                                                                                   |
+| -> <br /> orderType  | String  | Yes      | Type of order. Values: <br /> LIMIT, MARKET                                                                                                                |
+| -> <br /> tif        | String  | Yes      | Time in force. Values: <br /> FOK, IOC                                                                                                                     |
+| -> <br /> account    | String  | No       | Optional tag, could be null                                                                                                                                |
+| -> <br /> quantity   | Double  | Yes      | Order quantity                                                                                                                                             |
+| -> <br /> price      | Double  | Yes      | Order price                                                                                                                                                |
+| -> <br /> code       | String  | Yes      | Zero for success, non zero in case of failure, refer error codes table for standard error. In case of a missing error code, any-non zero value is accepted |
+| -> <br /> errMsg     | String  | Yes      | To be populate in case of failure only. Standard error defined in the table. In case of missing error code custom error message is accepted                |
+| ts                   | String  | Yes      | Unix epoch time                                                                                                                                            |
 
 
 ## Trade
@@ -1390,6 +1390,52 @@ For snapshot message Cypator won’t send an acknowledgement.
 | 50307      | Order throttling exceeded               |
 | 50308      | Invalid time stamp                      |
 | 50400      | Invalid request                         |
+
+# Instruments
+
+| Symbol     |  
+|------------|
+| SHIB/USD   |
+| SHIB/USDC  |
+| SHIB/USDT  |
+| BTC/USD    |
+| BUSD/USD   |
+| BTC/USDT   |
+| AVAX/USDT  |
+| ADA/USD    |
+| ETH/USD    |
+| BTC/USDC   |
+| ETH/USDT   |
+| ETH/USDC   |
+| ADA/USDT   |
+| ADA/USDC   |
+| DOGE/USD   |
+| DOGE/USDT  |
+| DOGE/USDC  |
+| BCH/USDT   |
+| MATIC/USDC |
+| DOT/USD    |
+| AVAX/USDC  |
+| AVAX/USD   |
+| SOL/USDT   |
+| USDT/USD   |
+| BNB/USD    |
+| XRP/USD    |
+| SOL/USD    |
+| USDC/USD   |
+| LTC/USD    |
+| BCH/USD    |
+| BCH/BNB    |
+| ATOM/USD   |
+| ATOM/USDT  |
+| ATOM/USDC  |
+| MATIC/USD  |
+| MATIC/USDT |
+| DOT/USDT   |
+| DOT/USDC   |
+| SOL/USDC   |
+| LTC/USDT   |
+| LTC/USDC   |
 
 # Changelog
 
