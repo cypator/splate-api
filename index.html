@@ -462,6 +462,9 @@
               </ul>
           </li>
           <li>
+            <a href="#instruments" class="toc-h1 toc-link" data-title="Instruments">Instruments</a>
+          </li>
+          <li>
             <a href="#changelog" class="toc-h1 toc-link" data-title="Changelog">Changelog</a>
               <ul class="toc-list-h2">
                   <li>
@@ -2333,7 +2336,7 @@ Cypator will provide a unique ClOrdID <11>.</p>
 <tr>
 <td>59</td>
 <td>TimeInForce</td>
-<td>N</td>
+<td>Y</td>
 <td>1 – Good Till Cancel -not supported phase1 <br /> 3 – Immediate or Cancel (Default if no value provided) -not supported phase1 <br /> 4 – Fill or Kill <br /> 6 – Good Till Date  -not supported phase1 <br /> Note: OrdType=1 only supports TimeInForce=3 (IOC) OrdType=3 (Stop) only supports TimeInForce=1 (GTC) and 6 (GTD)</td>
 </tr>
 <tr>
@@ -2864,7 +2867,7 @@ Cypator will provide a unique ClOrdID <11>.</p>
 </tr>
 </tbody></table>
 <h2 id='ping'>Ping</h2>
-<p>To keep connection alive client needs to send a heart beat message ping once every 30 seconds. If no heart beat message is received for 30 seconds connection will be dropped.</p>
+<p>To keep the connection alive client needs to send a heartbeat message ping once every 30 seconds. If no heartbeat message is received for 30 seconds connection will be dropped.</p>
 
 <blockquote>
 <p>Request</p>
@@ -2896,7 +2899,7 @@ Cypator will provide a unique ClOrdID <11>.</p>
 </tr>
 </tbody></table>
 <h2 id='subscription'>Subscription</h2>
-<p>Subscription request sent from Cypator to Maker</p>
+<p>Subscription request sent from Cypator to Maker.</p>
 <h3 id='request-parameter'>Request parameter</h3>
 <blockquote>
 <p>Request</p>
@@ -3065,13 +3068,13 @@ Cypator will provide a unique ClOrdID <11>.</p>
 <td>-&gt; <br /> code</td>
 <td>String</td>
 <td>Yes</td>
-<td>Zero for success, non zero in case of failure, refer error codes table for standard error. In case of missing error code any non zero value is accepted</td>
+<td>Zero for success, non-zero in case of failure, refer error codes table for standard error. In case of a missing error code, any-non zero value is accepted</td>
 </tr>
 <tr>
 <td>-&gt; <br /> errMsg</td>
 <td>String</td>
 <td>Yes</td>
-<td>To be populate in case of failure only. Standard error defined in table. In case of missing error code custom error message is accepted</td>
+<td>To be populate in case of failure only. Standard error defined in the table. In case of missing error code custom error message is accepted</td>
 </tr>
 <tr>
 <td>ts</td>
@@ -3081,7 +3084,7 @@ Cypator will provide a unique ClOrdID <11>.</p>
 </tr>
 </tbody></table>
 <h2 id='market-data'>Market Data</h2>
-<p>For snapshot message Cypator won’t send an acknowledgement.</p>
+<p>For snapshot message, Cypator won’t send an acknowledgement.</p>
 
 <blockquote>
 <p>snapshot</p>
@@ -3221,7 +3224,7 @@ Cypator will provide a unique ClOrdID <11>.</p>
 <td>-&gt; <br /> side</td>
 <td>String</td>
 <td>Yes</td>
-<td>Side of the order. Values : BUY, SELL</td>
+<td>Side of the order. Values: BUY, SELL</td>
 </tr>
 <tr>
 <td>-&gt; <br /> clOrderId</td>
@@ -3380,13 +3383,13 @@ Cypator will provide a unique ClOrdID <11>.</p>
 <td>-&gt; <br /> code</td>
 <td>String</td>
 <td>Yes</td>
-<td>Zero for success, non zero in case of failure, refer error codes table for standard error. In case of missing error code any non zero value is accepted</td>
+<td>Zero for success, non zero in case of failure, refer error codes table for standard error. In case of a missing error code, any-non zero value is accepted</td>
 </tr>
 <tr>
 <td>-&gt; <br /> errMsg</td>
 <td>String</td>
 <td>Yes</td>
-<td>To be populate in case of failure only. Standard error defined in table. In case of missing error code custom error message is accepted</td>
+<td>To be populate in case of failure only. Standard error defined in the table. In case of missing error code custom error message is accepted</td>
 </tr>
 <tr>
 <td>ts</td>
@@ -3607,6 +3610,136 @@ Cypator will provide a unique ClOrdID <11>.</p>
 <tr>
 <td>50400</td>
 <td>Invalid request</td>
+</tr>
+</tbody></table>
+<h1 id='instruments'>Instruments</h1>
+<table><thead>
+<tr>
+<th>Symbol</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>SHIB/USD</td>
+</tr>
+<tr>
+<td>SHIB/USDC</td>
+</tr>
+<tr>
+<td>SHIB/USDT</td>
+</tr>
+<tr>
+<td>BTC/USD</td>
+</tr>
+<tr>
+<td>BUSD/USD</td>
+</tr>
+<tr>
+<td>BTC/USDT</td>
+</tr>
+<tr>
+<td>AVAX/USDT</td>
+</tr>
+<tr>
+<td>ADA/USD</td>
+</tr>
+<tr>
+<td>ETH/USD</td>
+</tr>
+<tr>
+<td>BTC/USDC</td>
+</tr>
+<tr>
+<td>ETH/USDT</td>
+</tr>
+<tr>
+<td>ETH/USDC</td>
+</tr>
+<tr>
+<td>ADA/USDT</td>
+</tr>
+<tr>
+<td>ADA/USDC</td>
+</tr>
+<tr>
+<td>DOGE/USD</td>
+</tr>
+<tr>
+<td>DOGE/USDT</td>
+</tr>
+<tr>
+<td>DOGE/USDC</td>
+</tr>
+<tr>
+<td>BCH/USDT</td>
+</tr>
+<tr>
+<td>MATIC/USDC</td>
+</tr>
+<tr>
+<td>DOT/USD</td>
+</tr>
+<tr>
+<td>AVAX/USDC</td>
+</tr>
+<tr>
+<td>AVAX/USD</td>
+</tr>
+<tr>
+<td>SOL/USDT</td>
+</tr>
+<tr>
+<td>USDT/USD</td>
+</tr>
+<tr>
+<td>BNB/USD</td>
+</tr>
+<tr>
+<td>XRP/USD</td>
+</tr>
+<tr>
+<td>SOL/USD</td>
+</tr>
+<tr>
+<td>USDC/USD</td>
+</tr>
+<tr>
+<td>LTC/USD</td>
+</tr>
+<tr>
+<td>BCH/USD</td>
+</tr>
+<tr>
+<td>BCH/BNB</td>
+</tr>
+<tr>
+<td>ATOM/USD</td>
+</tr>
+<tr>
+<td>ATOM/USDT</td>
+</tr>
+<tr>
+<td>ATOM/USDC</td>
+</tr>
+<tr>
+<td>MATIC/USD</td>
+</tr>
+<tr>
+<td>MATIC/USDT</td>
+</tr>
+<tr>
+<td>DOT/USDT</td>
+</tr>
+<tr>
+<td>DOT/USDC</td>
+</tr>
+<tr>
+<td>SOL/USDC</td>
+</tr>
+<tr>
+<td>LTC/USDT</td>
+</tr>
+<tr>
+<td>LTC/USDC</td>
 </tr>
 </tbody></table>
 <h1 id='changelog'>Changelog</h1><h3 id='v1-0-0-wed-6-sep-2023'>V1.0.0 - Wed, 6 Sep 2023</h3>
