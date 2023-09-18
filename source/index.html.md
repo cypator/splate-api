@@ -391,7 +391,7 @@ Cypator requires that the ClOrdID <11> be unique.
 | 55  | Symbol                                           | Y         | The Asset - Coin and currency combination, e.g EUR/USD, BTC/USD, ETH/BTC                                                                                                                                                                                                                                  |
 | 38  | OrderQty                                         | Y         | The order quantity                                                                                                                                                                                                                                                                                        |
 | 40  | OrdType                                          | Y         | 1 – Market <br />  2 – Limit                                                                                                                                                                                                                                                                              |
-| 44  | Price                                            | Y         | Limit price if 40=2 <br /> Stop Price if 40 = 3 <br /> If 40=1 the price is required for pre trade credit check                                                                                                                                                                                           |
+| 44  | Price                                            | Y         | Limit price if 40=2 <br /> If 40=1 the price is required for pre trade credit check                                                                                                                                                                                                                       |
 | 59  | TimeInForce                                      | Y         | 1 – Good Till Cancel - not supported phase1 <br /> 3 – Immediate or Cancel (Default if no value provided) <br /> 4 – Fill or Kill <br /> 6 – Good Till Date  -not supported phase <br /> Note: OrdType=1 only supports TimeInForce=3 (IOC) OrdType=3 (Stop) only supports TimeInForce=1 (GTC) and 6 (GTD) |
 | 64  | FutSettDate (FIX 4.2) <br /> SettlDate (FIX 4.4) | N         | Value date YYYYMMDD. Required for forward Will be supported in the future. Use FutSettDate if using FIX 4.2 Use SettlDate if using FIX 4.4                                                                                                                                                                |
 | 126 | ExpireTime                                       | N         | Not supported in phase 1- Required for Good-Till-Date order request. Date and Time of the order expiration specified in YYYYMMDD-HH:MM:SS format. Expressed in GMT.                                                                                                                                       |
@@ -399,7 +399,7 @@ Cypator requires that the ClOrdID <11> be unique.
 
 ## Order Reject
 
-This message is used by Cypator to reject an order message. This can happen if the order doesn’t comply with the FIX dictionary, naming issue or acceding throughput limitation
+This message is used by Cypator to reject an order message. This can happen if the order doesn’t comply with the FIX dictionary, naming issue, or acceding throughput limitation
 
 | Tag | Name                      | Mandatory | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | 
 |-----|---------------------------|-----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -460,7 +460,7 @@ This message is used to communicate Order Ack, Order Reject, Order Fill and Orde
   * Fill - partial - 150 =2/F, 39=1
   * Fill - full - 150 =2/F, 39=2
 
-For a FOK type order there are two possible responses – as an example if the order is for 5  BTC/USD
+For a FOK type order, there are two possible responses – as an example if the order is for 5  BTC/USD
 
 ### Scenario 1 – FOK – order is not filled - CANCEL
 
@@ -477,7 +477,7 @@ For a FOK type order there are two possible responses – as an example if the o
 | Full Fill message is provided for 5 BTC  | Execution report (35=8) <br /> ExecType (150=2/F) <br />  OrdStatus (39=2) |
 
 
-For an IOC type order there are two additional possible responses in addition to the ones above which may happen in the case of multiple partial fills. We use the OrdStatus tag to indicate if the order is partial or fully complete – as an example if the order is for 5  BTCUSD
+For an IOC type order, there are two additional possible responses in addition to the ones above which may happen in the case of multiple partial fills. We use the OrdStatus tag to indicate if the order is partial or fully complete – as an example if the order is for 5  BTCUSD
 
 ### Scenario1 – IOC – order is fully filled - DONE
 
@@ -523,7 +523,6 @@ For an IOC type order there are two additional possible responses in addition to
 | 1   | Account                                             | N                             | Client Account Name                                                                                                                                                                                                   |
 | 11  | ClOrdID                                             | Y                             | Client Order ID                                                                                                                                                                                                       |
 | 37  | OrderID                                             | Y                             | Cypator unique order ID for the Trade                                                                                                                                                                                 |
-| 41  | OrigClOrdID                                         | N                             | Required for response to Order Cancel or Order Replace                                                                                                                                                                |
 | 17  | ExecID                                              | Y                             | Cypator Execution ID. Unique ID in each execution report                                                                                                                                                              |
 | 20  | ExecTransType                                       | Y - FIX 4.2 <br /> N- FIX 4.4 | Only applicable to Fix 4.2 <br /> 0= New <br /> 1 = Cancel <br /> 2 = Correct                                                                                                                                         |
 | 150 | ExecType                                            | Y                             | FIX 4.2 <br /> 0 = New <br /> 1 = Partially Fill <br /> 2 = Fill <br /> 4 = Canceled <br /> 8 = Rejected <br /> FIX 4.4 <br /> 0 = New <br /> F = Trade (partial fill or fill)<br /> 4 = Canceled <br /> 8 = Rejected |
@@ -578,7 +577,7 @@ Used to report a trade between counterparties.
 | 150 | ExecType                 | N         | F - Trade                                                                                                      |
 | 55  | Symbol                   | Y         | The Asset - Coin and currency combination, e.g. EUR/USD, BTC/USD, ETH/BTC                                      |
 | 31  | LastPx                   | Y         | Price of the last fill. Only present in Fill report                                                            |
-| 32  | LastQuantity             | Y         | Amount bought or sold on this fill                                                                             |
+| 32  | LastQty                  | Y         | Amount bought or sold on this fill                                                                             |
 | 17  | ExecID                   | N         | Cypator Execution ID. Unique ID in each execution report                                                       |
 | 552 | NoSides                  | Y         | Number of sides                                                                                                |
 | 54  | -><br /> Side            | Y         | Trading Party                                                                                                  |
@@ -857,7 +856,7 @@ Cypator will provide a unique ClOrdID <11>.
 
 ## Order Reject
 
-This message is used by the Maker to reject an order message. This can happen if the order doesn’t comply with the FIX dictionary, naming issue or acceding throughput limitation
+This message is used by the Maker to reject an order message. This can happen if the order doesn’t comply with the FIX dictionary, naming issue, or acceding throughput limitation
 
 | Tag | Name                      | Mandatory | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | 
 |-----|---------------------------|-----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -914,7 +913,7 @@ This message is used to communicate Order Ack, Order Reject, Order Fill, Order c
   * Fill - partial - 150 =2/F, 39=1
   * Fill - full - 150 =2/F, 39=2
 
-For a FOK type order there are two possible responses – as an example if the order is for 5  BTC/USD
+For a FOK type order, there are two possible responses – as an example if the order is for 5  BTC/USD
 
 ### Scenario 1 – FOK – order is not filled - CANCEL
 
@@ -931,7 +930,7 @@ For a FOK type order there are two possible responses – as an example if the o
 | Full Fill message is provided for 5 BTC  | Execution report (35=8) <br /> ExecType (150=2/F) <br />  OrdStatus (39=2) |
 
 
-For an IOC type order there are two additional possible responses in addition to the ones above which may happen in the case of multiple partial fills. We use the OrdStatus tag to indicate if the order is partial or fully complete – as an example if the order is for 5  BTC/USD
+For an IOC type order, there are two additional possible responses in addition to the ones above which may happen in the case of multiple partial fills. We use the OrdStatus tag to indicate if the order is partial or fully complete – as an example if the order is for 5  BTC/USD
 ### Scenario1 – IOC – order is fully filled - DONE
 
 | Sequence                                                      | Message                                                                    |  
@@ -976,7 +975,6 @@ For an IOC type order there are two additional possible responses in addition to
 | 1   | Account                                             | N                             | Client Account Name                                                                                                                                                                                                   |
 | 11  | ClOrdID                                             | Y                             | Client Order ID                                                                                                                                                                                                       |
 | 37  | OrderID                                             | Y                             | Cypator unique order ID for the Trade                                                                                                                                                                                 |
-| 41  | OrigClOrdID                                         | N                             | Required for response to Order Cancel or Order Replace                                                                                                                                                                |
 | 17  | ExecID                                              | Y                             | Cypator Execution ID. Unique ID in each execution report                                                                                                                                                              |
 | 20  | ExecTransType                                       | Y - FIX 4.2 <br /> N- FIX 4.4 | Only applicable to Fix 4.2 <br /> 0= New <br /> 1 = Cancel <br /> 2 = Correct                                                                                                                                         |
 | 150 | ExecType                                            | Y                             | FIX 4.2 <br /> 0 = New <br /> 1 = Partially Fill <br /> 2 = Fill <br /> 4 = Canceled <br /> 8 = Rejected <br /> FIX 4.4 <br /> 0 = New <br /> F = Trade (partial fill or fill)<br /> 4 = Canceled <br /> 8 = Rejected |
