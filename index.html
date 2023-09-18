@@ -957,7 +957,7 @@ The ECN also supports layers (also known elsewhere as price bands or tiers). Quo
 <td>264</td>
 <td>MarketDepth</td>
 <td>Y</td>
-<td>0 - Full Book  <br /> 1 - Top of the Book</td>
+<td>0 - Full Book</td>
 </tr>
 <tr>
 <td>265</td>
@@ -968,8 +968,8 @@ The ECN also supports layers (also known elsewhere as price bands or tiers). Quo
 <tr>
 <td>266</td>
 <td>AggregatedBook</td>
-<td>N</td>
-<td>Y - VWAP book <br /> N - Raw prices may or may not include the liquidity provider names.</td>
+<td>Y</td>
+<td>N - Raw prices may or may not include the liquidity provider names.</td>
 </tr>
 <tr>
 <td>267</td>
@@ -1082,12 +1082,6 @@ The ECN also supports layers (also known elsewhere as price bands or tiers). Quo
 <td>e.g “BTC/USD”</td>
 </tr>
 <tr>
-<td>64</td>
-<td>FutSettDate</td>
-<td>N</td>
-<td>Value date YYYYMMDD. Required for forward. Will be supported in the future</td>
-</tr>
-<tr>
 <td>268</td>
 <td>NoMDEntries</td>
 <td>Y</td>
@@ -1111,15 +1105,9 @@ The ECN also supports layers (also known elsewhere as price bands or tiers). Quo
 <td>Y</td>
 <td>Quantity  of entry</td>
 </tr>
-<tr>
-<td>-&gt;<br />282</td>
-<td>MDEntryOriginator</td>
-<td>N</td>
-<td>Liquidity provider name. In case of 266=N in Market Data Request Message.</td>
-</tr>
 </tbody></table>
 
-<p>In the event Cypator disables an instrument, it will send a message to the Taker side to clear its book for that instrument. This is done in order to prevent a reject or timeout for an order generated after the disable of the instrument.
+<p>In the event Cypator disables an instrument, it will send a message to the Taker side to clear its book for that instrument. This is done in order to prevent a reject or timeout for an order generated after the disablement of the instrument.
 The clear book message will be the standard 35=W message per instrument with 268=0.
 An example of the message:</p>
 
@@ -1210,7 +1198,7 @@ Cypator requires that the ClOrdID <11> be unique.</p>
 <td>40</td>
 <td>OrdType</td>
 <td>Y</td>
-<td>1 – Market <br />  2 – Limit <br /> 3 – Stop / Stop Los</td>
+<td>1 – Market <br />  2 – Limit</td>
 </tr>
 <tr>
 <td>44</td>
@@ -1221,8 +1209,8 @@ Cypator requires that the ClOrdID <11> be unique.</p>
 <tr>
 <td>59</td>
 <td>TimeInForce</td>
-<td>N</td>
-<td>1 – Good Till Cancel -not supported phase1 <br /> 3 – Immediate or Cancel (Default if no value provided) <br /> 4 – Fill or Kill <br /> 6 – Good Till Date  -not supported phase <br /> Note: OrdType=1 only supports TimeInForce=3 (IOC) OrdType=3 (Stop) only supports TimeInForce=1 (GTC) and 6 (GTD)</td>
+<td>Y</td>
+<td>1 – Good Till Cancel - not supported phase1 <br /> 3 – Immediate or Cancel (Default if no value provided) <br /> 4 – Fill or Kill <br /> 6 – Good Till Date  -not supported phase <br /> Note: OrdType=1 only supports TimeInForce=3 (IOC) OrdType=3 (Stop) only supports TimeInForce=1 (GTC) and 6 (GTD)</td>
 </tr>
 <tr>
 <td>64</td>
@@ -2115,7 +2103,7 @@ The ECN also supports layers (also known elsewhere as price bands or tiers). Quo
 <td>264</td>
 <td>MarketDepth</td>
 <td>Y</td>
-<td>0 - Full Book  <br /> 1 - Top of the Book</td>
+<td>0 - Full Book</td>
 </tr>
 <tr>
 <td>265</td>
@@ -2126,8 +2114,8 @@ The ECN also supports layers (also known elsewhere as price bands or tiers). Quo
 <tr>
 <td>266</td>
 <td>AggregatedBook</td>
-<td>N</td>
-<td>Y - VWAP book <br /> N - Raw prices may or may not include the liquidity provider names.</td>
+<td>Y</td>
+<td>N - Raw prices may or may not include the liquidity provider names.</td>
 </tr>
 <tr>
 <td>267</td>
@@ -2240,12 +2228,6 @@ The ECN also supports layers (also known elsewhere as price bands or tiers). Quo
 <td>e.g “BTC/USD”</td>
 </tr>
 <tr>
-<td>64</td>
-<td>FutSettDate</td>
-<td>N</td>
-<td>Value date YYYYMMDD. Required for forward. Will be supported in the future</td>
-</tr>
-<tr>
 <td>268</td>
 <td>NoMDEntries</td>
 <td>Y</td>
@@ -2268,12 +2250,6 @@ The ECN also supports layers (also known elsewhere as price bands or tiers). Quo
 <td>MDEntrySize</td>
 <td>Y</td>
 <td>Quantity  of entry</td>
-</tr>
-<tr>
-<td>-&gt;<br />282</td>
-<td>MDEntryOriginator</td>
-<td>N</td>
-<td>Liquidity provider name. In case of 266=N in Market Data Request Message.</td>
 </tr>
 </tbody></table>
 <h2 id='new-order-single-2'>New Order Single</h2>
@@ -2352,19 +2328,19 @@ Cypator will provide a unique ClOrdID <11>.</p>
 <td>40</td>
 <td>OrdType</td>
 <td>Y</td>
-<td>1 – Market <br />  2 – Limit <br /> 3 – Stop / Stop Los</td>
+<td>1 – Market <br />  2 – Limit <br /></td>
 </tr>
 <tr>
 <td>44</td>
 <td>Price</td>
 <td>Y</td>
-<td>Limit price if 40=2 <br /> Stop Price if 40 = 3 <br /> If 40=1 the price is required for pre trade credit check</td>
+<td>Limit price if 40=2 <br /> If 40=1 the price is required for pre trade credit check</td>
 </tr>
 <tr>
 <td>59</td>
 <td>TimeInForce</td>
 <td>N</td>
-<td>1 – Good Till Cancel -not supported phase1 <br /> 3 – Immediate or Cancel (Default if no value provided) <br /> 4 – Fill or Kill <br /> 6 – Good Till Date  -not supported phase <br /> Note: OrdType=1 only supports TimeInForce=3 (IOC) OrdType=3 (Stop) only supports TimeInForce=1 (GTC) and 6 (GTD)</td>
+<td>1 – Good Till Cancel -not supported phase1 <br /> 3 – Immediate or Cancel (Default if no value provided) -not supported phase1 <br /> 4 – Fill or Kill <br /> 6 – Good Till Date  -not supported phase1 <br /> Note: OrdType=1 only supports TimeInForce=3 (IOC) OrdType=3 (Stop) only supports TimeInForce=1 (GTC) and 6 (GTD)</td>
 </tr>
 <tr>
 <td>64</td>
