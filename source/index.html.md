@@ -18,22 +18,22 @@ meta:
 
 ## FIX Introduction
 
-This document details the Financial Information eXchange (FIX) protocol used by the Cyaptor Crypto trading ECN. Cypator uses the FIX protocol to stream prices and handle orders for FX Spot with a counterparty, referred to generically in this document as the “Client”.
-To communicate with the ECN via the FIX protocol, there must be IP connectivity between Cyaptor and the Client, and the Client must initiate the connection. The Client must support the FIX 4.4 or FIX 4.2 protocol to communicate properly with the ECN.
+This document details the Financial Information eXchange (FIX) protocol used by the [Cypator](Cypator.com) Crypto trading ECN. [Cypator](Cypator.com) uses the FIX protocol to stream (Taker API), and retrieve (Maker API) prices and handle orders for FX Spot with a counterparty, referred to generically in this document as the “Client”.
+To communicate with the ECN via the FIX protocol, there must be IP connectivity between [Cypator](Cypator.com) and the Client, and the Client must initiate the connection. The Client must support the FIX 4.4 or FIX 4.2 protocol to communicate properly with the ECN.
 The diagram below presents a high-level overview of the FIX-based FX electronic dealing
 architecture.
 <br />
 Cypator  provides two FIX sessions for interaction with Clients. The first session is specifically for price communication and the second is for trading. Clients need to ensure that the appropriate session is used when messages are sent to the ECN.
 <br />
-This document defines the Capacitor FIX API for sending out market prices, receiving orders  and providing trading execution notifications via the Cypator FIX gateway
+This document defines the Capacitor FIX API for sending out market prices, receiving orders  and providing trading execution notifications via the [Cypator](Cypator.com) FIX gateway
 
 * The FIX gateway is accessible with an OpenVPN connection.
-* There are two interfaces: FIX Market data and FIX Trading.
+* There are two interfaces: FIX Market data (price) and FIX Trading (orders).
 * FIX Trading and Fix Market data require a valid SenderCompId , login and password specified in the Logon message.
-* The protocol is based on FIX protocol 4.4 (http://www.fixtradingcommunity.org/FIXimate/FIXimate3.0/). Refer to FIX 4.4 documentation if there is no tag information specified.
+* The protocol is based on FIX protocol 4.4 [FIX protocol 4.4](http://www.fixtradingcommunity.org/FIXimate/FIXimate3.0/). Refer to FIX 4.4 documentation if there is no tag information specified.
 * FIX 4.2 is also supported, but is more limited and less recommended
 * The FIX gateway supports subset of messages and tags listed in this document.
-* Price is represented in natural value (e.g. 2500.01 for BTCEUR).
+* Price is represented in natural value (e.g. 25000.01 for BTC/USD).
 
 ![High-level overview](images/high_level_overview_diagram.png "High-level overview")
 
@@ -43,11 +43,8 @@ This document defines the Capacitor FIX API for sending out market prices, recei
 * The following are the ways a client can connection to the API:
   * Internet over VPN
 * VPN connectivity is routed to the nearest geographical instance - New York, London or Singapore.
-* Access to the platform has to go through SSL encrypted TCP connection over the Internet. The client should provide a certificate signing request (CSR) in the format of .crt/.cer, which will be added to Cypator certification file.
-* In case the client does not have a CSR file, please refer to the links below for additional instructions:
-  * [CSR information](https://www.globalsign.com/en/blog/what-is-a-certificate-signing-request-csr)
-  * How to generate .crt file using openSSL (see section Create Certificate Authority): https://devopscube.com/create-self-signed-certificates-openssl/
-  * How to generate .cer file using keytool: https://docs.oracle.com/cd/E19798-01/821-1841/gjrgy/
+* Access to the platform has to go through SSL encrypted TCP connection over the Internet. If needed, [Cypator](Cypator.com) can provide all necessary keys and certifications.    
+
 
 
 ## FIX Session Time
@@ -58,14 +55,7 @@ This document defines the Capacitor FIX API for sending out market prices, recei
   * EndTime=07:00:00
 
 
-## FIX Session Messages
-The initialization sequence consists of two messages sent between the Client and Cypator during
-startup. The purpose of this is simply to initialize the session. If the logon sequence causes resending to take place (as described in the FIX Protocol Specification v. 4.2+) then quotes will not be replayed – instead they will be replaced with a “Sequence Reset – Gap Fill” message.
-[Cypator](Cypator.com) currently supports inbound connections only, meaning that Clients are responsible for
-logging into the electronic dealing platform
-
-## FIX Trading Workflow
-The client will send a “New Order Single” message to place an order. Cypator will respond to the order with an Execution report message (35=8) of either Accept or Reject. If accepted, further execution report messages will indicate order fills until it is Done or Canceled.
+## FIX Sessions
 
 * The Cypator trading interface supports the two types of orders
   * Limit
@@ -75,13 +65,6 @@ The client will send a “New Order Single” message to place an order. Cypator
   * FOK - Fill or kill
   * Market - Best attempt at market price
 
-
-<aside class="notice">
-In the case where a Trade Acknowledgment and accompanying Trade Fill or Reject message are
-not received within 5 seconds, from the time the trade request was sent, the Client MUST
-contact Cyaptor using the following support email address: support@cypator.com. This support inbox is manned 24 hours a day 7 days a week, providing global support at all hours. Contact with Cypator should be made via an automated email alert from the Client’s trading system. However, in the event that the Client cannot support this, we would expect a manual email or a call to our
-support desk.
-</aside>
 
 <aside class="warning">The Cypator trading interface currently does not support resting orders.</aside>
 
@@ -535,6 +518,15 @@ For an IOC type order there are two additional possible responses in addition to
 | 60  | TransactTime                                        | Y                             | The transaction timestamp of the order                                                                                                                                                                                |
 | 103 | OrdRejReason                                        | N                             | Error code. Present in Order Reject                                                                                                                                                                                   |
 | 58  | Text                                                | N                             | Error message. Present in Order Reject                                                                                                                                                                                |
+
+
+<aside class="notice">
+In the case where a Trade Acknowledgment and accompanying Trade Fill or Reject message are
+not received within 5 seconds, from the time the trade request was sent, the Client MUST
+contact Cyaptor using the following support email address: support@cypator.com. This support inbox is manned 24 hours a day 7 days a week, providing global support at all hours. Contact with Cypator should be made via an automated email alert from the Client’s trading system. However, in the event that the Client cannot support this, we would expect a manual email or a call to our
+support desk.
+</aside>
+
 
 ## Trade Capture Report
 
