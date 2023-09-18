@@ -3,7 +3,7 @@ title: API Reference
 
 
 toc_footers:
-  - <a href='https://cyaptor.com'>Cypator</a>
+  - <a href='https://cypator.com'>Cypator</a>
 
 search: true
 
@@ -18,7 +18,7 @@ meta:
 
 ## FIX Introduction
 
-This document details the Financial Information eXchange (FIX) protocol used by the Cypator Crypto trading ECN. Cypator uses the FIX protocol to stream (Taker API), and retrieve (Maker API) prices and handle orders for FX Spot with a counterparty, referred to generically in this document as the “Client”.
+This document details the Financial Information eXchange (FIX) protocol used by the Cypator Crypto trading ECN. Cypator uses the FIX protocol to stream (Taker API), retrieve (Maker API) prices, and handle orders for FX Spot with a counterparty, referred to generically in this document as the “Client”.
 To communicate with the ECN via the FIX protocol, there must be IP connectivity between Cypator and the Client, and the Client must initiate the connection. The Client must support the FIX 4.4 or FIX 4.2 protocol to communicate properly with the ECN.
 The diagram below presents a high-level overview of the FIX-based FX electronic dealing
 architecture.
@@ -29,10 +29,10 @@ This document defines the Capacitor FIX API for sending out market prices, recei
 
 * The FIX gateway is accessible with an OpenVPN connection.
 * There are two interfaces: FIX Market data (price) and FIX Trading (orders).
-* FIX Trading and Fix Market data require a valid SenderCompId , login and password specified in the Logon message.
+* FIX Trading and Fix Market data require a valid SenderCompId, login, and password specified in the Logon message.
 * The protocol is based on FIX protocol 4.4 [FIX protocol 4.4](http://www.fixtradingcommunity.org/). Refer to FIX 4.4 documentation if there is no tag information specified.
 * FIX 4.2 is also supported, but is more limited and less recommended
-* The FIX gateway supports subset of messages and tags listed in this document.
+* The FIX gateway supports a subset of messages and tags listed in this document.
 * Price is represented in natural value (e.g. 25000.01 for BTC/USD).
 
 ![High-level overview](images/high_level_overview_diagram.png "High-level overview")
@@ -40,15 +40,16 @@ This document defines the Capacitor FIX API for sending out market prices, recei
 
 ## FIX Connectivity
 
-* The following are the ways a client can connection to the API:
+* The following are the ways a client can connect to the API:
   * Internet over VPN
-* VPN connectivity is routed to the nearest geographical instance - New York, London or Singapore.
+* VPN connectivity is routed to the nearest geographical instance - New York, London, or Singapore.
 * Access to the platform has to go through SSL encrypted TCP connection over the Internet. If needed, Cypator can provide all necessary keys and certifications.    
+* Only one market and trade connection per client is supported.
 
 
 
 ## FIX Session Time
-* The session will be up the full week with a 3-minute scheduled restart on a weekly basis every Sunday. Exact time for restart will be scheduled with the client.
+* The session will be up the full week with a 3-minute scheduled restart on a weekly basis every Sunday. The exact time for restart will be scheduled with the client.
   * StartDay=Sunday
   * EndDay=Sunday
   * StartTime=07:03:00
@@ -70,17 +71,17 @@ This document defines the Capacitor FIX API for sending out market prices, recei
 
 ## FIX Post Trade
 
-For clients or partners requiring a post trade message, and that can code to the Cypator FIX API the following Trade Capture Report (AE) message will be sent.
-In addition, in the event of a communication breakdown, the client can send a “Request Trade Capture Report” message and include in it all the Order Id’s for which they want to verify if a trade was created or not.
+For clients or partners requiring a post-trade message (support only for Taker API), and that can code to the Cypator FIX API the following Trade Capture Report (AE) message will be sent.
+In addition, in the event of a communication breakdown, the client can send a “Request Trade Capture Report” message and include in it all the Order IDs for which they want to verify if a trade was created or not.
 
 
 ## FIX Messages, Products and Support
 * The API supports the following:
   * FIX version 4.4 (recommended) and 4.2
-  * Single session or Dual session
-  * Product type - Spot trading only
-  * Assets - any crypto coin and FIAT currency is supported. Limitations on what Assets are allowed are defined in the application and business agreement
-  * For fix 4.2 and 4.4 dual sessions - if we receive a message on the wrong session- it will be rejected. In addition, Fix4.2 doesn’t support all message types.
+  * Single session or Dual session.
+  * Product type - Spot trading only.
+  * Assets - any crypto coin and FIAT currency are supported. Limitations on what Assets are allowed are defined in the application and business agreement.
+  * For FIX 4.2 and FIX 4.4 dual sessions - if we receive a message on the wrong session- it will be rejected. In addition, FIX 4.2 doesn’t support all message types.
 
 | Message type                          | Fix Version Supported | Market Session   | Trading Session | 
 | ------------------------------------- | --------------------- | ---------------- |-----------------|
@@ -101,23 +102,23 @@ In addition, in the event of a communication breakdown, the client can send a �
 | Trade Capture Report Request Ack <AQ> | 4.4                   | N                | Y               |
 
 ## FIX Duplicate check
-There is always a possibility of duplicate trade being sent out, for example after a network disconnect. The client is expected to be able to identify duplicate trades and reject them, by using the tag 37 - OrderID
+There is always a possibility of duplicate trade being sent out, for example after a network disconnect. The client is expected to be able to identify duplicate trades and reject them, by using the tag 37 - OrderID.
 
 ## FIX Header and Trailer
-The following define the FIX messages standard header and trailer
+The following defines the FIX messages standard header and trailer.
 
 Header
 
-| Tag | Name         | Mandatory    | 
-|-----|--------------|--------------|
-| 8   | BeginString  | Y            |
-| 9   | BodyLength   | Y            |
-| 34  | MsgSeqNum    | Y            |
-| 35  | MsgType      | Y            |
-| 49  | SenderCompID | Y            |
-| 50  | SenderSubID  | Y            |
-| 52  | SendingTime  | Y            |
-| 56  | TargetCompID  | Y            |
+| Tag | Name           | Mandatory    | 
+|-----|----------------|--------------|
+| 8   | BeginString    | Y            |
+| 9   | BodyLength     | Y            |
+| 34  | MsgSeqNum      | Y            |
+| 35  | MsgType        | Y            |
+| 49  | SenderCompID   | Y            |
+| 50  | SenderSubID    | Y            |
+| 52  | SendingTime    | Y            |
+| 56  | TargetCompID   | Y            |
 
 Trailer
 
@@ -128,13 +129,25 @@ Trailer
 
 ## Websocket API Connectivity
 
-* Only one market and trade connection per client supported, on new connection previous connection will be dropped
-* When trade session goes down market data feed will not be consumed even if market session is connected. Market data snapshot consumption will resume after trade session is reconnected
+* Only one market and trade connection per client supported, on new connection previous connection will be dropped.
+* When the trade session goes down market data feed will not be consumed (Maker API) even if the market session is connected. Market data snapshot consumption will resume after the trade session is reconnected.
 
 ## Websocket API Sign generation for authentication
-Use HMAC SHA256 method to hash the below string with password and then perform Base64 encoding
+Use HMAC SHA256 method to hash the below string with a password and then perform Base64 encoding
 String to be encrypted = timestamp + "/verify"
-Timestamp needs to be within current times 30 second range.
+Timestamp needs to be within the current times 30-second range.
+
+> Java Example
+
+```java 
+
+  String stringToHashAndEncode = timeStamp + "/verify";
+  Mac sha256HMAC = Mac.getInstance("HmacSHA256");
+
+  SecretKeySpec secretKeySpec = new SecretKeySpec(passPhrase.getBytes(), "HmacSHA256");
+  sha256HMAC.init(secretKeySpec);
+  String hash = Base64.getEncoder().encodeToString(sha256HMAC.doFinal(stringToHashAndEncode.getBytes()));
+```
 
 
 # FIX Taker API 
