@@ -322,10 +322,7 @@
                     <a href="#fix-session-time" class="toc-h2 toc-link" data-title="FIX Session Time">FIX Session Time</a>
                   </li>
                   <li>
-                    <a href="#fix-session-messages" class="toc-h2 toc-link" data-title="FIX Session Messages">FIX Session Messages</a>
-                  </li>
-                  <li>
-                    <a href="#fix-trading-workflow" class="toc-h2 toc-link" data-title="FIX Trading Workflow">FIX Trading Workflow</a>
+                    <a href="#fix-sessions" class="toc-h2 toc-link" data-title="FIX Sessions">FIX Sessions</a>
                   </li>
                   <li>
                     <a href="#fix-post-trade" class="toc-h2 toc-link" data-title="FIX Post Trade">FIX Post Trade</a>
@@ -481,23 +478,23 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1><h2 id='fix-introduction'>FIX Introduction</h2>
-<p>This document details the Financial Information eXchange (FIX) protocol used by the Cyaptor Crypto trading ECN. Cypator uses the FIX protocol to stream prices and handle orders for FX Spot with a counterparty, referred to generically in this document as the “Client”.
-To communicate with the ECN via the FIX protocol, there must be IP connectivity between Cyaptor and the Client, and the Client must initiate the connection. The Client must support the FIX 4.4 or FIX 4.2 protocol to communicate properly with the ECN.
+<p>This document details the Financial Information eXchange (FIX) protocol used by the <a href="Cypator.com">Cypator</a> Crypto trading ECN. <a href="Cypator.com">Cypator</a> uses the FIX protocol to stream (Taker API), and retrieve (Maker API) prices and handle orders for FX Spot with a counterparty, referred to generically in this document as the “Client”.
+To communicate with the ECN via the FIX protocol, there must be IP connectivity between <a href="Cypator.com">Cypator</a> and the Client, and the Client must initiate the connection. The Client must support the FIX 4.4 or FIX 4.2 protocol to communicate properly with the ECN.
 The diagram below presents a high-level overview of the FIX-based FX electronic dealing
 architecture.
 <br />
 Cypator  provides two FIX sessions for interaction with Clients. The first session is specifically for price communication and the second is for trading. Clients need to ensure that the appropriate session is used when messages are sent to the ECN.
 <br />
-This document defines the Capacitor FIX API for sending out market prices, receiving orders  and providing trading execution notifications via the Cypator FIX gateway</p>
+This document defines the Capacitor FIX API for sending out market prices, receiving orders  and providing trading execution notifications via the <a href="Cypator.com">Cypator</a> FIX gateway</p>
 
 <ul>
 <li>The FIX gateway is accessible with an OpenVPN connection.</li>
-<li>There are two interfaces: FIX Market data and FIX Trading.</li>
+<li>There are two interfaces: FIX Market data (price) and FIX Trading (orders).</li>
 <li>FIX Trading and Fix Market data require a valid SenderCompId , login and password specified in the Logon message.</li>
-<li>The protocol is based on FIX protocol 4.4 (http://www.fixtradingcommunity.org/FIXimate/FIXimate3.0/). Refer to FIX 4.4 documentation if there is no tag information specified.</li>
+<li>The protocol is based on FIX protocol 4.4 <a href="http://www.fixtradingcommunity.org/FIXimate/FIXimate3.0/">FIX protocol 4.4</a>. Refer to FIX 4.4 documentation if there is no tag information specified.</li>
 <li>FIX 4.2 is also supported, but is more limited and less recommended</li>
 <li>The FIX gateway supports subset of messages and tags listed in this document.</li>
-<li>Price is represented in natural value (e.g. 2500.01 for BTCEUR).</li>
+<li>Price is represented in natural value (e.g. 25000.01 for BTC/USD).</li>
 </ul>
 
 <p><img src="images/high_level_overview_diagram-ab2c96d5.png" title="High-level overview" alt="High-level overview" /></p>
@@ -509,14 +506,7 @@ This document defines the Capacitor FIX API for sending out market prices, recei
 <li>Internet over VPN</li>
 </ul></li>
 <li>VPN connectivity is routed to the nearest geographical instance - New York, London or Singapore.</li>
-<li>Access to the platform has to go through SSL encrypted TCP connection over the Internet. The client should provide a certificate signing request (CSR) in the format of .crt/.cer, which will be added to Cypator certification file.</li>
-<li>In case the client does not have a CSR file, please refer to the links below for additional instructions:
-
-<ul>
-<li><a href="https://www.globalsign.com/en/blog/what-is-a-certificate-signing-request-csr">CSR information</a></li>
-<li>How to generate .crt file using openSSL (see section Create Certificate Authority): https://devopscube.com/create-self-signed-certificates-openssl/</li>
-<li>How to generate .cer file using keytool: https://docs.oracle.com/cd/E19798-01/821-1841/gjrgy/</li>
-</ul></li>
+<li>Access to the platform has to go through SSL encrypted TCP connection over the Internet. If needed, <a href="Cypator.com">Cypator</a> can provide all necessary keys and certifications.<br></li>
 </ul>
 <h2 id='fix-session-time'>FIX Session Time</h2>
 <ul>
@@ -529,14 +519,7 @@ This document defines the Capacitor FIX API for sending out market prices, recei
 <li>EndTime=07:00:00</li>
 </ul></li>
 </ul>
-<h2 id='fix-session-messages'>FIX Session Messages</h2>
-<p>The initialization sequence consists of two messages sent between the Client and Cypator during
-startup. The purpose of this is simply to initialize the session. If the logon sequence causes resending to take place (as described in the FIX Protocol Specification v. 4.2+) then quotes will not be replayed – instead they will be replaced with a “Sequence Reset – Gap Fill” message.
-<a href="Cypator.com">Cypator</a> currently supports inbound connections only, meaning that Clients are responsible for
-logging into the electronic dealing platform</p>
-<h2 id='fix-trading-workflow'>FIX Trading Workflow</h2>
-<p>The client will send a “New Order Single” message to place an order. Cypator will respond to the order with an Execution report message (35=8) of either Accept or Reject. If accepted, further execution report messages will indicate order fills until it is Done or Canceled.</p>
-
+<h2 id='fix-sessions'>FIX Sessions</h2>
 <ul>
 <li>The Cypator trading interface supports the two types of orders
 
@@ -552,13 +535,6 @@ logging into the electronic dealing platform</p>
 <li>Market - Best attempt at market price</li>
 </ul></li>
 </ul>
-
-<aside class="notice">
-In the case where a Trade Acknowledgment and accompanying Trade Fill or Reject message are
-not received within 5 seconds, from the time the trade request was sent, the Client MUST
-contact Cyaptor using the following support email address: support@cypator.com. This support inbox is manned 24 hours a day 7 days a week, providing global support at all hours. Contact with Cypator should be made via an automated email alert from the Client’s trading system. However, in the event that the Client cannot support this, we would expect a manual email or a call to our
-support desk.
-</aside>
 
 <aside class="warning">The Cypator trading interface currently does not support resting orders.</aside>
 <h2 id='fix-post-trade'>FIX Post Trade</h2>
@@ -1642,6 +1618,13 @@ Cypator requires that the ClOrdID <11> be unique.</p>
 <td>Error message. Present in Order Reject</td>
 </tr>
 </tbody></table>
+
+<aside class="notice">
+In the case where a Trade Acknowledgment and accompanying Trade Fill or Reject message are
+not received within 5 seconds, from the time the trade request was sent, the Client MUST
+contact Cyaptor using the following support email address: support@cypator.com. This support inbox is manned 24 hours a day 7 days a week, providing global support at all hours. Contact with Cypator should be made via an automated email alert from the Client’s trading system. However, in the event that the Client cannot support this, we would expect a manual email or a call to our
+support desk.
+</aside>
 <h2 id='trade-capture-report'>Trade Capture Report</h2>
 <p>Used to report a trade between counterparties.</p>
 
