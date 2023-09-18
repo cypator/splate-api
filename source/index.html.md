@@ -149,6 +149,19 @@ Timestamp needs to be within the current times 30-second range.
   String hash = Base64.getEncoder().encodeToString(sha256HMAC.doFinal(stringToHashAndEncode.getBytes()));
 ```
 
+> Python Example
+
+```python 
+
+  import hashlib
+  import hmac
+  import base64
+  
+  string_to_hash_and_encode = timeStamp + "/verify"
+  hash_obj = hmac.new(secret_key, message, hashlib.sha256)
+  hash_value = base64.b64encode(hash_obj.digest()).decode("utf-8")
+```
+
 
 # FIX Taker API 
 
@@ -189,8 +202,8 @@ This message is sent to initiate a FIX session and establishes the communication
 | 98  | EncryptMethod   | Y         | Y                                                                                  |
 | 108 | HeartBtInt      | Y         | Y                                                                                  |
 | 141 | ResetSeqNumFlag | N         | Indicated that both parties of the FIX Session should reset their sequence numbers |
-| 553 | Username        | N         | Available only in FIX 4.4                                                          |
-| 554 | Password        | N         | Available only in FIX 4.4                                                          |
+| 553 | Username        | Y         | Available only in FIX 4.4                                                          |
+| 554 | Password        | Y         | Available only in FIX 4.4                                                          |
 
 
 ## Heartbeat
@@ -206,7 +219,7 @@ This message is sent during periods of application inactivity to ensure connecti
 
 ## Test Request
 
-This message is used to verify connectivity and synchronize sequence numbers.  A test request should be responded to with a heartbeat from recipient
+This message is used to verify connectivity and synchronize sequence numbers.  A test request should be responded to with a heartbeat from the recipient
 
 | Tag | Name       | Mandatory | Description                                      | 
 |-----|------------|-----------|--------------------------------------------------|
@@ -227,7 +240,7 @@ This message signals the normal termination of the trading session. A session te
 ## Market Data Request
 
 Once the logon process is complete, Market Data Requests can be sent to the ECN. Cypator will respond immediately with either a Market Data Full Refresh (35=W) message or a Market Data Request Reject message (35=Y).
-Only a single product can be requested in each request. The client will receive both bid and ask prices  in a single message ).
+Only a single product can be requested in each request. The client will receive both bid and ask prices in a single message.
 The ECN also supports layers (also known elsewhere as price bands or tiers). Quotes containing bid prices and quantities for all layers are always streamed in the same message, as is the case for quotes containing ask prices and quantities.
 
 This message is used to subscribe/unsubscribe to market data rate information.
