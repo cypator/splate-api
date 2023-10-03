@@ -126,41 +126,40 @@ Trailer
 |-----|-----------|--------------|
 | 10  | CheckSum  | Y            |
 
+## Websocket API Introduction
+Documents the websocket API used by Cypator Crypto Trading ECN.
+Cypator websocket provides two websocket session for communication.
+* Market session - used for market data subscription requests and streaming prices.
+* Trade session - used for sending orders and receiving execution reports.
+
+Market and Trade session require valid login, SenderCompId, TargetCompId and password(used only for hashing) for authentication.
 
 ## Websocket API Connectivity
 
 * Only one market and trade connection per client supported, on new connection previous connection will be dropped.
 * When the trade session goes down market data feed will not be consumed (Maker API) even if the market session is connected. Market data snapshot consumption will resume after the trade session is reconnected.
+* Both market and trade session needs to be authenticated before any requests can be made.
+* To keep alive both the market and trade session, the client needs to send a ping message every 30 seconds. 
 
-## Websocket API Sign generation for authentication
-Use HMAC SHA256 method to hash the below string with a password and then perform Base64 encoding
-String to be encrypted = timestamp + "/verify"
-Timestamp needs to be within the current times 30-second range.
+## Websocket API Sessions
 
-> Java Example
+* The Cypator market websocket session supports the following subscription type:
+  * Snapshot
 
-```java 
+ 
+* The Cypator market websocket session supports the following book type:
+  * Spot
 
-  String stringToHashAndEncode = timeStamp + "/verify";
-  Mac sha256HMAC = Mac.getInstance("HmacSHA256");
 
-  SecretKeySpec secretKeySpec = new SecretKeySpec(passPhrase.getBytes(), "HmacSHA256");
-  sha256HMAC.init(secretKeySpec);
-  String hash = Base64.getEncoder().encodeToString(sha256HMAC.doFinal(stringToHashAndEncode.getBytes()));
-```
+* The Cypator trading websocket session supports the two types of orders
+  * Limit
+  * Market
 
-> Python Example
 
-```python 
+* The Cypator trading websocket session supports the following Time in force (TIF):
+  * IOC - Immediate or Cancel
+  * FOK - Fill or kill
 
-  import hashlib
-  import hmac
-  import base64
-  
-  string_to_hash_and_encode = timeStamp + "/verify"
-  hash_obj = hmac.new(secret_key, message, hashlib.sha256)
-  hash_value = base64.b64encode(hash_obj.digest()).decode("utf-8")
-```
 
 
 # FIX Taker API 
@@ -997,8 +996,6 @@ For an IOC type order, there are two additional possible responses in addition t
 
 # Websocket Maker API
 
-<aside class="warning"> Not yet supported</aside>
-
 ## Login
 
 Both market and trade session needs to be authenticated before any requests can be made.
@@ -1063,6 +1060,72 @@ Both market and trade session needs to be authenticated before any requests can 
 | code      | int    | Yes      | 0 - success <br / > non zero for failure        |
 | errMsg    | String | Yes      | Error message, populated only in case of error  |
 
+### Signature generation
+Signature needs to be generated at the time of making login request. It can be generated using the following steps:
+* Generate a string by concatenating password and constant string "/verify"
+* Signature would be Base64 encoded hash of the above string generates using HMAC SHA256 algorithm. 
+
+> Java code sample
+```java 
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
+import java.util.Base64;
+
+public class SignatureDemo {
+
+  public static String getSign(String passPhrase, long timeStamp) {
+    try {
+      String stringToHashAndEncode = timeStamp + "/verify";
+      Mac sha256HMAC = Mac.getInstance("HmacSHA256");
+
+      SecretKeySpec secretKeySpec = new SecretKeySpec(passPhrase.getBytes(), "HmacSHA256");
+      sha256HMAC.init(secretKeySpec);
+      String hash = Base64.getEncoder().encodeToString(sha256HMAC.doFinal(stringToHashAndEncode.getBytes()));
+      return hash;
+    } catch (Throwable t) {
+      return null;
+    }
+  }
+
+  public static void main(String[] args) {
+    String signature = getSign("UfawYizemLAHMyAezkYQqLtQ3uJ9UQaXXJg6vrvL", System.currentTimeMillis());
+    System.out.println("Signature : " + signature);
+  }
+}
+```
+
+> Python Example
+
+```python 
+
+  import hashlib
+  import hmac
+  import base64
+  
+  string_to_hash_and_encode = timeStamp + "/verify"
+  hash_obj = hmac.new(secret_key, message, hashlib.sha256)
+  hash_value = base64.b64encode(hash_obj.digest()).decode("utf-8")
+```
+
+```shell
+getSign() {
+    local passPhrase=$1
+    local timeStamp=$2
+
+    local stringToHashAndEncode="${timeStamp}/verify"
+    local hash
+
+    hash=$(echo -n "$stringToHashAndEncode" | openssl dgst -sha256 -hmac "$passPhrase" -binary | base64)
+}
+
+# Example usage:
+passPhrase="UfawYizemLAHMyAezkYQqLtQ3uJ9UQaXXJg6vrvL"
+timeStamp="1695616595908"
+
+result=$(getSign "$passPhrase" "$timeStamp")
+echo "Result: $result"
+
+```
 
 ## Ping
 
