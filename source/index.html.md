@@ -1,4 +1,4 @@
----
+Cypao---
 title: API Reference
 
 
@@ -25,7 +25,7 @@ architecture.
 <br />
 Cypator  provides two FIX sessions for interaction with Clients. The first session is specifically for price communication and the second is for trading. Clients need to ensure that the appropriate session is used when messages are sent to the ECN.
 <br />
-This document defines the Capacitor FIX API for sending out market prices, receiving orders  and providing trading execution notifications via the Cypator FIX gateway
+This document defines the Cypator FIX API for sending out market prices, receiving orders  and providing trading execution notifications via the Cypator FIX gateway
 
 * The FIX gateway is accessible with an OpenVPN connection.
 * There are two interfaces: FIX Market data (price) and FIX Trading (orders).
@@ -71,7 +71,7 @@ This document defines the Capacitor FIX API for sending out market prices, recei
 
 ## FIX Post Trade
 
-For clients or partners requiring a post-trade message (support only for Taker API), and that can code to the Cypator FIX API the following Trade Capture Report (AE) message will be sent.
+For clients or partners requiring a post-trade message (supported only for Taker API), and that can code to the Cypator FIX API the following Trade Capture Report (AE) message will be sent.
 In addition, in the event of a communication breakdown, the client can send a “Request Trade Capture Report” message and include in it all the Order IDs for which they want to verify if a trade was created or not.
 
 
@@ -102,7 +102,7 @@ In addition, in the event of a communication breakdown, the client can send a �
 | Trade Capture Report Request Ack <AQ> | 4.4                   | N                | Y               |
 
 ## FIX Duplicate check
-There is always a possibility of duplicate trade being sent out, for example after a network disconnect. The client is expected to be able to identify duplicate trades and reject them, by using the tag 37 - OrderID.
+There is always a possibility of duplicate trades being sent out, for example after a network disconnect. The client is expected to be able to identify duplicate trades and reject them, by using the tag 37 - OrderID.
 
 ## FIX Header and Trailer
 The following defines the FIX messages standard header and trailer.
@@ -399,7 +399,7 @@ Cypator requires that the ClOrdID <11> be unique.
 
 ## Order Reject
 
-This message is used by Cypator to reject an order message. This can happen if the order doesn’t comply with the FIX dictionary, naming issue, or acceding throughput limitation
+This message is used by Cypator to reject an order message. This can happen if the order doesn’t comply with the FIX dictionary, naming issue, or exceeding throughput limitation
 
 | Tag | Name                      | Mandatory | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | 
 |-----|---------------------------|-----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -409,24 +409,6 @@ This message is used by Cypator to reject an order message. This can happen if t
 | 372 | RefMsgType                | N         | The message type (35) OF THE Fix message being referenced (e.g “D” for 35=D)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | 373 | SessionRejectReason       | N         | Code to identify reason for rejection: <br /> 0 = Invalid tag number <br /> 1 = Required tag missing <br /> 2 = Tag not defined for this message type <br /> 3 = Undefined Tag <br />4 = Tag specified without a value<br />5 = Value is incorrect (out of range) for this tag<br />6 = Incorrect data format for value<br />7 = Decryption problem<br />8 = Signature <89> problem<br />9 = CompID problem<br />10 = SendingTime <52> accuracy problem<br />11 = Invalid MsgType <35><br />12 = XML Validation error<br />13 = Tag appears more than once<br />14 = Tag specified out of required order<br />15 = Repeating group fields out of order<br />16 = Incorrect NumInGroup count for repeating group<br />17 = Non "Data" value includes field delimiter (<SOH> character)<br />99 = Other<br />  |
 | 58  | Text                      | N         | Error message text                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-
-
-## Order Cancel Request
-
-This message is used by the client to cancel any live order they may have. Applicable for orders of type GTC/GTD/GIS
-<aside class="warning"> Not supported in phase 1</aside>
-
-
-
-| Tag | Name          | Mandatory | Description                                                               | 
-|-----|---------------|-----------|---------------------------------------------------------------------------|
-| 35  | MsgType       | Y         | F                                                                         |
-| 1   | Account       | N         | Client Account name                                                       |
-| 11  | ClOrderID     | Y         | Client Order ID                                                           |
-| 37  | OrderID       | Y         | The order ID of the order to be canceled                                  |
-| 41  | OrigClOrdID   | Y         | Client Order ID of Order being replaced                                   |
-| 55  | Symbol        | N         | The Asset - Coin and currency combination, e.g. EUR/USD, BTC/USD, ETH/BTC |
-| 60  | TransactTime  | N         | The transaction timestamp of the order cancel request                     |
 
 
 ## Cancel Rejected
@@ -555,7 +537,7 @@ support desk.
 
 Used to report a trade between counterparties.
 
-<aside class="success"> support only for FIX 4.4</aside>
+<aside class="success"> Supported for FIX 4.4</aside>
 
 > FIX 4.4  Cypator -> Client
 
@@ -594,7 +576,7 @@ Used to report a trade between counterparties.
 In the event of a communication breakdown, or any other prerogative the client can send a “Request Trade Capture Report” message and include in it the Order Id for which they want to verify if a trade was created or not using ClOrdID <11>. The system will respond with AE drop copy messages for all created trades.
 Please note – an Order (if not of type FOK) may result in several trades and may be partially filled. The system will respond with all trades related to an order.
 
-<aside class="success"> support only for FIX 4.4</aside>
+<aside class="success"> Supported for FIX 4.4</aside>
 
 > FIX 4.4  Client -> Cypator
 
@@ -619,7 +601,7 @@ Indicate that no trades were found that matched the selection criteria specified
 * In the event that system is unable to provide a response the AQ msg is provided with Tag 750=2 (Rejected) and a reason will be provided in Tag 58
 * In the event the order has been “Timed Out” the AQ msg is provided with Tag 750=0 and a reason will be provided in Tag 58 “Time out”. In this case you can continue every 5 seconds to retry the Trade capture request (AD) until a final response is received.
 
-<aside class="success"> support only for FIX 4.4</aside>
+<aside class="success"> Supported for FIX 4.4</aside>
 
 > FIX 4.4  Cypator -> Client
 
@@ -856,7 +838,7 @@ Cypator will provide a unique ClOrdID <11>.
 
 ## Order Reject
 
-This message is used by the Maker to reject an order message. This can happen if the order doesn’t comply with the FIX dictionary, naming issue, or acceding throughput limitation
+This message is used by the Maker to reject an order message. This can happen if the order doesn’t comply with the FIX dictionary, naming issue, or exceeding throughput limitation
 
 | Tag | Name                      | Mandatory | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | 
 |-----|---------------------------|-----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -882,25 +864,6 @@ This message is used by the Maker to cancel any live order they may have. Applic
 | 41  | OrigClOrdID   | Y         | Client Order ID of Order being replaced                                   |
 | 55  | Symbol        | N         | The Asset - Coin and currency combination, e.g. EUR/USD, BTC/USD, ETH/BTC |
 | 60  | TransactTime  | N         | The transaction timestamp of the order cancel request                     |
-
-## Cancel Rejected
-
-This message is used by the Maker to reject a cancel order message. This can happen if the order is already filled or is in the process of getting filled
-<aside class="warning"> Not supported in phase 1</aside>
-
-
-| Tag | Name             | Mandatory | Description                                                               | 
-|-----|------------------|-----------|---------------------------------------------------------------------------|
-| 35  | MsgType          | Y         | 9                                                                         |
-| 11  | ClOrderID        | Y         | Client Order ID                                                           |
-| 37  | OrderID          | Y         | The order ID of the order to be canceled                                  |
-| 39  | OrderStatus      | Y         | Status of the order cancel request (not of any order)                     |
-| 41  | OrigClOrdID      | Y         | Client Order ID of Order being replaced                                   |
-| 55  | Symbol           | N         | The Asset - Coin and currency combination, e.g. EUR/USD, BTC/USD, ETH/BTC |
-| 434 | CxlRejResponseTo | Y         | 1 – Order Cancel Request <br />2 – Order Cancel/Replace Request           |
-| 102 | CxlRejReason     | N         | Error Code                                                                |
-| 58  | Text             | N         | Error message                                                             |
-| 60  | TransactTime     | Y         | The transaction timestamp of the order cancel request                     |
 
 
 ## Execution Report
@@ -948,21 +911,21 @@ For an IOC type order, there are two additional possible responses in addition t
 ```
 
 
-> FIX 4.2  Client -> Cypato Ack
+> FIX 4.2  Client -> Cypator Ack
 
 ```plaintext 
 
 8=FIX.4.2|9=197|35=8|34=113|49=cs1|52=20221031-09:11:04.479|56=cc21|11=1805964193|14=0|15=BTC|17=1805964193|20=0|32=0|37=A010tlPyxyh|39=0|41=1805964193|44=19123.2|54=1|55=BTC/USD|60=20221031-11:11:04.479|150=0|151=100|10=223|
 ```
 
-> FIX 4.4  Client -> Cypato
+> FIX 4.4  Client -> Cypator
 
 ```plaintext 
 
 8=FIX.4.4|9=228|35=8|34=113|49=cs1|52=20221031-09:10:46.706|56=cc11|6=19123.2|11=1598950759|14=100|15=BTC|17=VuzGNOBG|31=19123.2|32=100|37=A010tlPyxyg|38=100|39=2|41=1598950759|44=19123.2|54=1|55=BTC/USD|60=20221031-11:10:46.706|64=202210304|150=F|151=0|10=153|
 ```
 
-> FIX 4.2  Client -> Cypato
+> FIX 4.2  Client -> Cypator
 
 ```plaintext 
 
