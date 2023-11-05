@@ -3,7 +3,7 @@ title: API Reference
 
 
 toc_footers:
-  - <a href='https://cypator.com'>Cypator</a> <br /> CONFIDENTIAL © 2023 Cypator. All Rights Reserved.
+  - <a href='https://cypator.com'>Cypator</a> <br /> CONFIDENTIAL <br /> © 2023 Cypator.  <br /> All Rights Reserved.
 
 search: true
 
