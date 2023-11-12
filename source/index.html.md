@@ -280,7 +280,7 @@ This message is used to subscribe/unsubscribe to market data rate information.
 | 35          | MsgType                 | Y         | V                                                                                                                                                                                          |
 | 262         | MDReqID                 | Y         | Unique Market Data Request ID.  This will be used in responses by Cypator or by the client to cancel a request. To unsubscribe from market data, the same ID must be sent with tag 263 = 2 |
 | 263         | SubscriptionRequestType | Y         | 1 – Snapshot + Updates (Subscribe) <br />  2 – Disable Snapshot + Updates (Unsubscribe)                                                                                                    |
-| 264         | MarketDepth             | Y         | 0 - Full Book                                                                                                                                                                              |
+| 264         | MarketDepth             | Y         | 0 - Full Book <br /> 1 = Top of Book                                                                                                                                                       |
 | 265         | MDUpdateType            | N         | 0 - Full refresh                                                                                                                                                                           | 
 | 266         | AggregatedBook          | Y         | N - Raw prices may or may not include the liquidity provider names.                                                                                                                        |
 | 267         | NoMDEntryTypes          | Y         | Number of MDEntryType fields being requested. 2 - bid and offer <br /> Note – please make sure to request in tag 269 both Bid and Offer. Request for a single side will be rejected!!!     |
@@ -1369,6 +1369,9 @@ For snapshot message, Cypator won’t send an acknowledgement.
 
 
 # Changelog
+
+### V1.0.3 - Sun, 12 Nov 2023
+Taker API, Market Data Request (35=V) added support for top of book (TOB)
 
 ### V1.0.2 - Thu, 9 Nov 2023
 Instrument table update
