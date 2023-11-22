@@ -397,6 +397,14 @@ Cypator requires that the ClOrdID <11> be unique.
 | 126 | ExpireTime                                       | N         | Not supported in phase 1- Required for Good-Till-Date order request. Date and Time of the order expiration specified in YYYYMMDD-HH:MM:SS format. Expressed in GMT.                                                                                                                                       |
 
 
+<aside class="notice">
+For market orders (40=1), Three conditions must be met:<br/>
+1. Price (44) to be used as TOB <br/>
+2. Order Type Market (40=1) <br/>
+3. Time in force to be IOC (59=3)
+</aside>
+
+
 ## Order Reject
 
 This message is used by Cypator to reject an order message. This can happen if the order doesn’t comply with the FIX dictionary, naming issue, or exceeding throughput limitation
