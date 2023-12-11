@@ -955,14 +955,15 @@ Both market and trade session needs to be authenticated before any requests can 
 }
 ```
 
-| Parameter        | Type    | Required | Description      | 
-|------------------|---------|----------|------------------|
-| op               | String  | Yes      | Operation logon  |
-| arg              | Object  | Yes      | Login details    |
-| -> <br /> apiKey | String  | Yes      | API Key          |
-| -> <br /> server | String  | Yes      | Server id        |
-| -> <br /> client | String  | Yes      | Client id        |
-| ts               | String  | Yes      | Unix epoch time  |
+| Parameter        | Type    | Required | Description     | 
+|------------------|---------|----------|-----------------|
+| op               | String  | Yes      | Operation logon |
+| arg              | Object  | Yes      | Login details   |
+| -> <br /> apiKey | String  | Yes      | API Key         |
+| -> <br /> sign   | String  | Yes      |                 |
+| -> <br /> server | String  | Yes      | Server id       |
+| -> <br /> client | String  | Yes      | Client id       |
+| ts               | String  | Yes      | Unix epoch time |
 
 ### Response
 
@@ -991,12 +992,13 @@ Both market and trade session needs to be authenticated before any requests can 
 }
 ```
 
-| Parameter | Type   | Required | Description                                     | 
-|-----------|--------|----------|-------------------------------------------------|
-| op        | String | Yes      | Operation logon                                 |
-| code      | int    | Yes      | 0 - success <br / > non zero for failure        |
-| errMsg    | String | Yes      | Error message, populated only in case of error  |
-
+| Parameter       | Type     | Required | Description                                    | 
+|-----------------|----------|----------|------------------------------------------------|
+| op              | String   | Yes      | Operation logon                                |
+| arg             | Object   | Yes      | Login details                                  |
+| -> <br />code   | int      | Yes      | 0 - success <br / > non zero for failure       |
+| -> <br />errMsg | String   | no       | Error message, populated only in case of error |
+| ts              | String   | Yes      | Unix epoch time                                |
 
 ## Ping
 
@@ -1028,7 +1030,7 @@ Subscription request sent from Cypator to Maker.
 
 ### Request parameter
 
-> Request
+> Request subscribe
 
 ```json
 {
@@ -1038,24 +1040,38 @@ Subscription request sent from Cypator to Maker.
     "side": "BOTH",
     "subscriptionId": "",
     "subscriptionRequestType": "snapshot",
+    "typeBook": "SPOT",
+    "aggBook": "0"
+  },
+  "ts": 1667835722651
+}
+```
+
+> Request subscribe
+
+```json
+{
+  "op": "unsubscribe",
+  "arg": {
+    "instrument": "ETH/USD",
+    "subscriptionId": "",
     "typeBook": "SPOT"
   },
   "ts": 1667835722651
 }
-
 ```
 
-| Parameter                         | Type    | Required | Description                          | 
-|-----------------------------------|---------|----------|--------------------------------------|
-| op                                | String  | Yes      | Operation subscribe                  |
-| arg                               | Object  | Yes      | Operation subscribe                  |
-| -> <be /> instrument              | String  | Yes      | subscription details                 |
-| -> <be /> side                    | String  | Yes      | Instrument name                      |
-| -> <be /> subscriptionId          | String  | Yes      | side, possible value: BOTH           |
-| -> <be /> subscriptionRequestType | String  | Yes      | NA                                   |
-| -> <be /> typeBook                | String  | Yes      | Subscription type, values : snapshot |
-| ts                                | String  | Yes      | Type of book, values : SPOT          |
-|                                   |         |          | Unix epoch time                      |
+| Parameter                         | Type   | Required | Description                          | 
+|-----------------------------------|--------|----------|--------------------------------------|
+| op                                | String | Yes      | Operation subscribe                  |
+| arg                               | Object | Yes      | Operation subscribe                  |
+| -> <be /> instrument              | String | Yes      | Instrument name                      |
+| -> <be /> side                    | String | Yes      | side, possible value: BOTH           |
+| -> <be /> subscriptionId          | String | Yes      | Unique Market Data Request ID        |
+| -> <be /> subscriptionRequestType | String | Yes      | Subscription type, values : snapshot |
+| -> <be /> typeBook                | String | Yes      | Type of book, values : SPOT          |
+| -> <be /> AggregatedBook          | int    | no       | always No (0)                        |
+| ts                                | String | Yes      | Unix epoch time                      |
 
 
 ### Response parameter
