@@ -1047,7 +1047,7 @@ Subscription request sent from Cypator to Maker.
 }
 ```
 
-> Request subscribe
+> Request unsubscribe
 
 ```json
 {
@@ -1121,7 +1121,7 @@ Subscription request sent from Cypator to Maker.
 | -> <br /> subscriptionRequestType     | String | Yes      | Subscription type, values : snapshot                                                                                                                       |
 | -> <br /> typeBook                    | String | Yes      | Type of book, values : SPOT                                                                                                                                |
 | -> <br /> code                        | String | Yes      | Zero for success, non-zero in case of failure, refer error codes table for standard error. In case of a missing error code, any-non zero value is accepted |
-| -> <br /> errMsg                      | String | Yes      | To be populate in case of failure only. Standard error defined in the table. In case of missing error code custom error message is accepted                |
+| -> <br /> errMsg                      | String | No       | To be populate in case of failure only. Standard error defined in the table. In case of missing error code custom error message is accepted                |
 | ts                                    | String | Yes      | Unix epoch time                                                                                                                                            |
 
 ## Market Data
