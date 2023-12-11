@@ -1268,7 +1268,7 @@ For snapshot message, Cypator won’t send an acknowledgement.
 | -> <br /> quantity   | Double  | Yes      | Order quantity                                                                                                                                             |
 | -> <br /> price      | Double  | Yes      | Order price                                                                                                                                                |
 | -> <br /> code       | String  | Yes      | Zero for success, non zero in case of failure, refer error codes table for standard error. In case of a missing error code, any-non zero value is accepted |
-| -> <br /> errMsg     | String  | Yes      | To be populate in case of failure only. Standard error defined in the table. In case of missing error code custom error message is accepted                |
+| -> <br /> errMsg     | String  | No       | To be populate in case of failure only. Standard error defined in the table. In case of missing error code custom error message is accepted                |
 | ts                   | String  | Yes      | Unix epoch time                                                                                                                                            |
 
 
