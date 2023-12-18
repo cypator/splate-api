@@ -109,16 +109,19 @@ The following defines the FIX messages standard header and trailer.
 
 Header
 
-| Tag | Name           | Mandatory    | 
-|-----|----------------|--------------|
-| 8   | BeginString    | Y            |
-| 9   | BodyLength     | Y            |
-| 34  | MsgSeqNum      | Y            |
-| 35  | MsgType        | Y            |
-| 49  | SenderCompID   | Y            |
-| 50  | SenderSubID    | Y            |
-| 52  | SendingTime    | Y            |
-| 56  | TargetCompID   | Y            |
+| Tag | Name               | Mandatory | 
+|-----|--------------------|-----------|
+| 8   | BeginString        | Y         |
+| 9   | BodyLength         | Y         |
+| 34  | MsgSeqNum          | Y         |
+| 35  | MsgType            | Y         |
+| 49  | SenderCompID       | Y         |
+| 50  | SenderSubID        | Y         |
+| 52  | SendingTime        | Y         |
+| 56  | TargetCompID       | Y         |
+| 43  | PossDupFlag        | N         |
+| 122 | OrigSendingTime    | N         |
+
 
 Trailer
 
