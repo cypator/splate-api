@@ -132,7 +132,7 @@ Cypator websocket provides two websocket session for communication.
 * Market session - used for market data subscription requests and streaming prices.
 * Trade session - used for sending orders and receiving execution reports.
 
-Market and Trade session require valid login, SenderCompId, TargetCompId and password(used only for hashing) for authentication.
+Market and Trade session require valid login, server identifier, client identifier and password(used only for hashing) for authentication.
 
 ## Websocket API Connectivity
 
