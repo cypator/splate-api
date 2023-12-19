@@ -3,7 +3,7 @@ title: API Reference
 
 
 toc_footers:
-  - <a href='https://cypator.com'>Cypator</a>
+  - <a href='https://cypator.com'>Cypator</a> <br /> CONFIDENTIAL <br /> © 2023 Cypator.  <br /> All Rights Reserved.
 
 search: true
 
@@ -25,7 +25,7 @@ architecture.
 <br />
 Cypator  provides two FIX sessions for interaction with Clients. The first session is specifically for price communication and the second is for trading. Clients need to ensure that the appropriate session is used when messages are sent to the ECN.
 <br />
-This document defines the Capacitor FIX API for sending out market prices, receiving orders  and providing trading execution notifications via the Cypator FIX gateway
+This document defines the Cypator FIX API for sending out market prices, receiving orders  and providing trading execution notifications via the Cypator FIX gateway
 
 * The FIX gateway is accessible with an OpenVPN connection.
 * There are two interfaces: FIX Market data (price) and FIX Trading (orders).
@@ -71,7 +71,7 @@ This document defines the Capacitor FIX API for sending out market prices, recei
 
 ## FIX Post Trade
 
-For clients or partners requiring a post-trade message (support only for Taker API), and that can code to the Cypator FIX API the following Trade Capture Report (AE) message will be sent.
+For clients or partners requiring a post-trade message (supported only for Taker API), and that can code to the Cypator FIX API the following Trade Capture Report (AE) message will be sent.
 In addition, in the event of a communication breakdown, the client can send a “Request Trade Capture Report” message and include in it all the Order IDs for which they want to verify if a trade was created or not.
 
 
@@ -102,23 +102,26 @@ In addition, in the event of a communication breakdown, the client can send a �
 | Trade Capture Report Request Ack <AQ> | 4.4                   | N                | Y               |
 
 ## FIX Duplicate check
-There is always a possibility of duplicate trade being sent out, for example after a network disconnect. The client is expected to be able to identify duplicate trades and reject them, by using the tag 37 - OrderID.
+There is always a possibility of duplicate trades being sent out, for example after a network disconnect. The client is expected to be able to identify duplicate trades and reject them, by using the tag 37 - OrderID.
 
 ## FIX Header and Trailer
 The following defines the FIX messages standard header and trailer.
 
 Header
 
-| Tag | Name           | Mandatory    | 
-|-----|----------------|--------------|
-| 8   | BeginString    | Y            |
-| 9   | BodyLength     | Y            |
-| 34  | MsgSeqNum      | Y            |
-| 35  | MsgType        | Y            |
-| 49  | SenderCompID   | Y            |
-| 50  | SenderSubID    | Y            |
-| 52  | SendingTime    | Y            |
-| 56  | TargetCompID   | Y            |
+| Tag | Name               | Mandatory | 
+|-----|--------------------|-----------|
+| 8   | BeginString        | Y         |
+| 9   | BodyLength         | Y         |
+| 34  | MsgSeqNum          | Y         |
+| 35  | MsgType            | Y         |
+| 49  | SenderCompID       | Y         |
+| 50  | SenderSubID        | Y         |
+| 52  | SendingTime        | Y         |
+| 56  | TargetCompID       | Y         |
+| 43  | PossDupFlag        | N         |
+| 122 | OrigSendingTime    | N         |
+
 
 Trailer
 
@@ -279,7 +282,7 @@ This message is used to subscribe/unsubscribe to market data rate information.
 | 35          | MsgType                 | Y         | V                                                                                                                                                                                          |
 | 262         | MDReqID                 | Y         | Unique Market Data Request ID.  This will be used in responses by Cypator or by the client to cancel a request. To unsubscribe from market data, the same ID must be sent with tag 263 = 2 |
 | 263         | SubscriptionRequestType | Y         | 1 – Snapshot + Updates (Subscribe) <br />  2 – Disable Snapshot + Updates (Unsubscribe)                                                                                                    |
-| 264         | MarketDepth             | Y         | 0 - Full Book                                                                                                                                                                              |
+| 264         | MarketDepth             | Y         | 0 - Full Book <br /> 1 = Top of Book                                                                                                                                                       |
 | 265         | MDUpdateType            | N         | 0 - Full refresh                                                                                                                                                                           | 
 | 266         | AggregatedBook          | Y         | N - Raw prices may or may not include the liquidity provider names.                                                                                                                        |
 | 267         | NoMDEntryTypes          | Y         | Number of MDEntryType fields being requested. 2 - bid and offer <br /> Note – please make sure to request in tag 269 both Bid and Offer. Request for a single side will be rejected!!!     |
@@ -396,9 +399,17 @@ Cypator requires that the ClOrdID <11> be unique.
 | 126 | ExpireTime                                       | N         | Not supported in phase 1- Required for Good-Till-Date order request. Date and Time of the order expiration specified in YYYYMMDD-HH:MM:SS format. Expressed in GMT.                                                                                                                                       |
 
 
+<aside class="notice">
+For market orders (40=1), Three conditions must be met:<br/>
+1. Price (44) to be used as TOB <br/>
+2. Order Type Market (40=1) <br/>
+3. Time in force to be IOC (59=3)
+</aside>
+
+
 ## Order Reject
 
-This message is used by Cypator to reject an order message. This can happen if the order doesn’t comply with the FIX dictionary, naming issue, or acceding throughput limitation
+This message is used by Cypator to reject an order message. This can happen if the order doesn’t comply with the FIX dictionary, naming issue, or exceeding throughput limitation
 
 | Tag | Name                      | Mandatory | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | 
 |-----|---------------------------|-----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -408,45 +419,6 @@ This message is used by Cypator to reject an order message. This can happen if t
 | 372 | RefMsgType                | N         | The message type (35) OF THE Fix message being referenced (e.g “D” for 35=D)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | 373 | SessionRejectReason       | N         | Code to identify reason for rejection: <br /> 0 = Invalid tag number <br /> 1 = Required tag missing <br /> 2 = Tag not defined for this message type <br /> 3 = Undefined Tag <br />4 = Tag specified without a value<br />5 = Value is incorrect (out of range) for this tag<br />6 = Incorrect data format for value<br />7 = Decryption problem<br />8 = Signature <89> problem<br />9 = CompID problem<br />10 = SendingTime <52> accuracy problem<br />11 = Invalid MsgType <35><br />12 = XML Validation error<br />13 = Tag appears more than once<br />14 = Tag specified out of required order<br />15 = Repeating group fields out of order<br />16 = Incorrect NumInGroup count for repeating group<br />17 = Non "Data" value includes field delimiter (<SOH> character)<br />99 = Other<br />  |
 | 58  | Text                      | N         | Error message text                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-
-
-## Order Cancel Request
-
-This message is used by the client to cancel any live order they may have. Applicable for orders of type GTC/GTD/GIS
-<aside class="warning"> Not supported in phase 1</aside>
-
-
-
-| Tag | Name          | Mandatory | Description                                                               | 
-|-----|---------------|-----------|---------------------------------------------------------------------------|
-| 35  | MsgType       | Y         | F                                                                         |
-| 1   | Account       | N         | Client Account name                                                       |
-| 11  | ClOrderID     | Y         | Client Order ID                                                           |
-| 37  | OrderID       | Y         | The order ID of the order to be canceled                                  |
-| 41  | OrigClOrdID   | Y         | Client Order ID of Order being replaced                                   |
-| 55  | Symbol        | N         | The Asset - Coin and currency combination, e.g. EUR/USD, BTC/USD, ETH/BTC |
-| 60  | TransactTime  | N         | The transaction timestamp of the order cancel request                     |
-
-
-## Cancel Rejected
-
-This message is used by Cypator to reject a cancel order message. This can happen if the order is already filled or is in the process of getting filled.
-<aside class="warning"> Not supported in phase 1</aside>
-
-
-| Tag | Name             | Mandatory | Description                                                               | 
-|-----|------------------|-----------|---------------------------------------------------------------------------|
-| 35  | MsgType          | Y         | 9                                                                         |
-| 11  | ClOrderID        | Y         | Client Order ID                                                           |
-| 37  | OrderID          | Y         | The order ID of the order to be canceled                                  |
-| 39  | OrderStatus      | Y         | Status of the order cancel request (not of any order)                     |
-| 41  | OrigClOrdID      | Y         | Client Order ID of Order being replaced                                   |
-| 55  | Symbol           | N         | The Asset - Coin and currency combination, e.g. EUR/USD, BTC/USD, ETH/BTC |
-| 434 | CxlRejResponseTo | Y         | 1 – Order Cancel Request <br />2 – Order Cancel/Replace Request           |
-| 102 | CxlRejReason     | N         | Error Code                                                                |
-| 58  | Text             | N         | Error message                                                             |
-| 60  | TransactTime     | Y         | The transaction timestamp of the order cancel request                     |
-
 
 
 ## Execution Report
@@ -522,7 +494,7 @@ For an IOC type order, there are two additional possible responses in addition t
 | 1   | Account                                             | N                             | Client Account Name                                                                                                                                                                                                   |
 | 11  | ClOrdID                                             | Y                             | Client Order ID                                                                                                                                                                                                       |
 | 37  | OrderID                                             | Y                             | Cypator unique order ID for the Trade                                                                                                                                                                                 |
-| 17  | ExecID                                              | Y                             | Cypator Execution ID. Unique ID in each execution report                                                                                                                                                              |
+| 17  | ExecID                                              | Y                             | Cypator Execution ID. Unique ID in each execution report. case sensitive                                                                                                                                              |
 | 20  | ExecTransType                                       | Y - FIX 4.2 <br /> N- FIX 4.4 | Only applicable to Fix 4.2 <br /> 0= New <br /> 1 = Cancel <br /> 2 = Correct                                                                                                                                         |
 | 150 | ExecType                                            | Y                             | FIX 4.2 <br /> 0 = New <br /> 1 = Partially Fill <br /> 2 = Fill <br /> 4 = Canceled <br /> 8 = Rejected <br /> FIX 4.4 <br /> 0 = New <br /> F = Trade (partial fill or fill)<br /> 4 = Canceled <br /> 8 = Rejected |
 | 39  | OrdStatus                                           | Y                             | 0 = New <br /> 1 = Partially Fill <br /> 2 = Fill <br /> 4 = Canceled <br /> 8 = Rejected                                                                                                                             |
@@ -554,7 +526,7 @@ support desk.
 
 Used to report a trade between counterparties.
 
-<aside class="success"> support only for FIX 4.4</aside>
+<aside class="success"> Supported for FIX 4.4</aside>
 
 > FIX 4.4  Cypator -> Client
 
@@ -593,7 +565,7 @@ Used to report a trade between counterparties.
 In the event of a communication breakdown, or any other prerogative the client can send a “Request Trade Capture Report” message and include in it the Order Id for which they want to verify if a trade was created or not using ClOrdID <11>. The system will respond with AE drop copy messages for all created trades.
 Please note – an Order (if not of type FOK) may result in several trades and may be partially filled. The system will respond with all trades related to an order.
 
-<aside class="success"> support only for FIX 4.4</aside>
+<aside class="success"> Supported for FIX 4.4</aside>
 
 > FIX 4.4  Client -> Cypator
 
@@ -618,7 +590,7 @@ Indicate that no trades were found that matched the selection criteria specified
 * In the event that system is unable to provide a response the AQ msg is provided with Tag 750=2 (Rejected) and a reason will be provided in Tag 58
 * In the event the order has been “Timed Out” the AQ msg is provided with Tag 750=0 and a reason will be provided in Tag 58 “Time out”. In this case you can continue every 5 seconds to retry the Trade capture request (AD) until a final response is received.
 
-<aside class="success"> support only for FIX 4.4</aside>
+<aside class="success"> Supported for FIX 4.4</aside>
 
 > FIX 4.4  Cypator -> Client
 
@@ -839,7 +811,7 @@ Cypator will provide a unique ClOrdID <11>.
 | Tag | Name                                             | Mandatory | Description                                                                                                                                                                                                                                                                                                                     | 
 |-----|--------------------------------------------------|-----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | 35  | MsgType                                          | Y         | D                                                                                                                                                                                                                                                                                                                               |
-| 11  | ClOrdID                                          | Y         | Client Order ID – must be unique                                                                                                                                                                                                                                                                                                |
+| 11  | ClOrdID                                          | Y         | Client Order ID – must be unique. case sensitive                                                                                                                                                                                                                                                                                |
 | 1   | Account                                          | N         | Client Account name                                                                                                                                                                                                                                                                                                             |
 | 60  | TransactTime                                     | Y         | The transaction timestamp of the orde                                                                                                                                                                                                                                                                                           |
 | 15  | Currency                                         | Y         | The currency or coin unit that represents the quantity                                                                                                                                                                                                                                                                          |
@@ -855,7 +827,7 @@ Cypator will provide a unique ClOrdID <11>.
 
 ## Order Reject
 
-This message is used by the Maker to reject an order message. This can happen if the order doesn’t comply with the FIX dictionary, naming issue, or acceding throughput limitation
+This message is used by the Maker to reject an order message. This can happen if the order doesn’t comply with the FIX dictionary, naming issue, or exceeding throughput limitation
 
 | Tag | Name                      | Mandatory | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | 
 |-----|---------------------------|-----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -865,41 +837,6 @@ This message is used by the Maker to reject an order message. This can happen if
 | 372 | RefMsgType                | N         | The message type (35) OF THE Fix message being referenced (e.g “D” for 35=D)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | 373 | SessionRejectReason       | N         | Code to identify reason for rejection: <br /> 0 = Invalid tag number <br /> 1 = Required tag missing <br /> 2 = Tag not defined for this message type <br /> 3 = Undefined Tag <br />4 = Tag specified without a value<br />5 = Value is incorrect (out of range) for this tag<br />6 = Incorrect data format for value<br />7 = Decryption problem<br />8 = Signature <89> problem<br />9 = CompID problem<br />10 = SendingTime <52> accuracy problem<br />11 = Invalid MsgType <35><br />12 = XML Validation error<br />13 = Tag appears more than once<br />14 = Tag specified out of required order<br />15 = Repeating group fields out of order<br />16 = Incorrect NumInGroup count for repeating group<br />17 = Non "Data" value includes field delimiter (<SOH> character)<br />99 = Other<br />  |
 | 58  | Text                      | N         | Error message text                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-
-
-## Order Cancel Request
-
-This message is used by the Maker to cancel any live order they may have. Applicable for orders of type GTC/GTD/GIS
-<aside class="warning"> Not supported in phase 1</aside>
-
-| Tag | Name          | Mandatory | Description                                                               | 
-|-----|---------------|-----------|---------------------------------------------------------------------------|
-| 35  | MsgType       | Y         | F                                                                         |
-| 1   | Account       | N         | Client Account name                                                       |
-| 11  | ClOrderID     | Y         | Client Order ID                                                           |
-| 37  | OrderID       | Y         | The order ID of the order to be canceled                                  |
-| 41  | OrigClOrdID   | Y         | Client Order ID of Order being replaced                                   |
-| 55  | Symbol        | N         | The Asset - Coin and currency combination, e.g. EUR/USD, BTC/USD, ETH/BTC |
-| 60  | TransactTime  | N         | The transaction timestamp of the order cancel request                     |
-
-## Cancel Rejected
-
-This message is used by the Maker to reject a cancel order message. This can happen if the order is already filled or is in the process of getting filled
-<aside class="warning"> Not supported in phase 1</aside>
-
-
-| Tag | Name             | Mandatory | Description                                                               | 
-|-----|------------------|-----------|---------------------------------------------------------------------------|
-| 35  | MsgType          | Y         | 9                                                                         |
-| 11  | ClOrderID        | Y         | Client Order ID                                                           |
-| 37  | OrderID          | Y         | The order ID of the order to be canceled                                  |
-| 39  | OrderStatus      | Y         | Status of the order cancel request (not of any order)                     |
-| 41  | OrigClOrdID      | Y         | Client Order ID of Order being replaced                                   |
-| 55  | Symbol           | N         | The Asset - Coin and currency combination, e.g. EUR/USD, BTC/USD, ETH/BTC |
-| 434 | CxlRejResponseTo | Y         | 1 – Order Cancel Request <br />2 – Order Cancel/Replace Request           |
-| 102 | CxlRejReason     | N         | Error Code                                                                |
-| 58  | Text             | N         | Error message                                                             |
-| 60  | TransactTime     | Y         | The transaction timestamp of the order cancel request                     |
 
 
 ## Execution Report
@@ -947,21 +884,21 @@ For an IOC type order, there are two additional possible responses in addition t
 ```
 
 
-> FIX 4.2  Client -> Cypato Ack
+> FIX 4.2  Client -> Cypator Ack
 
 ```plaintext 
 
 8=FIX.4.2|9=197|35=8|34=113|49=cs1|52=20221031-09:11:04.479|56=cc21|11=1805964193|14=0|15=BTC|17=1805964193|20=0|32=0|37=A010tlPyxyh|39=0|41=1805964193|44=19123.2|54=1|55=BTC/USD|60=20221031-11:11:04.479|150=0|151=100|10=223|
 ```
 
-> FIX 4.4  Client -> Cypato
+> FIX 4.4  Client -> Cypator
 
 ```plaintext 
 
 8=FIX.4.4|9=228|35=8|34=113|49=cs1|52=20221031-09:10:46.706|56=cc11|6=19123.2|11=1598950759|14=100|15=BTC|17=VuzGNOBG|31=19123.2|32=100|37=A010tlPyxyg|38=100|39=2|41=1598950759|44=19123.2|54=1|55=BTC/USD|60=20221031-11:10:46.706|64=202210304|150=F|151=0|10=153|
 ```
 
-> FIX 4.2  Client -> Cypato
+> FIX 4.2  Client -> Cypator
 
 ```plaintext 
 
@@ -1018,14 +955,15 @@ Both market and trade session needs to be authenticated before any requests can 
 }
 ```
 
-| Parameter        | Type    | Required | Description      | 
-|------------------|---------|----------|------------------|
-| op               | String  | Yes      | Operation logon  |
-| arg              | Object  | Yes      | Login details    |
-| -> <br /> apiKey | String  | Yes      | API Key          |
-| -> <br /> server | String  | Yes      | Server id        |
-| -> <br /> client | String  | Yes      | Client id        |
-| ts               | String  | Yes      | Unix epoch time  |
+| Parameter        | Type    | Required | Description     | 
+|------------------|---------|----------|-----------------|
+| op               | String  | Yes      | Operation logon |
+| arg              | Object  | Yes      | Login details   |
+| -> <br /> apiKey | String  | Yes      | API Key         |
+| -> <br /> sign   | String  | Yes      |                 |
+| -> <br /> server | String  | Yes      | Server id       |
+| -> <br /> client | String  | Yes      | Client id       |
+| ts               | String  | Yes      | Unix epoch time |
 
 ### Response
 
@@ -1054,11 +992,13 @@ Both market and trade session needs to be authenticated before any requests can 
 }
 ```
 
-| Parameter | Type   | Required | Description                                     | 
-|-----------|--------|----------|-------------------------------------------------|
-| op        | String | Yes      | Operation logon                                 |
-| code      | int    | Yes      | 0 - success <br / > non zero for failure        |
-| errMsg    | String | Yes      | Error message, populated only in case of error  |
+| Parameter       | Type     | Required | Description                                    | 
+|-----------------|----------|----------|------------------------------------------------|
+| op              | String   | Yes      | Operation logon                                |
+| arg             | Object   | Yes      | Login details                                  |
+| -> <br />code   | int      | Yes      | 0 - success <br / > non zero for failure       |
+| -> <br />errMsg | String   | no       | Error message, populated only in case of error |
+| ts              | String   | Yes      | Unix epoch time                                |
 
 ### Signature generation
 Signature needs to be generated at the time of making login request. It can be generated using the following steps:
@@ -1157,7 +1097,7 @@ Subscription request sent from Cypator to Maker.
 
 ### Request parameter
 
-> Request
+> Request subscribe
 
 ```json
 {
@@ -1167,24 +1107,38 @@ Subscription request sent from Cypator to Maker.
     "side": "BOTH",
     "subscriptionId": "",
     "subscriptionRequestType": "snapshot",
+    "typeBook": "SPOT",
+    "aggBook": "0"
+  },
+  "ts": 1667835722651
+}
+```
+
+> Request unsubscribe
+
+```json
+{
+  "op": "unsubscribe",
+  "arg": {
+    "instrument": "ETH/USD",
+    "subscriptionId": "",
     "typeBook": "SPOT"
   },
   "ts": 1667835722651
 }
-
 ```
 
-| Parameter                         | Type    | Required | Description                          | 
-|-----------------------------------|---------|----------|--------------------------------------|
-| op                                | String  | Yes      | Operation subscribe                  |
-| arg                               | Object  | Yes      | Operation subscribe                  |
-| -> <be /> instrument              | String  | Yes      | subscription details                 |
-| -> <be /> side                    | String  | Yes      | Instrument name                      |
-| -> <be /> subscriptionId          | String  | Yes      | side, possible value: BOTH           |
-| -> <be /> subscriptionRequestType | String  | Yes      | NA                                   |
-| -> <be /> typeBook                | String  | Yes      | Subscription type, values : snapshot |
-| ts                                | String  | Yes      | Type of book, values : SPOT          |
-|                                   |         |          | Unix epoch time                      |
+| Parameter                         | Type   | Required | Description                          | 
+|-----------------------------------|--------|----------|--------------------------------------|
+| op                                | String | Yes      | Operation subscribe                  |
+| arg                               | Object | Yes      | Operation subscribe                  |
+| -> <be /> instrument              | String | Yes      | Instrument name                      |
+| -> <be /> side                    | String | Yes      | side, possible value: BOTH           |
+| -> <be /> subscriptionId          | String | Yes      | Unique Market Data Request ID        |
+| -> <be /> subscriptionRequestType | String | Yes      | Subscription type, values : snapshot |
+| -> <be /> typeBook                | String | Yes      | Type of book, values : SPOT          |
+| -> <be /> AggregatedBook          | int    | no       | always No (0)                        |
+| ts                                | String | Yes      | Unix epoch time                      |
 
 
 ### Response parameter
@@ -1234,7 +1188,7 @@ Subscription request sent from Cypator to Maker.
 | -> <br /> subscriptionRequestType     | String | Yes      | Subscription type, values : snapshot                                                                                                                       |
 | -> <br /> typeBook                    | String | Yes      | Type of book, values : SPOT                                                                                                                                |
 | -> <br /> code                        | String | Yes      | Zero for success, non-zero in case of failure, refer error codes table for standard error. In case of a missing error code, any-non zero value is accepted |
-| -> <br /> errMsg                      | String | Yes      | To be populate in case of failure only. Standard error defined in the table. In case of missing error code custom error message is accepted                |
+| -> <br /> errMsg                      | String | No       | To be populate in case of failure only. Standard error defined in the table. In case of missing error code custom error message is accepted                |
 | ts                                    | String | Yes      | Unix epoch time                                                                                                                                            |
 
 ## Market Data
@@ -1381,7 +1335,7 @@ For snapshot message, Cypator won’t send an acknowledgement.
 | -> <br /> quantity   | Double  | Yes      | Order quantity                                                                                                                                             |
 | -> <br /> price      | Double  | Yes      | Order price                                                                                                                                                |
 | -> <br /> code       | String  | Yes      | Zero for success, non zero in case of failure, refer error codes table for standard error. In case of a missing error code, any-non zero value is accepted |
-| -> <br /> errMsg     | String  | Yes      | To be populate in case of failure only. Standard error defined in the table. In case of missing error code custom error message is accepted                |
+| -> <br /> errMsg     | String  | No       | To be populate in case of failure only. Standard error defined in the table. In case of missing error code custom error message is accepted                |
 | ts                   | String  | Yes      | Unix epoch time                                                                                                                                            |
 
 
@@ -1456,51 +1410,65 @@ For snapshot message, Cypator won’t send an acknowledgement.
 
 # Instruments
 
-| Symbol     |  
-|------------|
-| SHIB/USD   |
-| SHIB/USDC  |
-| SHIB/USDT  |
-| BTC/USD    |
-| BUSD/USD   |
-| BTC/USDT   |
-| AVAX/USDT  |
-| ADA/USD    |
-| ETH/USD    |
-| BTC/USDC   |
-| ETH/USDT   |
-| ETH/USDC   |
-| ADA/USDT   |
-| ADA/USDC   |
-| DOGE/USD   |
-| DOGE/USDT  |
-| DOGE/USDC  |
-| BCH/USDT   |
-| MATIC/USDC |
-| DOT/USD    |
-| AVAX/USDC  |
-| AVAX/USD   |
-| SOL/USDT   |
-| USDT/USD   |
-| BNB/USD    |
-| XRP/USD    |
-| SOL/USD    |
-| USDC/USD   |
-| LTC/USD    |
-| BCH/USD    |
-| BCH/BNB    |
-| ATOM/USD   |
-| ATOM/USDT  |
-| ATOM/USDC  |
-| MATIC/USD  |
-| MATIC/USDT |
-| DOT/USDT   |
-| DOT/USDC   |
-| SOL/USDC   |
-| LTC/USDT   |
-| LTC/USDC   |
+| Name        | Coin 1 | Coin 2 | Digit to round | Min Price | Max Price | Price Increment | Amount Format in Market data book   | Default Min Order Amount | Default Max Order Amount | Amount Increment |
+|-------------|--------|--------|----------------|-----------|-----------|-----------------|-------------------------------------|--------------------------|--------------------------|------------------|
+| ADA/USD	    | ADA	   | USD 	  | #.000000       | 0.001     | 999	      | 0.000001	       | #.	                                 | 1000	                    | 62,000,000               | 10               |
+| ADA/USDC    | ADA	   | USDC	  | #.000000       | 0.001     | 999	      | 0.000001	       | #.	                                 | 1000	                    | 60,000,000               | 10               |
+| ADA/USDT    | ADA	   | USDT	  | #.000000       | 0.001     | 999	      | 0.000001	       | #.	                                 | 1000	                    | 60,000,000               | 10               |
+| ATOM/USD    | ATOM	  | USD	   | #.0000	        | 0.01      | 999	      | 0.0001	         | #.00	                               | 100	                     | 2,000,000                | 1                |
+| ATOM/USDC   | ATOM	  | USDC	  | #.0000	        | 0.01      | 999	      | 0.0001	         | #.00	                               | 100	                     | 2,000,000                | 1                |
+| ATOM/USDT   | ATOM	  | USDT	  | #.0000	        | 0.01      | 999	      | 0.0001	         | #.00	                               | 100	                     | 2,000,000                | 1                |
+| AVAX/USD    | AVAX	  | USD	   | #.0000	        | 0.01      | 999	      | 0.0001	         | #.00	                               | 100	                     | 1,500,000                | 1                |
+| AVAX/USDC   | AVAX	  | USDC	  | #.0000	        | 0.01      | 999	      | 0.0001	         | #.00	                               | 100	                     | 1,500,000                | 1                |
+| AVAX/USD    | AVAX	  | USDT	  | #.0000	        | 0.01      | 999	      | 0.0001	         | #.00	                               | 100	                     | 1,500,000                | 1                |
+| BCH/USD	    | BCH	   | USD	   | #.00	          | 1         | 9999	     | 0.01		          | #.00	                               | 1	                       | 200,000                  | 0.1              |
+| BCH/BNB     | BCH	   | BNB	   | #.00	          | 1         | 9999	     | 0.01		          | #.00	                               | 1	                       | 200,000                  | 0.1              |
+| BCH/USDT    | BCH	   | USDT	  | #.00	          | 1         | 9999	     | 0.01		          | #.00	                               | 1	                       | 200,000                  | 0.1              |
+| BNB/USD     | BNB	   | USD	   | #.00	          | 1         | 9999	     | 0.01		          | #.0	                                | 1	                       | 74,000                   | 0.1              |
+| BTC/USD     | BTC	   | USD	   | #.00	          | 100       | 9999999   | 	0.01	          | #.0000                              | 0.01	                    | 1,200                    | 0.01             |
+| BTC/USDC    | BTC	   | USDC	  | #.00	          | 100       | 9999999   | 	0.01	          | #.0000                              | 0.01	                    | 1,200                    | 0.01             |
+| BTC/USDT    | BTC	   | USDT	  | #.00	          | 100       | 9999999   | 	0.01	          | #.0000                              | 0.01	                    | 1,200                    | 0.01             |
+| BUSD/USD    | BUSD	  | USD	   | #.000000 	     | 0.1       | 9	        | 0.0001	         | #.00                                | 1000	                    | 99,000,000               | 1                |
+| DOGE/USD    | DOGE	  | USD	   | #.00000        | 0.001     | 99	       | 0.00001	        | #.	                                 | 1000	                    | 245,000,000              | 100              |
+| DOGE/USDC   | DOGE	  | USDC	  | #.00000        | 0.001     | 99	       | 0.00001	        | #.	                                 | 1000	                    | 245,000,000              | 100              |
+| DOGE/USDT   | DOGE	  | USDT	  | #.00000        | 0.001     | 99	       | 0.00001	        | #.	                                 | 1000	                    | 245,000,000              | 100              |
+| DOT/USD	    | DOT	   | USD	   | #.0000	        | 0.01      | 999	      | 0.0001	         | #.00	                               | 100	                     | 3,500,000                | 1                |
+| DOT/USDC    | DOT	   | USDC	  | #.0000	        | 0.01      | 999	      | 0.0001	         | #.00	                               | 100	                     | 3,500,000                | 1                |
+| DOT/USDT    | DOT	   | USDT	  | #.0000	        | 0.01      | 999	      | 0.0001	         | #.00	                               | 100	                     | 3,500,000                | 1                |
+| ETH/USD	    | ETH	   | USD	   | #.00	          | 10        | 99999     | 0.01		          | #.0000                              | 0.1	                     | 17,000                   | 0.1              |
+| ETH/USDC    | ETH	   | USDC	  | #.00	          | 10        | 99999     | 0.01		          | #.0000                              | 0.1	                     | 17,000                   | 0.1              |
+| ETH/USDT    | ETH	   | USDT	  | #.00	          | 10        | 99999     | 0.01		          | #.0000                              | 0.1	                     | 17,000                   | 0.1              |
+| LTC/USD	    | LTC	   | USD	   | #.0000	        | 0.01      | 9999	     | 0.0001	         | #.00	                               | 10	                      | 320,000                  | 1                |
+| LTC/USDC    | LTC	   | USDC	  | #.0000	        | 0.01      | 9999	     | 0.0001	         | #.00	                               | 10	                      | 320,000                  | 1                |
+| LTC/USDT    | LTC	   | USDT	  | #.0000	        | 0.01      | 9999	     | 0.0001	         | #.00	                               | 10	                      | 320,000                  | 1                |
+| MATIC/USD   | MATIC  | USD	   | #.00000        | 0.01      | 999	      | 0.00001	        | #.00	                               | 1000	                    | 2,400,000                | 1                |
+| MATIC/USDC  | MATIC  | USDC	  | #.00000        | 0.01      | 999	      | 0.00001	        | #.00	                               | 1000	                    | 2,400,000                | 1                |
+| MATIC/USDT  | MATIC  | USDT	  | #.00000        | 0.01      | 999	      | 0.00001	        | #.00	                               | 1000	                    | 2,400,000                | 1                |
+| SHIB/USD    | SHIB	  | USD	   | #.000000000    | 0.0000001 | 0.0009    | 0.000000001     | #.	                                 | 1000000                  | 90,000,000,000           | 100,000          |
+| SHIB/USDC   | SHIB	  | USDC	  | #.000000000    | 0.0000001 | 0.0009    | 0.000000001     | #.	                                 | 1000000                  | 90,000,000,000           | 100,000          |
+| SHIB/USDT   | SHIB	  | USDT	  | #.000000000    | 0.0000001 | 0.0009    | 0.000000001     | #.	                                 | 1000000                  | 90,000,000,000           | 100,000          |
+| SOL/USD	    | SOL	   | USD	   | #.0000         | 0.01      | 999	      | 0.0001	         | #.00	                               | 10	                      | 1,500,000                | 1                |
+| SOL/USDC    | SOL	   | USDC	  | #.0000         | 0.01      | 999	      | 0.0001	         | #.00	                               | 10	                      | 1,500,000                | 1                |
+| SOL/USDT    | SOL	   | USDT	  | #.0000         | 0.01      | 999	      | 0.0001	         | #.00	                               | 10	                      | 1,500,000                | 1                |
+| USDC/USD    | USDC	  | USD	   | #.000000         | 0.1       | 9	        | 0.0001	         | #.00	                               | 1000	                    | 99,000,000               | 1                |
+| USDT/USD    | USDT	  | USD	   | #.000000         | 0.1       | 9	        | 0.0001	         | #.00	                               | 1000	                    | 99,000,000               | 1                |
+| XRP/USD	    | XRP	   | USD	   | #.00000        | 0.01      | 999	      | 0.00001	        | #.0	                                | 100	                     | 50,000,000               | 10               |
+| XRP/USDC    | XRP	   | USDC	  | #.00000        | 0.01      | 999	      | 0.00001	        | #.0	                                | 100	                     | 50,000,000               | 10               |
+| XRP/USDT    | XRP	   | USDT	  | #.00000        | 0.01      | 999	      | 0.00001	        | #.0	                                | 100	                     | 50,000,000               | 10               |
+
+
+
 
 # Changelog
+
+### V1.0.3 - Sun, 12 Nov 2023
+Taker API, Market Data Request (35=V) added support for top of book (TOB)
+
+### V1.0.2 - Thu, 9 Nov 2023
+Instrument table update
+
+### V1.0.1 - Fri, 3 Nov 2023
+Instrument table update
 
 ### V1.0.0 - Wed, 6 Sep 2023
 First issue
