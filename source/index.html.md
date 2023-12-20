@@ -934,8 +934,6 @@ For an IOC type order, there are two additional possible responses in addition t
 
 # Websocket Maker API
 
-<aside class="warning"> Not yet supported</aside>
-
 ## Login
 
 Both market and trade session needs to be authenticated before any requests can be made.
