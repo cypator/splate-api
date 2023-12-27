@@ -101,8 +101,17 @@ In addition, in the event of a communication breakdown, the client can send a â€
 | Trade Capture Report Request <AD>     | 4.4                   | N                | Y               |
 | Trade Capture Report Request Ack <AQ> | 4.4                   | N                | Y               |
 
-## FIX Duplicate check
-There is always a possibility of duplicate trades being sent out, for example after a network disconnect. The client is expected to be able to identify duplicate trades and reject them, by using the tag 37 - OrderID.
+## FIX Duplicate check (recovery)
+<br/>
+Taker API
+There is always a possibility of duplicate trades being sent out. For example due to a network disconnection. The client is expected to be able to identify duplicate trades and reject them, by using the tag OrderID (37) with the combination of tags PossDupFlag (43) or OrigSendingTime (122).
+<br/>
+<br/>
+Maker API
+Gap-fill (recovery) for Maker API is disabled by default to prevent sending out old orders that are no longer relevant. In case a Resend Request (35=2) from the maker side is sent: we will reply with Sequence Reset (35=4) and the latest NewSeqNo (36).
+We can enable Gap-fill but it is not recommended.
+
+<aside class="warning"> For both Maker and Taker API Gap-fill (recovery) on Market session is disable</aside>
 
 ## FIX Header and Trailer
 The following defines the FIX messages standard header and trailer.
