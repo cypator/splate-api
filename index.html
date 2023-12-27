@@ -331,7 +331,7 @@
                     <a href="#fix-messages-products-and-support" class="toc-h2 toc-link" data-title="FIX Messages, Products and Support">FIX Messages, Products and Support</a>
                   </li>
                   <li>
-                    <a href="#fix-duplicate-check" class="toc-h2 toc-link" data-title="FIX Duplicate check">FIX Duplicate check</a>
+                    <a href="#fix-duplicate-check-recovery" class="toc-h2 toc-link" data-title="FIX Duplicate check (recovery)">FIX Duplicate check (recovery)</a>
                   </li>
                   <li>
                     <a href="#fix-header-and-trailer" class="toc-h2 toc-link" data-title="FIX Header and Trailer">FIX Header and Trailer</a>
@@ -653,8 +653,17 @@ In addition, in the event of a communication breakdown, the client can send a â€
 <td>Y</td>
 </tr>
 </tbody></table>
-<h2 id='fix-duplicate-check'>FIX Duplicate check</h2>
-<p>There is always a possibility of duplicate trades being sent out, for example after a network disconnect. The client is expected to be able to identify duplicate trades and reject them, by using the tag 37 - OrderID.</p>
+<h2 id='fix-duplicate-check-recovery'>FIX Duplicate check (recovery)</h2>
+<p><br/>
+Taker API
+There is always a possibility of duplicate trades being sent out. For example due to a network disconnection. The client is expected to be able to identify duplicate trades and reject them, by using the tag OrderID (37) with the combination of tags PossDupFlag (43) or OrigSendingTime (122).
+<br/>
+<br/>
+Maker API
+Gap-fill (recovery) for Maker API is disabled by default to prevent sending out old orders that are no longer relevant. In case a Resend Request (35=2) from the maker side is sent: we will reply with Sequence Reset (35=4) and the latest NewSeqNo (36).
+We can enable Gap-fill but it is not recommended.</p>
+
+<aside class="warning"> For both Maker and Taker API Gap-fill (recovery) on Market session is disable</aside>
 <h2 id='fix-header-and-trailer'>FIX Header and Trailer</h2>
 <p>The following defines the FIX messages standard header and trailer.</p>
 
