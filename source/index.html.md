@@ -1406,6 +1406,10 @@ For snapshot message, Cypator won’t send an acknowledgement.
 
 # Changelog
 
+### V1.0.4 - Wed, 20 Dec 2023
+* Maker API will not support Gap-fill (recovery) as default
+* Taker API will send trade reject as a response for duplicate order
+
 ### V1.0.3 - Sun, 12 Nov 2023
 Taker API, Market Data Request (35=V) added support for top of book (TOB)
 
