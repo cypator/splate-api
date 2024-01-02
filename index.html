@@ -337,10 +337,13 @@
                     <a href="#fix-header-and-trailer" class="toc-h2 toc-link" data-title="FIX Header and Trailer">FIX Header and Trailer</a>
                   </li>
                   <li>
+                    <a href="#websocket-api-introduction" class="toc-h2 toc-link" data-title="Websocket API Introduction">Websocket API Introduction</a>
+                  </li>
+                  <li>
                     <a href="#websocket-api-connectivity" class="toc-h2 toc-link" data-title="Websocket API Connectivity">Websocket API Connectivity</a>
                   </li>
                   <li>
-                    <a href="#websocket-api-sign-generation-for-authentication" class="toc-h2 toc-link" data-title="Websocket API Sign generation for authentication">Websocket API Sign generation for authentication</a>
+                    <a href="#websocket-api-sessions" class="toc-h2 toc-link" data-title="Websocket API Sessions">Websocket API Sessions</a>
                   </li>
               </ul>
           </li>
@@ -743,39 +746,46 @@ We can enable Gap-fill but it is not recommended.</p>
 <td>Y</td>
 </tr>
 </tbody></table>
+<h2 id='websocket-api-introduction'>Websocket API Introduction</h2>
+<p>Documents the websocket API used by Cypator Crypto Trading ECN.
+Cypator websocket provides two websocket session for communication.
+* Market session - used for market data subscription requests and streaming prices.
+* Trade session - used for sending orders and receiving execution reports.</p>
+
+<p>Market and Trade session require valid login, server identifier, client identifier and password(used only for hashing) for authentication.</p>
 <h2 id='websocket-api-connectivity'>Websocket API Connectivity</h2>
 <ul>
 <li>Only one market and trade connection per client supported, on new connection previous connection will be dropped.</li>
 <li>When the trade session goes down market data feed will not be consumed (Maker API) even if the market session is connected. Market data snapshot consumption will resume after the trade session is reconnected.</li>
+<li>Both market and trade session needs to be authenticated before any requests can be made.</li>
+<li>To keep alive both the market and trade session, the client needs to send a ping message every 30 seconds. </li>
 </ul>
-<h2 id='websocket-api-sign-generation-for-authentication'>Websocket API Sign generation for authentication</h2>
-<p>Use HMAC SHA256 method to hash the below string with a password and then perform Base64 encoding
-String to be encrypted = timestamp + &quot;/verify&quot;
-Timestamp needs to be within the current times 30-second range.</p>
+<h2 id='websocket-api-sessions'>Websocket API Sessions</h2>
+<ul>
+<li><p>The Cypator market websocket session supports the following subscription type:</p>
 
-<blockquote>
-<p>Java Example</p>
-</blockquote>
-<div class="highlight"><pre class="highlight java tab-java"><code>
-  <span class="nc">String</span> <span class="n">stringToHashAndEncode</span> <span class="o">=</span> <span class="n">timeStamp</span> <span class="o">+</span> <span class="s">"/verify"</span><span class="o">;</span>
-  <span class="nc">Mac</span> <span class="n">sha256HMAC</span> <span class="o">=</span> <span class="nc">Mac</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="s">"HmacSHA256"</span><span class="o">);</span>
+<ul>
+<li>Snapshot</li>
+</ul></li>
+<li><p>The Cypator market websocket session supports the following book type:</p>
 
-  <span class="nc">SecretKeySpec</span> <span class="n">secretKeySpec</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SecretKeySpec</span><span class="o">(</span><span class="n">passPhrase</span><span class="o">.</span><span class="na">getBytes</span><span class="o">(),</span> <span class="s">"HmacSHA256"</span><span class="o">);</span>
-  <span class="n">sha256HMAC</span><span class="o">.</span><span class="na">init</span><span class="o">(</span><span class="n">secretKeySpec</span><span class="o">);</span>
-  <span class="nc">String</span> <span class="n">hash</span> <span class="o">=</span> <span class="nc">Base64</span><span class="o">.</span><span class="na">getEncoder</span><span class="o">().</span><span class="na">encodeToString</span><span class="o">(</span><span class="n">sha256HMAC</span><span class="o">.</span><span class="na">doFinal</span><span class="o">(</span><span class="n">stringToHashAndEncode</span><span class="o">.</span><span class="na">getBytes</span><span class="o">()));</span>
-</code></pre></div>
-<blockquote>
-<p>Python Example</p>
-</blockquote>
-<div class="highlight"><pre class="highlight python tab-python"><code>
-  <span class="kn">import</span> <span class="nn">hashlib</span>
-  <span class="kn">import</span> <span class="nn">hmac</span>
-  <span class="kn">import</span> <span class="nn">base64</span>
+<ul>
+<li>Spot</li>
+</ul></li>
+<li><p>The Cypator trading websocket session supports the two types of orders</p>
 
-  <span class="n">string_to_hash_and_encode</span> <span class="o">=</span> <span class="n">timeStamp</span> <span class="o">+</span> <span class="s">"/verify"</span>
-  <span class="n">hash_obj</span> <span class="o">=</span> <span class="n">hmac</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="n">secret_key</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">hashlib</span><span class="p">.</span><span class="n">sha256</span><span class="p">)</span>
-  <span class="n">hash_value</span> <span class="o">=</span> <span class="n">base64</span><span class="p">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">hash_obj</span><span class="p">.</span><span class="n">digest</span><span class="p">()).</span><span class="n">decode</span><span class="p">(</span><span class="s">"utf-8"</span><span class="p">)</span>
-</code></pre></div><h1 id='fix-taker-api'>FIX Taker API</h1><h2 id='logon'>Logon</h2>
+<ul>
+<li>Limit</li>
+<li>Market</li>
+</ul></li>
+<li><p>The Cypator trading websocket session supports the following Time in force (TIF):</p>
+
+<ul>
+<li>IOC - Immediate or Cancel</li>
+<li>FOK - Fill or kill</li>
+</ul></li>
+</ul>
+<h1 id='fix-taker-api'>FIX Taker API</h1><h2 id='logon'>Logon</h2>
 <blockquote>
 <p>FIX 4.4 Client -&gt; Cypator</p>
 </blockquote>
@@ -2518,9 +2528,7 @@ Cypator will provide a unique ClOrdID <11>.</p>
 <td>Error message. Present in Order Reject</td>
 </tr>
 </tbody></table>
-<h1 id='websocket-maker-api'>Websocket Maker API</h1>
-<aside class="warning"> Not yet supported</aside>
-<h2 id='login'>Login</h2>
+<h1 id='websocket-maker-api'>Websocket Maker API</h1><h2 id='login'>Login</h2>
 <p>Both market and trade session needs to be authenticated before any requests can be made.</p>
 <h3 id='request-parameters'>Request parameters</h3>
 <blockquote>
@@ -2651,7 +2659,71 @@ Cypator will provide a unique ClOrdID <11>.</p>
 <td>Unix epoch time</td>
 </tr>
 </tbody></table>
-<h2 id='ping'>Ping</h2>
+<h3 id='signature-generation'>Signature generation</h3>
+<p>Signature needs to be generated at the time of making login request. It can be generated using the following steps:
+* Generate a string by concatenating password and constant string &quot;/verify&quot;
+* Signature would be Base64 encoded hash of the above string generates using HMAC SHA256 algorithm. </p>
+
+<blockquote>
+<p>Java code sample
+```java 
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
+import java.util.Base64;</p>
+</blockquote>
+
+<p>public class SignatureDemo {</p>
+
+<p>public static String getSign(String passPhrase, long timeStamp) {
+    try {
+      String stringToHashAndEncode = timeStamp + &quot;/verify&quot;;
+      Mac sha256HMAC = Mac.getInstance(&quot;HmacSHA256&quot;);</p>
+
+<p>SecretKeySpec secretKeySpec = new SecretKeySpec(passPhrase.getBytes(), &quot;HmacSHA256&quot;);
+      sha256HMAC.init(secretKeySpec);
+      String hash = Base64.getEncoder().encodeToString(sha256HMAC.doFinal(stringToHashAndEncode.getBytes()));
+      return hash;
+    } catch (Throwable t) {
+      return null;
+    }
+  }</p>
+
+<p>public static void main(String[] args) {
+    String signature = getSign(&quot;UfawYizemLAHMyAezkYQqLtQ3uJ9UQaXXJg6vrvL&quot;, System.currentTimeMillis());
+    System.out.println(&quot;Signature : &quot; + signature);
+  }
+}
+```</p>
+
+<blockquote>
+<p>Python Example</p>
+</blockquote>
+<div class="highlight"><pre class="highlight python tab-python"><code>
+  <span class="kn">import</span> <span class="nn">hashlib</span>
+  <span class="kn">import</span> <span class="nn">hmac</span>
+  <span class="kn">import</span> <span class="nn">base64</span>
+
+  <span class="n">string_to_hash_and_encode</span> <span class="o">=</span> <span class="n">timeStamp</span> <span class="o">+</span> <span class="s">"/verify"</span>
+  <span class="n">hash_obj</span> <span class="o">=</span> <span class="n">hmac</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="n">secret_key</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">hashlib</span><span class="p">.</span><span class="n">sha256</span><span class="p">)</span>
+  <span class="n">hash_value</span> <span class="o">=</span> <span class="n">base64</span><span class="p">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">hash_obj</span><span class="p">.</span><span class="n">digest</span><span class="p">()).</span><span class="n">decode</span><span class="p">(</span><span class="s">"utf-8"</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>getSign<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">local </span><span class="nv">passPhrase</span><span class="o">=</span><span class="nv">$1</span>
+    <span class="nb">local </span><span class="nv">timeStamp</span><span class="o">=</span><span class="nv">$2</span>
+
+    <span class="nb">local </span><span class="nv">stringToHashAndEncode</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">timeStamp</span><span class="k">}</span><span class="s2">/verify"</span>
+    <span class="nb">local hash
+
+    hash</span><span class="o">=</span><span class="si">$(</span><span class="nb">echo</span> <span class="nt">-n</span> <span class="s2">"</span><span class="nv">$stringToHashAndEncode</span><span class="s2">"</span> | openssl dgst <span class="nt">-sha256</span> <span class="nt">-hmac</span> <span class="s2">"</span><span class="nv">$passPhrase</span><span class="s2">"</span> <span class="nt">-binary</span> | <span class="nb">base64</span><span class="si">)</span>
+<span class="o">}</span>
+
+<span class="c"># Example usage:</span>
+<span class="nv">passPhrase</span><span class="o">=</span><span class="s2">"UfawYizemLAHMyAezkYQqLtQ3uJ9UQaXXJg6vrvL"</span>
+<span class="nv">timeStamp</span><span class="o">=</span><span class="s2">"1695616595908"</span>
+
+<span class="nv">result</span><span class="o">=</span><span class="si">$(</span>getSign <span class="s2">"</span><span class="nv">$passPhrase</span><span class="s2">"</span> <span class="s2">"</span><span class="nv">$timeStamp</span><span class="s2">"</span><span class="si">)</span>
+<span class="nb">echo</span> <span class="s2">"Result: </span><span class="nv">$result</span><span class="s2">"</span>
+
+</code></pre></div><h2 id='ping'>Ping</h2>
 <p>To keep the connection alive client needs to send a heartbeat message ping once every 30 seconds. If no heartbeat message is received for 30 seconds connection will be dropped.</p>
 
 <blockquote>
