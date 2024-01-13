@@ -522,6 +522,7 @@ For an IOC type order, there are two additional possible responses in addition t
 | 103 | OrdRejReason                                        | N                             | Error code. Present in Order Reject                                                                                                                                                                                   |
 | 58  | Text                                                | N                             | Error message. Present in Order Reject                                                                                                                                                                                |
 
+<aside class="warning">FutSettDate tag 64 will represent the time of the trade execution and not the settlement time, settlement time will be determined by the Prime Broker</aside>
 
 <aside class="notice">
 In the case where a Trade Acknowledgment and accompanying Trade Fill or Reject message are
@@ -529,8 +530,6 @@ not received within 5 seconds, from the time the trade request was sent, the Cli
 contact Cyaptor using the following support email address: support@cypator.com. This support inbox is manned 24 hours a day 7 days a week, providing global support at all hours. Contact with Cypator should be made via an automated email alert from the Client’s trading system. However, in the event that the Client cannot support this, we would expect a manual email or a call to our
 support desk.
 </aside>
-
-<aside class="warning">FutSettDate tag 64 will represent the time of the trade execution and not the settlement time, settlement time will be determined by the Prime Broker</aside>
 
 
 ## Trade Capture Report
