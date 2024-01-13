@@ -507,7 +507,7 @@ For an IOC type order, there are two additional possible responses in addition t
 | 20  | ExecTransType                                       | Y - FIX 4.2 <br /> N- FIX 4.4 | Only applicable to Fix 4.2 <br /> 0= New <br /> 1 = Cancel <br /> 2 = Correct                                                                                                                                         |
 | 150 | ExecType                                            | Y                             | FIX 4.2 <br /> 0 = New <br /> 1 = Partially Fill <br /> 2 = Fill <br /> 4 = Canceled <br /> 8 = Rejected <br /> FIX 4.4 <br /> 0 = New <br /> F = Trade (partial fill or fill)<br /> 4 = Canceled <br /> 8 = Rejected |
 | 39  | OrdStatus                                           | Y                             | 0 = New <br /> 1 = Partially Fill <br /> 2 = Fill <br /> 4 = Canceled <br /> 8 = Rejected                                                                                                                             |
-| 64  | FutSettDate                                         | N                             | Settlement date for order fills if exists.  In YYYYMMDD format                                                                                                                                                        |
+| 64  | FutSettDate                                         | N                             | Settlement date for order fills if exists.  In YYYYMMDD format (please see comment below regarding the nature of the date)                                                                                            |
 | 15  | Currency                                            | N                             | The currency or coin unit that represents the quantity                                                                                                                                                                |
 | 54  | Side                                                | Y                             | 1 (Buy) <br /> 2 (Sell)                                                                                                                                                                                               |
 | 55  | Symbol                                              | Y                             | The Asset - Coin and currency combination, e.g. EUR/USD, BTC/USD, ETH/BTC                                                                                                                                             |
@@ -529,6 +529,8 @@ not received within 5 seconds, from the time the trade request was sent, the Cli
 contact Cyaptor using the following support email address: support@cypator.com. This support inbox is manned 24 hours a day 7 days a week, providing global support at all hours. Contact with Cypator should be made via an automated email alert from the Client’s trading system. However, in the event that the Client cannot support this, we would expect a manual email or a call to our
 support desk.
 </aside>
+
+<aside class="warning">FutSettDate tag 64 will represent the time of the trade execution and not the settlement time, settlement time will be determined by the PB</aside>
 
 
 ## Trade Capture Report
