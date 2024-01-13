@@ -530,7 +530,7 @@ contact Cyaptor using the following support email address: support@cypator.com. 
 support desk.
 </aside>
 
-<aside class="warning">FutSettDate tag 64 will represent the time of the trade execution and not the settlement time, settlement time will be determined by the PB</aside>
+<aside class="warning">FutSettDate tag 64 will represent the time of the trade execution and not the settlement time, settlement time will be determined by the Prime Broker</aside>
 
 
 ## Trade Capture Report
