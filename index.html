@@ -1259,10 +1259,12 @@ Cypator requires that the ClOrdID <11> be unique.</p>
 </tbody></table>
 
 <aside class="notice">
-For market orders (40=1), Three conditions must be met:<br/>
+Cypator supports market orders (40=1) for both time in force (59) IOC and FOK. it is recommended to send market orders with time in force IOC for a better fill ratio (trade can be Filled (39=2), partially filled (39=1), or cancel (39=4)) and with the conditions:<br/>
 1. Price (44) to be used as TOB <br/>
 2. Order Type Market (40=1) <br/>
 3. Time in force to be IOC (59=3)
+<br/>
+In the case of market order with time in force FOK, trade can be filled (39=2) or canceled (39=4)
 </aside>
 <h2 id='order-reject'>Order Reject</h2>
 <p>This message is used by Cypator to reject an order message. This can happen if the order doesn’t comply with the FIX dictionary, naming issue, or exceeding throughput limitation</p>
