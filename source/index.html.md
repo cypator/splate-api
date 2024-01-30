@@ -1393,7 +1393,418 @@ For snapshot message, Cypator won’t send an acknowledgement.
 | ts                    | String  |          |                                                    |
 
 
-## Error Codes
+
+# Websocket Taker API
+
+## Login
+
+Both market and trade session needs to be authenticated before any requests can be made.
+
+### Request parameters
+
+
+> Request
+
+```json
+{
+  "op": "logon",
+  "arg": {
+    "apiKey": "User1",
+    "sign": "7L+zFQ+CEgGu5rzCj4+BdV2/uUHGqddA9pI6ztsRRPs=",
+    "server": "cs1",
+    "client": "cc11"
+  },
+  "ts": 1667835722651
+}
+```
+
+| Parameter        | Type    | Required | Description     | 
+|------------------|---------|----------|-----------------|
+| op               | String  | Yes      | Operation logon |
+| arg              | Object  | Yes      | Login details   |
+| -> <br /> apiKey | String  | Yes      | API Key         |
+| -> <br /> sign   | String  | Yes      |                 |
+| -> <br /> server | String  | Yes      | Server id       |
+| -> <br /> client | String  | Yes      | Client id       |
+| ts               | String  | Yes      | Unix epoch time |
+
+### Response
+
+> Success Response
+
+```json
+{
+  "op": "logon",
+  "arg": {
+    "code": 0
+  },
+  "ts": 1682346263287
+}
+```
+
+> Error response
+
+```json
+{
+  "op": "logon",
+  "arg": {
+    "code": 50104,
+    "errMsg": "Invalid credentials"
+  },
+  "ts": "1682346263287"
+}
+```
+
+| Parameter       | Type     | Required | Description                                    | 
+|-----------------|----------|----------|------------------------------------------------|
+| op              | String   | Yes      | Operation logon                                |
+| arg             | Object   | Yes      | Login details                                  |
+| -> <br />code   | int      | Yes      | 0 - success <br / > non zero for failure       |
+| -> <br />errMsg | String   | no       | Error message, populated only in case of error |
+| ts              | String   | Yes      | Unix epoch time                                |
+
+## Ping
+
+To keep the connection alive client needs to send a heartbeat message ping once every 30 seconds. If no heartbeat message is received for 30 seconds connection will be dropped.
+
+> Request
+
+```json
+{
+  "op": "ping"
+}
+```
+
+> Response
+
+```json
+{
+  "op": "ping"
+}
+```
+
+| Parameter | Type   | Required | Description    | 
+|-----------|--------|----------|----------------|
+| op        | String | Yes      | Operation ping |
+
+## Subscribe
+To receive market data products needs to be subscribed. Taker sends below request to Cypator
+### Request Example
+```json
+{
+  "op": "subscribe",
+  "arg": {
+    "instrument": "BTC/USD",
+    "side": "BOTH",
+    "subscriptionId": "FhervfD",
+    "subscriptionRequestType": "snapshot",
+    "typeBook": "SPOT",
+    "aggBook": 0,
+    "marketDepth":0
+  },
+  "ts": 1667835722651
+}
+```
+### Success Response Example
+```json
+{
+  "ts": "1667835722651",
+  "op": "subscribe",
+  "arg":
+  {
+    "instrument": "BTC/USD",
+    "side": "BOTH",
+    "subscriptionId": "FhervfD",
+    "subscriptionRequestType": "snapshot",
+    "typeBook": "SPOT",
+    "aggBook": 0,
+    "marketDepth": 0,
+    "code": 0
+  }
+}
+```
+### Error response Example
+```json
+{
+  "ts": "1667835722651",
+  "op": "subscribe",
+  "arg":
+  {
+    "instrument": "BTC/USD",
+    "side": "BOTH",
+    "subscriptionId": "FhervfD",
+    "subscriptionRequestType": "snapshot",
+    "typeBook": "SPOT",
+    "aggBook": 0,
+    "marketDepth": 0,
+    "errMsg": "Duplicate market data request symbol",
+    "code": 50206
+  }
+}
+```
+### Request parameters
+| Parameter                        | Type    | Required | Description                                      |
+|----------------------------------|---------|----------|--------------------------------------------------|
+| op                               | String  | Yes      | Operation subscribe                              |
+| arg                              | Object  | Yes      | Subscription details                             |
+| -> <br />instrument              | String  | Yes      | Instrument id                                    |
+| -> <br />side                    | String  | Yes      | Side for subscription. Values BOTH               |
+| -> <br />subscriptionId          | String  | Yes      | Unique subscription id                           |
+| -> <br />subscriptionRequestType | String  | Yes      | Subscription type. Values : snapshot             |
+| -> <br />typeBook                | String  | Yes      | Type of book. Values: Spot                       |
+| -> <br />aggBook                 | Integer | Yes      | Aggregate book. Values : 0 for false, 1 for true |
+| -> <br />marketDepth             | Integer | Yes      | Market Depth. Values: 0,1                        |
+| ts                               | Long    | Yes      | Unix epoch time                                  |
+
+
+### Response
+| Parameter                        | Type    | Description                                      |
+|----------------------------------|---------|--------------------------------------------------|
+| op                               | String  | Operation subscribe                              |
+| arg                              | Object  | Subscription details                             |
+| -> <br />instrument              | String  | Instrument id                                    |
+| -> <br />side                    | String  | Side for subscription. Values BOTH               |
+| -> <br />subscriptionId          | String  | Unique subscription id                           |
+| -> <br />subscriptionRequestType | String  | Subscription type. Values : snapshot             |
+| -> <br />typeBook                | String  | Type of book. Values: Spot                       |
+| -> <br />aggBook                 | Integer | Aggregate book. Values : 0 for false, 1 for true |
+| -> <br />marketDepth             | Integer | Market Depth. Values: 0,1                        |
+| -> <br />code                    | int     | Zero for success, non zero for failure           |
+| -> <br />errMsg                  | String  | Error message, populated only in case of error   |
+| ts                               | Long    | Unix epoch time                                  |
+
+## Unsubscribe
+To stop receiving market data unsubscribe call for the product needs to be made. Taker sends the below request to Cypator.
+### Request Example
+```json
+{
+  "op": "unsubscribe",
+  "arg": {
+    "subscriptionId": "FhervfD",
+    "instrument": "BTC/USD",
+    "typeBook": "SPOT"
+  },
+  "timestamp": 1667835722653
+}
+```
+### Success Response Example
+```json
+{
+    "op": "unsubscribe",
+    "arg":
+    {
+        "subscriptionId": "FhervfD",
+        "instrument": "BTC/USD",
+        "typeBook": "SPOT",
+        "code": "0"
+    },
+    "ts": 1706601058528
+}
+```
+### Error response Example
+```json
+{
+    "ts": "1667835722653",
+    "op": "unsubscribe",
+    "arg":
+    {
+        "subscriptionId": "FhervfD",
+        "instrument": "BTC/USD",
+        "typeBook": "SPOT",
+        "errMsg": "Invalid subscription id",
+        "code": 50251
+    }
+}
+```
+### Request parameters
+| Parameter               | Type   | Required | Description                |
+|-------------------------|--------|----------|----------------------------|
+| op                      | String | Yes      | Operation subscribe        |
+| arg                     | Object | Yes      | Subscription details       |
+| -> <br />instrument     | String | Yes      | Instrument id              |
+| -> <br />subscriptionId | String | Yes      | Unique subscription id     |
+| -> <br />typeBook       | String | Yes      | Type of book. Values: Spot |
+| ts                      | Long   | Yes      | Unix epoch time            |
+### Response
+| Parameter               | Type   | Description                                    |
+|-------------------------|--------|------------------------------------------------|
+| op                      | String | Operation subscribe                            |
+| arg                     | Object | Subscription details                           |
+| -> <br />instrument     | String | Instrument id                                  |
+| -> <br />subscriptionId | String | Unique subscription id                         |
+| -> <br />typeBook       | String | Type of book. Values: Spot                     |
+| -> <br />code           | int    | Zero for success, non zero for failure         |
+| -> <br />errMsg         | String | Error message, populated only in case of error |
+| ts                      | Long   | Unix epoch time                                |
+
+## Market data snapshot
+For subscribed products market data snapshot will be sent as below which need not be acknowledged. Cypator sends market data snapshot message to Taker.
+### Request Example
+```json
+{
+    "op": "snapshot",
+    "arg":
+    {
+        "instrument": "BTC/USD",
+        "subscriptionId": "FhervfD"
+    },
+    "data":
+    [
+        {
+            "bids":
+            [[202.15,1.0E-8],[202.16,2.0E-8],[202.17,3.0E-8],[202.18,4.0E-8],[202.19,5.0E-8],[202.2,6.0E-8],[202.21,7.0E-8],[202.22,8.0E-8],[202.23,9.0E-8],[202.24,1.0E-7]],
+            "asks":
+            [[202.35,1.0E-8],[202.36,2.0E-8],[202.37,3.0E-8],[202.38,4.0E-8],[202.39,5.0E-8],[202.4,6.0E-8],[202.41,7.0E-8],[202.42,8.0E-8],[202.43,9.0E-8],[202.44,1.0E-7]]
+        }
+    ]
+}
+```
+### Request parameters
+| Parameter               | Type   | Description                                                 |
+|-------------------------|--------|-------------------------------------------------------------|
+| op                      | String | Operation subscribe                                         |
+| arg                     | Object | Subscription details                                        |
+| -> <br />instrument     | String | Instrument name                                             |
+| -> <br />subscriptionId | String | Unique identifier for subscription                          |
+| data                    | Array  | Array containing of object of bids and asks                 |
+| -> <br />bids           | Array  | List of bids. First item is price, second item is quantity. |
+| -> <br />asks           | Array  | List of asks. First item is price, second item is quantity. |
+
+## Order
+To place an order taker sends request to Cypator.
+### Request Example
+```json
+{
+  "op": "order",
+  "arg": {
+    "instrument": "BTC/USD",
+    "side": "BUY",
+    "clOrderId": "SDfcsef35",
+    "orderType": "LIMIT",
+    "tif": "FOK",
+    "account": "tag1",
+    "quantity": 100,
+    "price": 19123
+  },
+  "ts": 1667835722653
+}
+```
+### Success Response Example
+```json
+{
+    "op": "order",
+    "arg":
+    {
+        "instrument": "BTC/USD",
+        "side": "BUY",
+        "clOrderId": "SDfcsef35",
+        "orderType": "LIMIT",
+        "tif": "FOK",
+        "account": "tag1",
+        "quantity": 100.0,
+        "price": 19123.0,
+        "code": 0
+    },
+    "ts": 1706601667000
+}
+```
+### Error response Example
+```json
+{
+    "ts": "1667835722653",
+    "op": "order",
+    "arg":
+    {
+        "instrument": "BTC/USD",
+        "side": "B",
+        "clOrderId": "SDfcsef35",
+        "orderType": "LIMIT",
+        "tif": "FOK",
+        "account": "tag1",
+        "quantity": 100,
+        "price": 19123,
+        "errMsg": "Unsupported side, only BUY or SELL allowed",
+        "code": 50301
+    }
+}
+```
+### Request parameters
+| Parameter           | Type   | Required | Description                                |
+|---------------------|--------|----------|--------------------------------------------|
+| op                  | String | Yes      | Operation subscribe                        |
+| arg                 | Object | Yes      | Subscription details                       |
+| -> <br />instrument | String | Yes      | Instrument name                            |
+| -> <br />side       | String | Yes      | Side of order. Values : Buy, Sell          |
+| -> <br />clOrderId  | String | Yes      | Unique identifier for order.               |
+| -> <br />orderType  | String | Yes      | Order type. Values : MARKET, LIMIT         |
+| -> <br />tif        | String | Yes      | Time in force for order. Values : FOK, IOC |
+| -> <br />account    | String | Yes      | Name of account                            |
+| -> <br />quantity   | Double | Yes      | Quantity of order                          |
+| -> <br />price      | Double | Yes      | Price                                      |
+### Response
+| Parameter           | Type   | Description                                    |
+|---------------------|--------|------------------------------------------------|
+| op                  | String | Operation subscribe                            |
+| arg                 | Object | Subscription details                           |
+| -> <br />instrument | String | Instrument name                                |
+| -> <br />side       | String | Side of order. Values : Buy, Sell              |
+| -> <br />clOrderId  | String | Unique identifier for order.                   |
+| -> <br />orderType  | String | Order type. Values : MARKET, LIMIT             |
+| -> <br />tif        | String | Time in force for order. Values : FOK, IOC     |
+| -> <br />account    | String | Name of account                                |
+| -> <br />quantity   | Double | Quantity of order                              |
+| -> <br />price      | Double | Price                                          |
+| -> <br />code       | int    | Zero for success, non zero for failure         |
+| -> <br />errMsg     | String | Error message, populated only in case of error |
+
+## Execution report
+For placed orders execution report will be sent in the below format. It need not be acknowledged. Cypator sends message to taker.
+### Request Example
+```json
+{
+    "ts": "1706601667037",
+    "op": "trade",
+    "arg":
+    {
+        "instrument": "BTC/USD",
+        "side": "BUY",
+        "clOrderId": "SDfcsef35",
+        "orderId": "A010u2PAFQD",
+        "tradeId": "OGdjCsRA",
+        "orderType": "LIMIT",
+        "state": "FILLED",
+        "quantity": 100.0,
+        "cumQty": 100.0,
+        "lastQty": 100.0,
+        "leaveQty": 0.0,
+        "lastPrice": 19123.2,
+        "price": 19123.2,
+        "avgPrice": 19123.2
+    }
+}
+```
+### Request parameters
+| Parameter              | Type   | Description                                                               |
+|------------------------|--------|---------------------------------------------------------------------------|
+| op                     | String | Operation subscribe                                                       |
+| arg                    | Object | Subscription details                                                      |
+| -> <br />instrument    | String | Instrument name                                                           |
+| -> <br />side          | String | Side of order. Values : Buy, Sell                                         |
+| -> <br />clOrderId     | String | Unique identifier for order.                                              |
+| -> <br />orderId       | String | Order Id                                                                  |
+| -> <br />tradeId       | String | Trade id                                                                  |
+| -> <br />orderType     | String | Order type. Values : MARKET, LIMIT                                        |
+| -> <br />state         | String | State of the order. Values : FILLED, CANCELED, PARTIALLY_FILLED, REJECTED |
+| -> <br />quantity      | Double | Quantity of order                                                         |
+| -> <br />cumQuantity   | Double | Cumulative quantity                                                       |
+| -> <br />lastQuantity  | Double | Last quantity                                                             |
+| -> <br />leaveQuantity | Double | Leave Quantity                                                            |
+| -> <br />lastPrice     | Double | Last Price                                                                |
+| -> <br />price         | Double | price                                                                     |
+| -> <br />avgPrice      | Double | average price                                                             |
+
+
+## Error Codes for websocket API
 
 | Error Code | Description                             | 
 |------------|-----------------------------------------|
