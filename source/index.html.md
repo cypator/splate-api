@@ -1418,7 +1418,7 @@ Client -> Cypator<br / >
 
 ## Login
 
-Client -> Cypator.
+Client -> Cypator. <br / >
 Both market and trade session needs to be authenticated before any requests can be made.
 
 ### Request parameters
@@ -1486,8 +1486,9 @@ Both market and trade session needs to be authenticated before any requests can 
 
 ## Ping
 
-Client -> Cypator.
-To keep the connection alive client needs to send a heartbeat message ping once every 30 seconds. If no heartbeat message is received for 30 seconds connection will be dropped.
+Client -> Cypator. <br / >
+To keep the connection alive client needs to send a heartbeat message ping once every 30 seconds. If no heartbeat message is received for 30 seconds connection will be dropped.<br/>
+Rate limit : 1 request per 15 seconds Connection dropped in case of rate limit breach.
 
 > Request
 
