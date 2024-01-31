@@ -4056,9 +4056,12 @@ Once client subscribed to desired instrument a stream of market data snapshot wi
 </tr>
 </tbody></table>
 <h2 id='order-2'>Order</h2>
-<p>Cypator -&gt; Client.
+<p>Client -&gt; Cyaptor. <br/>
 To place an order taker sends request to Cypator.</p>
-<h3 id='request-example'>Request Example</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+
+<blockquote>
+<p>Order</p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"arg"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nl">"instrument"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USD"</span><span class="p">,</span><span class="w">
@@ -4072,7 +4075,10 @@ To place an order taker sends request to Cypator.</p>
   </span><span class="p">},</span><span class="w">
   </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1667835722653</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='success-response-example'>Success Response Example</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span></code></pre></div>
+<p>Order acknowledgement success</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"arg"</span><span class="p">:</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -4088,7 +4094,11 @@ To place an order taker sends request to Cypator.</p>
     </span><span class="p">},</span><span class="w">
     </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1706601667000</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='error-response-example'>Error response Example</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Order Single acknowledgement failure</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1667835722653"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"arg"</span><span class="p">:</span><span class="w">
@@ -4244,10 +4254,19 @@ To place an order taker sends request to Cypator.</p>
 <td>Error message, populated only in case of error</td>
 </tr>
 </tbody></table>
+
+<aside class="notice">
+Cypator supports market orders (orderType) for both time in force (tif) IOC and FOK. it is recommended to send orders with time in force IOC for a better fill ratio (trade can be Filled, partially filled, or cancel) and with the conditions:<br/>
+1. Price (price) to be used as TOB <br/>
+2. Order Type Market (orderType) <br/>
+3. Time in force to be IOC (tip)
+<br/>
+In the case of market order with time in force FOK, trade can be filled, or canceled.
+</aside>
 <h2 id='execution-report-3'>Execution report</h2>
 <p>Client -&gt; Cypator.
 For placed orders execution report will be sent in the below format. It need not be acknowledged. Cypator sends message to taker.</p>
-<h3 id='request-example-2'>Request Example</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<h3 id='request-example'>Request Example</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1706601667037"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"trade"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"arg"</span><span class="p">:</span><span class="w">
