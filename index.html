@@ -3907,7 +3907,7 @@ To stop receiving market data unsubscribe call for the product needs to be made.
 <td>-&gt; <br />typeBook</td>
 <td>String</td>
 <td>Yes</td>
-<td>Type of book. Values: Spot</td>
+<td>Type of book. Values: <br/> Spot</td>
 </tr>
 <tr>
 <td>ts</td>
@@ -3966,9 +3966,13 @@ To stop receiving market data unsubscribe call for the product needs to be made.
 </tr>
 </tbody></table>
 <h2 id='market-data-snapshot'>Market data snapshot</h2>
-<p>Client -&gt; Cyaptor.
-For subscribed products market data snapshot will be sent as below which need not be acknowledged. Cypator sends market data snapshot message to Taker.</p>
-<h3 id='request-example'>Request Example</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<p>Cypator -&gt; Client.<br/>
+Once client subscribed to desired instrument a stream of market data snapshot will be sent to him.</p>
+
+<blockquote>
+<p>Snapshot</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"snapshot"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"arg"</span><span class="p">:</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -3979,9 +3983,31 @@ For subscribed products market data snapshot will be sent as below which need no
     </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="nl">"bids"</span><span class="p">:</span><span class="w">
-            </span><span class="p">[[</span><span class="mf">202.15</span><span class="p">,</span><span class="mf">1.0E-8</span><span class="p">],[</span><span class="mf">202.16</span><span class="p">,</span><span class="mf">2.0E-8</span><span class="p">],[</span><span class="mf">202.17</span><span class="p">,</span><span class="mf">3.0E-8</span><span class="p">],[</span><span class="mf">202.18</span><span class="p">,</span><span class="mf">4.0E-8</span><span class="p">],[</span><span class="mf">202.19</span><span class="p">,</span><span class="mf">5.0E-8</span><span class="p">],[</span><span class="mf">202.2</span><span class="p">,</span><span class="mf">6.0E-8</span><span class="p">],[</span><span class="mf">202.21</span><span class="p">,</span><span class="mf">7.0E-8</span><span class="p">],[</span><span class="mf">202.22</span><span class="p">,</span><span class="mf">8.0E-8</span><span class="p">],[</span><span class="mf">202.23</span><span class="p">,</span><span class="mf">9.0E-8</span><span class="p">],[</span><span class="mf">202.24</span><span class="p">,</span><span class="mf">1.0E-7</span><span class="p">]],</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+              </span><span class="p">[</span><span class="mf">42732.70</span><span class="p">,</span><span class="mf">0.1</span><span class="p">],</span><span class="w">
+              </span><span class="p">[</span><span class="mf">42732.71</span><span class="p">,</span><span class="mf">0.2</span><span class="p">],</span><span class="w">
+              </span><span class="p">[</span><span class="mf">42732.72</span><span class="p">,</span><span class="mf">0.3</span><span class="p">],</span><span class="w">
+              </span><span class="p">[</span><span class="mf">42732.73</span><span class="p">,</span><span class="mf">0.4</span><span class="p">],</span><span class="w">
+              </span><span class="p">[</span><span class="mf">42732.74</span><span class="p">,</span><span class="mf">0.5</span><span class="p">],</span><span class="w">
+              </span><span class="p">[</span><span class="mf">42732.75</span><span class="p">,</span><span class="mf">0.6</span><span class="p">],</span><span class="w">
+              </span><span class="p">[</span><span class="mf">42732.76</span><span class="p">,</span><span class="mf">0.6</span><span class="p">],</span><span class="w">
+              </span><span class="p">[</span><span class="mf">42732.77</span><span class="p">,</span><span class="mf">0.7</span><span class="p">],</span><span class="w">
+              </span><span class="p">[</span><span class="mf">42732.78</span><span class="p">,</span><span class="mf">0.8</span><span class="p">],</span><span class="w">
+              </span><span class="p">[</span><span class="mf">42732.79</span><span class="p">,</span><span class="mf">0.9</span><span class="p">]</span><span class="w">
+            </span><span class="p">],</span><span class="w">
             </span><span class="nl">"asks"</span><span class="p">:</span><span class="w">
-            </span><span class="p">[[</span><span class="mf">202.35</span><span class="p">,</span><span class="mf">1.0E-8</span><span class="p">],[</span><span class="mf">202.36</span><span class="p">,</span><span class="mf">2.0E-8</span><span class="p">],[</span><span class="mf">202.37</span><span class="p">,</span><span class="mf">3.0E-8</span><span class="p">],[</span><span class="mf">202.38</span><span class="p">,</span><span class="mf">4.0E-8</span><span class="p">],[</span><span class="mf">202.39</span><span class="p">,</span><span class="mf">5.0E-8</span><span class="p">],[</span><span class="mf">202.4</span><span class="p">,</span><span class="mf">6.0E-8</span><span class="p">],[</span><span class="mf">202.41</span><span class="p">,</span><span class="mf">7.0E-8</span><span class="p">],[</span><span class="mf">202.42</span><span class="p">,</span><span class="mf">8.0E-8</span><span class="p">],[</span><span class="mf">202.43</span><span class="p">,</span><span class="mf">9.0E-8</span><span class="p">],[</span><span class="mf">202.44</span><span class="p">,</span><span class="mf">1.0E-7</span><span class="p">]]</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+              </span><span class="p">[</span><span class="mf">42733.70</span><span class="p">,</span><span class="mf">0.1</span><span class="p">],</span><span class="w">
+              </span><span class="p">[</span><span class="mf">42733.71</span><span class="p">,</span><span class="mf">0.2</span><span class="p">],</span><span class="w">
+              </span><span class="p">[</span><span class="mf">42733.72</span><span class="p">,</span><span class="mf">0.3</span><span class="p">],</span><span class="w">
+              </span><span class="p">[</span><span class="mf">42733.73</span><span class="p">,</span><span class="mf">0.4</span><span class="p">],</span><span class="w">
+              </span><span class="p">[</span><span class="mf">42733.74</span><span class="p">,</span><span class="mf">0.5</span><span class="p">],</span><span class="w">
+              </span><span class="p">[</span><span class="mf">42733.75</span><span class="p">,</span><span class="mf">0.6</span><span class="p">],</span><span class="w">
+              </span><span class="p">[</span><span class="mf">42733.76</span><span class="p">,</span><span class="mf">0.6</span><span class="p">],</span><span class="w">
+              </span><span class="p">[</span><span class="mf">42733.77</span><span class="p">,</span><span class="mf">0.7</span><span class="p">],</span><span class="w">
+              </span><span class="p">[</span><span class="mf">42733.78</span><span class="p">,</span><span class="mf">0.8</span><span class="p">],</span><span class="w">
+              </span><span class="p">[</span><span class="mf">42733.79</span><span class="p">,</span><span class="mf">0.9</span><span class="p">]</span><span class="w">
+            </span><span class="p">]</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -4032,7 +4058,7 @@ For subscribed products market data snapshot will be sent as below which need no
 <h2 id='order-2'>Order</h2>
 <p>Cypator -&gt; Client.
 To place an order taker sends request to Cypator.</p>
-<h3 id='request-example-2'>Request Example</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<h3 id='request-example'>Request Example</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"arg"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nl">"instrument"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USD"</span><span class="p">,</span><span class="w">
@@ -4221,7 +4247,7 @@ To place an order taker sends request to Cypator.</p>
 <h2 id='execution-report-3'>Execution report</h2>
 <p>Client -&gt; Cypator.
 For placed orders execution report will be sent in the below format. It need not be acknowledged. Cypator sends message to taker.</p>
-<h3 id='request-example-3'>Request Example</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<h3 id='request-example-2'>Request Example</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1706601667037"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"trade"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"arg"</span><span class="p">:</span><span class="w">
