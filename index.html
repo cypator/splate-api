@@ -3447,7 +3447,7 @@ For snapshot message, Cypator won’t send an acknowledgement.</p>
 </tr>
 </tbody></table>
 <h1 id='websocket-taker-api'>Websocket Taker API</h1><h2 id='login-2'>Login</h2>
-<p>Client -&gt; Cypator.
+<p>Client -&gt; Cypator. <br / >
 Both market and trade session needs to be authenticated before any requests can be made.</p>
 <h3 id='request-parameters-2'>Request parameters</h3>
 <blockquote>
@@ -3579,8 +3579,9 @@ Both market and trade session needs to be authenticated before any requests can 
 </tr>
 </tbody></table>
 <h2 id='ping-2'>Ping</h2>
-<p>Client -&gt; Cypator.
-To keep the connection alive client needs to send a heartbeat message ping once every 30 seconds. If no heartbeat message is received for 30 seconds connection will be dropped.</p>
+<p>Client -&gt; Cypator. <br / >
+To keep the connection alive client needs to send a heartbeat message ping once every 30 seconds. If no heartbeat message is received for 30 seconds connection will be dropped.<br/>
+Rate limit : 1 request per 15 seconds Connection dropped in case of rate limit breach.</p>
 
 <blockquote>
 <p>Request</p>
