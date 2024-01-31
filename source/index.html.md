@@ -1658,14 +1658,14 @@ To stop receiving market data unsubscribe call for the product needs to be made.
 ```
 
 ### Request parameters
-| Parameter               | Type   | Required | Description                |
-|-------------------------|--------|----------|----------------------------|
-| op                      | String | Yes      | Operation subscribe        |
-| arg                     | Object | Yes      | Subscription details       |
-| -> <br />instrument     | String | Yes      | Instrument id              |
-| -> <br />subscriptionId | String | Yes      | Unique subscription id     |
-| -> <br />typeBook       | String | Yes      | Type of book. Values: Spot |
-| ts                      | Long   | Yes      | Unix epoch time            |
+| Parameter               | Type   | Required | Description                      |
+|-------------------------|--------|----------|----------------------------------|
+| op                      | String | Yes      | Operation subscribe              |
+| arg                     | Object | Yes      | Subscription details             |
+| -> <br />instrument     | String | Yes      | Instrument id                    |
+| -> <br />subscriptionId | String | Yes      | Unique subscription id           |
+| -> <br />typeBook       | String | Yes      | Type of book. Values: <br/> Spot |
+| ts                      | Long   | Yes      | Unix epoch time                  |
 
 ### Response
 | Parameter               | Type   | Description                                    |
@@ -1681,9 +1681,11 @@ To stop receiving market data unsubscribe call for the product needs to be made.
 
 ## Market data snapshot
 
-Client -> Cyaptor.
-For subscribed products market data snapshot will be sent as below which need not be acknowledged. Cypator sends market data snapshot message to Taker.
-### Request Example
+Cypator -> Client.<br/>
+Once client subscribed to desired instrument a stream of market data snapshot will be sent to him.
+
+> Snapshot
+
 ```json
 {
     "op": "snapshot",
@@ -1696,9 +1698,31 @@ For subscribed products market data snapshot will be sent as below which need no
     [
         {
             "bids":
-            [[202.15,1.0E-8],[202.16,2.0E-8],[202.17,3.0E-8],[202.18,4.0E-8],[202.19,5.0E-8],[202.2,6.0E-8],[202.21,7.0E-8],[202.22,8.0E-8],[202.23,9.0E-8],[202.24,1.0E-7]],
+            [
+              [42732.70,0.1],
+              [42732.71,0.2],
+              [42732.72,0.3],
+              [42732.73,0.4],
+              [42732.74,0.5],
+              [42732.75,0.6],
+              [42732.76,0.6],
+              [42732.77,0.7],
+              [42732.78,0.8],
+              [42732.79,0.9]
+            ],
             "asks":
-            [[202.35,1.0E-8],[202.36,2.0E-8],[202.37,3.0E-8],[202.38,4.0E-8],[202.39,5.0E-8],[202.4,6.0E-8],[202.41,7.0E-8],[202.42,8.0E-8],[202.43,9.0E-8],[202.44,1.0E-7]]
+            [
+              [42733.70,0.1],
+              [42733.71,0.2],
+              [42733.72,0.3],
+              [42733.73,0.4],
+              [42733.74,0.5],
+              [42733.75,0.6],
+              [42733.76,0.6],
+              [42733.77,0.7],
+              [42733.78,0.8],
+              [42733.79,0.9]
+            ]
         }
     ]
 }
