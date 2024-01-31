@@ -3614,7 +3614,7 @@ Rate limit : 1 request per 15 seconds Connection dropped in case of rate limit b
 </tbody></table>
 <h2 id='subscribe'>Subscribe</h2>
 <p>Client -&gt; Cyaptor. <br/>
-Client will subscribe desired instruments to be able to retrieve a stream of market data.</p>
+Client will subscribe to desired instruments to be able to retrieve a stream of market data.</p>
 
 <blockquote>
 <p>Request Example</p>
@@ -3746,67 +3746,80 @@ Client will subscribe desired instruments to be able to retrieve a stream of mar
 <tr>
 <th>Parameter</th>
 <th>Type</th>
+<th>Required</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>op</td>
 <td>String</td>
+<td>Yes</td>
 <td>Operation subscribe</td>
 </tr>
 <tr>
 <td>arg</td>
 <td>Object</td>
+<td>Yes</td>
 <td>Subscription details</td>
 </tr>
 <tr>
 <td>-&gt; <br />instrument</td>
 <td>String</td>
+<td>Yes</td>
 <td>Instrument id</td>
 </tr>
 <tr>
 <td>-&gt; <br />side</td>
 <td>String</td>
+<td>Yes</td>
 <td>Side for subscription. Values BOTH</td>
 </tr>
 <tr>
 <td>-&gt; <br />subscriptionId</td>
 <td>String</td>
+<td>Yes</td>
 <td>Unique subscription id</td>
 </tr>
 <tr>
 <td>-&gt; <br />subscriptionRequestType</td>
 <td>String</td>
+<td>Yes</td>
 <td>Subscription type. Values: <br/> snapshot</td>
 </tr>
 <tr>
 <td>-&gt; <br />typeBook</td>
 <td>String</td>
+<td>Yes</td>
 <td>Type of book. Values: <br/> Spot</td>
 </tr>
 <tr>
 <td>-&gt; <br />aggBook</td>
 <td>Integer</td>
+<td>Yes</td>
 <td>Aggregate book. Values: <br/> 0 for false <br/> 1 for true</td>
 </tr>
 <tr>
 <td>-&gt; <br />marketDepth</td>
 <td>Integer</td>
+<td>Yes</td>
 <td>Market Depth. Values: <br/> 0 <br/> 1</td>
 </tr>
 <tr>
 <td>-&gt; <br />code</td>
 <td>int</td>
+<td>Yes</td>
 <td>Zero for success, non zero for failure</td>
 </tr>
 <tr>
 <td>-&gt; <br />errMsg</td>
 <td>String</td>
+<td>No</td>
 <td>Error message, populated only in case of error</td>
 </tr>
 <tr>
 <td>ts</td>
 <td>Long</td>
+<td>Yes</td>
 <td>Unix epoch time</td>
 </tr>
 </tbody></table>
