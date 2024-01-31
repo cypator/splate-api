@@ -1145,17 +1145,17 @@ Subscription request sent from Cypator to Maker. this message will be used for b
 }
 ```
 
-| Parameter                         | Type   | Required | Description                          | 
-|-----------------------------------|--------|----------|--------------------------------------|
-| op                                | String | Yes      | Operation subscribe                  |
-| arg                               | Object | Yes      | Operation subscribe                  |
-| -> <be /> instrument              | String | Yes      | Instrument name                      |
-| -> <be /> side                    | String | Yes      | side, possible value: BOTH           |
-| -> <be /> subscriptionId          | String | Yes      | Unique Market Data Request ID        |
-| -> <be /> subscriptionRequestType | String | Yes      | Subscription type, values : snapshot |
-| -> <be /> typeBook                | String | Yes      | Type of book, values : SPOT          |
-| -> <be /> AggregatedBook          | int    | no       | always No (0)                        |
-| ts                                | String | Yes      | Unix epoch time                      |
+| Parameter                         | Type   | Required | Description                               | 
+|-----------------------------------|--------|----------|-------------------------------------------|
+| op                                | String | Yes      | Operation subscribe                       |
+| arg                               | Object | Yes      | Operation subscribe                       |
+| -> <be /> instrument              | String | Yes      | Instrument name                           |
+| -> <be /> side                    | String | Yes      | side, possible value: BOTH                |
+| -> <be /> subscriptionId          | String | Yes      | Unique Market Data Request ID             |
+| -> <be /> subscriptionRequestType | String | Yes      | Subscription type, values: <br /> snapshot |
+| -> <be /> typeBook                | String | Yes      | Type of book, values: <br /> SPOT         |
+| -> <be /> AggregatedBook          | int    | no       | always No (0)                             |
+| ts                                | String | Yes      | Unix epoch time                           |
 
 
 ### Response parameter
@@ -1202,8 +1202,8 @@ Subscription request sent from Cypator to Maker. this message will be used for b
 | -> <br /> instrument                  | String | Yes      | Instrument name                                                                                                                                            |
 | -> <br /> side                        | String | Yes      | side, possible value: BOTH                                                                                                                                 |
 | -> <br /> subscriptionId              | String | Yes      | Unique Market Data Request ID, echoed back from subscribe                                                                                                  |
-| -> <br /> subscriptionRequestType     | String | Yes      | Subscription type echoed back from subscribe, values : snapshot                                                                                            |
-| -> <br /> typeBook                    | String | Yes      | Type of book echoed back from subscribe, values : SPOT                                                                                                     |
+| -> <br /> subscriptionRequestType     | String | Yes      | Subscription type echoed back from subscribe, values: <br /> snapshot                                                                                      |
+| -> <br /> typeBook                    | String | Yes      | Type of book echoed back from subscribe, values: <br /> SPOT                                                                                               |
 | -> <br /> code                        | String | Yes      | Zero for success, non-zero in case of failure, refer error codes table for standard error. In case of a missing error code, any-non zero value is accepted |
 | -> <br /> errMsg                      | String | No       | To be populate in case of failure only. Standard error defined in the table. In case of missing error code custom error message is accepted                |
 | ts                                    | String | Yes      | Unix epoch time                                                                                                                                            |
@@ -1258,6 +1258,8 @@ For snapshot message, Cypator won’t send an acknowledgement.
 
 ## Order
 
+Order sent from  Cypator to Client.
+
 ### Request
 
 > Order create request sent from Cypator
@@ -1280,19 +1282,19 @@ For snapshot message, Cypator won’t send an acknowledgement.
 }
 ```
 
-| Parameter            | Type    | Required | Description                          | 
-|----------------------|---------|----------|--------------------------------------|
-| op                   | String  | Yes      | Operation order                      |
-| arg                  | Object  | Yes      | Order details                        |
-| -> <br /> instrument | String  | Yes      | Instrument name                      |
-| -> <br /> side       | String  | Yes      | Side of the order. Values: BUY, SELL |
-| -> <br /> clOrderId  | String  | Yes      | Order id                             |
-| -> <br /> orderType  | String  | Yes      | Type of order. Values: LIMIT, MARKET |
-| -> <br /> tif        | String  | Yes      | Time in force. Values; FOK, IOC      |
-| -> <br /> account    | String  | Yes      | Optional tag, could be null          |
-| -> <br /> quantity   | Double  | Yes      | Order quantity                       |
-| -> <br /> price      | Double  | Yes      | Order price                          |
-| ts                   | String  | Yes      | Unix epoch time                      |
+| Parameter            | Type    | Required | Description                                         | 
+|----------------------|---------|----------|-----------------------------------------------------|
+| op                   | String  | Yes      | Operation order                                     |
+| arg                  | Object  | Yes      | Order details                                       |
+| -> <br /> instrument | String  | Yes      | Instrument name                                     |
+| -> <br /> side       | String  | Yes      | Side of the order. Values: <br /> BUY <br /> SELL   |
+| -> <br /> clOrderId  | String  | Yes      | Order id                                            |
+| -> <br /> orderType  | String  | Yes      | Type of order. Values: <br />  LIMIT <br />  MARKET |
+| -> <br /> tif        | String  | Yes      | Time in force. Values:<br />  FOK <br /> IOC        |
+| -> <br /> account    | String  | Yes      | Optional tag, could be null                         |
+| -> <br /> quantity   | Double  | Yes      | Order quantity                                      |
+| -> <br /> price      | Double  | Yes      | Order price                                         |
+| ts                   | String  | Yes      | Unix epoch time                                     |
 
 ### Response (Acknowledgement)
 
@@ -1345,10 +1347,10 @@ For snapshot message, Cypator won’t send an acknowledgement.
 | op                   | String  | Yes      | Operation order                                                                                                                                            |
 | arg                  | Object  | Yes      | Order details                                                                                                                                              |
 | -> <br /> instrument | String  | Yes      | Instrument name                                                                                                                                            |
-| -> <br /> side       | String  | Yes      | Side of the order. Values : <br />BUY, SELL                                                                                                                |
-| -> <br /> clOrderId  | String  | Yes      | Order id                                                                                                                                                   |
-| -> <br /> orderType  | String  | Yes      | Type of order. Values: <br /> LIMIT, MARKET                                                                                                                |
-| -> <br /> tif        | String  | Yes      | Time in force. Values: <br /> FOK, IOC                                                                                                                     |
+| -> <br /> side       | String  | Yes      | Side of the order. Values: <br />BUY <br /> SELL                                                                                                           |
+| -> <br /> clOrderId  | String  | Yes      | Order id, Echoed back                                                                                                                                      |
+| -> <br /> orderType  | String  | Yes      | Type of order. Values: <br /> LIMIT <br /> MARKET                                                                                                          |
+| -> <br /> tif        | String  | Yes      | Time in force. Values: <br /> FOK <br /> IOC                                                                                                               |
 | -> <br /> account    | String  | No       | Optional tag, could be null                                                                                                                                |
 | -> <br /> quantity   | Double  | Yes      | Order quantity                                                                                                                                             |
 | -> <br /> price      | Double  | Yes      | Order price                                                                                                                                                |
@@ -1358,6 +1360,8 @@ For snapshot message, Cypator won’t send an acknowledgement.
 
 
 ## Trade
+
+Trade sent from  Client to Cypator.
 
 ```json
 {
@@ -1380,23 +1384,24 @@ For snapshot message, Cypator won’t send an acknowledgement.
 }
 ```
 
-| Parameter             | Type    | Required | Description                                        | 
-|-----------------------|---------|----------|----------------------------------------------------|
-| op                    | String  | Yes      | Operation trade                                    |
-| arg                   | Object  | Yes      | Trade details                                      |
-| -> <br /> instrument  | String  | Yes      | Instrument name                                    |
-| -> <br /> side        | String  | Yes      | Side of the order. Values : <br /> BUY <br /> SELL |
-| -> <br /> clOrderId   | String  | Yes      | client order id                                    |
-| -> <br /> orderId     | String  | Yes      | Order id                                           |
-| -> <br /> tradeId     | String  | Yes      | Trade id                                           |
-| -> <br /> orderType   | String  | Yes      | Type of order. Values: <br /> LIMIT  <br /> MARKET |
-| -> <br /> tif         | String  | Yes      | Time in force. Values: <br /> FOK <br />  IOC      |
-| -> <br /> quantity    | Double  | Yes      | Quantity                                           |
-| -> <br /> cumQty      | Double  | Yes      | Cumulative quantity                                |
-| -> <br /> lastQty     | Double  | Yes      | Last quantity                                      |
-| -> <br /> leaveQty    | Double  | Yes      | Leaves quantity                                    |
-| -> <br /> price       | Double  | Yes      | Price                                              |
-| ts                    | String  |          |                                                    |
+| Parameter            | Type    | Required | Description                                                                                    | 
+|----------------------|---------|----------|------------------------------------------------------------------------------------------------|
+| op                   | String  | Yes      | Operation trade                                                                                |
+| arg                  | Object  | Yes      | Trade details                                                                                  |
+| -> <br /> instrument | String  | Yes      | Instrument name                                                                                |
+| -> <br /> side       | String  | Yes      | Side of the order. Values : <br /> BUY <br /> SELL                                             |
+| -> <br /> clOrderId  | String  | Yes      | client order id, Echoed back from order                                                        |
+| -> <br /> orderId    | String  | Yes      | Order id                                                                                       |
+| -> <br /> tradeId    | String  | Yes      | Trade id                                                                                       |
+| -> <br /> orderType  | String  | Yes      | Type of order. Values: <br /> LIMIT  <br /> MARKET                                             |
+| -> <br /> tif        | String  | Yes      | Time in force. Values: <br /> FOK <br />  IOC                                                  |
+| -> <br /> state      | String  | Yes      | Order status. Values: <br /> FILLED <br />  PARTIALLY_FILLED  <br /> REJECTED <br />  CANCELED |
+| -> <br /> quantity   | Double  | Yes      | Quantity                                                                                       |
+| -> <br /> cumQty     | Double  | Yes      | Cumulative quantity                                                                            |
+| -> <br /> lastQty    | Double  | Yes      | Last quantity                                                                                  |
+| -> <br /> leaveQty   | Double  | Yes      | Leaves quantity                                                                                |
+| -> <br /> price      | Double  | Yes      | Price                                                                                          |
+| ts                   | String  |          |                                                                                                |
 
 
 
