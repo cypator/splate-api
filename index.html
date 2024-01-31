@@ -474,7 +474,7 @@
                     <a href="#order-2" class="toc-h2 toc-link" data-title="Order">Order</a>
                   </li>
                   <li>
-                    <a href="#execution-report-3" class="toc-h2 toc-link" data-title="Execution report">Execution report</a>
+                    <a href="#trade-2" class="toc-h2 toc-link" data-title="Trade">Trade</a>
                   </li>
               </ul>
           </li>
@@ -4098,7 +4098,7 @@ To place an order taker sends request to Cypator.</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <blockquote>
-<p>Order Single acknowledgement failure</p>
+<p>Order acknowledgement failure</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1667835722653"</span><span class="p">,</span><span class="w">
@@ -4265,10 +4265,14 @@ Cypator supports market orders (orderType) for both time in force (tif) IOC and 
 <br/>
 In the case of market order with time in force FOK, trade can be filled, or canceled.
 </aside>
-<h2 id='execution-report-3'>Execution report</h2>
-<p>Client -&gt; Cypator.
-For placed orders execution report will be sent in the below format. It need not be acknowledged. Cypator sends message to taker.</p>
-<h3 id='request-example'>Request Example</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<h2 id='trade-2'>Trade</h2>
+<p>Cypator -&gt; Client.<br/>
+As a response for an order Cypator will reply with a trade.</p>
+
+<blockquote>
+<p>Request Example</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1706601667037"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"trade"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"arg"</span><span class="p">:</span><span class="w">
@@ -4315,7 +4319,7 @@ For placed orders execution report will be sent in the below format. It need not
 <tr>
 <td>-&gt; <br />side</td>
 <td>String</td>
-<td>Side of order. Values : Buy, Sell</td>
+<td>Side of order. Values:<br/> Buy <br/> Sell</td>
 </tr>
 <tr>
 <td>-&gt; <br />clOrderId</td>
@@ -4335,12 +4339,12 @@ For placed orders execution report will be sent in the below format. It need not
 <tr>
 <td>-&gt; <br />orderType</td>
 <td>String</td>
-<td>Order type. Values : MARKET, LIMIT</td>
+<td>Order type. Values: :<br/> MARKET <br/> LIMIT</td>
 </tr>
 <tr>
 <td>-&gt; <br />state</td>
 <td>String</td>
-<td>State of the order. Values : FILLED, CANCELED, PARTIALLY_FILLED, REJECTED</td>
+<td>State of the order. Values:<br/> FILLED <br/> CANCELED <br/> PARTIALLY_FILLED <br/> REJECTED</td>
 </tr>
 <tr>
 <td>-&gt; <br />quantity</td>
