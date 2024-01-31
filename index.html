@@ -776,9 +776,13 @@ We can enable Gap-fill but it is not recommended.</p>
 </tr>
 </tbody></table>
 <h2 id='websocket-api-introduction'>Websocket API Introduction</h2>
-<p>Cypator websocket provides two websocket session for communication.
-* Market session - used for market data subscription requests and streaming prices.
-* Trade session - used for sending orders and receiving execution reports.</p>
+<p>Cypator websocket provides two websocket session for communication.</p>
+
+<ul>
+<li>The FIX gateway is accessible with an OpenVPN connection.</li>
+<li>Market session - used for market data subscription requests and streaming prices.</li>
+<li>Trade session - used for sending orders and receiving execution reports.</li>
+</ul>
 
 <p>Market and Trade session require valid login, server identifier, client identifier and password(used only for hashing) for authentication.</p>
 <h2 id='websocket-api-connectivity'>Websocket API Connectivity</h2>
