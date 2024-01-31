@@ -1894,6 +1894,9 @@ For placed orders execution report will be sent in the below format. It need not
 
 # Version History
 
+### V1.1.0 - Wed, 31 Jan 2024
+Websocket Taker API was added
+
 ### V1.0.4 - Wed, 20 Dec 2023
 * Maker API will not support Gap-fill (recovery) as default
 * Taker API will send trade reject as a response for duplicate order
