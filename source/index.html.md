@@ -948,6 +948,7 @@ For an IOC type order, there are two additional possible responses in addition t
 
 ## Login
 
+Login sent from client to Cypator.
 Both market and trade session needs to be authenticated before any requests can be made.
 
 ### Request parameters
@@ -1086,6 +1087,7 @@ echo "Result: $result"
 
 ## Ping
 
+Ping sent from client to Cypator.
 To keep the connection alive client needs to send a heartbeat message ping once every 30 seconds. If no heartbeat message is received for 30 seconds connection will be dropped.
 
 > Request
@@ -1409,6 +1411,7 @@ Trade sent from  Client to Cypator.
 
 ## Login
 
+Client -> Cypator.
 Both market and trade session needs to be authenticated before any requests can be made.
 
 ### Request parameters
@@ -1476,6 +1479,7 @@ Both market and trade session needs to be authenticated before any requests can 
 
 ## Ping
 
+Client -> Cypator.
 To keep the connection alive client needs to send a heartbeat message ping once every 30 seconds. If no heartbeat message is received for 30 seconds connection will be dropped.
 
 > Request
@@ -1499,6 +1503,8 @@ To keep the connection alive client needs to send a heartbeat message ping once 
 | op        | String | Yes      | Operation ping |
 
 ## Subscribe
+
+Cypator -> Client.
 To receive market data products needs to be subscribed. Taker sends below request to Cypator
 ### Request Example
 ```json
@@ -1585,6 +1591,8 @@ To receive market data products needs to be subscribed. Taker sends below reques
 | ts                               | Long    | Unix epoch time                                  |
 
 ## Unsubscribe
+
+Cypator -> Client.
 To stop receiving market data unsubscribe call for the product needs to be made. Taker sends the below request to Cypator.
 ### Request Example
 ```json
@@ -1649,6 +1657,8 @@ To stop receiving market data unsubscribe call for the product needs to be made.
 | ts                      | Long   | Unix epoch time                                |
 
 ## Market data snapshot
+
+Client -> Cyaptor.
 For subscribed products market data snapshot will be sent as below which need not be acknowledged. Cypator sends market data snapshot message to Taker.
 ### Request Example
 ```json
@@ -1682,6 +1692,8 @@ For subscribed products market data snapshot will be sent as below which need no
 | -> <br />asks           | Array  | List of asks. First item is price, second item is quantity. |
 
 ## Order
+
+Cypator -> Client.
 To place an order taker sends request to Cypator.
 ### Request Example
 ```json
@@ -1769,6 +1781,8 @@ To place an order taker sends request to Cypator.
 | -> <br />errMsg     | String | Error message, populated only in case of error |
 
 ## Execution report
+
+Client -> Cypator.
 For placed orders execution report will be sent in the below format. It need not be acknowledged. Cypator sends message to taker.
 ### Request Example
 ```json
