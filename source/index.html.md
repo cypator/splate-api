@@ -1092,7 +1092,7 @@ Both market and trade session needs to be authenticated before any requests can 
 
 ## Ping
 
-Ping sent from client to Cypator.<br / >
+Client -> Cypator.<br / >
 To keep the connection alive client needs to send a heartbeat message ping once every 30 seconds. If no heartbeat message is received for 30 seconds connection will be dropped.
 
 > Request
