@@ -447,8 +447,34 @@
                   <li>
                     <a href="#trade" class="toc-h2 toc-link" data-title="Trade">Trade</a>
                   </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#websocket-taker-api" class="toc-h1 toc-link" data-title="Websocket Taker API">Websocket Taker API</a>
+              <ul class="toc-list-h2">
                   <li>
-                    <a href="#error-codes" class="toc-h2 toc-link" data-title="Error Codes">Error Codes</a>
+                    <a href="#login-2" class="toc-h2 toc-link" data-title="Login">Login</a>
+                  </li>
+                  <li>
+                    <a href="#ping-2" class="toc-h2 toc-link" data-title="Ping">Ping</a>
+                  </li>
+                  <li>
+                    <a href="#subscribe" class="toc-h2 toc-link" data-title="Subscribe">Subscribe</a>
+                  </li>
+                  <li>
+                    <a href="#unsubscribe" class="toc-h2 toc-link" data-title="Unsubscribe">Unsubscribe</a>
+                  </li>
+                  <li>
+                    <a href="#market-data-snapshot" class="toc-h2 toc-link" data-title="Market data snapshot">Market data snapshot</a>
+                  </li>
+                  <li>
+                    <a href="#order-2" class="toc-h2 toc-link" data-title="Order">Order</a>
+                  </li>
+                  <li>
+                    <a href="#execution-report-3" class="toc-h2 toc-link" data-title="Execution report">Execution report</a>
+                  </li>
+                  <li>
+                    <a href="#error-codes-for-websocket-api" class="toc-h2 toc-link" data-title="Error Codes for websocket API">Error Codes for websocket API</a>
                   </li>
               </ul>
           </li>
@@ -3393,7 +3419,847 @@ import java.util.Base64;</p>
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='error-codes'>Error Codes</h2>
+<h1 id='websocket-taker-api'>Websocket Taker API</h1><h2 id='login-2'>Login</h2>
+<p>Both market and trade session needs to be authenticated before any requests can be made.</p>
+<h3 id='request-parameters-2'>Request parameters</h3>
+<blockquote>
+<p>Request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"logon"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"arg"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"apiKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"User1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"sign"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7L+zFQ+CEgGu5rzCj4+BdV2/uUHGqddA9pI6ztsRRPs="</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"server"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cs1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"client"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cc11"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1667835722651</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>String</td>
+<td>Yes</td>
+<td>Operation logon</td>
+</tr>
+<tr>
+<td>arg</td>
+<td>Object</td>
+<td>Yes</td>
+<td>Login details</td>
+</tr>
+<tr>
+<td>-&gt; <br /> apiKey</td>
+<td>String</td>
+<td>Yes</td>
+<td>API Key</td>
+</tr>
+<tr>
+<td>-&gt; <br /> sign</td>
+<td>String</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>-&gt; <br /> server</td>
+<td>String</td>
+<td>Yes</td>
+<td>Server id</td>
+</tr>
+<tr>
+<td>-&gt; <br /> client</td>
+<td>String</td>
+<td>Yes</td>
+<td>Client id</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>String</td>
+<td>Yes</td>
+<td>Unix epoch time</td>
+</tr>
+</tbody></table>
+<h3 id='response-2'>Response</h3>
+<blockquote>
+<p>Success Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"logon"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"arg"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1682346263287</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Error response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"logon"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"arg"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">50104</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"errMsg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invalid credentials"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1682346263287"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>String</td>
+<td>Yes</td>
+<td>Operation logon</td>
+</tr>
+<tr>
+<td>arg</td>
+<td>Object</td>
+<td>Yes</td>
+<td>Login details</td>
+</tr>
+<tr>
+<td>-&gt; <br />code</td>
+<td>int</td>
+<td>Yes</td>
+<td>0 - success <br / > non zero for failure</td>
+</tr>
+<tr>
+<td>-&gt; <br />errMsg</td>
+<td>String</td>
+<td>no</td>
+<td>Error message, populated only in case of error</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>String</td>
+<td>Yes</td>
+<td>Unix epoch time</td>
+</tr>
+</tbody></table>
+<h2 id='ping-2'>Ping</h2>
+<p>To keep the connection alive client needs to send a heartbeat message ping once every 30 seconds. If no heartbeat message is received for 30 seconds connection will be dropped.</p>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ping"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ping"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>String</td>
+<td>Yes</td>
+<td>Operation ping</td>
+</tr>
+</tbody></table>
+<h2 id='subscribe'>Subscribe</h2>
+<p>To receive market data products needs to be subscribed. Taker sends below request to Cypator</p>
+<h3 id='request-example'>Request Example</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"subscribe"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"arg"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"instrument"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USD"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BOTH"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"subscriptionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FhervfD"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"subscriptionRequestType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"snapshot"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"typeBook"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SPOT"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"aggBook"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"marketDepth"</span><span class="p">:</span><span class="mi">0</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1667835722651</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='success-response-example'>Success Response Example</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1667835722651"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"subscribe"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"arg"</span><span class="p">:</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"instrument"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USD"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BOTH"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"subscriptionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FhervfD"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"subscriptionRequestType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"snapshot"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"typeBook"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SPOT"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"aggBook"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"marketDepth"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='error-response-example'>Error response Example</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1667835722651"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"subscribe"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"arg"</span><span class="p">:</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"instrument"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USD"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BOTH"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"subscriptionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FhervfD"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"subscriptionRequestType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"snapshot"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"typeBook"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SPOT"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"aggBook"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"marketDepth"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"errMsg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Duplicate market data request symbol"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">50206</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='request-parameters-3'>Request parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>String</td>
+<td>Yes</td>
+<td>Operation subscribe</td>
+</tr>
+<tr>
+<td>arg</td>
+<td>Object</td>
+<td>Yes</td>
+<td>Subscription details</td>
+</tr>
+<tr>
+<td>-&gt; <br />instrument</td>
+<td>String</td>
+<td>Yes</td>
+<td>Instrument id</td>
+</tr>
+<tr>
+<td>-&gt; <br />side</td>
+<td>String</td>
+<td>Yes</td>
+<td>Side for subscription. Values BOTH</td>
+</tr>
+<tr>
+<td>-&gt; <br />subscriptionId</td>
+<td>String</td>
+<td>Yes</td>
+<td>Unique subscription id</td>
+</tr>
+<tr>
+<td>-&gt; <br />subscriptionRequestType</td>
+<td>String</td>
+<td>Yes</td>
+<td>Subscription type. Values : snapshot</td>
+</tr>
+<tr>
+<td>-&gt; <br />typeBook</td>
+<td>String</td>
+<td>Yes</td>
+<td>Type of book. Values: Spot</td>
+</tr>
+<tr>
+<td>-&gt; <br />aggBook</td>
+<td>Integer</td>
+<td>Yes</td>
+<td>Aggregate book. Values : 0 for false, 1 for true</td>
+</tr>
+<tr>
+<td>-&gt; <br />marketDepth</td>
+<td>Integer</td>
+<td>Yes</td>
+<td>Market Depth. Values: 0,1</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>Long</td>
+<td>Yes</td>
+<td>Unix epoch time</td>
+</tr>
+</tbody></table>
+<h3 id='response-3'>Response</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>String</td>
+<td>Operation subscribe</td>
+</tr>
+<tr>
+<td>arg</td>
+<td>Object</td>
+<td>Subscription details</td>
+</tr>
+<tr>
+<td>-&gt; <br />instrument</td>
+<td>String</td>
+<td>Instrument id</td>
+</tr>
+<tr>
+<td>-&gt; <br />side</td>
+<td>String</td>
+<td>Side for subscription. Values BOTH</td>
+</tr>
+<tr>
+<td>-&gt; <br />subscriptionId</td>
+<td>String</td>
+<td>Unique subscription id</td>
+</tr>
+<tr>
+<td>-&gt; <br />subscriptionRequestType</td>
+<td>String</td>
+<td>Subscription type. Values : snapshot</td>
+</tr>
+<tr>
+<td>-&gt; <br />typeBook</td>
+<td>String</td>
+<td>Type of book. Values: Spot</td>
+</tr>
+<tr>
+<td>-&gt; <br />aggBook</td>
+<td>Integer</td>
+<td>Aggregate book. Values : 0 for false, 1 for true</td>
+</tr>
+<tr>
+<td>-&gt; <br />marketDepth</td>
+<td>Integer</td>
+<td>Market Depth. Values: 0,1</td>
+</tr>
+<tr>
+<td>-&gt; <br />code</td>
+<td>int</td>
+<td>Zero for success, non zero for failure</td>
+</tr>
+<tr>
+<td>-&gt; <br />errMsg</td>
+<td>String</td>
+<td>Error message, populated only in case of error</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>Long</td>
+<td>Unix epoch time</td>
+</tr>
+</tbody></table>
+<h2 id='unsubscribe'>Unsubscribe</h2>
+<p>To stop receiving market data unsubscribe call for the product needs to be made. Taker sends the below request to Cypator.</p>
+<h3 id='request-example-2'>Request Example</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unsubscribe"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"arg"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"subscriptionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FhervfD"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"instrument"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USD"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"typeBook"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SPOT"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1667835722653</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='success-response-example-2'>Success Response Example</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unsubscribe"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"arg"</span><span class="p">:</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"subscriptionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FhervfD"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"instrument"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USD"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"typeBook"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SPOT"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1706601058528</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='error-response-example-2'>Error response Example</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1667835722653"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unsubscribe"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"arg"</span><span class="p">:</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"subscriptionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FhervfD"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"instrument"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USD"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"typeBook"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SPOT"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"errMsg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invalid subscription id"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">50251</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='request-parameters-4'>Request parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>String</td>
+<td>Yes</td>
+<td>Operation subscribe</td>
+</tr>
+<tr>
+<td>arg</td>
+<td>Object</td>
+<td>Yes</td>
+<td>Subscription details</td>
+</tr>
+<tr>
+<td>-&gt; <br />instrument</td>
+<td>String</td>
+<td>Yes</td>
+<td>Instrument id</td>
+</tr>
+<tr>
+<td>-&gt; <br />subscriptionId</td>
+<td>String</td>
+<td>Yes</td>
+<td>Unique subscription id</td>
+</tr>
+<tr>
+<td>-&gt; <br />typeBook</td>
+<td>String</td>
+<td>Yes</td>
+<td>Type of book. Values: Spot</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>Long</td>
+<td>Yes</td>
+<td>Unix epoch time</td>
+</tr>
+</tbody></table>
+<h3 id='response-4'>Response</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>String</td>
+<td>Operation subscribe</td>
+</tr>
+<tr>
+<td>arg</td>
+<td>Object</td>
+<td>Subscription details</td>
+</tr>
+<tr>
+<td>-&gt; <br />instrument</td>
+<td>String</td>
+<td>Instrument id</td>
+</tr>
+<tr>
+<td>-&gt; <br />subscriptionId</td>
+<td>String</td>
+<td>Unique subscription id</td>
+</tr>
+<tr>
+<td>-&gt; <br />typeBook</td>
+<td>String</td>
+<td>Type of book. Values: Spot</td>
+</tr>
+<tr>
+<td>-&gt; <br />code</td>
+<td>int</td>
+<td>Zero for success, non zero for failure</td>
+</tr>
+<tr>
+<td>-&gt; <br />errMsg</td>
+<td>String</td>
+<td>Error message, populated only in case of error</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>Long</td>
+<td>Unix epoch time</td>
+</tr>
+</tbody></table>
+<h2 id='market-data-snapshot'>Market data snapshot</h2>
+<p>For subscribed products market data snapshot will be sent as below which need not be acknowledged. Cypator sends market data snapshot message to Taker.</p>
+<h3 id='request-example-3'>Request Example</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"snapshot"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"arg"</span><span class="p">:</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"instrument"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USD"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"subscriptionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FhervfD"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w">
+    </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"bids"</span><span class="p">:</span><span class="w">
+            </span><span class="p">[[</span><span class="mf">202.15</span><span class="p">,</span><span class="mf">1.0E-8</span><span class="p">],[</span><span class="mf">202.16</span><span class="p">,</span><span class="mf">2.0E-8</span><span class="p">],[</span><span class="mf">202.17</span><span class="p">,</span><span class="mf">3.0E-8</span><span class="p">],[</span><span class="mf">202.18</span><span class="p">,</span><span class="mf">4.0E-8</span><span class="p">],[</span><span class="mf">202.19</span><span class="p">,</span><span class="mf">5.0E-8</span><span class="p">],[</span><span class="mf">202.2</span><span class="p">,</span><span class="mf">6.0E-8</span><span class="p">],[</span><span class="mf">202.21</span><span class="p">,</span><span class="mf">7.0E-8</span><span class="p">],[</span><span class="mf">202.22</span><span class="p">,</span><span class="mf">8.0E-8</span><span class="p">],[</span><span class="mf">202.23</span><span class="p">,</span><span class="mf">9.0E-8</span><span class="p">],[</span><span class="mf">202.24</span><span class="p">,</span><span class="mf">1.0E-7</span><span class="p">]],</span><span class="w">
+            </span><span class="nl">"asks"</span><span class="p">:</span><span class="w">
+            </span><span class="p">[[</span><span class="mf">202.35</span><span class="p">,</span><span class="mf">1.0E-8</span><span class="p">],[</span><span class="mf">202.36</span><span class="p">,</span><span class="mf">2.0E-8</span><span class="p">],[</span><span class="mf">202.37</span><span class="p">,</span><span class="mf">3.0E-8</span><span class="p">],[</span><span class="mf">202.38</span><span class="p">,</span><span class="mf">4.0E-8</span><span class="p">],[</span><span class="mf">202.39</span><span class="p">,</span><span class="mf">5.0E-8</span><span class="p">],[</span><span class="mf">202.4</span><span class="p">,</span><span class="mf">6.0E-8</span><span class="p">],[</span><span class="mf">202.41</span><span class="p">,</span><span class="mf">7.0E-8</span><span class="p">],[</span><span class="mf">202.42</span><span class="p">,</span><span class="mf">8.0E-8</span><span class="p">],[</span><span class="mf">202.43</span><span class="p">,</span><span class="mf">9.0E-8</span><span class="p">],[</span><span class="mf">202.44</span><span class="p">,</span><span class="mf">1.0E-7</span><span class="p">]]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='request-parameters-5'>Request parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>String</td>
+<td>Operation subscribe</td>
+</tr>
+<tr>
+<td>arg</td>
+<td>Object</td>
+<td>Subscription details</td>
+</tr>
+<tr>
+<td>-&gt; <br />instrument</td>
+<td>String</td>
+<td>Instrument name</td>
+</tr>
+<tr>
+<td>-&gt; <br />subscriptionId</td>
+<td>String</td>
+<td>Unique identifier for subscription</td>
+</tr>
+<tr>
+<td>data</td>
+<td>Array</td>
+<td>Array containing of object of bids and asks</td>
+</tr>
+<tr>
+<td>-&gt; <br />bids</td>
+<td>Array</td>
+<td>List of bids. First item is price, second item is quantity.</td>
+</tr>
+<tr>
+<td>-&gt; <br />asks</td>
+<td>Array</td>
+<td>List of asks. First item is price, second item is quantity.</td>
+</tr>
+</tbody></table>
+<h2 id='order-2'>Order</h2>
+<p>To place an order taker sends request to Cypator.</p>
+<h3 id='request-example-4'>Request Example</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"arg"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"instrument"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USD"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BUY"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"clOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SDfcsef35"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"orderType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LIMIT"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"tif"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FOK"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"account"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tag1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">19123</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1667835722653</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='success-response-example-3'>Success Response Example</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"arg"</span><span class="p">:</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"instrument"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USD"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BUY"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"clOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SDfcsef35"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"orderType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LIMIT"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"tif"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FOK"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"account"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tag1"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">19123.0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1706601667000</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='error-response-example-3'>Error response Example</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1667835722653"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"arg"</span><span class="p">:</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"instrument"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USD"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"B"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"clOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SDfcsef35"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"orderType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LIMIT"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"tif"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FOK"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"account"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tag1"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">19123</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"errMsg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unsupported side, only BUY or SELL allowed"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">50301</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='request-parameters-6'>Request parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>String</td>
+<td>Yes</td>
+<td>Operation subscribe</td>
+</tr>
+<tr>
+<td>arg</td>
+<td>Object</td>
+<td>Yes</td>
+<td>Subscription details</td>
+</tr>
+<tr>
+<td>-&gt; <br />instrument</td>
+<td>String</td>
+<td>Yes</td>
+<td>Instrument name</td>
+</tr>
+<tr>
+<td>-&gt; <br />side</td>
+<td>String</td>
+<td>Yes</td>
+<td>Side of order. Values : Buy, Sell</td>
+</tr>
+<tr>
+<td>-&gt; <br />clOrderId</td>
+<td>String</td>
+<td>Yes</td>
+<td>Unique identifier for order.</td>
+</tr>
+<tr>
+<td>-&gt; <br />orderType</td>
+<td>String</td>
+<td>Yes</td>
+<td>Order type. Values : MARKET, LIMIT</td>
+</tr>
+<tr>
+<td>-&gt; <br />tif</td>
+<td>String</td>
+<td>Yes</td>
+<td>Time in force for order. Values : FOK, IOC</td>
+</tr>
+<tr>
+<td>-&gt; <br />account</td>
+<td>String</td>
+<td>Yes</td>
+<td>Name of account</td>
+</tr>
+<tr>
+<td>-&gt; <br />quantity</td>
+<td>Double</td>
+<td>Yes</td>
+<td>Quantity of order</td>
+</tr>
+<tr>
+<td>-&gt; <br />price</td>
+<td>Double</td>
+<td>Yes</td>
+<td>Price</td>
+</tr>
+</tbody></table>
+<h3 id='response-5'>Response</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>String</td>
+<td>Operation subscribe</td>
+</tr>
+<tr>
+<td>arg</td>
+<td>Object</td>
+<td>Subscription details</td>
+</tr>
+<tr>
+<td>-&gt; <br />instrument</td>
+<td>String</td>
+<td>Instrument name</td>
+</tr>
+<tr>
+<td>-&gt; <br />side</td>
+<td>String</td>
+<td>Side of order. Values : Buy, Sell</td>
+</tr>
+<tr>
+<td>-&gt; <br />clOrderId</td>
+<td>String</td>
+<td>Unique identifier for order.</td>
+</tr>
+<tr>
+<td>-&gt; <br />orderType</td>
+<td>String</td>
+<td>Order type. Values : MARKET, LIMIT</td>
+</tr>
+<tr>
+<td>-&gt; <br />tif</td>
+<td>String</td>
+<td>Time in force for order. Values : FOK, IOC</td>
+</tr>
+<tr>
+<td>-&gt; <br />account</td>
+<td>String</td>
+<td>Name of account</td>
+</tr>
+<tr>
+<td>-&gt; <br />quantity</td>
+<td>Double</td>
+<td>Quantity of order</td>
+</tr>
+<tr>
+<td>-&gt; <br />price</td>
+<td>Double</td>
+<td>Price</td>
+</tr>
+<tr>
+<td>-&gt; <br />code</td>
+<td>int</td>
+<td>Zero for success, non zero for failure</td>
+</tr>
+<tr>
+<td>-&gt; <br />errMsg</td>
+<td>String</td>
+<td>Error message, populated only in case of error</td>
+</tr>
+</tbody></table>
+<h2 id='execution-report-3'>Execution report</h2>
+<p>For placed orders execution report will be sent in the below format. It need not be acknowledged. Cypator sends message to taker.</p>
+<h3 id='request-example-5'>Request Example</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1706601667037"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"trade"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"arg"</span><span class="p">:</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"instrument"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USD"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BUY"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"clOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SDfcsef35"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A010u2PAFQD"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"tradeId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OGdjCsRA"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"orderType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LIMIT"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FILLED"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"cumQty"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"lastQty"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"leaveQty"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"lastPrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">19123.2</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">19123.2</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"avgPrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">19123.2</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='request-parameters-7'>Request parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>String</td>
+<td>Operation subscribe</td>
+</tr>
+<tr>
+<td>arg</td>
+<td>Object</td>
+<td>Subscription details</td>
+</tr>
+<tr>
+<td>-&gt; <br />instrument</td>
+<td>String</td>
+<td>Instrument name</td>
+</tr>
+<tr>
+<td>-&gt; <br />side</td>
+<td>String</td>
+<td>Side of order. Values : Buy, Sell</td>
+</tr>
+<tr>
+<td>-&gt; <br />clOrderId</td>
+<td>String</td>
+<td>Unique identifier for order.</td>
+</tr>
+<tr>
+<td>-&gt; <br />orderId</td>
+<td>String</td>
+<td>Order Id</td>
+</tr>
+<tr>
+<td>-&gt; <br />tradeId</td>
+<td>String</td>
+<td>Trade id</td>
+</tr>
+<tr>
+<td>-&gt; <br />orderType</td>
+<td>String</td>
+<td>Order type. Values : MARKET, LIMIT</td>
+</tr>
+<tr>
+<td>-&gt; <br />state</td>
+<td>String</td>
+<td>State of the order. Values : FILLED, CANCELED, PARTIALLY_FILLED, REJECTED</td>
+</tr>
+<tr>
+<td>-&gt; <br />quantity</td>
+<td>Double</td>
+<td>Quantity of order</td>
+</tr>
+<tr>
+<td>-&gt; <br />cumQuantity</td>
+<td>Double</td>
+<td>Cumulative quantity</td>
+</tr>
+<tr>
+<td>-&gt; <br />lastQuantity</td>
+<td>Double</td>
+<td>Last quantity</td>
+</tr>
+<tr>
+<td>-&gt; <br />leaveQuantity</td>
+<td>Double</td>
+<td>Leave Quantity</td>
+</tr>
+<tr>
+<td>-&gt; <br />lastPrice</td>
+<td>Double</td>
+<td>Last Price</td>
+</tr>
+<tr>
+<td>-&gt; <br />price</td>
+<td>Double</td>
+<td>price</td>
+</tr>
+<tr>
+<td>-&gt; <br />avgPrice</td>
+<td>Double</td>
+<td>average price</td>
+</tr>
+</tbody></table>
+<h2 id='error-codes-for-websocket-api'>Error Codes for websocket API</h2>
 <table><thead>
 <tr>
 <th>Error Code</th>
