@@ -141,7 +141,6 @@ Trailer
 ## Websocket API Introduction
 Cypator websocket provides two websocket session for communication.
 
-* The FIX gateway is accessible with an OpenVPN connection.
 * Market session - used for market data subscription requests and streaming prices.
 * Trade session - used for sending orders and receiving execution reports.
  
