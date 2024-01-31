@@ -944,6 +944,81 @@ For an IOC type order, there are two additional possible responses in addition t
 | 58  | Text                                                | N                             | Error message. Present in Order Reject                                                                                                                                                                                |
 
 
+
+# Websocket API Signature generation
+Signature needs to be generated at the time of login request. It can be generated using the following steps:
+
+* Generate a string by concatenating password and constant string "/verify"
+* Signature would be Base64 encoded hash of the above string generates using HMAC SHA256 algorithm.
+
+
+
+> Java code sample
+
+```java 
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
+import java.util.Base64;
+
+public class SignatureDemo {
+
+  public static String getSign(String passPhrase, long timeStamp) {
+    try {
+      String stringToHashAndEncode = timeStamp + "/verify";
+      Mac sha256HMAC = Mac.getInstance("HmacSHA256");
+
+      SecretKeySpec secretKeySpec = new SecretKeySpec(passPhrase.getBytes(), "HmacSHA256");
+      sha256HMAC.init(secretKeySpec);
+      String hash = Base64.getEncoder().encodeToString(sha256HMAC.doFinal(stringToHashAndEncode.getBytes()));
+      return hash;
+    } catch (Throwable t) {
+      return null;
+    }
+  }
+
+  public static void main(String[] args) {
+    String signature = getSign("UfawYizemLAHMyAezkYQqLtQ3uJ9UQaXXJg6vrvL", System.currentTimeMillis());
+    System.out.println("Signature : " + signature);
+  }
+}
+```
+
+> Python Example
+
+```python 
+
+  import hashlib
+  import hmac
+  import base64
+  
+  string_to_hash_and_encode = timeStamp + "/verify"
+  hash_obj = hmac.new(secret_key, message, hashlib.sha256)
+  hash_value = base64.b64encode(hash_obj.digest()).decode("utf-8")
+```
+
+> shell Example
+
+```shell
+getSign() {
+    local passPhrase=$1
+    local timeStamp=$2
+
+    local stringToHashAndEncode="${timeStamp}/verify"
+    local hash
+
+    hash=$(echo -n "$stringToHashAndEncode" | openssl dgst -sha256 -hmac "$passPhrase" -binary | base64)
+}
+
+# Example usage:
+passPhrase="UfawYizemLAHMyAezkYQqLtQ3uJ9UQaXXJg6vrvL"
+timeStamp="1695616595908"
+
+result=$(getSign "$passPhrase" "$timeStamp")
+echo "Result: $result"
+
+```
+
+
 # Websocket Maker API
 
 ## Login
@@ -1014,78 +1089,6 @@ Both market and trade session needs to be authenticated before any requests can 
 | -> <br />errMsg | String   | no       | Error message, populated only in case of error |
 | ts              | String   | Yes      | Unix epoch time                                |
 
-### Signature generation
-Signature needs to be generated at the time of login request. It can be generated using the following steps:
-
-* Generate a string by concatenating password and constant string "/verify"
-* Signature would be Base64 encoded hash of the above string generates using HMAC SHA256 algorithm.
- 
-
-
-> Java code sample
- 
-```java 
-import javax.crypto.Mac;
-import javax.crypto.spec.SecretKeySpec;
-import java.util.Base64;
-
-public class SignatureDemo {
-
-  public static String getSign(String passPhrase, long timeStamp) {
-    try {
-      String stringToHashAndEncode = timeStamp + "/verify";
-      Mac sha256HMAC = Mac.getInstance("HmacSHA256");
-
-      SecretKeySpec secretKeySpec = new SecretKeySpec(passPhrase.getBytes(), "HmacSHA256");
-      sha256HMAC.init(secretKeySpec);
-      String hash = Base64.getEncoder().encodeToString(sha256HMAC.doFinal(stringToHashAndEncode.getBytes()));
-      return hash;
-    } catch (Throwable t) {
-      return null;
-    }
-  }
-
-  public static void main(String[] args) {
-    String signature = getSign("UfawYizemLAHMyAezkYQqLtQ3uJ9UQaXXJg6vrvL", System.currentTimeMillis());
-    System.out.println("Signature : " + signature);
-  }
-}
-```
-
-> Python Example
-
-```python 
-
-  import hashlib
-  import hmac
-  import base64
-  
-  string_to_hash_and_encode = timeStamp + "/verify"
-  hash_obj = hmac.new(secret_key, message, hashlib.sha256)
-  hash_value = base64.b64encode(hash_obj.digest()).decode("utf-8")
-```
-
-> shell Example
-
-```shell
-getSign() {
-    local passPhrase=$1
-    local timeStamp=$2
-
-    local stringToHashAndEncode="${timeStamp}/verify"
-    local hash
-
-    hash=$(echo -n "$stringToHashAndEncode" | openssl dgst -sha256 -hmac "$passPhrase" -binary | base64)
-}
-
-# Example usage:
-passPhrase="UfawYizemLAHMyAezkYQqLtQ3uJ9UQaXXJg6vrvL"
-timeStamp="1695616595908"
-
-result=$(getSign "$passPhrase" "$timeStamp")
-echo "Result: $result"
-
-```
 
 ## Ping
 
