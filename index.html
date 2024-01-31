@@ -2567,7 +2567,7 @@ Cypator will provide a unique ClOrdID <11>.</p>
 </tr>
 </tbody></table>
 <h1 id='websocket-maker-api'>Websocket Maker API</h1><h2 id='login'>Login</h2>
-<p>Login sent from client to Cypator.
+<p>Client -&gt; Cyaptor.
 Both market and trade session needs to be authenticated before any requests can be made.</p>
 <h3 id='request-parameters'>Request parameters</h3>
 <blockquote>
@@ -2746,7 +2746,11 @@ Both market and trade session needs to be authenticated before any requests can 
   <span class="n">string_to_hash_and_encode</span> <span class="o">=</span> <span class="n">timeStamp</span> <span class="o">+</span> <span class="s">"/verify"</span>
   <span class="n">hash_obj</span> <span class="o">=</span> <span class="n">hmac</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="n">secret_key</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">hashlib</span><span class="p">.</span><span class="n">sha256</span><span class="p">)</span>
   <span class="n">hash_value</span> <span class="o">=</span> <span class="n">base64</span><span class="p">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">hash_obj</span><span class="p">.</span><span class="n">digest</span><span class="p">()).</span><span class="n">decode</span><span class="p">(</span><span class="s">"utf-8"</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>getSign<span class="o">()</span> <span class="o">{</span>
+</code></pre></div>
+<blockquote>
+<p>shell Example</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>getSign<span class="o">()</span> <span class="o">{</span>
     <span class="nb">local </span><span class="nv">passPhrase</span><span class="o">=</span><span class="nv">$1</span>
     <span class="nb">local </span><span class="nv">timeStamp</span><span class="o">=</span><span class="nv">$2</span>
 
