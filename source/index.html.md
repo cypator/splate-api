@@ -1814,8 +1814,7 @@ For placed orders execution report will be sent in the below format. It need not
 | -> <br />price         | Double | price                                                                     |
 | -> <br />avgPrice      | Double | average price                                                             |
 
-
-## Error Codes for websocket API
+# Websocket API Error Codes
 
 | Error Code | Description                             | 
 |------------|-----------------------------------------|
