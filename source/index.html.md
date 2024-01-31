@@ -1513,7 +1513,7 @@ Rate limit : 1 request per 15 seconds Connection dropped in case of rate limit b
 ## Subscribe
 
 Client -> Cyaptor. <br/>
-Client will subscribe desired instruments to be able to retrieve a stream of market data.
+Client will subscribe to desired instruments to be able to retrieve a stream of market data.
 
 > Request Example
 
@@ -1590,20 +1590,20 @@ Client will subscribe desired instruments to be able to retrieve a stream of mar
 
 
 ### Response
-| Parameter                        | Type    | Description                                                |
-|----------------------------------|---------|------------------------------------------------------------|
-| op                               | String  | Operation subscribe                                        |
-| arg                              | Object  | Subscription details                                       |
-| -> <br />instrument              | String  | Instrument id                                              |
-| -> <br />side                    | String  | Side for subscription. Values BOTH                         |
-| -> <br />subscriptionId          | String  | Unique subscription id                                     |
-| -> <br />subscriptionRequestType | String  | Subscription type. Values: <br/> snapshot                  |
-| -> <br />typeBook                | String  | Type of book. Values: <br/> Spot                           |
-| -> <br />aggBook                 | Integer | Aggregate book. Values: <br/> 0 for false <br/> 1 for true |
-| -> <br />marketDepth             | Integer | Market Depth. Values: <br/> 0 <br/> 1                      |
-| -> <br />code                    | int     | Zero for success, non zero for failure                     |
-| -> <br />errMsg                  | String  | Error message, populated only in case of error             |
-| ts                               | Long    | Unix epoch time                                            |
+| Parameter                        | Type    | Required | Description                                                |
+|----------------------------------|---------|----------|------------------------------------------------------------|
+| op                               | String  | Yes      | Operation subscribe                                        |
+| arg                              | Object  | Yes      | Subscription details                                       |
+| -> <br />instrument              | String  | Yes      | Instrument id                                              |
+| -> <br />side                    | String  | Yes      | Side for subscription. Values BOTH                         |
+| -> <br />subscriptionId          | String  | Yes      | Unique subscription id                                     |
+| -> <br />subscriptionRequestType | String  | Yes      | Subscription type. Values: <br/> snapshot                  |
+| -> <br />typeBook                | String  | Yes      | Type of book. Values: <br/> Spot                           |
+| -> <br />aggBook                 | Integer | Yes      | Aggregate book. Values: <br/> 0 for false <br/> 1 for true |
+| -> <br />marketDepth             | Integer | Yes      | Market Depth. Values: <br/> 0 <br/> 1                      |
+| -> <br />code                    | int     | Yes      | Zero for success, non zero for failure                     |
+| -> <br />errMsg                  | String  | No       | Error message, populated only in case of error             |
+| ts                               | Long    | Yes      | Unix epoch time                                            |
 
 ## Unsubscribe
 
@@ -1666,6 +1666,7 @@ To stop receiving market data unsubscribe call for the product needs to be made.
 | -> <br />subscriptionId | String | Yes      | Unique subscription id     |
 | -> <br />typeBook       | String | Yes      | Type of book. Values: Spot |
 | ts                      | Long   | Yes      | Unix epoch time            |
+
 ### Response
 | Parameter               | Type   | Description                                    |
 |-------------------------|--------|------------------------------------------------|
