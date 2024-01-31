@@ -1727,6 +1727,7 @@ Once client subscribed to desired instrument a stream of market data snapshot wi
     ]
 }
 ```
+
 ### Request parameters
 | Parameter               | Type   | Description                                                 |
 |-------------------------|--------|-------------------------------------------------------------|
@@ -1740,9 +1741,12 @@ Once client subscribed to desired instrument a stream of market data snapshot wi
 
 ## Order
 
-Cypator -> Client.
+Client -> Cyaptor. <br/>
 To place an order taker sends request to Cypator.
-### Request Example
+
+
+> Order
+> 
 ```json
 {
   "op": "order",
@@ -1759,7 +1763,9 @@ To place an order taker sends request to Cypator.
   "ts": 1667835722653
 }
 ```
-### Success Response Example
+
+> Order acknowledgement success
+
 ```json
 {
     "op": "order",
@@ -1778,7 +1784,9 @@ To place an order taker sends request to Cypator.
     "ts": 1706601667000
 }
 ```
-### Error response Example
+
+> Order Single acknowledgement failure
+ 
 ```json
 {
     "ts": "1667835722653",
@@ -1798,6 +1806,7 @@ To place an order taker sends request to Cypator.
     }
 }
 ```
+
 ### Request parameters
 | Parameter           | Type   | Required | Description                                |
 |---------------------|--------|----------|--------------------------------------------|
@@ -1811,6 +1820,7 @@ To place an order taker sends request to Cypator.
 | -> <br />account    | String | Yes      | Name of account                            |
 | -> <br />quantity   | Double | Yes      | Quantity of order                          |
 | -> <br />price      | Double | Yes      | Price                                      |
+
 ### Response
 | Parameter           | Type   | Description                                    |
 |---------------------|--------|------------------------------------------------|
@@ -1826,6 +1836,17 @@ To place an order taker sends request to Cypator.
 | -> <br />price      | Double | Price                                          |
 | -> <br />code       | int    | Zero for success, non zero for failure         |
 | -> <br />errMsg     | String | Error message, populated only in case of error |
+
+
+<aside class="notice">
+Cypator supports market orders (orderType) for both time in force (tif) IOC and FOK. it is recommended to send orders with time in force IOC for a better fill ratio (trade can be Filled, partially filled, or cancel) and with the conditions:<br/>
+1. Price (price) to be used as TOB <br/>
+2. Order Type Market (orderType) <br/>
+3. Time in force to be IOC (tip)
+<br/>
+In the case of market order with time in force FOK, trade can be filled, or canceled.
+</aside>
+
 
 ## Execution report
 
