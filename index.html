@@ -3613,9 +3613,13 @@ Rate limit : 1 request per 15 seconds Connection dropped in case of rate limit b
 </tr>
 </tbody></table>
 <h2 id='subscribe'>Subscribe</h2>
-<p>Cypator -&gt; Client.
-To receive market data products needs to be subscribed. Taker sends below request to Cypator</p>
-<h3 id='request-example'>Request Example</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<p>Client -&gt; Cyaptor. <br/>
+Client will subscribe desired instruments to be able to retrieve a stream of market data.</p>
+
+<blockquote>
+<p>Request Example</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"subscribe"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"arg"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nl">"instrument"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USD"</span><span class="p">,</span><span class="w">
@@ -3628,8 +3632,11 @@ To receive market data products needs to be subscribed. Taker sends below reques
   </span><span class="p">},</span><span class="w">
   </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1667835722651</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='success-response-example'>Success Response Example</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1667835722651"</span><span class="p">,</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Success Response Example</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"subscribe"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"arg"</span><span class="p">:</span><span class="w">
   </span><span class="p">{</span><span class="w">
@@ -3641,10 +3648,14 @@ To receive market data products needs to be subscribed. Taker sends below reques
     </span><span class="nl">"aggBook"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
     </span><span class="nl">"marketDepth"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
     </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-  </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1667835722651"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='error-response-example'>Error response Example</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1667835722651"</span><span class="p">,</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Error response Example</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"subscribe"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"arg"</span><span class="p">:</span><span class="w">
   </span><span class="p">{</span><span class="w">
@@ -3657,7 +3668,8 @@ To receive market data products needs to be subscribed. Taker sends below reques
     </span><span class="nl">"marketDepth"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
     </span><span class="nl">"errMsg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Duplicate market data request symbol"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">50206</span><span class="w">
-  </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1667835722651"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h3 id='request-parameters-3'>Request parameters</h3>
 <table><thead>
@@ -3702,25 +3714,25 @@ To receive market data products needs to be subscribed. Taker sends below reques
 <td>-&gt; <br />subscriptionRequestType</td>
 <td>String</td>
 <td>Yes</td>
-<td>Subscription type. Values : snapshot</td>
+<td>Subscription type. Values:<br/> snapshot</td>
 </tr>
 <tr>
 <td>-&gt; <br />typeBook</td>
 <td>String</td>
 <td>Yes</td>
-<td>Type of book. Values: Spot</td>
+<td>Type of book. Values: <br/> Spot</td>
 </tr>
 <tr>
 <td>-&gt; <br />aggBook</td>
 <td>Integer</td>
 <td>Yes</td>
-<td>Aggregate book. Values : 0 for false, 1 for true</td>
+<td>Aggregate book. Values:<br/> 0 for false <br/> 1 for true</td>
 </tr>
 <tr>
 <td>-&gt; <br />marketDepth</td>
 <td>Integer</td>
 <td>Yes</td>
-<td>Market Depth. Values: 0,1</td>
+<td>Market Depth. Values: <br/> 0 <br/>1</td>
 </tr>
 <tr>
 <td>ts</td>
@@ -3765,22 +3777,22 @@ To receive market data products needs to be subscribed. Taker sends below reques
 <tr>
 <td>-&gt; <br />subscriptionRequestType</td>
 <td>String</td>
-<td>Subscription type. Values : snapshot</td>
+<td>Subscription type. Values: <br/> snapshot</td>
 </tr>
 <tr>
 <td>-&gt; <br />typeBook</td>
 <td>String</td>
-<td>Type of book. Values: Spot</td>
+<td>Type of book. Values: <br/> Spot</td>
 </tr>
 <tr>
 <td>-&gt; <br />aggBook</td>
 <td>Integer</td>
-<td>Aggregate book. Values : 0 for false, 1 for true</td>
+<td>Aggregate book. Values: <br/> 0 for false <br/> 1 for true</td>
 </tr>
 <tr>
 <td>-&gt; <br />marketDepth</td>
 <td>Integer</td>
-<td>Market Depth. Values: 0,1</td>
+<td>Market Depth. Values: <br/> 0 <br/> 1</td>
 </tr>
 <tr>
 <td>-&gt; <br />code</td>
@@ -3799,9 +3811,13 @@ To receive market data products needs to be subscribed. Taker sends below reques
 </tr>
 </tbody></table>
 <h2 id='unsubscribe'>Unsubscribe</h2>
-<p>Cypator -&gt; Client.
+<p>Client -&gt; Cyaptor. <br/>
 To stop receiving market data unsubscribe call for the product needs to be made. Taker sends the below request to Cypator.</p>
-<h3 id='request-example-2'>Request Example</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+
+<blockquote>
+<p>Request Example</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unsubscribe"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"arg"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nl">"subscriptionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FhervfD"</span><span class="p">,</span><span class="w">
@@ -3810,7 +3826,11 @@ To stop receiving market data unsubscribe call for the product needs to be made.
   </span><span class="p">},</span><span class="w">
   </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1667835722653</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='success-response-example-2'>Success Response Example</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Success Response Example</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unsubscribe"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"arg"</span><span class="p">:</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -3821,7 +3841,11 @@ To stop receiving market data unsubscribe call for the product needs to be made.
     </span><span class="p">},</span><span class="w">
     </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1706601058528</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='error-response-example-2'>Error response Example</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Error response Example</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1667835722653"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unsubscribe"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"arg"</span><span class="p">:</span><span class="w">
@@ -3931,7 +3955,7 @@ To stop receiving market data unsubscribe call for the product needs to be made.
 <h2 id='market-data-snapshot'>Market data snapshot</h2>
 <p>Client -&gt; Cyaptor.
 For subscribed products market data snapshot will be sent as below which need not be acknowledged. Cypator sends market data snapshot message to Taker.</p>
-<h3 id='request-example-3'>Request Example</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<h3 id='request-example'>Request Example</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"snapshot"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"arg"</span><span class="p">:</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -3995,7 +4019,7 @@ For subscribed products market data snapshot will be sent as below which need no
 <h2 id='order-2'>Order</h2>
 <p>Cypator -&gt; Client.
 To place an order taker sends request to Cypator.</p>
-<h3 id='request-example-4'>Request Example</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<h3 id='request-example-2'>Request Example</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"arg"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nl">"instrument"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USD"</span><span class="p">,</span><span class="w">
@@ -4009,7 +4033,7 @@ To place an order taker sends request to Cypator.</p>
   </span><span class="p">},</span><span class="w">
   </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1667835722653</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='success-response-example-3'>Success Response Example</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span></code></pre></div><h3 id='success-response-example'>Success Response Example</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"arg"</span><span class="p">:</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -4025,7 +4049,7 @@ To place an order taker sends request to Cypator.</p>
     </span><span class="p">},</span><span class="w">
     </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1706601667000</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='error-response-example-3'>Error response Example</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span></code></pre></div><h3 id='error-response-example'>Error response Example</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1667835722653"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"arg"</span><span class="p">:</span><span class="w">
@@ -4184,7 +4208,7 @@ To place an order taker sends request to Cypator.</p>
 <h2 id='execution-report-3'>Execution report</h2>
 <p>Client -&gt; Cypator.
 For placed orders execution report will be sent in the below format. It need not be acknowledged. Cypator sends message to taker.</p>
-<h3 id='request-example-5'>Request Example</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<h3 id='request-example-3'>Request Example</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1706601667037"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"trade"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"arg"</span><span class="p">:</span><span class="w">
