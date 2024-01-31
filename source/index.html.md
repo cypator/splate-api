@@ -1014,11 +1014,15 @@ Both market and trade session needs to be authenticated before any requests can 
 | ts              | String   | Yes      | Unix epoch time                                |
 
 ### Signature generation
-Signature needs to be generated at the time of making login request. It can be generated using the following steps:
+Signature needs to be generated at the time of login request. It can be generated using the following steps:
+
 * Generate a string by concatenating password and constant string "/verify"
-* Signature would be Base64 encoded hash of the above string generates using HMAC SHA256 algorithm. 
+* Signature would be Base64 encoded hash of the above string generates using HMAC SHA256 algorithm.
+ 
+
 
 > Java code sample
+ 
 ```java 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
