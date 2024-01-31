@@ -2865,13 +2865,13 @@ Cypator will provide a unique ClOrdID <11>.</p>
 <td>-&gt; <be /> subscriptionRequestType</td>
 <td>String</td>
 <td>Yes</td>
-<td>Subscription type, values : snapshot</td>
+<td>Subscription type, values: <br /> snapshot</td>
 </tr>
 <tr>
 <td>-&gt; <be /> typeBook</td>
 <td>String</td>
 <td>Yes</td>
-<td>Type of book, values : SPOT</td>
+<td>Type of book, values: <br /> SPOT</td>
 </tr>
 <tr>
 <td>-&gt; <be /> AggregatedBook</td>
@@ -2962,13 +2962,13 @@ Cypator will provide a unique ClOrdID <11>.</p>
 <td>-&gt; <br /> subscriptionRequestType</td>
 <td>String</td>
 <td>Yes</td>
-<td>Subscription type echoed back from subscribe, values : snapshot</td>
+<td>Subscription type echoed back from subscribe, values: <br /> snapshot</td>
 </tr>
 <tr>
 <td>-&gt; <br /> typeBook</td>
 <td>String</td>
 <td>Yes</td>
-<td>Type of book echoed back from subscribe, values : SPOT</td>
+<td>Type of book echoed back from subscribe, values: <br /> SPOT</td>
 </tr>
 <tr>
 <td>-&gt; <br /> code</td>
@@ -3081,7 +3081,9 @@ For snapshot message, Cypator won’t send an acknowledgement.</p>
 <td>Unix epoch time</td>
 </tr>
 </tbody></table>
-<h2 id='order'>Order</h2><h3 id='request'>Request</h3>
+<h2 id='order'>Order</h2>
+<p>Order sent from  Cypator to Client.</p>
+<h3 id='request'>Request</h3>
 <blockquote>
 <p>Order create request sent from Cypator</p>
 </blockquote>
@@ -3131,7 +3133,7 @@ For snapshot message, Cypator won’t send an acknowledgement.</p>
 <td>-&gt; <br /> side</td>
 <td>String</td>
 <td>Yes</td>
-<td>Side of the order. Values: BUY, SELL</td>
+<td>Side of the order. Values: <br /> BUY <br /> SELL</td>
 </tr>
 <tr>
 <td>-&gt; <br /> clOrderId</td>
@@ -3143,13 +3145,13 @@ For snapshot message, Cypator won’t send an acknowledgement.</p>
 <td>-&gt; <br /> orderType</td>
 <td>String</td>
 <td>Yes</td>
-<td>Type of order. Values: LIMIT, MARKET</td>
+<td>Type of order. Values: <br />  LIMIT <br />  MARKET</td>
 </tr>
 <tr>
 <td>-&gt; <br /> tif</td>
 <td>String</td>
 <td>Yes</td>
-<td>Time in force. Values; FOK, IOC</td>
+<td>Time in force. Values:<br />  FOK <br /> IOC</td>
 </tr>
 <tr>
 <td>-&gt; <br /> account</td>
@@ -3248,25 +3250,25 @@ For snapshot message, Cypator won’t send an acknowledgement.</p>
 <td>-&gt; <br /> side</td>
 <td>String</td>
 <td>Yes</td>
-<td>Side of the order. Values : <br />BUY, SELL</td>
+<td>Side of the order. Values: <br />BUY <br /> SELL</td>
 </tr>
 <tr>
 <td>-&gt; <br /> clOrderId</td>
 <td>String</td>
 <td>Yes</td>
-<td>Order id</td>
+<td>Order id, Echoed back</td>
 </tr>
 <tr>
 <td>-&gt; <br /> orderType</td>
 <td>String</td>
 <td>Yes</td>
-<td>Type of order. Values: <br /> LIMIT, MARKET</td>
+<td>Type of order. Values: <br /> LIMIT <br /> MARKET</td>
 </tr>
 <tr>
 <td>-&gt; <br /> tif</td>
 <td>String</td>
 <td>Yes</td>
-<td>Time in force. Values: <br /> FOK, IOC</td>
+<td>Time in force. Values: <br /> FOK <br /> IOC</td>
 </tr>
 <tr>
 <td>-&gt; <br /> account</td>
@@ -3305,7 +3307,9 @@ For snapshot message, Cypator won’t send an acknowledgement.</p>
 <td>Unix epoch time</td>
 </tr>
 </tbody></table>
-<h2 id='trade'>Trade</h2><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<h2 id='trade'>Trade</h2>
+<p>Trade sent from  Client to Cypator.</p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"trade"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"arg"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nl">"instrument"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USD"</span><span class="p">,</span><span class="w">
@@ -3360,7 +3364,7 @@ For snapshot message, Cypator won’t send an acknowledgement.</p>
 <td>-&gt; <br /> clOrderId</td>
 <td>String</td>
 <td>Yes</td>
-<td>client order id</td>
+<td>client order id, Echoed back from order</td>
 </tr>
 <tr>
 <td>-&gt; <br /> orderId</td>
@@ -3385,6 +3389,12 @@ For snapshot message, Cypator won’t send an acknowledgement.</p>
 <td>String</td>
 <td>Yes</td>
 <td>Time in force. Values: <br /> FOK <br />  IOC</td>
+</tr>
+<tr>
+<td>-&gt; <br /> state</td>
+<td>String</td>
+<td>Yes</td>
+<td>Order status. Values: <br /> FILLED <br />  PARTIALLY_FILLED  <br /> REJECTED <br />  CANCELED</td>
 </tr>
 <tr>
 <td>-&gt; <br /> quantity</td>
