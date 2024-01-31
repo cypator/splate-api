@@ -427,7 +427,7 @@
               </ul>
           </li>
           <li>
-            <a href="#websocket-api-signature-generation" class="toc-h1 toc-link" data-title="Websocket API Signature generation">Websocket API Signature generation</a>
+            <a href="#websocket-api-signature" class="toc-h1 toc-link" data-title="Websocket API Signature">Websocket API Signature</a>
           </li>
           <li>
             <a href="#websocket-maker-api" class="toc-h1 toc-link" data-title="Websocket Maker API">Websocket Maker API</a>
@@ -2569,7 +2569,7 @@ Cypator will provide a unique ClOrdID <11>.</p>
 <td>Error message. Present in Order Reject</td>
 </tr>
 </tbody></table>
-<h1 id='websocket-api-signature-generation'>Websocket API Signature generation</h1>
+<h1 id='websocket-api-signature'>Websocket API Signature</h1>
 <p>Signature needs to be generated at the time of login request. It can be generated using the following steps:</p>
 
 <ul>
@@ -2639,7 +2639,7 @@ Cypator will provide a unique ClOrdID <11>.</p>
 <span class="nb">echo</span> <span class="s2">"Result: </span><span class="nv">$result</span><span class="s2">"</span>
 
 </code></pre></div><h1 id='websocket-maker-api'>Websocket Maker API</h1><h2 id='login'>Login</h2>
-<p>Client -&gt; Cyaptor.
+<p>Client -&gt; Cyaptor. <br / >
 Both market and trade session needs to be authenticated before any requests can be made.</p>
 <h3 id='request-parameters'>Request parameters</h3>
 <blockquote>
@@ -2771,7 +2771,7 @@ Both market and trade session needs to be authenticated before any requests can 
 </tr>
 </tbody></table>
 <h2 id='ping'>Ping</h2>
-<p>Ping sent from client to Cypator.
+<p>Ping sent from client to Cypator.<br / >
 To keep the connection alive client needs to send a heartbeat message ping once every 30 seconds. If no heartbeat message is received for 30 seconds connection will be dropped.</p>
 
 <blockquote>
@@ -2804,7 +2804,8 @@ To keep the connection alive client needs to send a heartbeat message ping once 
 </tr>
 </tbody></table>
 <h2 id='subscription'>Subscription</h2>
-<p>Subscription request sent from Cypator to Maker. this message will be used for both subscribe and unsubscribe instrument.</p>
+<p>Cyaptor -&gt; Client.<br / >
+Subscription request sent from Cypator to Maker. this message will be used for both subscribe and unsubscribe instrument.</p>
 <h3 id='request-parameter'>Request parameter</h3>
 <blockquote>
 <p>Request subscribe</p>
@@ -3002,7 +3003,7 @@ To keep the connection alive client needs to send a heartbeat message ping once 
 </tr>
 </tbody></table>
 <h2 id='market-data'>Market Data</h2>
-<p>Market data snapshot sent from Client to Cypator.
+<p>Client -&gt; Cypator.<br / >
 For snapshot message, Cypator won’t send an acknowledgement.</p>
 
 <blockquote>
@@ -3094,7 +3095,7 @@ For snapshot message, Cypator won’t send an acknowledgement.</p>
 </tr>
 </tbody></table>
 <h2 id='order'>Order</h2>
-<p>Order sent from  Cypator to Client.</p>
+<p>Cyaptor -&gt; Client.<br / ></p>
 <h3 id='request'>Request</h3>
 <blockquote>
 <p>Order create request sent from Cypator</p>
@@ -3320,7 +3321,7 @@ For snapshot message, Cypator won’t send an acknowledgement.</p>
 </tr>
 </tbody></table>
 <h2 id='trade'>Trade</h2>
-<p>Trade sent from  Client to Cypator.</p>
+<p>Client -&gt; Cypator<br / ></p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"trade"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"arg"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
