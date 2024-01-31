@@ -2567,7 +2567,8 @@ Cypator will provide a unique ClOrdID <11>.</p>
 </tr>
 </tbody></table>
 <h1 id='websocket-maker-api'>Websocket Maker API</h1><h2 id='login'>Login</h2>
-<p>Both market and trade session needs to be authenticated before any requests can be made.</p>
+<p>Login sent from client to Cypator.
+Both market and trade session needs to be authenticated before any requests can be made.</p>
 <h3 id='request-parameters'>Request parameters</h3>
 <blockquote>
 <p>Request</p>
@@ -2763,7 +2764,8 @@ Cypator will provide a unique ClOrdID <11>.</p>
 <span class="nb">echo</span> <span class="s2">"Result: </span><span class="nv">$result</span><span class="s2">"</span>
 
 </code></pre></div><h2 id='ping'>Ping</h2>
-<p>To keep the connection alive client needs to send a heartbeat message ping once every 30 seconds. If no heartbeat message is received for 30 seconds connection will be dropped.</p>
+<p>Ping sent from client to Cypator.
+To keep the connection alive client needs to send a heartbeat message ping once every 30 seconds. If no heartbeat message is received for 30 seconds connection will be dropped.</p>
 
 <blockquote>
 <p>Request</p>
@@ -3437,7 +3439,8 @@ For snapshot message, Cypator won’t send an acknowledgement.</p>
 </tr>
 </tbody></table>
 <h1 id='websocket-taker-api'>Websocket Taker API</h1><h2 id='login-2'>Login</h2>
-<p>Both market and trade session needs to be authenticated before any requests can be made.</p>
+<p>Client -&gt; Cypator.
+Both market and trade session needs to be authenticated before any requests can be made.</p>
 <h3 id='request-parameters-2'>Request parameters</h3>
 <blockquote>
 <p>Request</p>
@@ -3568,7 +3571,8 @@ For snapshot message, Cypator won’t send an acknowledgement.</p>
 </tr>
 </tbody></table>
 <h2 id='ping-2'>Ping</h2>
-<p>To keep the connection alive client needs to send a heartbeat message ping once every 30 seconds. If no heartbeat message is received for 30 seconds connection will be dropped.</p>
+<p>Client -&gt; Cypator.
+To keep the connection alive client needs to send a heartbeat message ping once every 30 seconds. If no heartbeat message is received for 30 seconds connection will be dropped.</p>
 
 <blockquote>
 <p>Request</p>
@@ -3600,7 +3604,8 @@ For snapshot message, Cypator won’t send an acknowledgement.</p>
 </tr>
 </tbody></table>
 <h2 id='subscribe'>Subscribe</h2>
-<p>To receive market data products needs to be subscribed. Taker sends below request to Cypator</p>
+<p>Cypator -&gt; Client.
+To receive market data products needs to be subscribed. Taker sends below request to Cypator</p>
 <h3 id='request-example'>Request Example</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"subscribe"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"arg"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -3785,7 +3790,8 @@ For snapshot message, Cypator won’t send an acknowledgement.</p>
 </tr>
 </tbody></table>
 <h2 id='unsubscribe'>Unsubscribe</h2>
-<p>To stop receiving market data unsubscribe call for the product needs to be made. Taker sends the below request to Cypator.</p>
+<p>Cypator -&gt; Client.
+To stop receiving market data unsubscribe call for the product needs to be made. Taker sends the below request to Cypator.</p>
 <h3 id='request-example-2'>Request Example</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unsubscribe"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"arg"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -3914,7 +3920,8 @@ For snapshot message, Cypator won’t send an acknowledgement.</p>
 </tr>
 </tbody></table>
 <h2 id='market-data-snapshot'>Market data snapshot</h2>
-<p>For subscribed products market data snapshot will be sent as below which need not be acknowledged. Cypator sends market data snapshot message to Taker.</p>
+<p>Client -&gt; Cyaptor.
+For subscribed products market data snapshot will be sent as below which need not be acknowledged. Cypator sends market data snapshot message to Taker.</p>
 <h3 id='request-example-3'>Request Example</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"snapshot"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"arg"</span><span class="p">:</span><span class="w">
@@ -3977,7 +3984,8 @@ For snapshot message, Cypator won’t send an acknowledgement.</p>
 </tr>
 </tbody></table>
 <h2 id='order-2'>Order</h2>
-<p>To place an order taker sends request to Cypator.</p>
+<p>Cypator -&gt; Client.
+To place an order taker sends request to Cypator.</p>
 <h3 id='request-example-4'>Request Example</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"arg"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -4165,7 +4173,8 @@ For snapshot message, Cypator won’t send an acknowledgement.</p>
 </tr>
 </tbody></table>
 <h2 id='execution-report-3'>Execution report</h2>
-<p>For placed orders execution report will be sent in the below format. It need not be acknowledged. Cypator sends message to taker.</p>
+<p>Client -&gt; Cypator.
+For placed orders execution report will be sent in the below format. It need not be acknowledged. Cypator sends message to taker.</p>
 <h3 id='request-example-5'>Request Example</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1706601667037"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"trade"</span><span class="p">,</span><span class="w">
