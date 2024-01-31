@@ -1785,7 +1785,7 @@ To place an order taker sends request to Cypator.
 }
 ```
 
-> Order Single acknowledgement failure
+> Order acknowledgement failure
  
 ```json
 {
@@ -1848,11 +1848,13 @@ In the case of market order with time in force FOK, trade can be filled, or canc
 </aside>
 
 
-## Execution report
+## Trade
 
-Client -> Cypator.
-For placed orders execution report will be sent in the below format. It need not be acknowledged. Cypator sends message to taker.
-### Request Example
+Cypator -> Client.<br/>
+As a response for an order Cypator will reply with a trade.
+
+> Request Example
+
 ```json
 {
     "ts": "1706601667037",
@@ -1876,25 +1878,26 @@ For placed orders execution report will be sent in the below format. It need not
     }
 }
 ```
+
 ### Request parameters
-| Parameter              | Type   | Description                                                               |
-|------------------------|--------|---------------------------------------------------------------------------|
-| op                     | String | Operation subscribe                                                       |
-| arg                    | Object | Subscription details                                                      |
-| -> <br />instrument    | String | Instrument name                                                           |
-| -> <br />side          | String | Side of order. Values : Buy, Sell                                         |
-| -> <br />clOrderId     | String | Unique identifier for order.                                              |
-| -> <br />orderId       | String | Order Id                                                                  |
-| -> <br />tradeId       | String | Trade id                                                                  |
-| -> <br />orderType     | String | Order type. Values : MARKET, LIMIT                                        |
-| -> <br />state         | String | State of the order. Values : FILLED, CANCELED, PARTIALLY_FILLED, REJECTED |
-| -> <br />quantity      | Double | Quantity of order                                                         |
-| -> <br />cumQuantity   | Double | Cumulative quantity                                                       |
-| -> <br />lastQuantity  | Double | Last quantity                                                             |
-| -> <br />leaveQuantity | Double | Leave Quantity                                                            |
-| -> <br />lastPrice     | Double | Last Price                                                                |
-| -> <br />price         | Double | price                                                                     |
-| -> <br />avgPrice      | Double | average price                                                             |
+| Parameter              | Type   | Description                                                                                   |
+|------------------------|--------|-----------------------------------------------------------------------------------------------|
+| op                     | String | Operation subscribe                                                                           |
+| arg                    | Object | Subscription details                                                                          |
+| -> <br />instrument    | String | Instrument name                                                                               |
+| -> <br />side          | String | Side of order. Values:<br/> Buy <br/> Sell                                                    |
+| -> <br />clOrderId     | String | Unique identifier for order.                                                                  |
+| -> <br />orderId       | String | Order Id                                                                                      |
+| -> <br />tradeId       | String | Trade id                                                                                      |
+| -> <br />orderType     | String | Order type. Values: :<br/> MARKET <br/> LIMIT                                                 |
+| -> <br />state         | String | State of the order. Values:<br/> FILLED <br/> CANCELED <br/> PARTIALLY_FILLED <br/> REJECTED  |
+| -> <br />quantity      | Double | Quantity of order                                                                             |
+| -> <br />cumQuantity   | Double | Cumulative quantity                                                                           |
+| -> <br />lastQuantity  | Double | Last quantity                                                                                 |
+| -> <br />leaveQuantity | Double | Leave Quantity                                                                                |
+| -> <br />lastPrice     | Double | Last Price                                                                                    |
+| -> <br />price         | Double | price                                                                                         |
+| -> <br />avgPrice      | Double | average price                                                                                 |
 
 # Websocket API Error Codes
 
