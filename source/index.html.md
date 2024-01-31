@@ -945,7 +945,7 @@ For an IOC type order, there are two additional possible responses in addition t
 
 
 
-# Websocket API Signature generation
+# Websocket API Signature
 Signature needs to be generated at the time of login request. It can be generated using the following steps:
 
 * Generate a string by concatenating password and constant string "/verify"
@@ -1023,7 +1023,7 @@ echo "Result: $result"
 
 ## Login
 
-Client -> Cyaptor.
+Client -> Cyaptor. <br / >
 Both market and trade session needs to be authenticated before any requests can be made.
 
 ### Request parameters
@@ -1092,7 +1092,7 @@ Both market and trade session needs to be authenticated before any requests can 
 
 ## Ping
 
-Ping sent from client to Cypator.
+Ping sent from client to Cypator.<br / >
 To keep the connection alive client needs to send a heartbeat message ping once every 30 seconds. If no heartbeat message is received for 30 seconds connection will be dropped.
 
 > Request
@@ -1117,6 +1117,8 @@ To keep the connection alive client needs to send a heartbeat message ping once 
 
 
 ## Subscription
+
+Cyaptor -> Client.<br / >
 Subscription request sent from Cypator to Maker. this message will be used for both subscribe and unsubscribe instrument.
 
 ### Request parameter
@@ -1217,7 +1219,7 @@ Subscription request sent from Cypator to Maker. this message will be used for b
 
 ## Market Data
 
-Market data snapshot sent from Client to Cypator.
+Client -> Cypator.<br / >
 For snapshot message, Cypator won’t send an acknowledgement.
 
 > snapshot
@@ -1265,7 +1267,7 @@ For snapshot message, Cypator won’t send an acknowledgement.
 
 ## Order
 
-Order sent from  Cypator to Client.
+Cyaptor -> Client.<br / >
 
 ### Request
 
@@ -1368,7 +1370,7 @@ Order sent from  Cypator to Client.
 
 ## Trade
 
-Trade sent from  Client to Cypator.
+Client -> Cypator<br / >
 
 ```json
 {
