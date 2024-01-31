@@ -1110,7 +1110,7 @@ To keep the connection alive client needs to send a heartbeat message ping once 
 
 
 ## Subscription
-Subscription request sent from Cypator to Maker.
+Subscription request sent from Cypator to Maker. this message will be used for both subscribe and unsubscribe instrument.
 
 ### Request parameter
 
@@ -1122,7 +1122,7 @@ Subscription request sent from Cypator to Maker.
   "arg": {
     "instrument": "ETH/USD",
     "side": "BOTH",
-    "subscriptionId": "",
+    "subscriptionId": "123456",
     "subscriptionRequestType": "snapshot",
     "typeBook": "SPOT",
     "aggBook": "0"
@@ -1138,7 +1138,7 @@ Subscription request sent from Cypator to Maker.
   "op": "unsubscribe",
   "arg": {
     "instrument": "ETH/USD",
-    "subscriptionId": "",
+    "subscriptionId": "123456",
     "typeBook": "SPOT"
   },
   "ts": 1667835722651
@@ -1168,7 +1168,7 @@ Subscription request sent from Cypator to Maker.
   "arg": {
     "instrument": "ETH/USD",
     "side": "BOTH",
-    "subscriptionId": "",
+    "subscriptionId": "123456",
     "subscriptionRequestType": "snapshot",
     "typeBook": "SPOT",
     "code" : 0
@@ -1185,7 +1185,7 @@ Subscription request sent from Cypator to Maker.
   "arg": {
     "instrument": "ETH/USD",
     "side": "BOTH",
-    "subscriptionId": "",
+    "subscriptionId": "123456",
     "subscriptionRequestType": "snapshot",
     "typeBook": "SPOT",
     "code" : 50202,
@@ -1201,15 +1201,16 @@ Subscription request sent from Cypator to Maker.
 | arg                                   | Object | Yes      | subscription details                                                                                                                                       |
 | -> <br /> instrument                  | String | Yes      | Instrument name                                                                                                                                            |
 | -> <br /> side                        | String | Yes      | side, possible value: BOTH                                                                                                                                 |
-| -> <br /> subscriptionId              | String | Yes      | NA                                                                                                                                                         |
-| -> <br /> subscriptionRequestType     | String | Yes      | Subscription type, values : snapshot                                                                                                                       |
-| -> <br /> typeBook                    | String | Yes      | Type of book, values : SPOT                                                                                                                                |
+| -> <br /> subscriptionId              | String | Yes      | Unique Market Data Request ID, echoed back from subscribe                                                                                                  |
+| -> <br /> subscriptionRequestType     | String | Yes      | Subscription type echoed back from subscribe, values : snapshot                                                                                            |
+| -> <br /> typeBook                    | String | Yes      | Type of book echoed back from subscribe, values : SPOT                                                                                                     |
 | -> <br /> code                        | String | Yes      | Zero for success, non-zero in case of failure, refer error codes table for standard error. In case of a missing error code, any-non zero value is accepted |
 | -> <br /> errMsg                      | String | No       | To be populate in case of failure only. Standard error defined in the table. In case of missing error code custom error message is accepted                |
 | ts                                    | String | Yes      | Unix epoch time                                                                                                                                            |
 
 ## Market Data
 
+Market data snapshot sent from Client to Cypator.
 For snapshot message, Cypator won’t send an acknowledgement.
 
 > snapshot
@@ -1219,7 +1220,7 @@ For snapshot message, Cypator won’t send an acknowledgement.
   "op": "snapshot",
   "arg": {
     "instrument": "BTC/USD",
-    "subscriptionId": "FhervfD"
+    "subscriptionId": "123456"
   },
   "data": [
     {
@@ -1249,7 +1250,7 @@ For snapshot message, Cypator won’t send an acknowledgement.
 | op                       | String          | Yes      | Operation snapshot                                        |
 | arg                      | Object          | Yes      | snapshot details                                          |
 | -> <br /> instrument     | String          | Yes      | Instrument name                                           |
-| -> <br /> subscriptionId | String          | Yes      | Ignored                                                   |
+| -> <br /> subscriptionId | String          | Yes      | Subscription Id as configured on subscribe                |
 | data                     | Array           | Yes      | List of items                                             |
 | --> <br /> bids          | Array of double | Yes      | List of double, first parameter is price, second quantity |
 | --> <br /> asks          | Array of double | Yes      | List of double, first parameter is price, second quantity |
