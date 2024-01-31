@@ -2695,41 +2695,42 @@ Cypator will provide a unique ClOrdID <11>.</p>
 </tr>
 </tbody></table>
 <h3 id='signature-generation'>Signature generation</h3>
-<p>Signature needs to be generated at the time of making login request. It can be generated using the following steps:
-* Generate a string by concatenating password and constant string &quot;/verify&quot;
-* Signature would be Base64 encoded hash of the above string generates using HMAC SHA256 algorithm. </p>
+<p>Signature needs to be generated at the time of login request. It can be generated using the following steps:</p>
+
+<ul>
+<li>Generate a string by concatenating password and constant string &quot;/verify&quot;</li>
+<li>Signature would be Base64 encoded hash of the above string generates using HMAC SHA256 algorithm.</li>
+</ul>
 
 <blockquote>
-<p>Java code sample
-```java 
-import javax.crypto.Mac;
-import javax.crypto.spec.SecretKeySpec;
-import java.util.Base64;</p>
+<p>Java code sample</p>
 </blockquote>
+<div class="highlight"><pre class="highlight java tab-java"><code><span class="kn">import</span> <span class="nn">javax.crypto.Mac</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.crypto.spec.SecretKeySpec</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Base64</span><span class="o">;</span>
 
-<p>public class SignatureDemo {</p>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SignatureDemo</span> <span class="o">{</span>
 
-<p>public static String getSign(String passPhrase, long timeStamp) {
-    try {
-      String stringToHashAndEncode = timeStamp + &quot;/verify&quot;;
-      Mac sha256HMAC = Mac.getInstance(&quot;HmacSHA256&quot;);</p>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="nc">String</span> <span class="nf">getSign</span><span class="o">(</span><span class="nc">String</span> <span class="n">passPhrase</span><span class="o">,</span> <span class="kt">long</span> <span class="n">timeStamp</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">try</span> <span class="o">{</span>
+      <span class="nc">String</span> <span class="n">stringToHashAndEncode</span> <span class="o">=</span> <span class="n">timeStamp</span> <span class="o">+</span> <span class="s">"/verify"</span><span class="o">;</span>
+      <span class="nc">Mac</span> <span class="n">sha256HMAC</span> <span class="o">=</span> <span class="nc">Mac</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="s">"HmacSHA256"</span><span class="o">);</span>
 
-<p>SecretKeySpec secretKeySpec = new SecretKeySpec(passPhrase.getBytes(), &quot;HmacSHA256&quot;);
-      sha256HMAC.init(secretKeySpec);
-      String hash = Base64.getEncoder().encodeToString(sha256HMAC.doFinal(stringToHashAndEncode.getBytes()));
-      return hash;
-    } catch (Throwable t) {
-      return null;
-    }
-  }</p>
+      <span class="nc">SecretKeySpec</span> <span class="n">secretKeySpec</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SecretKeySpec</span><span class="o">(</span><span class="n">passPhrase</span><span class="o">.</span><span class="na">getBytes</span><span class="o">(),</span> <span class="s">"HmacSHA256"</span><span class="o">);</span>
+      <span class="n">sha256HMAC</span><span class="o">.</span><span class="na">init</span><span class="o">(</span><span class="n">secretKeySpec</span><span class="o">);</span>
+      <span class="nc">String</span> <span class="n">hash</span> <span class="o">=</span> <span class="nc">Base64</span><span class="o">.</span><span class="na">getEncoder</span><span class="o">().</span><span class="na">encodeToString</span><span class="o">(</span><span class="n">sha256HMAC</span><span class="o">.</span><span class="na">doFinal</span><span class="o">(</span><span class="n">stringToHashAndEncode</span><span class="o">.</span><span class="na">getBytes</span><span class="o">()));</span>
+      <span class="k">return</span> <span class="n">hash</span><span class="o">;</span>
+    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Throwable</span> <span class="n">t</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
 
-<p>public static void main(String[] args) {
-    String signature = getSign(&quot;UfawYizemLAHMyAezkYQqLtQ3uJ9UQaXXJg6vrvL&quot;, System.currentTimeMillis());
-    System.out.println(&quot;Signature : &quot; + signature);
-  }
-}
-```</p>
-
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">String</span> <span class="n">signature</span> <span class="o">=</span> <span class="n">getSign</span><span class="o">(</span><span class="s">"UfawYizemLAHMyAezkYQqLtQ3uJ9UQaXXJg6vrvL"</span><span class="o">,</span> <span class="nc">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">());</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Signature : "</span> <span class="o">+</span> <span class="n">signature</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>
 <blockquote>
 <p>Python Example</p>
 </blockquote>
