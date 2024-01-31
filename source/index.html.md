@@ -139,10 +139,10 @@ Trailer
 | 10  | CheckSum  | Y            |
 
 ## Websocket API Introduction
-Documents the websocket API used by Cypator Crypto Trading ECN.
 Cypator websocket provides two websocket session for communication.
 * Market session - used for market data subscription requests and streaming prices.
 * Trade session - used for sending orders and receiving execution reports.
+ 
 
 Market and Trade session require valid login, server identifier, client identifier and password(used only for hashing) for authentication.
 
@@ -1471,7 +1471,7 @@ For snapshot message, Cypator won’t send an acknowledgement.
 
 
 
-# Changelog
+# Version History
 
 ### V1.0.4 - Wed, 20 Dec 2023
 * Maker API will not support Gap-fill (recovery) as default
