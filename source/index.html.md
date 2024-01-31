@@ -1746,7 +1746,7 @@ To place an order taker sends request to Cypator.
 
 
 > Order
-> 
+
 ```json
 {
   "op": "order",
