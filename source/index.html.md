@@ -1512,9 +1512,11 @@ Rate limit : 1 request per 15 seconds Connection dropped in case of rate limit b
 
 ## Subscribe
 
-Cypator -> Client.
-To receive market data products needs to be subscribed. Taker sends below request to Cypator
-### Request Example
+Client -> Cyaptor. <br/>
+Client will subscribe desired instruments to be able to retrieve a stream of market data.
+
+> Request Example
+
 ```json
 {
   "op": "subscribe",
@@ -1530,10 +1532,11 @@ To receive market data products needs to be subscribed. Taker sends below reques
   "ts": 1667835722651
 }
 ```
-### Success Response Example
+
+> Success Response Example
+
 ```json
 {
-  "ts": "1667835722651",
   "op": "subscribe",
   "arg":
   {
@@ -1545,13 +1548,15 @@ To receive market data products needs to be subscribed. Taker sends below reques
     "aggBook": 0,
     "marketDepth": 0,
     "code": 0
-  }
+  },
+  "ts": "1667835722651"
 }
 ```
-### Error response Example
+
+> Error response Example
+
 ```json
 {
-  "ts": "1667835722651",
   "op": "subscribe",
   "arg":
   {
@@ -1564,45 +1569,49 @@ To receive market data products needs to be subscribed. Taker sends below reques
     "marketDepth": 0,
     "errMsg": "Duplicate market data request symbol",
     "code": 50206
-  }
+  },
+  "ts": "1667835722651"
 }
 ```
+
 ### Request parameters
-| Parameter                        | Type    | Required | Description                                      |
-|----------------------------------|---------|----------|--------------------------------------------------|
-| op                               | String  | Yes      | Operation subscribe                              |
-| arg                              | Object  | Yes      | Subscription details                             |
-| -> <br />instrument              | String  | Yes      | Instrument id                                    |
-| -> <br />side                    | String  | Yes      | Side for subscription. Values BOTH               |
-| -> <br />subscriptionId          | String  | Yes      | Unique subscription id                           |
-| -> <br />subscriptionRequestType | String  | Yes      | Subscription type. Values : snapshot             |
-| -> <br />typeBook                | String  | Yes      | Type of book. Values: Spot                       |
-| -> <br />aggBook                 | Integer | Yes      | Aggregate book. Values : 0 for false, 1 for true |
-| -> <br />marketDepth             | Integer | Yes      | Market Depth. Values: 0,1                        |
-| ts                               | Long    | Yes      | Unix epoch time                                  |
+| Parameter                        | Type    | Required | Description                                               |
+|----------------------------------|---------|----------|-----------------------------------------------------------|
+| op                               | String  | Yes      | Operation subscribe                                       |
+| arg                              | Object  | Yes      | Subscription details                                      |
+| -> <br />instrument              | String  | Yes      | Instrument id                                             |
+| -> <br />side                    | String  | Yes      | Side for subscription. Values BOTH                        |
+| -> <br />subscriptionId          | String  | Yes      | Unique subscription id                                    |
+| -> <br />subscriptionRequestType | String  | Yes      | Subscription type. Values:<br/> snapshot                  |
+| -> <br />typeBook                | String  | Yes      | Type of book. Values: <br/> Spot                          |
+| -> <br />aggBook                 | Integer | Yes      | Aggregate book. Values:<br/> 0 for false <br/> 1 for true |
+| -> <br />marketDepth             | Integer | Yes      | Market Depth. Values: <br/> 0 <br/>1                      |
+| ts                               | Long    | Yes      | Unix epoch time                                           |
 
 
 ### Response
-| Parameter                        | Type    | Description                                      |
-|----------------------------------|---------|--------------------------------------------------|
-| op                               | String  | Operation subscribe                              |
-| arg                              | Object  | Subscription details                             |
-| -> <br />instrument              | String  | Instrument id                                    |
-| -> <br />side                    | String  | Side for subscription. Values BOTH               |
-| -> <br />subscriptionId          | String  | Unique subscription id                           |
-| -> <br />subscriptionRequestType | String  | Subscription type. Values : snapshot             |
-| -> <br />typeBook                | String  | Type of book. Values: Spot                       |
-| -> <br />aggBook                 | Integer | Aggregate book. Values : 0 for false, 1 for true |
-| -> <br />marketDepth             | Integer | Market Depth. Values: 0,1                        |
-| -> <br />code                    | int     | Zero for success, non zero for failure           |
-| -> <br />errMsg                  | String  | Error message, populated only in case of error   |
-| ts                               | Long    | Unix epoch time                                  |
+| Parameter                        | Type    | Description                                                |
+|----------------------------------|---------|------------------------------------------------------------|
+| op                               | String  | Operation subscribe                                        |
+| arg                              | Object  | Subscription details                                       |
+| -> <br />instrument              | String  | Instrument id                                              |
+| -> <br />side                    | String  | Side for subscription. Values BOTH                         |
+| -> <br />subscriptionId          | String  | Unique subscription id                                     |
+| -> <br />subscriptionRequestType | String  | Subscription type. Values: <br/> snapshot                  |
+| -> <br />typeBook                | String  | Type of book. Values: <br/> Spot                           |
+| -> <br />aggBook                 | Integer | Aggregate book. Values: <br/> 0 for false <br/> 1 for true |
+| -> <br />marketDepth             | Integer | Market Depth. Values: <br/> 0 <br/> 1                      |
+| -> <br />code                    | int     | Zero for success, non zero for failure                     |
+| -> <br />errMsg                  | String  | Error message, populated only in case of error             |
+| ts                               | Long    | Unix epoch time                                            |
 
 ## Unsubscribe
 
-Cypator -> Client.
+Client -> Cyaptor. <br/>
 To stop receiving market data unsubscribe call for the product needs to be made. Taker sends the below request to Cypator.
-### Request Example
+
+> Request Example
+
 ```json
 {
   "op": "unsubscribe",
@@ -1614,7 +1623,9 @@ To stop receiving market data unsubscribe call for the product needs to be made.
   "timestamp": 1667835722653
 }
 ```
-### Success Response Example
+
+> Success Response Example
+
 ```json
 {
     "op": "unsubscribe",
@@ -1628,7 +1639,9 @@ To stop receiving market data unsubscribe call for the product needs to be made.
     "ts": 1706601058528
 }
 ```
-### Error response Example
+
+> Error response Example
+
 ```json
 {
     "ts": "1667835722653",
@@ -1643,6 +1656,7 @@ To stop receiving market data unsubscribe call for the product needs to be made.
     }
 }
 ```
+
 ### Request parameters
 | Parameter               | Type   | Required | Description                |
 |-------------------------|--------|----------|----------------------------|
