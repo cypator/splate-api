@@ -948,7 +948,7 @@ For an IOC type order, there are two additional possible responses in addition t
 
 ## Login
 
-Login sent from client to Cypator.
+Client -> Cyaptor.
 Both market and trade session needs to be authenticated before any requests can be made.
 
 ### Request parameters
@@ -1064,6 +1064,8 @@ public class SignatureDemo {
   hash_obj = hmac.new(secret_key, message, hashlib.sha256)
   hash_value = base64.b64encode(hash_obj.digest()).decode("utf-8")
 ```
+
+> shell Example
 
 ```shell
 getSign() {
