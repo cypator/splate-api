@@ -1044,15 +1044,15 @@ Both market and trade session needs to be authenticated before any requests can 
 }
 ```
 
-| Parameter        | Type    | Required | Description     | 
-|------------------|---------|----------|-----------------|
-| op               | String  | Yes      | Operation logon |
-| arg              | Object  | Yes      | Login details   |
-| -> <br /> apiKey | String  | Yes      | API Key         |
-| -> <br /> sign   | String  | Yes      |                 |
-| -> <br /> server | String  | Yes      | Server id       |
-| -> <br /> client | String  | Yes      | Client id       |
-| ts               | String  | Yes      | Unix epoch time |
+| Parameter        | Type    | Required | Description               | 
+|------------------|---------|----------|---------------------------|
+| op               | String  | Yes      | Operation logon           |
+| arg              | Object  | Yes      | Login details             |
+| -> <br /> apiKey | String  | Yes      | API Key                   |
+| -> <br /> sign   | String  | Yes      |                           |
+| -> <br /> server | String  | Yes      | Server id                 |
+| -> <br /> client | String  | Yes      | Client id                 |
+| ts               | String  | Yes      | Timestamp in milliseconds |
 
 ### Response
 
@@ -1087,7 +1087,7 @@ Both market and trade session needs to be authenticated before any requests can 
 | arg             | Object   | Yes      | Login details                                  |
 | -> <br />code   | int      | Yes      | 0 - success <br / > non zero for failure       |
 | -> <br />errMsg | String   | no       | Error message, populated only in case of error |
-| ts              | String   | Yes      | Unix epoch time                                |
+| ts              | String   | Yes      | Timestamp in milliseconds                      |
 
 
 ## Ping
@@ -1154,17 +1154,17 @@ Subscription request sent from Cypator to Maker. this message will be used for b
 }
 ```
 
-| Parameter                         | Type   | Required | Description                               | 
-|-----------------------------------|--------|----------|-------------------------------------------|
-| op                                | String | Yes      | Operation subscribe                       |
-| arg                               | Object | Yes      | Operation subscribe                       |
-| -> <be /> instrument              | String | Yes      | Instrument name                           |
-| -> <be /> side                    | String | Yes      | side, possible value: BOTH                |
-| -> <be /> subscriptionId          | String | Yes      | Unique Market Data Request ID             |
+| Parameter                         | Type   | Required | Description                                | 
+|-----------------------------------|--------|----------|--------------------------------------------|
+| op                                | String | Yes      | Operation subscribe                        |
+| arg                               | Object | Yes      | Operation subscribe                        |
+| -> <be /> instrument              | String | Yes      | Instrument name                            |
+| -> <be /> side                    | String | Yes      | side, possible value: BOTH                 |
+| -> <be /> subscriptionId          | String | Yes      | Unique Market Data Request ID              |
 | -> <be /> subscriptionRequestType | String | Yes      | Subscription type, values: <br /> snapshot |
-| -> <be /> typeBook                | String | Yes      | Type of book, values: <br /> SPOT         |
-| -> <be /> AggregatedBook          | int    | no       | always No (0)                             |
-| ts                                | String | Yes      | Unix epoch time                           |
+| -> <be /> typeBook                | String | Yes      | Type of book, values: <br /> SPOT          |
+| -> <be /> AggregatedBook          | int    | no       | always No (0)                              |
+| ts                                | String | Yes      | Timestamp in milliseconds                  |
 
 
 ### Response parameter
@@ -1215,7 +1215,7 @@ Subscription request sent from Cypator to Maker. this message will be used for b
 | -> <br /> typeBook                    | String | Yes      | Type of book echoed back from subscribe, values: <br /> SPOT                                                                                               |
 | -> <br /> code                        | String | Yes      | Zero for success, non-zero in case of failure, refer error codes table for standard error. In case of a missing error code, any-non zero value is accepted |
 | -> <br /> errMsg                      | String | No       | To be populate in case of failure only. Standard error defined in the table. In case of missing error code custom error message is accepted                |
-| ts                                    | String | Yes      | Unix epoch time                                                                                                                                            |
+| ts                                    | String | Yes      | Timestamp in milliseconds                                                                                                                                  |
 
 ## Market Data
 
@@ -1263,7 +1263,7 @@ For snapshot message, Cypator won’t send an acknowledgement.
 | data                     | Array           | Yes      | List of items                                             |
 | --> <br /> bids          | Array of double | Yes      | List of double, first parameter is price, second quantity |
 | --> <br /> asks          | Array of double | Yes      | List of double, first parameter is price, second quantity |
-| ts                       | String          | Yes      | Unix epoch time                                           |
+| ts                       | String          | Yes      | Timestamp in milliseconds                                 |
 
 ## Order
 
@@ -1303,7 +1303,7 @@ Cyaptor -> Client.<br / >
 | -> <br /> account    | String  | Yes      | Optional tag, could be null                         |
 | -> <br /> quantity   | Double  | Yes      | Order quantity                                      |
 | -> <br /> price      | Double  | Yes      | Order price                                         |
-| ts                   | String  | Yes      | Unix epoch time                                     |
+| ts                   | String  | Yes      | Timestamp in milliseconds                           |
 
 ### Response (Acknowledgement)
 
@@ -1365,7 +1365,7 @@ Cyaptor -> Client.<br / >
 | -> <br /> price      | Double  | Yes      | Order price                                                                                                                                                |
 | -> <br /> code       | String  | Yes      | Zero for success, non zero in case of failure, refer error codes table for standard error. In case of a missing error code, any-non zero value is accepted |
 | -> <br /> errMsg     | String  | No       | To be populate in case of failure only. Standard error defined in the table. In case of missing error code custom error message is accepted                |
-| ts                   | String  | Yes      | Unix epoch time                                                                                                                                            |
+| ts                   | String  | Yes      | Timestamp in milliseconds                                                                                                                                  |
 
 
 ## Trade
@@ -1439,15 +1439,15 @@ Both market and trade session needs to be authenticated before any requests can 
 }
 ```
 
-| Parameter        | Type    | Required | Description     | 
-|------------------|---------|----------|-----------------|
-| op               | String  | Yes      | Operation logon |
-| arg              | Object  | Yes      | Login details   |
-| -> <br /> apiKey | String  | Yes      | API Key         |
-| -> <br /> sign   | String  | Yes      |                 |
-| -> <br /> server | String  | Yes      | Server id       |
-| -> <br /> client | String  | Yes      | Client id       |
-| ts               | String  | Yes      | Unix epoch time |
+| Parameter        | Type   | Required | Description               | 
+|------------------|--------|----------|---------------------------|
+| op               | String | Yes      | Operation logon           |
+| arg              | Object | Yes      | Login details             |
+| -> <br /> apiKey | String | Yes      | API Key                   |
+| -> <br /> sign   | String | Yes      |                           |
+| -> <br /> server | String | Yes      | Server id                 |
+| -> <br /> client | String | Yes      | Client id                 |
+| ts               | String | Yes      | Timestamp in milliseconds |
 
 ### Response
 
@@ -1482,7 +1482,7 @@ Both market and trade session needs to be authenticated before any requests can 
 | arg             | Object   | Yes      | Login details                                  |
 | -> <br />code   | int      | Yes      | 0 - success <br / > non zero for failure       |
 | -> <br />errMsg | String   | no       | Error message, populated only in case of error |
-| ts              | String   | Yes      | Unix epoch time                                |
+| ts              | String   | Yes      | Timestamp in milliseconds                      |
 
 ## Ping
 
@@ -1586,7 +1586,7 @@ Client will subscribe to desired instruments to be able to retrieve a stream of 
 | -> <br />typeBook                | String  | Yes      | Type of book. Values: <br/> Spot                          |
 | -> <br />aggBook                 | Integer | Yes      | Aggregate book. Values:<br/> 0 for false <br/> 1 for true |
 | -> <br />marketDepth             | Integer | Yes      | Market Depth. Values: <br/> 0 <br/>1                      |
-| ts                               | Long    | Yes      | Unix epoch time                                           |
+| ts                               | Long    | Yes      | Timestamp in milliseconds                                 |
 
 
 ### Response
@@ -1603,7 +1603,7 @@ Client will subscribe to desired instruments to be able to retrieve a stream of 
 | -> <br />marketDepth             | Integer | Yes      | Market Depth. Values: <br/> 0 <br/> 1                      |
 | -> <br />code                    | int     | Yes      | Zero for success, non zero for failure                     |
 | -> <br />errMsg                  | String  | No       | Error message, populated only in case of error             |
-| ts                               | Long    | Yes      | Unix epoch time                                            |
+| ts                               | Long    | Yes      | Timestamp in milliseconds                                  |
 
 ## Unsubscribe
 
@@ -1665,7 +1665,7 @@ To stop receiving market data unsubscribe call for the product needs to be made.
 | -> <br />instrument     | String | Yes      | Instrument id                    |
 | -> <br />subscriptionId | String | Yes      | Unique subscription id           |
 | -> <br />typeBook       | String | Yes      | Type of book. Values: <br/> Spot |
-| ts                      | Long   | Yes      | Unix epoch time                  |
+| ts                      | Long   | Yes      | Timestamp in milliseconds        |
 
 ### Response
 | Parameter               | Type   | Description                                    |
@@ -1677,7 +1677,7 @@ To stop receiving market data unsubscribe call for the product needs to be made.
 | -> <br />typeBook       | String | Type of book. Values: Spot                     |
 | -> <br />code           | int    | Zero for success, non zero for failure         |
 | -> <br />errMsg         | String | Error message, populated only in case of error |
-| ts                      | Long   | Unix epoch time                                |
+| ts                      | Long   | Timestamp in milliseconds                      |
 
 ## Market data snapshot
 
@@ -1738,6 +1738,10 @@ Once client subscribed to desired instrument a stream of market data snapshot wi
 | data                    | Array  | Array containing of object of bids and asks                 |
 | -> <br />bids           | Array  | List of bids. First item is price, second item is quantity. |
 | -> <br />asks           | Array  | List of asks. First item is price, second item is quantity. |
+
+
+### Note
+In some scenarios bids and asks array will be empty for clear book.
 
 ## Order
 
