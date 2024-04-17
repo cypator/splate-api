@@ -173,6 +173,19 @@ Market and Trade session require valid login, server identifier, client identifi
   * IOC - Immediate or Cancel
   * FOK - Fill or kill
 
+# Environments
+Cypator offer a UAT environment for client testing along with the Production environment.
+
+## Production
+When onBoarding is done, Cypator will issue all the credentials necessary to connect to the production environment.
+
+## UAT
+Cypator User Acceptance Testing (UAT) environment provides full trading capabilities allowing you to test any part of the Taker and Maker API
+for Both FIX and WebSocket Protocol.
+<br/>
+Please note that your experience in UAT environments may differ slightly from that of the current production implementation and undergoes regular maintenance.
+Please contact us to start onBoarding and receive the necessary credentials to login.
+Once your UAT account has been set up, we will provide you a URL linke to be able to start and stop your environment on demand.
 
 
 # FIX Taker API 
