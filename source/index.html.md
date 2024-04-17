@@ -38,7 +38,7 @@ This document defines the Cypator FIX API for sending out market prices, receivi
 ![High-level overview](images/high_level_overview_diagram.png "High-level overview")
 
 
-## FIX Connectivity
+### FIX Connectivity
 
 * The following are the ways a client can connect to the API:
   * Internet over VPN
