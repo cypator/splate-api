@@ -405,21 +405,21 @@ Cypator requires that the ClOrdID <11> be unique.
 8=FIX.4.2|9=133|35=D|49=cc21|56=cs1|34=113|52=20221031-09:11:04|11=1805964193|21=1|55=BTC/USD|54=1|60=20221031-09:11:04|40=2|44=19123.20|38=100|59=4|10=23
 ```
 
-| Tag | Name                                             | Mandatory | Description                                                                                                                                                                                                                                                                                               | 
-|-----|--------------------------------------------------|-----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 35  | MsgType                                          | Y         | D                                                                                                                                                                                                                                                                                                         |
-| 11  | ClOrdID                                          | Y         | Client Order ID – must be unique                                                                                                                                                                                                                                                                          |
-| 1   | Account                                          | N         | Client Account name                                                                                                                                                                                                                                                                                       |
-| 60  | TransactTime                                     | Y         | The transaction timestamp of the orde                                                                                                                                                                                                                                                                     |
-| 15  | Currency                                         | N         | The currency or coin unit that represents the quantity                                                                                                                                                                                                                                                    |
-| 54  | Side                                             | Y         | 1 (Buy) <br />  2 (Sell)                                                                                                                                                                                                                                                                                  |
-| 55  | Symbol                                           | Y         | The Asset - Coin and currency combination, e.g EUR/USD, BTC/USD, ETH/BTC                                                                                                                                                                                                                                  |
-| 38  | OrderQty                                         | Y         | The order quantity                                                                                                                                                                                                                                                                                        |
-| 40  | OrdType                                          | Y         | 1 – Market <br />  2 – Limit                                                                                                                                                                                                                                                                              |
-| 44  | Price                                            | Y         | Limit price if 40=2 <br /> If 40=1 the price is required for pre trade credit check                                                                                                                                                                                                                       |
-| 59  | TimeInForce                                      | Y         | 1 – Good Till Cancel - not supported phase1 <br /> 3 – Immediate or Cancel (Default if no value provided) <br /> 4 – Fill or Kill <br /> 6 – Good Till Date  -not supported phase <br /> Note: OrdType=1 only supports TimeInForce=3 (IOC) OrdType=3 (Stop) only supports TimeInForce=1 (GTC) and 6 (GTD) |
-| 64  | FutSettDate (FIX 4.2) <br /> SettlDate (FIX 4.4) | N         | Value date YYYYMMDD. Required for forward Will be supported in the future. Use FutSettDate if using FIX 4.2 Use SettlDate if using FIX 4.4                                                                                                                                                                |
-| 126 | ExpireTime                                       | N         | Not supported in phase 1- Required for Good-Till-Date order request. Date and Time of the order expiration specified in YYYYMMDD-HH:MM:SS format. Expressed in GMT.                                                                                                                                       |
+| Tag | Name                                             | Mandatory | Description                                                                                                                                                          | 
+|-----|--------------------------------------------------|-----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 35  | MsgType                                          | Y         | D                                                                                                                                                                    |
+| 11  | ClOrdID                                          | Y         | Client Order ID – must be unique                                                                                                                                     |
+| 1   | Account                                          | N         | Client Account name                                                                                                                                                  |
+| 60  | TransactTime                                     | Y         | The transaction timestamp of the orde                                                                                                                                |
+| 15  | Currency                                         | N         | The currency or coin unit that represents the quantity                                                                                                               |
+| 54  | Side                                             | Y         | 1 (Buy) <br />  2 (Sell)                                                                                                                                             |
+| 55  | Symbol                                           | Y         | The Asset - Coin and currency combination, e.g EUR/USD, BTC/USD, ETH/BTC                                                                                             |
+| 38  | OrderQty                                         | Y         | The order quantity                                                                                                                                                   |
+| 40  | OrdType                                          | Y         | 1 – Market <br />  2 – Limit                                                                                                                                         |
+| 44  | Price                                            | Y         | Limit price if 40=2 <br /> If 40=1 the price is required for pre trade credit check                                                                                  |
+| 59  | TimeInForce                                      | Y         | 1 – Good Till Cancel <br /> 3 – Immediate or Cancel (Default if no value provided) <br /> 4 – Fill or Kill <br /> Note: OrdType=1 only supports TimeInForce=3 (IOC)  |
+| 64  | FutSettDate (FIX 4.2) <br /> SettlDate (FIX 4.4) | N         | Value date YYYYMMDD. Required for forward Will be supported in the future. Use FutSettDate if using FIX 4.2 Use SettlDate if using FIX 4.4                           |
+| 126 | ExpireTime                                       | N         | Not supported in phase 1- Required for Good-Till-Date order request. Date and Time of the order expiration specified in YYYYMMDD-HH:MM:SS format. Expressed in GMT.  |
 
 
 <aside class="notice">
@@ -546,6 +546,64 @@ not received within 5 seconds, from the time the trade request was sent, the Cli
 contact Cyaptor using the following support email address: support@cypator.com. This support inbox is manned 24 hours a day 7 days a week, providing global support at all hours. Contact with Cypator should be made via an automated email alert from the Client’s trading system. However, in the event that the Client cannot support this, we would expect a manual email or a call to our
 support desk.
 </aside>
+
+
+## Order Cancel Request
+This message is used by the client to cancel any live order they may have. Applicable for orders of type GTC.<br/>
+In case Cypator is unable to cancel the order a Cancel Rejected (35=9) message will be sent as a response.<br/>
+In case Cypator was able to cancel the order an Execution Report (35=8) with status cancel for OrdStatus and ExecType (39=4, 150=0) will be sent back.
+
+<aside class="warning">All resting orders are COD (Cancel On Disconnect) once session/connection is lost all active orders will automatically be canceled immediately</aside>
+
+> FIX 4.4  Client -> Cypator
+
+```plaintext 
+8=FIX.4.49=10935=F49=cc1156=cs134=1552=20240326-12:50:5241=159895075911=159895075955=BTC/USD60=20240326-12:50:5237=A010tlPyxyg10=232
+```
+
+> FIX 4.2  Client -> Cypator
+
+```plaintext 
+8=FIX.4.29=10935=F49=cc1156=cs134=1552=20240326-12:50:5241=159895075911=159895075955=BTC/USD60=20240326-12:50:5237=A010tlPyxyg10=232
+```
+
+| Tag | Name          | Mandatory | Description                                             | 
+|-----|---------------|-----------|---------------------------------------------------------|
+| 35  | MsgType       | Y         | F                                                       |
+| 1   | Account       | N         | Client Account name                                     |
+| 11  | ClOrderID     | Y         | Client Order ID                                         |
+| 37  | OrderID       | Y         | The order ID of the order to be canceled                |
+| 41  | OrigClOrdID   | Y         | Client Order ID of Order being replaced                 |
+| 55  | Symbol        | Y         | The Asset - Coin and currency combination, e.g. BTC/USD |
+| 60  | TransactTime  | Y         | The transaction timestamp of the order cancel request   |
+
+
+## Cancel Rejected
+This message is used by Cypator to reject a cancel order message. This can happen if the order is already filled or is in the process of getting filled.
+
+> FIX 4.4  Cypator -> Client
+
+```plaintext 
+8=FIX.4.49=11235=934=4449=cs152=20240326-12:23:27.86456=cc2111=159895075937=A010tlPyxyg39=841=1598950759102=99434=110=134
+```
+
+> FIX 4.2  Cypator -> Client
+
+```plaintext 
+8=FIX.4.29=11235=934=4449=cs152=20240326-12:23:27.86456=cc2111=159895075937=A010tlPyxyg39=841=1598950759102=99434=110=134
+```
+
+| Tag | Name                     | Mandatory | Description                                                      | 
+|-----|--------------------------|-----------|------------------------------------------------------------------|
+| 35  | MsgType                  | Y         | 9                                                                |
+| 11  | ClOrderID                | Y         | Client Order ID                                                  |
+| 37  | OrderID                  | Y         | The order ID of the order to be canceled                         |
+| 39  | OrderStatus              | Y         | 8=Rejected Status of the order cancel request                    |
+| 41  | OrigClOrdID              | Y         | Client Order ID of Order being rejected                          |
+| 434 | CxlRejResponseTo         | Y         | 1 – Order Cancel Request <br /> 2 – Order Cancel/Replace Request |
+| 102 | CxlRejReason             | N         | 1 – Order Cancel Request <br /> 2 – Order Cancel/Replace Request |
+| 58  | Text                     | N         | Error message                                                    |
+| 60  | TransactTime             | Y         | The transaction timestamp of the order cancel request            |
 
 
 ## Trade Capture Report
@@ -1992,6 +2050,9 @@ As a response for an order Cypator will reply with a trade.
 
 
 # Version History
+
+### V1.1.1 - Wed, 1 May 2024
+Resting order GTC support  was added 
 
 ### V1.1.1 - Sun, 18 Feb 2024
 New pair USDT/USDC was added to Instruments table
