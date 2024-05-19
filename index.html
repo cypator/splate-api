@@ -395,7 +395,103 @@
                     <a href="#order-cancel-request" class="toc-h2 toc-link" data-title="Order Cancel Request">Order Cancel Request</a>
                   </li>
                   <li>
+                    <a href="#cancel-rejected" class="toc-h2 toc-link" data-title="Cancel Rejected">Cancel Rejected</a>
+                  </li>
+                  <li>
+                    <a href="#trade-capture-report" class="toc-h2 toc-link" data-title="Trade Capture Report">Trade Capture Report</a>
+                  </li>
+                  <li>
+                    <a href="#request-trade-capture-report" class="toc-h2 toc-link" data-title="Request Trade Capture Report">Request Trade Capture Report</a>
+                  </li>
+                  <li>
+                    <a href="#trade-capture-report-request-ack" class="toc-h2 toc-link" data-title="Trade Capture Report Request Ack">Trade Capture Report Request Ack</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#fix-maker-api" class="toc-h1 toc-link" data-title="FIX Maker API">FIX Maker API</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#logon-2" class="toc-h2 toc-link" data-title="Logon">Logon</a>
+                  </li>
+                  <li>
+                    <a href="#heartbeat-2" class="toc-h2 toc-link" data-title="Heartbeat">Heartbeat</a>
+                  </li>
+                  <li>
+                    <a href="#test-request-2" class="toc-h2 toc-link" data-title="Test Request">Test Request</a>
+                  </li>
+                  <li>
+                    <a href="#logout-2" class="toc-h2 toc-link" data-title="Logout">Logout</a>
+                  </li>
+                  <li>
+                    <a href="#market-data-request-2" class="toc-h2 toc-link" data-title="Market Data Request">Market Data Request</a>
+                  </li>
+                  <li>
+                    <a href="#market-data-request-reject-2" class="toc-h2 toc-link" data-title="Market Data Request Reject">Market Data Request Reject</a>
+                  </li>
+                  <li>
+                    <a href="#market-data-snapshot-full-2" class="toc-h2 toc-link" data-title="Market Data Snapshot Full">Market Data Snapshot Full</a>
+                  </li>
+                  <li>
+                    <a href="#new-order-single-2" class="toc-h2 toc-link" data-title="New Order Single">New Order Single</a>
+                  </li>
+                  <li>
+                    <a href="#order-reject-2" class="toc-h2 toc-link" data-title="Order Reject">Order Reject</a>
+                  </li>
+                  <li>
+                    <a href="#execution-report-2" class="toc-h2 toc-link" data-title="Execution Report">Execution Report</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#websocket-api-signature" class="toc-h1 toc-link" data-title="Websocket API Signature">Websocket API Signature</a>
+          </li>
+          <li>
+            <a href="#websocket-maker-api" class="toc-h1 toc-link" data-title="Websocket Maker API">Websocket Maker API</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#login" class="toc-h2 toc-link" data-title="Login">Login</a>
+                  </li>
+                  <li>
+                    <a href="#ping" class="toc-h2 toc-link" data-title="Ping">Ping</a>
+                  </li>
+                  <li>
+                    <a href="#subscription" class="toc-h2 toc-link" data-title="Subscription">Subscription</a>
+                  </li>
+                  <li>
+                    <a href="#market-data" class="toc-h2 toc-link" data-title="Market Data">Market Data</a>
+                  </li>
+                  <li>
+                    <a href="#order" class="toc-h2 toc-link" data-title="Order">Order</a>
+                  </li>
+                  <li>
                     <a href="#trade" class="toc-h2 toc-link" data-title="Trade">Trade</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#websocket-taker-api" class="toc-h1 toc-link" data-title="Websocket Taker API">Websocket Taker API</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#login-2" class="toc-h2 toc-link" data-title="Login">Login</a>
+                  </li>
+                  <li>
+                    <a href="#ping-2" class="toc-h2 toc-link" data-title="Ping">Ping</a>
+                  </li>
+                  <li>
+                    <a href="#subscribe" class="toc-h2 toc-link" data-title="Subscribe">Subscribe</a>
+                  </li>
+                  <li>
+                    <a href="#unsubscribe" class="toc-h2 toc-link" data-title="Unsubscribe">Unsubscribe</a>
+                  </li>
+                  <li>
+                    <a href="#market-data-snapshot" class="toc-h2 toc-link" data-title="Market data snapshot">Market data snapshot</a>
+                  </li>
+                  <li>
+                    <a href="#order-2" class="toc-h2 toc-link" data-title="Order">Order</a>
+                  </li>
+                  <li>
+                    <a href="#trade-2" class="toc-h2 toc-link" data-title="Trade">Trade</a>
                   </li>
               </ul>
           </li>
@@ -1523,1362 +1619,2821 @@ support desk.
 In case Cypator is unable to cancel the order a Cancel Rejected (35=9) message will be sent as a response.<br/>
 In case Cypator was able to cancel the order an Execution Report (35=8) with status cancel for OrdStatus and ExecType (39=4, 150=0) will be sent back.</p>
 
-<aside class="warning">All resting orders are COD (Cancel On Disconnect) once session/connection is lost all active orders will automatically be canceled immediately. <br/> It is the
-user’s responsibility to re-enter all orders that have been cancelled by COD</aside>
+<aside class="warning">All resting orders are COD (Cancel On Disconnect) once session/connection is lost all active orders will automatically be canceled immediately. It is the user’s responsibility to re-enter all orders that have been cancelled by COD </aside>
 
-> FIX 4.4  Client -> Cypator
+<blockquote>
+<p>FIX 4.4  Client -&gt; Cypator</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext tab-plaintext"><code>8=FIX.4.4|9=109|35=F|49=cc11|56=cs1|34=15|52=20240326-12:50:52|41=1598950759|11=1598950759|55=BTC/USD|60=20240326-12:50:52|37=A010tlPyxyg|10=232|
+</code></pre></div>
+<blockquote>
+<p>FIX 4.2  Client -&gt; Cypator</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext tab-plaintext"><code>8=FIX.4.2|9=109|35=F|49=cc11|56=cs1|34=15|52=20240326-12:50:52|41=1598950759|11=1598950759|55=BTC/USD|60=20240326-12:50:52|37=A010tlPyxyg|10=232|
+</code></pre></div>
+<table><thead>
+<tr>
+<th>Tag</th>
+<th>Name</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>35</td>
+<td>MsgType</td>
+<td>Y</td>
+<td>F</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Account</td>
+<td>N</td>
+<td>Client Account name</td>
+</tr>
+<tr>
+<td>11</td>
+<td>ClOrderID</td>
+<td>Y</td>
+<td>Client Order ID</td>
+</tr>
+<tr>
+<td>37</td>
+<td>OrderID</td>
+<td>Y</td>
+<td>The order ID of the order to be canceled</td>
+</tr>
+<tr>
+<td>41</td>
+<td>OrigClOrdID</td>
+<td>Y</td>
+<td>Client Order ID of Order being replaced</td>
+</tr>
+<tr>
+<td>55</td>
+<td>Symbol</td>
+<td>Y</td>
+<td>The Asset - Coin and currency combination, e.g. BTC/USD</td>
+</tr>
+<tr>
+<td>60</td>
+<td>TransactTime</td>
+<td>Y</td>
+<td>The transaction timestamp of the order cancel request</td>
+</tr>
+</tbody></table>
+<h2 id='cancel-rejected'>Cancel Rejected</h2>
+<p>This message is used by Cypator to reject a cancel order message. This can happen if the order is already filled or is in the process of getting filled.</p>
 
-```plaintext 
-8=FIX.4.4|9=109|35=F|49=cc11|56=cs1|34=15|52=20240326-12:50:52|41=1598950759|11=1598950759|55=BTC/USD|60=20240326-12:50:52|37=A010tlPyxyg|10=232|
-```
-
-> FIX 4.2  Client -> Cypator
-
-```plaintext 
-8=FIX.4.2|9=109|35=F|49=cc11|56=cs1|34=15|52=20240326-12:50:52|41=1598950759|11=1598950759|55=BTC/USD|60=20240326-12:50:52|37=A010tlPyxyg|10=232|
-```
-
-| Tag | Name          | Mandatory | Description                                             | 
-|-----|---------------|-----------|---------------------------------------------------------|
-| 35  | MsgType       | Y         | F                                                       |
-| 1   | Account       | N         | Client Account name                                     |
-| 11  | ClOrderID     | Y         | Client Order ID                                         |
-| 37  | OrderID       | Y         | The order ID of the order to be canceled                |
-| 41  | OrigClOrdID   | Y         | Client Order ID of Order being replaced                 |
-| 55  | Symbol        | Y         | The Asset - Coin and currency combination, e.g. BTC/USD |
-| 60  | TransactTime  | Y         | The transaction timestamp of the order cancel request   |
-
-
-## Cancel Rejected
-This message is used by Cypator to reject a cancel order message. This can happen if the order is already filled or is in the process of getting filled.
-
-> FIX 4.4  Cypator -> Client
-
-```plaintext 
-8=FIX.4.4|9=112|35=9|34=44|49=cs1|52=20240326-12:23:27.864|56=cc21|11=1598950759|37=A010tlPyxyg|39=8|41=1598950759|102=99|434=1|10=134|
-```
-
-> FIX 4.2  Cypator -> Client
-
-```plaintext 
-8=FIX.4.2|9=112|35=9|34=44|49=cs1|52=20240326-12:23:27.864|56=cc21|11=1598950759|37=A010tlPyxyg|39=8|41=1598950759|102=99|434=1|10=134|
-```
-
-| Tag | Name                     | Mandatory | Description                                                      | 
-|-----|--------------------------|-----------|------------------------------------------------------------------|
-| 35  | MsgType                  | Y         | 9                                                                |
-| 11  | ClOrderID                | Y         | Client Order ID                                                  |
-| 37  | OrderID                  | Y         | The order ID of the order to be canceled                         |
-| 39  | OrderStatus              | Y         | 8=Rejected Status of the order cancel request                    |
-| 41  | OrigClOrdID              | Y         | Client Order ID of Order being rejected                          |
-| 434 | CxlRejResponseTo         | Y         | 1 – Order Cancel Request <br /> 2 – Order Cancel/Replace Request |
-| 102 | CxlRejReason             | N         | 1 – Order Cancel Request <br /> 2 – Order Cancel/Replace Request |
-| 58  | Text                     | N         | Error message                                                    |
-| 60  | TransactTime             | Y         | The transaction timestamp of the order cancel request            |
-
-
-## Trade Capture Report
-
-Used to report a trade between counterparties.
+<blockquote>
+<p>FIX 4.4  Cypator -&gt; Client</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext tab-plaintext"><code>8=FIX.4.4|9=112|35=9|34=44|49=cs1|52=20240326-12:23:27.864|56=cc21|11=1598950759|37=A010tlPyxyg|39=8|41=1598950759|102=99|434=1|10=134|
+</code></pre></div>
+<blockquote>
+<p>FIX 4.2  Cypator -&gt; Client</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext tab-plaintext"><code>8=FIX.4.2|9=112|35=9|34=44|49=cs1|52=20240326-12:23:27.864|56=cc21|11=1598950759|37=A010tlPyxyg|39=8|41=1598950759|102=99|434=1|10=134|
+</code></pre></div>
+<table><thead>
+<tr>
+<th>Tag</th>
+<th>Name</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>35</td>
+<td>MsgType</td>
+<td>Y</td>
+<td>9</td>
+</tr>
+<tr>
+<td>11</td>
+<td>ClOrderID</td>
+<td>Y</td>
+<td>Client Order ID</td>
+</tr>
+<tr>
+<td>37</td>
+<td>OrderID</td>
+<td>Y</td>
+<td>The order ID of the order to be canceled</td>
+</tr>
+<tr>
+<td>39</td>
+<td>OrderStatus</td>
+<td>Y</td>
+<td>8=Rejected Status of the order cancel request</td>
+</tr>
+<tr>
+<td>41</td>
+<td>OrigClOrdID</td>
+<td>Y</td>
+<td>Client Order ID of Order being rejected</td>
+</tr>
+<tr>
+<td>434</td>
+<td>CxlRejResponseTo</td>
+<td>Y</td>
+<td>1 – Order Cancel Request <br /> 2 – Order Cancel/Replace Request</td>
+</tr>
+<tr>
+<td>102</td>
+<td>CxlRejReason</td>
+<td>N</td>
+<td>1 – Order Cancel Request <br /> 2 – Order Cancel/Replace Request</td>
+</tr>
+<tr>
+<td>58</td>
+<td>Text</td>
+<td>N</td>
+<td>Error message</td>
+</tr>
+<tr>
+<td>60</td>
+<td>TransactTime</td>
+<td>Y</td>
+<td>The transaction timestamp of the order cancel request</td>
+</tr>
+</tbody></table>
+<h2 id='trade-capture-report'>Trade Capture Report</h2>
+<p>Used to report a trade between counterparties.</p>
 
 <aside class="success"> Supported for FIX 4.4</aside>
 
-> FIX 4.4  Cypator -> Client
-
-```plaintext 
-
+<blockquote>
+<p>FIX 4.4  Cypator -&gt; Client</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext tab-plaintext"><code>
 8=FIX.4.4|9=239|35=AE|34=2|49=cs1|52=20221031-09:43:02.535|56=cc11|17=s1|31=1234.56|32=0.00025|55=BTC/USD|60=20221030-10:10:28.629|75=20190824|150=F|487=0|568=HjdFFY13|571=A010tlPGF9S|748=1|912=Y|552=1|54=1|37=s3|11=123546|453=1|448=1|447=C|452=17|15=BTC|10=031
-```
-
-| Tag | Name                     | Mandatory | Description                                                                                                    | 
-|-----|--------------------------|-----------|----------------------------------------------------------------------------------------------------------------|
-| 35  | MsgType                  | Y         | AE                                                                                                             |
-| 571 | TradeReportID            | Y         | ID for this message                                                                                            |
-| 60  | TransactTime             | Y         | The transaction timestamp of the order UTC                                                                     |
-| 487 | TradeReportTransType     | Y         | 0-New                                                                                                          |
-| 75  | TradeDate                | Y         | Trade date in YYYYMMDD format. We use the creation date based on Transact time UTC                             |
-| 568 | TradeRequestID           | N         | Request ID if the Trade Capture Report <AE> is in response to a Trade Capture Report Request <AD>              |
-| 748 | TotNumTradeReports       | N         | Number of trade reports returned - if this report is part of a response to a Trade Capture Report Request <AD> |
-| 912 | LastRptRequested         | N         | Indicates if this is the last report in the response to a Trade Capture Report Request <AD>                    |
-| 150 | ExecType                 | N         | F - Trade                                                                                                      |
-| 55  | Symbol                   | Y         | The Asset - Coin and currency combination, e.g. EUR/USD, BTC/USD, ETH/BTC                                      |
-| 31  | LastPx                   | Y         | Price of the last fill. Only present in Fill report                                                            |
-| 32  | LastQty                  | Y         | Amount bought or sold on this fill                                                                             |
-| 17  | ExecID                   | N         | Cypator Execution ID. Unique ID in each execution report                                                       |
-| 552 | NoSides                  | Y         | Number of sides                                                                                                |
-| 54  | -><br /> Side            | Y         | Trading Party                                                                                                  |
-| 11  | -><br /> ClOrdID         | Y         | Order ID of the Trading party                                                                                  |
-| 37  | -><br /> OrderID         | Y         | Cypator unique order ID for the Trade                                                                          |
-| 15  | -><br /> Currency/Coin   | N         | Identifies currency or coin used for price                                                                     |
-| 453 | -><br /> NoPartyIDs      | N         | Number of parties                                                                                              |
-| 448 | ->-><br /> PartyID       | N         | ID of the counterparty                                                                                         |
-| 447 | ->-><br /> PartyIDSource | N         | C – Generally accepted market participant                                                                      |
-| 452 | ->-><br /> PartyRole     | N         | The role of the party 17 – Contra Firm (the counterparty)                                                      |
-
-
-## Request Trade Capture Report
-In the event of a communication breakdown, or any other prerogative the client can send a “Request Trade Capture Report” message and include in it the Order Id for which they want to verify if a trade was created or not using ClOrdID <11>. The system will respond with AE drop copy messages for all created trades.
-Please note – an Order (if not of type FOK) may result in several trades and may be partially filled. The system will respond with all trades related to an order.
+</code></pre></div>
+<table><thead>
+<tr>
+<th>Tag</th>
+<th>Name</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>35</td>
+<td>MsgType</td>
+<td>Y</td>
+<td>AE</td>
+</tr>
+<tr>
+<td>571</td>
+<td>TradeReportID</td>
+<td>Y</td>
+<td>ID for this message</td>
+</tr>
+<tr>
+<td>60</td>
+<td>TransactTime</td>
+<td>Y</td>
+<td>The transaction timestamp of the order UTC</td>
+</tr>
+<tr>
+<td>487</td>
+<td>TradeReportTransType</td>
+<td>Y</td>
+<td>0-New</td>
+</tr>
+<tr>
+<td>75</td>
+<td>TradeDate</td>
+<td>Y</td>
+<td>Trade date in YYYYMMDD format. We use the creation date based on Transact time UTC</td>
+</tr>
+<tr>
+<td>568</td>
+<td>TradeRequestID</td>
+<td>N</td>
+<td>Request ID if the Trade Capture Report <AE> is in response to a Trade Capture Report Request <AD></td>
+</tr>
+<tr>
+<td>748</td>
+<td>TotNumTradeReports</td>
+<td>N</td>
+<td>Number of trade reports returned - if this report is part of a response to a Trade Capture Report Request <AD></td>
+</tr>
+<tr>
+<td>912</td>
+<td>LastRptRequested</td>
+<td>N</td>
+<td>Indicates if this is the last report in the response to a Trade Capture Report Request <AD></td>
+</tr>
+<tr>
+<td>150</td>
+<td>ExecType</td>
+<td>N</td>
+<td>F - Trade</td>
+</tr>
+<tr>
+<td>55</td>
+<td>Symbol</td>
+<td>Y</td>
+<td>The Asset - Coin and currency combination, e.g. EUR/USD, BTC/USD, ETH/BTC</td>
+</tr>
+<tr>
+<td>31</td>
+<td>LastPx</td>
+<td>Y</td>
+<td>Price of the last fill. Only present in Fill report</td>
+</tr>
+<tr>
+<td>32</td>
+<td>LastQty</td>
+<td>Y</td>
+<td>Amount bought or sold on this fill</td>
+</tr>
+<tr>
+<td>17</td>
+<td>ExecID</td>
+<td>N</td>
+<td>Cypator Execution ID. Unique ID in each execution report</td>
+</tr>
+<tr>
+<td>552</td>
+<td>NoSides</td>
+<td>Y</td>
+<td>Number of sides</td>
+</tr>
+<tr>
+<td>54</td>
+<td>-&gt;<br /> Side</td>
+<td>Y</td>
+<td>Trading Party</td>
+</tr>
+<tr>
+<td>11</td>
+<td>-&gt;<br /> ClOrdID</td>
+<td>Y</td>
+<td>Order ID of the Trading party</td>
+</tr>
+<tr>
+<td>37</td>
+<td>-&gt;<br /> OrderID</td>
+<td>Y</td>
+<td>Cypator unique order ID for the Trade</td>
+</tr>
+<tr>
+<td>15</td>
+<td>-&gt;<br /> Currency/Coin</td>
+<td>N</td>
+<td>Identifies currency or coin used for price</td>
+</tr>
+<tr>
+<td>453</td>
+<td>-&gt;<br /> NoPartyIDs</td>
+<td>N</td>
+<td>Number of parties</td>
+</tr>
+<tr>
+<td>448</td>
+<td>-&gt;-&gt;<br /> PartyID</td>
+<td>N</td>
+<td>ID of the counterparty</td>
+</tr>
+<tr>
+<td>447</td>
+<td>-&gt;-&gt;<br /> PartyIDSource</td>
+<td>N</td>
+<td>C – Generally accepted market participant</td>
+</tr>
+<tr>
+<td>452</td>
+<td>-&gt;-&gt;<br /> PartyRole</td>
+<td>N</td>
+<td>The role of the party 17 – Contra Firm (the counterparty)</td>
+</tr>
+</tbody></table>
+<h2 id='request-trade-capture-report'>Request Trade Capture Report</h2>
+<p>In the event of a communication breakdown, or any other prerogative the client can send a “Request Trade Capture Report” message and include in it the Order Id for which they want to verify if a trade was created or not using ClOrdID <11>. The system will respond with AE drop copy messages for all created trades.
+Please note – an Order (if not of type FOK) may result in several trades and may be partially filled. The system will respond with all trades related to an order.</p>
 
 <aside class="success"> Supported for FIX 4.4</aside>
 
-> FIX 4.4  Client -> Cypator
-
-```plaintext 
-
+<blockquote>
+<p>FIX 4.4  Client -&gt; Cypator</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext tab-plaintext"><code>
 8=FIX.4.4|9=76|35=AD|49=cc11|56=cs1|34=3|52=20221031-09:43:02|568=HjdFFY13|569=1|11=123546|10=182|
-```
+</code></pre></div>
+<table><thead>
+<tr>
+<th>Tag</th>
+<th>Name</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>35</td>
+<td>MsgType</td>
+<td>Y</td>
+<td>AD</td>
+</tr>
+<tr>
+<td>568</td>
+<td>TradeRequestID</td>
+<td>Y</td>
+<td>Identifier of the trade request</td>
+</tr>
+<tr>
+<td>569</td>
+<td>TradeRequestType</td>
+<td>Y</td>
+<td>1 = Matched trades matching Criteria provided on request (parties, exec id, trade id, order id, instrument, input source, etc.)</td>
+</tr>
+<tr>
+<td>11</td>
+<td>ClOrdID</td>
+<td>Y</td>
+<td>Unique identifier for Order as assigned by the client.</td>
+</tr>
+</tbody></table>
+<h2 id='trade-capture-report-request-ack'>Trade Capture Report Request Ack</h2>
+<p>Indicate that no trades were found that matched the selection criteria specified on the Trade Capture Report Request (AQ).</p>
 
-| Tag | Name             | Mandatory | Description                                                                                                                      | 
-|-----|------------------|-----------|----------------------------------------------------------------------------------------------------------------------------------|
-| 35  | MsgType          | Y         | AD                                                                                                                               |
-| 568 | TradeRequestID   | Y         | Identifier of the trade request                                                                                                  |
-| 569 | TradeRequestType | Y         | 1 = Matched trades matching Criteria provided on request (parties, exec id, trade id, order id, instrument, input source, etc.)  |
-| 11  | ClOrdID          | Y         | Unique identifier for Order as assigned by the client.                                                                           |
-
-
-## Trade Capture Report Request Ack
-
-Indicate that no trades were found that matched the selection criteria specified on the Trade Capture Report Request (AQ).
-
-* No Trade - In this case the AQ msg is provided with Tag 750 =1 (Completed).
-* In the event that system is unable to provide a response the AQ msg is provided with Tag 750=2 (Rejected) and a reason will be provided in Tag 58
-* In the event the order has been “Timed Out” the AQ msg is provided with Tag 750=0 and a reason will be provided in Tag 58 “Time out”. In this case you can continue every 5 seconds to retry the Trade capture request (AD) until a final response is received.
+<ul>
+<li>No Trade - In this case the AQ msg is provided with Tag 750 =1 (Completed).</li>
+<li>In the event that system is unable to provide a response the AQ msg is provided with Tag 750=2 (Rejected) and a reason will be provided in Tag 58</li>
+<li>In the event the order has been “Timed Out” the AQ msg is provided with Tag 750=0 and a reason will be provided in Tag 58 “Time out”. In this case you can continue every 5 seconds to retry the Trade capture request (AD) until a final response is received.</li>
+</ul>
 
 <aside class="success"> Supported for FIX 4.4</aside>
 
-> FIX 4.4  Cypator -> Client
-
-```plaintext 
-
+<blockquote>
+<p>FIX 4.4  Cypator -&gt; Client</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext tab-plaintext"><code>
 8=FIX.4.4|9=88|35=AQ|34=2|49=cs1|52=20221031-09:51:41.171|56=cc11|568=HjdFFY13|569=1|748=0|749=0|750=0|10=230
-```
+</code></pre></div>
+<table><thead>
+<tr>
+<th>Tag</th>
+<th>Name</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>35</td>
+<td>MsgType</td>
+<td>Y</td>
+<td>AQ</td>
+</tr>
+<tr>
+<td>568</td>
+<td>TradeRequestID</td>
+<td>Y</td>
+<td>Identifier of the trade request</td>
+</tr>
+<tr>
+<td>569</td>
+<td>TradeRequestType</td>
+<td>Y</td>
+<td>Type of trade capture report:<br /> 1 = Matched trades matching Criteria provided on request (parties, exec id, trade id, order id, instrument, input source, etc.)</td>
+</tr>
+<tr>
+<td>748</td>
+<td>TotNumTradeReports</td>
+<td>N</td>
+<td>Number of trade reports returned - if this report is part of a response to a Trade Capture Report Request <AD></td>
+</tr>
+<tr>
+<td>749</td>
+<td>TradeRequestResult</td>
+<td>Y</td>
+<td>Result of trade request. Valid values: <br /> 0 = Successful (Default)<br /> 1 = Invalid or unknown instrument <br /> 2 = Invalid type of trade requested <br /> 3 = Invalid parties <br /> 4 = Invalid Transport Type requested <br /> 5 = Invalid Destination requested <br /> 8 = TradeRequestType <569> not supported <br /> 9 = Unauthorized for Trade Capture Report Request <AD> <br /> 99 = Other</td>
+</tr>
+<tr>
+<td>750</td>
+<td>TradeRequestStatus</td>
+<td>Y</td>
+<td>Status of trade request. Valid values <br /> 0 = Accepted   <br /> 1 = Completed <br /> 2 = Rejected</td>
+</tr>
+<tr>
+<td>58</td>
+<td>Text</td>
+<td>N</td>
+<td>Free text</td>
+</tr>
+</tbody></table>
+<h1 id='fix-maker-api'>FIX Maker API</h1><h2 id='logon-2'>Logon</h2>
+<p>This message is sent to initiate a FIX session and establishes the communication session, authenticates the connecting Maker, and initializes the message sequence number.</p>
 
-| Tag | Name               | Mandatory | Description                                                                                                                                                                                                                                                                                                                                                                                               | 
-|-----|--------------------|-----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 35  | MsgType            | Y         | AQ                                                                                                                                                                                                                                                                                                                                                                                                        |
-| 568 | TradeRequestID     | Y         | Identifier of the trade request                                                                                                                                                                                                                                                                                                                                                                           |
-| 569 | TradeRequestType   | Y         | Type of trade capture report:<br /> 1 = Matched trades matching Criteria provided on request (parties, exec id, trade id, order id, instrument, input source, etc.)                                                                                                                                                                                                                                       |
-| 748 | TotNumTradeReports | N         | Number of trade reports returned - if this report is part of a response to a Trade Capture Report Request <AD>                                                                                                                                                                                                                                                                                            |
-| 749 | TradeRequestResult | Y         | Result of trade request. Valid values: <br /> 0 = Successful (Default)<br /> 1 = Invalid or unknown instrument <br /> 2 = Invalid type of trade requested <br /> 3 = Invalid parties <br /> 4 = Invalid Transport Type requested <br /> 5 = Invalid Destination requested <br /> 8 = TradeRequestType <569> not supported <br /> 9 = Unauthorized for Trade Capture Report Request <AD> <br /> 99 = Other |
-| 750 | TradeRequestStatus | Y         | Status of trade request. Valid values <br /> 0 = Accepted   <br /> 1 = Completed <br /> 2 = Rejected                                                                                                                                                                                                                                                                                                      |
-| 58  | Text               | N         | Free text                                                                                                                                                                                                                                                                                                                                                                                                 |
+<blockquote>
+<p>FIX 4.4 Client -&gt; Cypator</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext tab-plaintext"><code>8=FIX.4.4|9=79|35=A|49=cc11|56=cs1|34=1|52=20221031-07:40:55|98=0|108=20|553=User1|554=123456|10=034|
+</code></pre></div>
+<blockquote>
+<p>FIX 4.4 Cypator -&gt; Client</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext tab-plaintext"><code>8=FIX.4.4|9=62|35=A|34=1|49=cs1|52=20221031-07:40:55.074|56=cc11|98=0|108=20|10=039|
+</code></pre></div>
+<blockquote>
+<p>FIX 4.2 Client -&gt; Cypator</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext tab-plaintext"><code>8=FIX.4.2|9=58|35=A|49=cc21|56=cs1|34=1|52=20221031-07:41:49|98=0|108=20|10=102|
+</code></pre></div>
+<blockquote>
+<p>FIX 4.2 Cypator -&gt; Client</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext tab-plaintext"><code>8=FIX.4.2|9=62|35=A|34=1|49=cs1|52=20221031-07:41:50.005|56=cc21|98=0|108=20|10=028|
+</code></pre></div>
+<table><thead>
+<tr>
+<th>Tag</th>
+<th>Name</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>35</td>
+<td>MsgType</td>
+<td>Y</td>
+<td>A</td>
+</tr>
+<tr>
+<td>98</td>
+<td>EncryptMethod</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>108</td>
+<td>HeartBtInt</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>141</td>
+<td>ResetSeqNumFlag</td>
+<td>N</td>
+<td>Indicated that both parties of the FIX Session should reset their sequence numbers</td>
+</tr>
+<tr>
+<td>553</td>
+<td>Username</td>
+<td>N</td>
+<td>Available only in FIX 4.4</td>
+</tr>
+<tr>
+<td>554</td>
+<td>Password</td>
+<td>N</td>
+<td>Available only in FIX 4.4</td>
+</tr>
+</tbody></table>
+<h2 id='heartbeat-2'>Heartbeat</h2>
+<p>This message is sent during periods of application inactivity to ensure connection validity. The receiving party should always respond with a heartbeat message.</p>
 
+<table><thead>
+<tr>
+<th>Tag</th>
+<th>Name</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>35</td>
+<td>MsgType</td>
+<td>Y</td>
+<td>0</td>
+</tr>
+<tr>
+<td>98</td>
+<td>TestReqID</td>
+<td>N</td>
+<td>Required only when the heartbeat is in response to a Test Request Message</td>
+</tr>
+</tbody></table>
+<h2 id='test-request-2'>Test Request</h2>
+<p>This message is used to verify connectivity and synchronize sequence numbers.  A test request should be responded to with a heartbeat from recipient</p>
 
-# FIX Maker API
+<table><thead>
+<tr>
+<th>Tag</th>
+<th>Name</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>35</td>
+<td>MsgType</td>
+<td>Y</td>
+<td>1</td>
+</tr>
+<tr>
+<td>98</td>
+<td>TestReqID</td>
+<td>Y</td>
+<td>Identifier to be returned in Heartbeat response</td>
+</tr>
+</tbody></table>
+<h2 id='logout-2'>Logout</h2>
+<p>This message signals the normal termination of the trading session. A session terminated without a Logout message will be considered an abnormal condition.</p>
 
-## Logon
-
-This message is sent to initiate a FIX session and establishes the communication session, authenticates the connecting Maker, and initializes the message sequence number.
-
-> FIX 4.4 Client -> Cypator
-
-
-```plaintext 
-8=FIX.4.4|9=79|35=A|49=cc11|56=cs1|34=1|52=20221031-07:40:55|98=0|108=20|553=User1|554=123456|10=034|
-```
-
-> FIX 4.4 Cypator -> Client
-
-```plaintext 
-8=FIX.4.4|9=62|35=A|34=1|49=cs1|52=20221031-07:40:55.074|56=cc11|98=0|108=20|10=039|
-```
-
-
-> FIX 4.2 Client -> Cypator
-
-```plaintext 
-8=FIX.4.2|9=58|35=A|49=cc21|56=cs1|34=1|52=20221031-07:41:49|98=0|108=20|10=102|
-```
-
-> FIX 4.2 Cypator -> Client
-
-```plaintext 
-8=FIX.4.2|9=62|35=A|34=1|49=cs1|52=20221031-07:41:50.005|56=cc21|98=0|108=20|10=028|
-```
-
-| Tag | Name            | Mandatory | Description                                                                        | 
-|-----|-----------------|-----------|------------------------------------------------------------------------------------|
-| 35  | MsgType         | Y         | A                                                                                  |
-| 98  | EncryptMethod   | Y         | Y                                                                                  |
-| 108 | HeartBtInt      | Y         | Y                                                                                  |
-| 141 | ResetSeqNumFlag | N         | Indicated that both parties of the FIX Session should reset their sequence numbers |
-| 553 | Username        | N         | Available only in FIX 4.4                                                          |
-| 554 | Password        | N         | Available only in FIX 4.4                                                          |
-
-
-## Heartbeat
-
-This message is sent during periods of application inactivity to ensure connection validity. The receiving party should always respond with a heartbeat message.
-
-| Tag | Name       | Mandatory | Description                                                                | 
-|-----|------------|-----------|----------------------------------------------------------------------------|
-| 35  | MsgType    | Y         | 0                                                                          |
-| 98  | TestReqID  | N         | Required only when the heartbeat is in response to a Test Request Message  |
-
-
-## Test Request
-
-This message is used to verify connectivity and synchronize sequence numbers.  A test request should be responded to with a heartbeat from recipient
-
-| Tag | Name       | Mandatory | Description                                      | 
-|-----|------------|-----------|--------------------------------------------------|
-| 35  | MsgType    | Y         | 1                                                |
-| 98  | TestReqID  | Y         | Identifier to be returned in Heartbeat response  |
-
-
-
-## Logout
-
-This message signals the normal termination of the trading session. A session terminated without a Logout message will be considered an abnormal condition.
-
-| Tag | Name     | Mandatory | Description | 
-|-----|----------|-----------|-------------|
-| 35  | MsgType  | Y         | 5           |
-| 55  | Text     | N         |             |
-
-
-
-## Market Data Request
-
-Once the logon process is complete, Market Data Requests can be sent to the Maker. The  Maker will respond immediately with either a Market Data Full Refresh (35=W) message or a Market Data Request Reject message (35=Y).
+<table><thead>
+<tr>
+<th>Tag</th>
+<th>Name</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>35</td>
+<td>MsgType</td>
+<td>Y</td>
+<td>5</td>
+</tr>
+<tr>
+<td>55</td>
+<td>Text</td>
+<td>N</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='market-data-request-2'>Market Data Request</h2>
+<p>Once the logon process is complete, Market Data Requests can be sent to the Maker. The  Maker will respond immediately with either a Market Data Full Refresh (35=W) message or a Market Data Request Reject message (35=Y).
 Only a single request will be sent for each market data request.
-The ECN also supports layers (also known elsewhere as price bands or tiers). Quotes containing bid prices and quantities for all layers are always streamed in the same message, as is the case for quotes containing ask prices and quantities.
+The ECN also supports layers (also known elsewhere as price bands or tiers). Quotes containing bid prices and quantities for all layers are always streamed in the same message, as is the case for quotes containing ask prices and quantities.</p>
 
-This message is used to subscribe/unsubscribe to market data rate information.
+<p>This message is used to subscribe/unsubscribe to market data rate information.</p>
 
-> FIX 4.4 Cypator -> Client subscribe
-
-```plaintext 
-
+<blockquote>
+<p>FIX 4.4 Cypator -&gt; Client subscribe</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext tab-plaintext"><code>
 8=FIX.4.4|9=99|35=V|49=cc12|56=cs1|34=8|52=20221031-07:43:44|262=1|263=1|264=0|146=1|55=BTC/USD|267=2|269=0|269=1|10=095|
-```
-
-> FIX 4.2 Cypator -> Client subscribe
-
-```plaintext 
-
+</code></pre></div>
+<blockquote>
+<p>FIX 4.2 Cypator -&gt; Client subscribe</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext tab-plaintext"><code>
 8=FIX.4.2|9=99|35=V|49=cc22|56=cs1|34=3|52=20221031-08:34:43|262=1|263=1|264=0|146=1|55=BTC/USD|267=2|269=0|269=1|10=089|
-```
-
-
-> FIX 4.4 Cypator -> Client Unsubscribe
-
-```plaintext 
-
+</code></pre></div>
+<blockquote>
+<p>FIX 4.4 Cypator -&gt; Client Unsubscribe</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext tab-plaintext"><code>
 8=FIX.4.4|9=99|35=V|49=cc12|56=cs1|34=7|52=20221031-08:35:17|262=1|263=2|264=0|146=1|55=BTC/USD|267=2|269=0|269=1|10=097|
-```
-
-> FIX 4.4 Cypator -> Client Unsubscribe
-
-```plaintext 
-
+</code></pre></div>
+<blockquote>
+<p>FIX 4.4 Cypator -&gt; Client Unsubscribe</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext tab-plaintext"><code>
 8=FIX.4.2|9=99|35=V|49=cc22|56=cs1|34=5|52=20221031-08:34:55|262=1|263=2|264=0|146=1|55=BTC/USD|267=2|269=0|269=1|10=095|
-```
-
-
-| Tag         | Name                    | Mandatory | Description                                                                                                                                                                                | 
-|-------------|-------------------------|-----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 35          | MsgType                 | Y         | V                                                                                                                                                                                          |
-| 262         | MDReqID                 | Y         | Unique Market Data Request ID.  This will be used in responses by Cypator or by the client to cancel a request. To unsubscribe from market data, the same ID must be sent with tag 263 = 2 |
-| 263         | SubscriptionRequestType | Y         | 1 – Snapshot + Updates (Subscribe) <br />  2 – Disable Snapshot + Updates (Unsubscribe)                                                                                                    |
-| 264         | MarketDepth             | Y         | 0 - Full Book                                                                                                                                                                              |
-| 265         | MDUpdateType            | N         | 0 - Full refresh                                                                                                                                                                           | 
-| 266         | AggregatedBook          | Y         | N - Raw prices may or may not include the liquidity provider names.                                                                                                                        |
-| 267         | NoMDEntryTypes          | Y         | Number of MDEntryType fields being requested. 2 - bid and offer <br /> Note – please make sure to request in tag 269 both Bid and Offer. Request for a single side will be rejected!!!     |
-| -><br />269 | MDEntryType             | Y         | Market Data entries types list: <br /> 0 - Bid <br /> 1 - Offer <br /> Repeated field: 269=0, 269=1                                                                                        |
-| 146         | NoRelatedSym            | Y         | 1 ( we allow only a single asset per subscription)                                                                                                                                         |
-| -><br />55  | Symbol                  | Y         | Asset - “BTC/USD”                                                                                                                                                                          |
-| -><br />64  | FutSettDate             | N         | Value date YYYYMMDD. Currently unused, will be used once forward is supported.                                                                                                             |
-
-## Market Data Request Reject
-
-> FIX 4.4 Client -> Cypator
-
-```plaintext 
-
+</code></pre></div>
+<table><thead>
+<tr>
+<th>Tag</th>
+<th>Name</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>35</td>
+<td>MsgType</td>
+<td>Y</td>
+<td>V</td>
+</tr>
+<tr>
+<td>262</td>
+<td>MDReqID</td>
+<td>Y</td>
+<td>Unique Market Data Request ID.  This will be used in responses by Cypator or by the client to cancel a request. To unsubscribe from market data, the same ID must be sent with tag 263 = 2</td>
+</tr>
+<tr>
+<td>263</td>
+<td>SubscriptionRequestType</td>
+<td>Y</td>
+<td>1 – Snapshot + Updates (Subscribe) <br />  2 – Disable Snapshot + Updates (Unsubscribe)</td>
+</tr>
+<tr>
+<td>264</td>
+<td>MarketDepth</td>
+<td>Y</td>
+<td>0 - Full Book</td>
+</tr>
+<tr>
+<td>265</td>
+<td>MDUpdateType</td>
+<td>N</td>
+<td>0 - Full refresh</td>
+</tr>
+<tr>
+<td>266</td>
+<td>AggregatedBook</td>
+<td>Y</td>
+<td>N - Raw prices may or may not include the liquidity provider names.</td>
+</tr>
+<tr>
+<td>267</td>
+<td>NoMDEntryTypes</td>
+<td>Y</td>
+<td>Number of MDEntryType fields being requested. 2 - bid and offer <br /> Note – please make sure to request in tag 269 both Bid and Offer. Request for a single side will be rejected!!!</td>
+</tr>
+<tr>
+<td>-&gt;<br />269</td>
+<td>MDEntryType</td>
+<td>Y</td>
+<td>Market Data entries types list: <br /> 0 - Bid <br /> 1 - Offer <br /> Repeated field: 269=0, 269=1</td>
+</tr>
+<tr>
+<td>146</td>
+<td>NoRelatedSym</td>
+<td>Y</td>
+<td>1 ( we allow only a single asset per subscription)</td>
+</tr>
+<tr>
+<td>-&gt;<br />55</td>
+<td>Symbol</td>
+<td>Y</td>
+<td>Asset - “BTC/USD”</td>
+</tr>
+<tr>
+<td>-&gt;<br />64</td>
+<td>FutSettDate</td>
+<td>N</td>
+<td>Value date YYYYMMDD. Currently unused, will be used once forward is supported.</td>
+</tr>
+</tbody></table>
+<h2 id='market-data-request-reject-2'>Market Data Request Reject</h2>
+<blockquote>
+<p>FIX 4.4 Client -&gt; Cypator</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext tab-plaintext"><code>
 8=FIX.4.4|9=85|35=Y|34=106|49=cs1|52=20221031-09:03:57.488|56=cc12|58=Duplicate MDReqID|262=1|281=1|10=094
-```
-
-> FIX 4.2 Client -> Cypator
-
-```plaintext 
-
+</code></pre></div>
+<blockquote>
+<p>FIX 4.2 Client -&gt; Cypator</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext tab-plaintext"><code>
 8=FIX.4.2|9=84|35=Y|34=84|49=cs1|52=20221031-08:58:35.817|56=cc22|58=Duplicate MDReqID|262=1|281=1|10=050|
-```
-
-
-| Tag | Name            | Mandatory | Description                                                                                                                                        | 
-|-----|-----------------|-----------|----------------------------------------------------------------------------------------------------------------------------------------------------|
-| 35  | MsgType         | Y         | Y                                                                                                                                                  |
-| 262 | MDReqID         | Y         | The  Unique ID of the received market data                                                                                                         |
-| 281 | MDReqRejReason  | N         | Reason for rejection <br />  0 - Unknown Symbol <br /> 1 - Duplicate MDReqID <br /> 2 - Request not supported <br /> 3 - Insufficient Permissions  |
-
-
-
-## Market Data Snapshot Full
-
-> FIX 4.4 Client -> Cypator
-
-```plaintext 
-
+</code></pre></div>
+<table><thead>
+<tr>
+<th>Tag</th>
+<th>Name</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>35</td>
+<td>MsgType</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>262</td>
+<td>MDReqID</td>
+<td>Y</td>
+<td>The  Unique ID of the received market data</td>
+</tr>
+<tr>
+<td>281</td>
+<td>MDReqRejReason</td>
+<td>N</td>
+<td>Reason for rejection <br />  0 - Unknown Symbol <br /> 1 - Duplicate MDReqID <br /> 2 - Request not supported <br /> 3 - Insufficient Permissions</td>
+</tr>
+</tbody></table>
+<h2 id='market-data-snapshot-full-2'>Market Data Snapshot Full</h2>
+<blockquote>
+<p>FIX 4.4 Client -&gt; Cypator</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext tab-plaintext"><code>
 8=FIX.4.4|9=710|35=W|34=8|49=cs1|52=20221031-08:35:11.416|56=cc12|55=BTC/USD|262=1|268=20|269=0|270=202.15|271=0.00000001|269=0|270=202.16|271=0.00000002|269=0|270=202.17|271=0.00000003|269=0|270=202.18|271=0.00000004|269=0|270=202.19|271=0.00000005|269=0|270=202.2|271=0.00000006|269=0|270=202.21|271=0.00000007|269=0|270=202.22|271=0.00000008|269=0|270=202.23|271=0.00000009|269=0|270=202.24|271=0.0000001|269=1|270=202.35|271=0.00000001|269=1|270=202.36|271=0.00000002|269=1|270=202.37|271=0.00000003|269=1|270=202.38|271=0.00000004|269=1|270=202.39|271=0.00000005|269=1|270=202.4|271=0.00000006|269=1|270=202.41|271=0.00000007|269=1|270=202.42|271=0.00000008|269=1|270=202.43|271=0.00000009|269=1|270=202.44|271=0.0000001|10=073|
-```
-
-> FIX 4.2 Client -> Cypator
-
-```plaintext 
-
+</code></pre></div>
+<blockquote>
+<p>FIX 4.2 Client -&gt; Cypator</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext tab-plaintext"><code>
 8=FIX.4.2|9=710|35=W|34=3|49=cs1|52=20221031-08:34:44.164|56=cc22|55=BTC/USD|262=1|268=20|269=0|270=202.15|271=0.00000001|269=0|270=202.16|271=0.00000002|269=0|270=202.17|271=0.00000003|269=0|270=202.18|271=0.00000004|269=0|270=202.19|271=0.00000005|269=0|270=202.2|271=0.00000006|269=0|270=202.21|271=0.00000007|269=0|270=202.22|271=0.00000008|269=0|270=202.23|271=0.00000009|269=0|270=202.24|271=0.0000001|269=1|270=202.35|271=0.00000001|269=1|270=202.36|271=0.00000002|269=1|270=202.37|271=0.00000003|269=1|270=202.38|271=0.00000004|269=1|270=202.39|271=0.00000005|269=1|270=202.4|271=0.00000006|269=1|270=202.41|271=0.00000007|269=1|270=202.42|271=0.00000008|269=1|270=202.43|271=0.00000009|269=1|270=202.44|271=0.0000001|10=072|
-```
+</code></pre></div>
+<table><thead>
+<tr>
+<th>Tag</th>
+<th>Name</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>35</td>
+<td>MsgType</td>
+<td>Y</td>
+<td>W</td>
+</tr>
+<tr>
+<td>262</td>
+<td>MDReqID</td>
+<td>Y</td>
+<td>The  Unique ID of the received market data request</td>
+</tr>
+<tr>
+<td>55</td>
+<td>Symbol</td>
+<td>Y</td>
+<td>e.g “BTC/USD”</td>
+</tr>
+<tr>
+<td>268</td>
+<td>NoMDEntries</td>
+<td>Y</td>
+<td>No. of market data updates in the message</td>
+</tr>
+<tr>
+<td>-&gt;<br />269</td>
+<td>MDEntryType</td>
+<td>Y</td>
+<td>‘0’ (Bid) <br /> ‘1’ (Offer)</td>
+</tr>
+<tr>
+<td>-&gt;<br />270</td>
+<td>MDEntryPx</td>
+<td>Y</td>
+<td>Price of entry</td>
+</tr>
+<tr>
+<td>-&gt;<br />271</td>
+<td>MDEntrySize</td>
+<td>Y</td>
+<td>Quantity  of entry</td>
+</tr>
+</tbody></table>
+<h2 id='new-order-single-2'>New Order Single</h2>
+<p>A new order single message enables the ECN to send a request for a trade to the Maker.
+Cypator will provide a unique ClOrdID <11>.</p>
 
-| Tag         | Name               | Mandatory | Description                                                                | 
-|-------------|--------------------|-----------|----------------------------------------------------------------------------|
-| 35          | MsgType            | Y         | W                                                                          |
-| 262         | MDReqID            | Y         | The  Unique ID of the received market data request                         |
-| 55          | Symbol             | Y         | e.g “BTC/USD”                                                              |
-| 268         | NoMDEntries        | Y         | No. of market data updates in the message                                  |
-| -><br />269 | MDEntryType        | Y         | ‘0’ (Bid) <br /> ‘1’ (Offer)                                               |
-| -><br />270 | MDEntryPx          | Y         | Price of entry                                                             |
-| -><br />271 | MDEntrySize        | Y         | Quantity  of entry                                                         |
-
-
-## New Order Single
-
-A new order single message enables the ECN to send a request for a trade to the Maker.
-Cypator will provide a unique ClOrdID <11>.
-
-
-> FIX 4.4  Cypator -> Client
-
-```plaintext 
-
+<blockquote>
+<p>FIX 4.4  Cypator -&gt; Client</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext tab-plaintext"><code>
 8=FIX.4.4|9=133|35=D|49=cc11|56=cs1|34=113|52=20221031-09:10:46|11=1598950759|21=1|55=BTC/USD|54=1|60=20221031-09:10:46|40=2|44=19123.20|38=100|59=4|10=003|
-```
-
-> FIX 4.2 Cypator -> Client
-
-```plaintext 
-
+</code></pre></div>
+<blockquote>
+<p>FIX 4.2 Cypator -&gt; Client</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext tab-plaintext"><code>
 8=FIX.4.2|9=133|35=D|49=cc21|56=cs1|34=113|52=20221031-09:11:04|11=1805964193|21=1|55=BTC/USD|54=1|60=20221031-09:11:04|40=2|44=19123.20|38=100|59=4|10=236|
-```
+</code></pre></div>
+<table><thead>
+<tr>
+<th>Tag</th>
+<th>Name</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>35</td>
+<td>MsgType</td>
+<td>Y</td>
+<td>D</td>
+</tr>
+<tr>
+<td>11</td>
+<td>ClOrdID</td>
+<td>Y</td>
+<td>Client Order ID – must be unique. case sensitive</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Account</td>
+<td>N</td>
+<td>Client Account name</td>
+</tr>
+<tr>
+<td>60</td>
+<td>TransactTime</td>
+<td>Y</td>
+<td>The transaction timestamp of the orde</td>
+</tr>
+<tr>
+<td>15</td>
+<td>Currency</td>
+<td>N</td>
+<td>The currency or coin unit that represents the quantity</td>
+</tr>
+<tr>
+<td>54</td>
+<td>Side</td>
+<td>Y</td>
+<td>1 (Buy) <br />  2 (Sell)</td>
+</tr>
+<tr>
+<td>55</td>
+<td>Symbol</td>
+<td>Y</td>
+<td>The Asset - Coin and currency combination, e.g EUR/USD, BTC/USD, ETH/BTC</td>
+</tr>
+<tr>
+<td>38</td>
+<td>OrderQty</td>
+<td>Y</td>
+<td>The order quantity</td>
+</tr>
+<tr>
+<td>40</td>
+<td>OrdType</td>
+<td>Y</td>
+<td>1 – Market <br />  2 – Limit <br /></td>
+</tr>
+<tr>
+<td>44</td>
+<td>Price</td>
+<td>Y</td>
+<td>Limit price if 40=2 <br /> If 40=1 the price is required for pre trade credit check</td>
+</tr>
+<tr>
+<td>59</td>
+<td>TimeInForce</td>
+<td>Y</td>
+<td>1 – Good Till Cancel -not supported phase1 <br /> 3 – Immediate or Cancel (Default if no value provided) -not supported phase1 <br /> 4 – Fill or Kill <br /> 6 – Good Till Date  -not supported phase1 <br /> Note: OrdType=1 only supports TimeInForce=3 (IOC) OrdType=3 (Stop) only supports TimeInForce=1 (GTC) and 6 (GTD)</td>
+</tr>
+<tr>
+<td>64</td>
+<td>FutSettDate (FIX 4.2) <br /> SettlDate (FIX 4.4)</td>
+<td>N</td>
+<td>Value date YYYYMMDD. Required for forward Will be supported in the future. Use FutSettDate if using FIX 4.2 Use SettlDate if using FIX 4.4</td>
+</tr>
+<tr>
+<td>126</td>
+<td>ExpireTime</td>
+<td>N</td>
+<td>Not supported in phase 1- Required for Good-Till-Date order request. Date and Time of the order expiration specified in YYYYMMDD-HH:MM:SS format. Expressed in GMT.</td>
+</tr>
+</tbody></table>
+<h2 id='order-reject-2'>Order Reject</h2>
+<p>This message is used by the Maker to reject an order message. This can happen if the order doesn’t comply with the FIX dictionary, naming issue, or exceeding throughput limitation</p>
 
-| Tag | Name                                             | Mandatory | Description                                                                                                                                                                                                                                                                                                                     | 
-|-----|--------------------------------------------------|-----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 35  | MsgType                                          | Y         | D                                                                                                                                                                                                                                                                                                                               |
-| 11  | ClOrdID                                          | Y         | Client Order ID – must be unique. case sensitive                                                                                                                                                                                                                                                                                |
-| 1   | Account                                          | N         | Client Account name                                                                                                                                                                                                                                                                                                             |
-| 60  | TransactTime                                     | Y         | The transaction timestamp of the orde                                                                                                                                                                                                                                                                                           |
-| 15  | Currency                                         | N         | The currency or coin unit that represents the quantity                                                                                                                                                                                                                                                                          |
-| 54  | Side                                             | Y         | 1 (Buy) <br />  2 (Sell)                                                                                                                                                                                                                                                                                                        |
-| 55  | Symbol                                           | Y         | The Asset - Coin and currency combination, e.g EUR/USD, BTC/USD, ETH/BTC                                                                                                                                                                                                                                                        |
-| 38  | OrderQty                                         | Y         | The order quantity                                                                                                                                                                                                                                                                                                              |
-| 40  | OrdType                                          | Y         | 1 – Market <br />  2 – Limit <br />                                                                                                                                                                                                                                                                                             |
-| 44  | Price                                            | Y         | Limit price if 40=2 <br /> If 40=1 the price is required for pre trade credit check                                                                                                                                                                                                                                             |
-| 59  | TimeInForce                                      | Y         | 1 – Good Till Cancel -not supported phase1 <br /> 3 – Immediate or Cancel (Default if no value provided) -not supported phase1 <br /> 4 – Fill or Kill <br /> 6 – Good Till Date  -not supported phase1 <br /> Note: OrdType=1 only supports TimeInForce=3 (IOC) OrdType=3 (Stop) only supports TimeInForce=1 (GTC) and 6 (GTD) |
-| 64  | FutSettDate (FIX 4.2) <br /> SettlDate (FIX 4.4) | N         | Value date YYYYMMDD. Required for forward Will be supported in the future. Use FutSettDate if using FIX 4.2 Use SettlDate if using FIX 4.4                                                                                                                                                                                      |
-| 126 | ExpireTime                                       | N         | Not supported in phase 1- Required for Good-Till-Date order request. Date and Time of the order expiration specified in YYYYMMDD-HH:MM:SS format. Expressed in GMT.                                                                                                                                                             |
+<table><thead>
+<tr>
+<th>Tag</th>
+<th>Name</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>35</td>
+<td>MsgType</td>
+<td>Y</td>
+<td>3</td>
+</tr>
+<tr>
+<td>45</td>
+<td>RefSeqNum</td>
+<td>Y</td>
+<td>Integer value -reference of the rejected order header sequence number MsgSeqNum <34></td>
+</tr>
+<tr>
+<td>371</td>
+<td>RefTagID</td>
+<td>N</td>
+<td>The tag number of the FIX field being referenced</td>
+</tr>
+<tr>
+<td>372</td>
+<td>RefMsgType</td>
+<td>N</td>
+<td>The message type (35) OF THE Fix message being referenced (e.g “D” for 35=D)</td>
+</tr>
+<tr>
+<td>373</td>
+<td>SessionRejectReason</td>
+<td>N</td>
+<td>Code to identify reason for rejection: <br /> 0 = Invalid tag number <br /> 1 = Required tag missing <br /> 2 = Tag not defined for this message type <br /> 3 = Undefined Tag <br />4 = Tag specified without a value<br />5 = Value is incorrect (out of range) for this tag<br />6 = Incorrect data format for value<br />7 = Decryption problem<br />8 = Signature <89> problem<br />9 = CompID problem<br />10 = SendingTime <52> accuracy problem<br />11 = Invalid MsgType <35><br />12 = XML Validation error<br />13 = Tag appears more than once<br />14 = Tag specified out of required order<br />15 = Repeating group fields out of order<br />16 = Incorrect NumInGroup count for repeating group<br />17 = Non &quot;Data&quot; value includes field delimiter (<SOH> character)<br />99 = Other<br /></td>
+</tr>
+<tr>
+<td>58</td>
+<td>Text</td>
+<td>N</td>
+<td>Error message text</td>
+</tr>
+</tbody></table>
+<h2 id='execution-report-2'>Execution Report</h2>
+<p>This message is used to communicate Order Ack, Order Reject, Order Fill, Order canceled and Order Status Responses</p>
 
+<ul>
+<li>There are Four possible 35=8 responses to an order
 
-## Order Reject
+<ul>
+<li>Ack - 150 =0</li>
+<li>NACK - 150=8</li>
+<li>Fill - partial - 150 =2/F, 39=1</li>
+<li>Fill - full - 150 =2/F, 39=2</li>
+</ul></li>
+</ul>
 
-This message is used by the Maker to reject an order message. This can happen if the order doesn’t comply with the FIX dictionary, naming issue, or exceeding throughput limitation
+<p>For a FOK type order, there are two possible responses – as an example if the order is for 5  BTC/USD</p>
+<h3 id='scenario-1-fok-order-is-not-filled-cancel-2'>Scenario 1 – FOK – order is not filled - CANCEL</h3>
+<table><thead>
+<tr>
+<th>Sequence</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Cancel message is provided</td>
+<td>Execution report (35=8) <br /> ExecType (150=4) <br />  OrdStatus (39=4)</td>
+</tr>
+</tbody></table>
+<h3 id='scenario-2-fok-order-is-fully-filled-done-2'>Scenario 2 – FOK – order is fully filled - DONE</h3>
+<table><thead>
+<tr>
+<th>Sequence</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Full Fill message is provided for 5 BTC</td>
+<td>Execution report (35=8) <br /> ExecType (150=2/F) <br />  OrdStatus (39=2)</td>
+</tr>
+</tbody></table>
 
-| Tag | Name                      | Mandatory | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | 
-|-----|---------------------------|-----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 35  | MsgType                   | Y         | 3                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| 45  | RefSeqNum                 | Y         | Integer value -reference of the rejected order header sequence number MsgSeqNum <34>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| 371 | RefTagID                  | N         | The tag number of the FIX field being referenced                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| 372 | RefMsgType                | N         | The message type (35) OF THE Fix message being referenced (e.g “D” for 35=D)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| 373 | SessionRejectReason       | N         | Code to identify reason for rejection: <br /> 0 = Invalid tag number <br /> 1 = Required tag missing <br /> 2 = Tag not defined for this message type <br /> 3 = Undefined Tag <br />4 = Tag specified without a value<br />5 = Value is incorrect (out of range) for this tag<br />6 = Incorrect data format for value<br />7 = Decryption problem<br />8 = Signature <89> problem<br />9 = CompID problem<br />10 = SendingTime <52> accuracy problem<br />11 = Invalid MsgType <35><br />12 = XML Validation error<br />13 = Tag appears more than once<br />14 = Tag specified out of required order<br />15 = Repeating group fields out of order<br />16 = Incorrect NumInGroup count for repeating group<br />17 = Non "Data" value includes field delimiter (<SOH> character)<br />99 = Other<br />  |
-| 58  | Text                      | N         | Error message text                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+<p>For an IOC type order, there are two additional possible responses in addition to the ones above which may happen in the case of multiple partial fills. We use the OrdStatus tag to indicate if the order is partial or fully complete – as an example if the order is for 5  BTC/USD</p>
+<h3 id='scenario1-ioc-order-is-fully-filled-done-2'>Scenario1 – IOC – order is fully filled - DONE</h3>
+<table><thead>
+<tr>
+<th>Sequence</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Fill message for 2 BTC is provided</td>
+<td>Execution report (35=8) <br /> ExecType (150=2/F) <br />  OrdStatus (39=1)</td>
+</tr>
+<tr>
+<td>Cancel remaining message is provided for the remaining 3 BTC</td>
+<td>Execution report (35=8) <br /> ExecType (150=4) <br />  OrdStatus (39=1)</td>
+</tr>
+</tbody></table>
 
-
-## Execution Report
-
-This message is used to communicate Order Ack, Order Reject, Order Fill, Order canceled and Order Status Responses
-
-* There are Four possible 35=8 responses to an order
-  * Ack - 150 =0
-  * NACK - 150=8
-  * Fill - partial - 150 =2/F, 39=1
-  * Fill - full - 150 =2/F, 39=2
-
-For a FOK type order, there are two possible responses – as an example if the order is for 5  BTC/USD
-
-### Scenario 1 – FOK – order is not filled - CANCEL
-
-
-| Sequence                    | Message                                                                  |  
-|-----------------------------|--------------------------------------------------------------------------|
-| Cancel message is provided  | Execution report (35=8) <br /> ExecType (150=4) <br />  OrdStatus (39=4) |
-
-
-### Scenario 2 – FOK – order is fully filled - DONE
-
-| Sequence                                 | Message                                                                    |  
-|------------------------------------------|----------------------------------------------------------------------------|
-| Full Fill message is provided for 5 BTC  | Execution report (35=8) <br /> ExecType (150=2/F) <br />  OrdStatus (39=2) |
-
-
-For an IOC type order, there are two additional possible responses in addition to the ones above which may happen in the case of multiple partial fills. We use the OrdStatus tag to indicate if the order is partial or fully complete – as an example if the order is for 5  BTC/USD
-### Scenario1 – IOC – order is fully filled - DONE
-
-| Sequence                                                      | Message                                                                    |  
-|---------------------------------------------------------------|----------------------------------------------------------------------------|
-| Fill message for 2 BTC is provided                            | Execution report (35=8) <br /> ExecType (150=2/F) <br />  OrdStatus (39=1) |
-| Cancel remaining message is provided for the remaining 3 BTC  | Execution report (35=8) <br /> ExecType (150=4) <br />  OrdStatus (39=1)   |
-
-
-
-> FIX 4.4  Client -> Cypator Ack
-
-```plaintext 
-
+<blockquote>
+<p>FIX 4.4  Client -&gt; Cypator Ack</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext tab-plaintext"><code>
 8=FIX.4.4|9=197|35=8|34=112|49=cs1|52=20221031-09:10:46.686|56=cc11|11=1598950759|14=0|15=BTC|17=1598950759|32=0|37=A010tlPyxyg|39=0|41=1598950759|44=19123.2|54=1|55=BTC/USD|60=20221031-11:10:46.686|150=0|151=100|10=012|
-```
-
-
-> FIX 4.2  Client -> Cypator Ack
-
-```plaintext 
-
+</code></pre></div>
+<blockquote>
+<p>FIX 4.2  Client -&gt; Cypator Ack</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext tab-plaintext"><code>
 8=FIX.4.2|9=197|35=8|34=113|49=cs1|52=20221031-09:11:04.479|56=cc21|11=1805964193|14=0|15=BTC|17=1805964193|20=0|32=0|37=A010tlPyxyh|39=0|41=1805964193|44=19123.2|54=1|55=BTC/USD|60=20221031-11:11:04.479|150=0|151=100|10=223|
-```
-
-> FIX 4.4  Client -> Cypator
-
-```plaintext 
-
+</code></pre></div>
+<blockquote>
+<p>FIX 4.4  Client -&gt; Cypator</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext tab-plaintext"><code>
 8=FIX.4.4|9=228|35=8|34=113|49=cs1|52=20221031-09:10:46.706|56=cc11|6=19123.2|11=1598950759|14=100|15=BTC|17=VuzGNOBG|31=19123.2|32=100|37=A010tlPyxyg|38=100|39=2|41=1598950759|44=19123.2|54=1|55=BTC/USD|60=20221031-11:10:46.706|64=202210304|150=F|151=0|10=153|
-```
-
-> FIX 4.2  Client -> Cypator
-
-```plaintext 
-
+</code></pre></div>
+<blockquote>
+<p>FIX 4.2  Client -&gt; Cypator</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext tab-plaintext"><code>
 8=FIX.4.2|9=228|35=8|34=114|49=cs1|52=20221031-09:11:04.480|56=cc21|6=19123.2|11=1805964193|14=100|15=BTC|17=CAfoHyfD|20=2|31=19123.2|32=100|37=A010tlPyxyh|38=100|39=2|41=1805964193|44=19123.2|54=1|55=BTC/USD|60=20221031-11:11:04.480|64=202210304|150=2|151=0|10=136|
-```
-
-| Tag | Name                                                | Mandatory                     | Description                                                                                                                                                                                                           | 
-|-----|-----------------------------------------------------|-------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 35  | MsgType                                             | Y                             | 8                                                                                                                                                                                                                     |
-| 1   | Account                                             | N                             | Client Account Name                                                                                                                                                                                                   |
-| 11  | ClOrdID                                             | Y                             | Client Order ID                                                                                                                                                                                                       |
-| 37  | OrderID                                             | Y                             | Cypator unique order ID for the Trade                                                                                                                                                                                 |
-| 17  | ExecID                                              | Y                             | Cypator Execution ID. Unique ID in each execution report                                                                                                                                                              |
-| 20  | ExecTransType                                       | Y - FIX 4.2 <br /> N- FIX 4.4 | Only applicable to Fix 4.2 <br /> 0= New <br /> 1 = Cancel <br /> 2 = Correct                                                                                                                                         |
-| 150 | ExecType                                            | Y                             | FIX 4.2 <br /> 0 = New <br /> 1 = Partially Fill <br /> 2 = Fill <br /> 4 = Canceled <br /> 8 = Rejected <br /> FIX 4.4 <br /> 0 = New <br /> F = Trade (partial fill or fill)<br /> 4 = Canceled <br /> 8 = Rejected |
-| 39  | OrdStatus                                           | Y                             | 0 = New <br /> 1 = Partially Fill <br /> 2 = Fill <br /> 4 = Canceled <br /> 8 = Rejected                                                                                                                             |
-| 64  | FutSettDate                                         | N                             | Settlement date for order fills if exists.  In YYYYMMDD format                                                                                                                                                        |
-| 15  | Currency                                            | N                             | The currency or coin unit that represents the quantity                                                                                                                                                                |
-| 54  | Side                                                | Y                             | 1 (Buy) <br /> 2 (Sell)                                                                                                                                                                                               |
-| 55  | Symbol                                              | Y                             | The Asset - Coin and currency combination, e.g. EUR/USD, BTC/USD, ETH/BTC                                                                                                                                             |
-| 38  | OrderQty                                            | N                             | Order quantity specified by the Client. Not present in Order Reject                                                                                                                                                   |
-| 14  | CumQty                                              | Y                             | The amount that has been filled so far                                                                                                                                                                                |
-| 6   | AvgPx                                               | N                             | Average price of all fills on for the order                                                                                                                                                                           |
-| 31  | LastPx                                              | N                             | Trade price.                                                                                                                                                                                                          |
-| 32  | LastQty (For Fix4.4) <br /> LastShares (For Fix4.2) | Y                             | Amount bought or sold on this fill                                                                                                                                                                                    |
-| 44  | Price                                               | Y                             | Order price                                                                                                                                                                                                           |
-| 151 | LeavesQty                                           | Y                             | Quantity remaining of this order                                                                                                                                                                                      |
-| 60  | TransactTime                                        | Y                             | The transaction timestamp of the order                                                                                                                                                                                |
-| 103 | OrdRejReason                                        | N                             | Error code. Present in Order Reject                                                                                                                                                                                   |
-| 58  | Text                                                | N                             | Error message. Present in Order Reject                                                                                                                                                                                |
-
-
-
-# Websocket API Signature
-Signature needs to be generated at the time of login request. It can be generated using the following steps:
-
-* Generate a string by concatenating password and constant string "/verify"
-* Signature would be Base64 encoded hash of the above string generates using HMAC SHA256 algorithm.
-
-
-
-> Java code sample
-
-```java 
-import javax.crypto.Mac;
-import javax.crypto.spec.SecretKeySpec;
-import java.util.Base64;
-
-public class SignatureDemo {
-
-  public static String getSign(String passPhrase, long timeStamp) {
-    try {
-      String stringToHashAndEncode = timeStamp + "/verify";
-      Mac sha256HMAC = Mac.getInstance("HmacSHA256");
-
-      SecretKeySpec secretKeySpec = new SecretKeySpec(passPhrase.getBytes(), "HmacSHA256");
-      sha256HMAC.init(secretKeySpec);
-      String hash = Base64.getEncoder().encodeToString(sha256HMAC.doFinal(stringToHashAndEncode.getBytes()));
-      return hash;
-    } catch (Throwable t) {
-      return null;
-    }
-  }
-
-  public static void main(String[] args) {
-    String signature = getSign("UfawYizemLAHMyAezkYQqLtQ3uJ9UQaXXJg6vrvL", System.currentTimeMillis());
-    System.out.println("Signature : " + signature);
-  }
-}
-```
-
-> Python Example
-
-```python 
-
-  import hashlib
-  import hmac
-  import base64
-  
-  string_to_hash_and_encode = timeStamp + "/verify"
-  hash_obj = hmac.new(secret_key, message, hashlib.sha256)
-  hash_value = base64.b64encode(hash_obj.digest()).decode("utf-8")
-```
-
-> shell Example
-
-```shell
-getSign() {
-    local passPhrase=$1
-    local timeStamp=$2
-
-    local stringToHashAndEncode="${timeStamp}/verify"
-    local hash
-
-    hash=$(echo -n "$stringToHashAndEncode" | openssl dgst -sha256 -hmac "$passPhrase" -binary | base64)
-}
-
-# Example usage:
-passPhrase="UfawYizemLAHMyAezkYQqLtQ3uJ9UQaXXJg6vrvL"
-timeStamp="1695616595908"
-
-result=$(getSign "$passPhrase" "$timeStamp")
-echo "Result: $result"
-
-```
-
-
-# Websocket Maker API
-
-## Login
-
-Client -> Cyaptor. <br / >
-Both market and trade session needs to be authenticated before any requests can be made.
-
-### Request parameters
-
-
-> Request
-
-```json
-{
-  "op": "logon",
-  "arg": {
-    "apiKey": "User1",
-    "sign": "7L+zFQ+CEgGu5rzCj4+BdV2/uUHGqddA9pI6ztsRRPs=",
-    "server": "cs1",
-    "client": "cc11"
-  },
-  "ts": 1667835722651
-}
-```
-
-| Parameter        | Type    | Required | Description     | 
-|------------------|---------|----------|-----------------|
-| op               | String  | Yes      | Operation logon |
-| arg              | Object  | Yes      | Login details   |
-| -> <br /> apiKey | String  | Yes      | API Key         |
-| -> <br /> sign   | String  | Yes      |                 |
-| -> <br /> server | String  | Yes      | Server id       |
-| -> <br /> client | String  | Yes      | Client id       |
-| ts               | String  | Yes      | Unix epoch time |
-
-### Response
-
-> Success Response
-
-```json
-{
-  "op": "logon",
-  "arg": {
-    "code": 0
-  },
-  "ts": 1682346263287
-}
-```
-
-> Error response
-
-```json
-{
-  "op": "logon",
-  "arg": {
-    "code": 50104,
-    "errMsg": "Invalid credentials"
-  },
-  "ts": "1682346263287"
-}
-```
-
-| Parameter       | Type     | Required | Description                                    | 
-|-----------------|----------|----------|------------------------------------------------|
-| op              | String   | Yes      | Operation logon                                |
-| arg             | Object   | Yes      | Login details                                  |
-| -> <br />code   | int      | Yes      | 0 - success <br / > non zero for failure       |
-| -> <br />errMsg | String   | no       | Error message, populated only in case of error |
-| ts              | String   | Yes      | Unix epoch time                                |
-
-
-## Ping
-
-Client -> Cypator.<br / >
-To keep the connection alive client needs to send a heartbeat message ping once every 30 seconds. If no heartbeat message is received for 30 seconds connection will be dropped.
-
-> Request
-
-```json
-{
-  "op": "ping"
-}
-```
-
-> Response
-
-```json
-{
-  "op": "ping"
-}
-```
-
-| Parameter | Type   | Required | Description    | 
-|-----------|--------|----------|----------------|
-| op        | String | Yes      | Operation ping |
-
-
-## Subscription
-
-Cyaptor -> Client.<br / >
-Subscription request sent from Cypator to Maker. this message will be used for both subscribe and unsubscribe instrument.
-
-### Request parameter
-
-> Request subscribe
-
-```json
-{
-  "op": "subscribe",
-  "arg": {
-    "instrument": "ETH/USD",
-    "side": "BOTH",
-    "subscriptionId": "123456",
-    "subscriptionRequestType": "snapshot",
-    "typeBook": "SPOT",
-    "aggBook": "0"
-  },
-  "ts": 1667835722651
-}
-```
-
-> Request unsubscribe
-
-```json
-{
-  "op": "unsubscribe",
-  "arg": {
-    "instrument": "ETH/USD",
-    "subscriptionId": "123456",
-    "typeBook": "SPOT"
-  },
-  "ts": 1667835722651
-}
-```
-
-| Parameter                         | Type   | Required | Description                               | 
-|-----------------------------------|--------|----------|-------------------------------------------|
-| op                                | String | Yes      | Operation subscribe                       |
-| arg                               | Object | Yes      | Operation subscribe                       |
-| -> <be /> instrument              | String | Yes      | Instrument name                           |
-| -> <be /> side                    | String | Yes      | side, possible value: BOTH                |
-| -> <be /> subscriptionId          | String | Yes      | Unique Market Data Request ID             |
-| -> <be /> subscriptionRequestType | String | Yes      | Subscription type, values: <br /> snapshot |
-| -> <be /> typeBook                | String | Yes      | Type of book, values: <br /> SPOT         |
-| -> <be /> AggregatedBook          | int    | no       | always No (0)                             |
-| ts                                | String | Yes      | Unix epoch time                           |
-
-
-### Response parameter
-
-> Acknowledgement success response
-
-```json
-{
-  "op": "subscribe",
-  "arg": {
-    "instrument": "ETH/USD",
-    "side": "BOTH",
-    "subscriptionId": "123456",
-    "subscriptionRequestType": "snapshot",
-    "typeBook": "SPOT",
-    "code" : 0
-  },
-  "ts": 1667835722651
-}
-```
-
-> Acknowledgement failure response
-
-```json
-  {
-  "op": "subscribe",
-  "arg": {
-    "instrument": "ETH/USD",
-    "side": "BOTH",
-    "subscriptionId": "123456",
-    "subscriptionRequestType": "snapshot",
-    "typeBook": "SPOT",
-    "code" : 50202,
-    "errMsg" : "Unknown symbol"
-  },
-  "ts": 1667835722651
-}
-```
-
-| Parameter                             | Type   | Required | Description                                                                                                                                                | 
-|---------------------------------------|--------|----------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| op                                    | String | Yes      | Operation subscribe                                                                                                                                        |
-| arg                                   | Object | Yes      | subscription details                                                                                                                                       |
-| -> <br /> instrument                  | String | Yes      | Instrument name                                                                                                                                            |
-| -> <br /> side                        | String | Yes      | side, possible value: BOTH                                                                                                                                 |
-| -> <br /> subscriptionId              | String | Yes      | Unique Market Data Request ID, echoed back from subscribe                                                                                                  |
-| -> <br /> subscriptionRequestType     | String | Yes      | Subscription type echoed back from subscribe, values: <br /> snapshot                                                                                      |
-| -> <br /> typeBook                    | String | Yes      | Type of book echoed back from subscribe, values: <br /> SPOT                                                                                               |
-| -> <br /> code                        | String | Yes      | Zero for success, non-zero in case of failure, refer error codes table for standard error. In case of a missing error code, any-non zero value is accepted |
-| -> <br /> errMsg                      | String | No       | To be populate in case of failure only. Standard error defined in the table. In case of missing error code custom error message is accepted                |
-| ts                                    | String | Yes      | Unix epoch time                                                                                                                                            |
-
-## Market Data
-
-Client -> Cypator.<br / >
-For snapshot message, Cypator won’t send an acknowledgement.
-
-> snapshot
-
-```json
-{
-  "op": "snapshot",
-  "arg": {
-    "instrument": "BTC/USD",
-    "subscriptionId": "123456"
-  },
-  "data": [
-    {
-      "bids": [
-        [191235,1],
-        [191234,2],
-        [191233,3],
-        [191232,4],
-        [191231,5]
-      ],
-      "asks": [
-        [201231,1],
-        [201232,2],
-        [201233,3],
-        [201234,4],
-        [201235,5]
-      ]
-    }
-  ],
-  "ts": "1667835722653"
-}
-
-```
-
-| Parameter                | Type            | Required | Description                                               | 
-|--------------------------|-----------------|----------|-----------------------------------------------------------|
-| op                       | String          | Yes      | Operation snapshot                                        |
-| arg                      | Object          | Yes      | snapshot details                                          |
-| -> <br /> instrument     | String          | Yes      | Instrument name                                           |
-| -> <br /> subscriptionId | String          | Yes      | Subscription Id as configured on subscribe                |
-| data                     | Array           | Yes      | List of items                                             |
-| --> <br /> bids          | Array of double | Yes      | List of double, first parameter is price, second quantity |
-| --> <br /> asks          | Array of double | Yes      | List of double, first parameter is price, second quantity |
-| ts                       | String          | Yes      | Unix epoch time                                           |
-
-## Order
-
-Cyaptor -> Client.<br / >
-
-### Request
-
-> Order create request sent from Cypator
-
-```json
-{
-
-  "op": "order",
-  "arg": {
-    "instrument": "BTC/USD",
-    "side": "BUY",
-    "clOrderId": "VeYQxMUFGdtljI",
-    "orderType": "LIMIT",
-    "tif": "FOK",
-    "account": "tag1",
-    "quantity": 2.0,
-    "price": 201232.0
-  },
-  "ts": "1682422430612"
-}
-```
-
-| Parameter            | Type    | Required | Description                                         | 
-|----------------------|---------|----------|-----------------------------------------------------|
-| op                   | String  | Yes      | Operation order                                     |
-| arg                  | Object  | Yes      | Order details                                       |
-| -> <br /> instrument | String  | Yes      | Instrument name                                     |
-| -> <br /> side       | String  | Yes      | Side of the order. Values: <br /> BUY <br /> SELL   |
-| -> <br /> clOrderId  | String  | Yes      | Order id                                            |
-| -> <br /> orderType  | String  | Yes      | Type of order. Values: <br />  LIMIT <br />  MARKET |
-| -> <br /> tif        | String  | Yes      | Time in force. Values:<br />  FOK <br /> IOC        |
-| -> <br /> account    | String  | Yes      | Optional tag, could be null                         |
-| -> <br /> quantity   | Double  | Yes      | Order quantity                                      |
-| -> <br /> price      | Double  | Yes      | Order price                                         |
-| ts                   | String  | Yes      | Unix epoch time                                     |
-
-### Response (Acknowledgement)
-
-> Order acknowledgement success response
-
-```json
-{
-
-  "op": "order",
-  "arg": {
-    "instrument": "BTC/USD",
-    "side": "BUY",
-    "clOrderId": "VeYQxMUFGdtljI",
-    "orderType": "LIMIT",
-    "tif": "FOK",
-    "account": "tag1",
-    "quantity": 2.0,
-    "price": 201232.0,
-    "code" : 0
-  },
-  "ts": "1682422430612"
-}
-```
-
-> Order Single acknowledgement failure response
-
-
-```json
-{
-
-  "op": "order",
-  "arg": {
-    "instrument": "BT/USD",
-    "side": "BUY",
-    "clOrderId": "VeYQxMUFGdtljI",
-    "orderType": "LIMIT",
-    "tif": "FOK",
-    "account": "tag1",
-    "quantity": 2.0,
-    "price": 201232.0,
-    "code" : 50202,
-    "errMsg": "Unknown symbol"
-  },
-  "ts": "1682422430612"
-}
-```
-
-| Parameter            | Type    | Required | Description                                                                                                                                                | 
-|----------------------|---------|----------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| op                   | String  | Yes      | Operation order                                                                                                                                            |
-| arg                  | Object  | Yes      | Order details                                                                                                                                              |
-| -> <br /> instrument | String  | Yes      | Instrument name                                                                                                                                            |
-| -> <br /> side       | String  | Yes      | Side of the order. Values: <br />BUY <br /> SELL                                                                                                           |
-| -> <br /> clOrderId  | String  | Yes      | Order id, Echoed back                                                                                                                                      |
-| -> <br /> orderType  | String  | Yes      | Type of order. Values: <br /> LIMIT <br /> MARKET                                                                                                          |
-| -> <br /> tif        | String  | Yes      | Time in force. Values: <br /> FOK <br /> IOC                                                                                                               |
-| -> <br /> account    | String  | No       | Optional tag, could be null                                                                                                                                |
-| -> <br /> quantity   | Double  | Yes      | Order quantity                                                                                                                                             |
-| -> <br /> price      | Double  | Yes      | Order price                                                                                                                                                |
-| -> <br /> code       | String  | Yes      | Zero for success, non zero in case of failure, refer error codes table for standard error. In case of a missing error code, any-non zero value is accepted |
-| -> <br /> errMsg     | String  | No       | To be populate in case of failure only. Standard error defined in the table. In case of missing error code custom error message is accepted                |
-| ts                   | String  | Yes      | Unix epoch time                                                                                                                                            |
-
-
-## Trade
-
-Client -> Cypator<br / >
-
-```json
-{
-  "op": "trade",
-  "arg": {
-    "instrument": "BTC/USD",
-    "side": "BUY",
-    "clOrderId": "uNQMAdtbxnVGJi",
-    "orderId": "DF34rfswe32",
-    "tradeId": "sada24DSGF",
-    "orderType": "FOK",
-    "state": "FILLED",
-    "quantity": 2,
-    "cumQty": 1,
-    "lastQty": 1,
-    "leaveQty": 0,
-    "price": 201232
-  },
-  "ts": 1667835722653
-}
-```
-
-| Parameter            | Type    | Required | Description                                                                                    | 
-|----------------------|---------|----------|------------------------------------------------------------------------------------------------|
-| op                   | String  | Yes      | Operation trade                                                                                |
-| arg                  | Object  | Yes      | Trade details                                                                                  |
-| -> <br /> instrument | String  | Yes      | Instrument name                                                                                |
-| -> <br /> side       | String  | Yes      | Side of the order. Values : <br /> BUY <br /> SELL                                             |
-| -> <br /> clOrderId  | String  | Yes      | client order id, Echoed back from order                                                        |
-| -> <br /> orderId    | String  | Yes      | Order id                                                                                       |
-| -> <br /> tradeId    | String  | Yes      | Trade id                                                                                       |
-| -> <br /> orderType  | String  | Yes      | Type of order. Values: <br /> LIMIT  <br /> MARKET                                             |
-| -> <br /> tif        | String  | Yes      | Time in force. Values: <br /> FOK <br />  IOC                                                  |
-| -> <br /> state      | String  | Yes      | Order status. Values: <br /> FILLED <br />  PARTIALLY_FILLED  <br /> REJECTED <br />  CANCELED |
-| -> <br /> quantity   | Double  | Yes      | Quantity                                                                                       |
-| -> <br /> cumQty     | Double  | Yes      | Cumulative quantity                                                                            |
-| -> <br /> lastQty    | Double  | Yes      | Last quantity                                                                                  |
-| -> <br /> leaveQty   | Double  | Yes      | Leaves quantity                                                                                |
-| -> <br /> price      | Double  | Yes      | Price                                                                                          |
-| ts                   | String  |          |                                                                                                |
-
-
-
-# Websocket Taker API
-
-## Login
-
-Client -> Cypator. <br / >
-Both market and trade session needs to be authenticated before any requests can be made.
-
-### Request parameters
-
-
-> Request
-
-```json
-{
-  "op": "logon",
-  "arg": {
-    "apiKey": "User1",
-    "sign": "7L+zFQ+CEgGu5rzCj4+BdV2/uUHGqddA9pI6ztsRRPs=",
-    "server": "cs1",
-    "client": "cc11"
-  },
-  "ts": 1667835722651
-}
-```
-
-| Parameter        | Type    | Required | Description     | 
-|------------------|---------|----------|-----------------|
-| op               | String  | Yes      | Operation logon |
-| arg              | Object  | Yes      | Login details   |
-| -> <br /> apiKey | String  | Yes      | API Key         |
-| -> <br /> sign   | String  | Yes      |                 |
-| -> <br /> server | String  | Yes      | Server id       |
-| -> <br /> client | String  | Yes      | Client id       |
-| ts               | String  | Yes      | Unix epoch time |
-
-### Response
-
-> Success Response
-
-```json
-{
-  "op": "logon",
-  "arg": {
-    "code": 0
-  },
-  "ts": 1682346263287
-}
-```
-
-> Error response
-
-```json
-{
-  "op": "logon",
-  "arg": {
-    "code": 50104,
-    "errMsg": "Invalid credentials"
-  },
-  "ts": "1682346263287"
-}
-```
-
-| Parameter       | Type     | Required | Description                                    | 
-|-----------------|----------|----------|------------------------------------------------|
-| op              | String   | Yes      | Operation logon                                |
-| arg             | Object   | Yes      | Login details                                  |
-| -> <br />code   | int      | Yes      | 0 - success <br / > non zero for failure       |
-| -> <br />errMsg | String   | no       | Error message, populated only in case of error |
-| ts              | String   | Yes      | Unix epoch time                                |
-
-## Ping
-
-Client -> Cypator. <br / >
+</code></pre></div>
+<table><thead>
+<tr>
+<th>Tag</th>
+<th>Name</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>35</td>
+<td>MsgType</td>
+<td>Y</td>
+<td>8</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Account</td>
+<td>N</td>
+<td>Client Account Name</td>
+</tr>
+<tr>
+<td>11</td>
+<td>ClOrdID</td>
+<td>Y</td>
+<td>Client Order ID</td>
+</tr>
+<tr>
+<td>37</td>
+<td>OrderID</td>
+<td>Y</td>
+<td>Cypator unique order ID for the Trade</td>
+</tr>
+<tr>
+<td>17</td>
+<td>ExecID</td>
+<td>Y</td>
+<td>Cypator Execution ID. Unique ID in each execution report</td>
+</tr>
+<tr>
+<td>20</td>
+<td>ExecTransType</td>
+<td>Y - FIX 4.2 <br /> N- FIX 4.4</td>
+<td>Only applicable to Fix 4.2 <br /> 0= New <br /> 1 = Cancel <br /> 2 = Correct</td>
+</tr>
+<tr>
+<td>150</td>
+<td>ExecType</td>
+<td>Y</td>
+<td>FIX 4.2 <br /> 0 = New <br /> 1 = Partially Fill <br /> 2 = Fill <br /> 4 = Canceled <br /> 8 = Rejected <br /> FIX 4.4 <br /> 0 = New <br /> F = Trade (partial fill or fill)<br /> 4 = Canceled <br /> 8 = Rejected</td>
+</tr>
+<tr>
+<td>39</td>
+<td>OrdStatus</td>
+<td>Y</td>
+<td>0 = New <br /> 1 = Partially Fill <br /> 2 = Fill <br /> 4 = Canceled <br /> 8 = Rejected</td>
+</tr>
+<tr>
+<td>64</td>
+<td>FutSettDate</td>
+<td>N</td>
+<td>Settlement date for order fills if exists.  In YYYYMMDD format</td>
+</tr>
+<tr>
+<td>15</td>
+<td>Currency</td>
+<td>N</td>
+<td>The currency or coin unit that represents the quantity</td>
+</tr>
+<tr>
+<td>54</td>
+<td>Side</td>
+<td>Y</td>
+<td>1 (Buy) <br /> 2 (Sell)</td>
+</tr>
+<tr>
+<td>55</td>
+<td>Symbol</td>
+<td>Y</td>
+<td>The Asset - Coin and currency combination, e.g. EUR/USD, BTC/USD, ETH/BTC</td>
+</tr>
+<tr>
+<td>38</td>
+<td>OrderQty</td>
+<td>N</td>
+<td>Order quantity specified by the Client. Not present in Order Reject</td>
+</tr>
+<tr>
+<td>14</td>
+<td>CumQty</td>
+<td>Y</td>
+<td>The amount that has been filled so far</td>
+</tr>
+<tr>
+<td>6</td>
+<td>AvgPx</td>
+<td>N</td>
+<td>Average price of all fills on for the order</td>
+</tr>
+<tr>
+<td>31</td>
+<td>LastPx</td>
+<td>N</td>
+<td>Trade price.</td>
+</tr>
+<tr>
+<td>32</td>
+<td>LastQty (For Fix4.4) <br /> LastShares (For Fix4.2)</td>
+<td>Y</td>
+<td>Amount bought or sold on this fill</td>
+</tr>
+<tr>
+<td>44</td>
+<td>Price</td>
+<td>Y</td>
+<td>Order price</td>
+</tr>
+<tr>
+<td>151</td>
+<td>LeavesQty</td>
+<td>Y</td>
+<td>Quantity remaining of this order</td>
+</tr>
+<tr>
+<td>60</td>
+<td>TransactTime</td>
+<td>Y</td>
+<td>The transaction timestamp of the order</td>
+</tr>
+<tr>
+<td>103</td>
+<td>OrdRejReason</td>
+<td>N</td>
+<td>Error code. Present in Order Reject</td>
+</tr>
+<tr>
+<td>58</td>
+<td>Text</td>
+<td>N</td>
+<td>Error message. Present in Order Reject</td>
+</tr>
+</tbody></table>
+<h1 id='websocket-api-signature'>Websocket API Signature</h1>
+<p>Signature needs to be generated at the time of login request. It can be generated using the following steps:</p>
+
+<ul>
+<li>Generate a string by concatenating password and constant string &quot;/verify&quot;</li>
+<li>Signature would be Base64 encoded hash of the above string generates using HMAC SHA256 algorithm.</li>
+</ul>
+
+<blockquote>
+<p>Java code sample</p>
+</blockquote>
+<div class="highlight"><pre class="highlight java tab-java"><code><span class="kn">import</span> <span class="nn">javax.crypto.Mac</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.crypto.spec.SecretKeySpec</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Base64</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SignatureDemo</span> <span class="o">{</span>
+
+  <span class="kd">public</span> <span class="kd">static</span> <span class="nc">String</span> <span class="nf">getSign</span><span class="o">(</span><span class="nc">String</span> <span class="n">passPhrase</span><span class="o">,</span> <span class="kt">long</span> <span class="n">timeStamp</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">try</span> <span class="o">{</span>
+      <span class="nc">String</span> <span class="n">stringToHashAndEncode</span> <span class="o">=</span> <span class="n">timeStamp</span> <span class="o">+</span> <span class="s">"/verify"</span><span class="o">;</span>
+      <span class="nc">Mac</span> <span class="n">sha256HMAC</span> <span class="o">=</span> <span class="nc">Mac</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="s">"HmacSHA256"</span><span class="o">);</span>
+
+      <span class="nc">SecretKeySpec</span> <span class="n">secretKeySpec</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SecretKeySpec</span><span class="o">(</span><span class="n">passPhrase</span><span class="o">.</span><span class="na">getBytes</span><span class="o">(),</span> <span class="s">"HmacSHA256"</span><span class="o">);</span>
+      <span class="n">sha256HMAC</span><span class="o">.</span><span class="na">init</span><span class="o">(</span><span class="n">secretKeySpec</span><span class="o">);</span>
+      <span class="nc">String</span> <span class="n">hash</span> <span class="o">=</span> <span class="nc">Base64</span><span class="o">.</span><span class="na">getEncoder</span><span class="o">().</span><span class="na">encodeToString</span><span class="o">(</span><span class="n">sha256HMAC</span><span class="o">.</span><span class="na">doFinal</span><span class="o">(</span><span class="n">stringToHashAndEncode</span><span class="o">.</span><span class="na">getBytes</span><span class="o">()));</span>
+      <span class="k">return</span> <span class="n">hash</span><span class="o">;</span>
+    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Throwable</span> <span class="n">t</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">String</span> <span class="n">signature</span> <span class="o">=</span> <span class="n">getSign</span><span class="o">(</span><span class="s">"UfawYizemLAHMyAezkYQqLtQ3uJ9UQaXXJg6vrvL"</span><span class="o">,</span> <span class="nc">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">());</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Signature : "</span> <span class="o">+</span> <span class="n">signature</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>
+<blockquote>
+<p>Python Example</p>
+</blockquote>
+<div class="highlight"><pre class="highlight python tab-python"><code>
+  <span class="kn">import</span> <span class="nn">hashlib</span>
+  <span class="kn">import</span> <span class="nn">hmac</span>
+  <span class="kn">import</span> <span class="nn">base64</span>
+
+  <span class="n">string_to_hash_and_encode</span> <span class="o">=</span> <span class="n">timeStamp</span> <span class="o">+</span> <span class="s">"/verify"</span>
+  <span class="n">hash_obj</span> <span class="o">=</span> <span class="n">hmac</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="n">secret_key</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">hashlib</span><span class="p">.</span><span class="n">sha256</span><span class="p">)</span>
+  <span class="n">hash_value</span> <span class="o">=</span> <span class="n">base64</span><span class="p">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">hash_obj</span><span class="p">.</span><span class="n">digest</span><span class="p">()).</span><span class="n">decode</span><span class="p">(</span><span class="s">"utf-8"</span><span class="p">)</span>
+</code></pre></div>
+<blockquote>
+<p>shell Example</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>getSign<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">local </span><span class="nv">passPhrase</span><span class="o">=</span><span class="nv">$1</span>
+    <span class="nb">local </span><span class="nv">timeStamp</span><span class="o">=</span><span class="nv">$2</span>
+
+    <span class="nb">local </span><span class="nv">stringToHashAndEncode</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">timeStamp</span><span class="k">}</span><span class="s2">/verify"</span>
+    <span class="nb">local hash
+
+    hash</span><span class="o">=</span><span class="si">$(</span><span class="nb">echo</span> <span class="nt">-n</span> <span class="s2">"</span><span class="nv">$stringToHashAndEncode</span><span class="s2">"</span> | openssl dgst <span class="nt">-sha256</span> <span class="nt">-hmac</span> <span class="s2">"</span><span class="nv">$passPhrase</span><span class="s2">"</span> <span class="nt">-binary</span> | <span class="nb">base64</span><span class="si">)</span>
+<span class="o">}</span>
+
+<span class="c"># Example usage:</span>
+<span class="nv">passPhrase</span><span class="o">=</span><span class="s2">"UfawYizemLAHMyAezkYQqLtQ3uJ9UQaXXJg6vrvL"</span>
+<span class="nv">timeStamp</span><span class="o">=</span><span class="s2">"1695616595908"</span>
+
+<span class="nv">result</span><span class="o">=</span><span class="si">$(</span>getSign <span class="s2">"</span><span class="nv">$passPhrase</span><span class="s2">"</span> <span class="s2">"</span><span class="nv">$timeStamp</span><span class="s2">"</span><span class="si">)</span>
+<span class="nb">echo</span> <span class="s2">"Result: </span><span class="nv">$result</span><span class="s2">"</span>
+
+</code></pre></div><h1 id='websocket-maker-api'>Websocket Maker API</h1><h2 id='login'>Login</h2>
+<p>Client -&gt; Cyaptor. <br / >
+Both market and trade session needs to be authenticated before any requests can be made.</p>
+<h3 id='request-parameters'>Request parameters</h3>
+<blockquote>
+<p>Request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"logon"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"arg"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"apiKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"User1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"sign"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7L+zFQ+CEgGu5rzCj4+BdV2/uUHGqddA9pI6ztsRRPs="</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"server"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cs1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"client"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cc11"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1667835722651</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>String</td>
+<td>Yes</td>
+<td>Operation logon</td>
+</tr>
+<tr>
+<td>arg</td>
+<td>Object</td>
+<td>Yes</td>
+<td>Login details</td>
+</tr>
+<tr>
+<td>-&gt; <br /> apiKey</td>
+<td>String</td>
+<td>Yes</td>
+<td>API Key</td>
+</tr>
+<tr>
+<td>-&gt; <br /> sign</td>
+<td>String</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>-&gt; <br /> server</td>
+<td>String</td>
+<td>Yes</td>
+<td>Server id</td>
+</tr>
+<tr>
+<td>-&gt; <br /> client</td>
+<td>String</td>
+<td>Yes</td>
+<td>Client id</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>String</td>
+<td>Yes</td>
+<td>Unix epoch time</td>
+</tr>
+</tbody></table>
+<h3 id='response'>Response</h3>
+<blockquote>
+<p>Success Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"logon"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"arg"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1682346263287</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Error response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"logon"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"arg"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">50104</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"errMsg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invalid credentials"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1682346263287"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>String</td>
+<td>Yes</td>
+<td>Operation logon</td>
+</tr>
+<tr>
+<td>arg</td>
+<td>Object</td>
+<td>Yes</td>
+<td>Login details</td>
+</tr>
+<tr>
+<td>-&gt; <br />code</td>
+<td>int</td>
+<td>Yes</td>
+<td>0 - success <br / > non zero for failure</td>
+</tr>
+<tr>
+<td>-&gt; <br />errMsg</td>
+<td>String</td>
+<td>no</td>
+<td>Error message, populated only in case of error</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>String</td>
+<td>Yes</td>
+<td>Unix epoch time</td>
+</tr>
+</tbody></table>
+<h2 id='ping'>Ping</h2>
+<p>Client -&gt; Cypator.<br / >
+To keep the connection alive client needs to send a heartbeat message ping once every 30 seconds. If no heartbeat message is received for 30 seconds connection will be dropped.</p>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ping"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ping"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>String</td>
+<td>Yes</td>
+<td>Operation ping</td>
+</tr>
+</tbody></table>
+<h2 id='subscription'>Subscription</h2>
+<p>Cyaptor -&gt; Client.<br / >
+Subscription request sent from Cypator to Maker. this message will be used for both subscribe and unsubscribe instrument.</p>
+<h3 id='request-parameter'>Request parameter</h3>
+<blockquote>
+<p>Request subscribe</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"subscribe"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"arg"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"instrument"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH/USD"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BOTH"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"subscriptionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"subscriptionRequestType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"snapshot"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"typeBook"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SPOT"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"aggBook"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1667835722651</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Request unsubscribe</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unsubscribe"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"arg"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"instrument"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH/USD"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"subscriptionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"typeBook"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SPOT"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1667835722651</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>String</td>
+<td>Yes</td>
+<td>Operation subscribe</td>
+</tr>
+<tr>
+<td>arg</td>
+<td>Object</td>
+<td>Yes</td>
+<td>Operation subscribe</td>
+</tr>
+<tr>
+<td>-&gt; <be /> instrument</td>
+<td>String</td>
+<td>Yes</td>
+<td>Instrument name</td>
+</tr>
+<tr>
+<td>-&gt; <be /> side</td>
+<td>String</td>
+<td>Yes</td>
+<td>side, possible value: BOTH</td>
+</tr>
+<tr>
+<td>-&gt; <be /> subscriptionId</td>
+<td>String</td>
+<td>Yes</td>
+<td>Unique Market Data Request ID</td>
+</tr>
+<tr>
+<td>-&gt; <be /> subscriptionRequestType</td>
+<td>String</td>
+<td>Yes</td>
+<td>Subscription type, values: <br /> snapshot</td>
+</tr>
+<tr>
+<td>-&gt; <be /> typeBook</td>
+<td>String</td>
+<td>Yes</td>
+<td>Type of book, values: <br /> SPOT</td>
+</tr>
+<tr>
+<td>-&gt; <be /> AggregatedBook</td>
+<td>int</td>
+<td>no</td>
+<td>always No (0)</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>String</td>
+<td>Yes</td>
+<td>Unix epoch time</td>
+</tr>
+</tbody></table>
+<h3 id='response-parameter'>Response parameter</h3>
+<blockquote>
+<p>Acknowledgement success response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"subscribe"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"arg"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"instrument"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH/USD"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BOTH"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"subscriptionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"subscriptionRequestType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"snapshot"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"typeBook"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SPOT"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"code"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1667835722651</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Acknowledgement failure response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"subscribe"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"arg"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"instrument"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH/USD"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BOTH"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"subscriptionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"subscriptionRequestType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"snapshot"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"typeBook"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SPOT"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"code"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">50202</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"errMsg"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Unknown symbol"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1667835722651</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>String</td>
+<td>Yes</td>
+<td>Operation subscribe</td>
+</tr>
+<tr>
+<td>arg</td>
+<td>Object</td>
+<td>Yes</td>
+<td>subscription details</td>
+</tr>
+<tr>
+<td>-&gt; <br /> instrument</td>
+<td>String</td>
+<td>Yes</td>
+<td>Instrument name</td>
+</tr>
+<tr>
+<td>-&gt; <br /> side</td>
+<td>String</td>
+<td>Yes</td>
+<td>side, possible value: BOTH</td>
+</tr>
+<tr>
+<td>-&gt; <br /> subscriptionId</td>
+<td>String</td>
+<td>Yes</td>
+<td>Unique Market Data Request ID, echoed back from subscribe</td>
+</tr>
+<tr>
+<td>-&gt; <br /> subscriptionRequestType</td>
+<td>String</td>
+<td>Yes</td>
+<td>Subscription type echoed back from subscribe, values: <br /> snapshot</td>
+</tr>
+<tr>
+<td>-&gt; <br /> typeBook</td>
+<td>String</td>
+<td>Yes</td>
+<td>Type of book echoed back from subscribe, values: <br /> SPOT</td>
+</tr>
+<tr>
+<td>-&gt; <br /> code</td>
+<td>String</td>
+<td>Yes</td>
+<td>Zero for success, non-zero in case of failure, refer error codes table for standard error. In case of a missing error code, any-non zero value is accepted</td>
+</tr>
+<tr>
+<td>-&gt; <br /> errMsg</td>
+<td>String</td>
+<td>No</td>
+<td>To be populate in case of failure only. Standard error defined in the table. In case of missing error code custom error message is accepted</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>String</td>
+<td>Yes</td>
+<td>Unix epoch time</td>
+</tr>
+</tbody></table>
+<h2 id='market-data'>Market Data</h2>
+<p>Client -&gt; Cypator.<br / >
+For snapshot message, Cypator won’t send an acknowledgement.</p>
+
+<blockquote>
+<p>snapshot</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"snapshot"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"arg"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"instrument"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USD"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"subscriptionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"bids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">[</span><span class="mi">191235</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="w">
+        </span><span class="p">[</span><span class="mi">191234</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span><span class="w">
+        </span><span class="p">[</span><span class="mi">191233</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span><span class="w">
+        </span><span class="p">[</span><span class="mi">191232</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span><span class="w">
+        </span><span class="p">[</span><span class="mi">191231</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nl">"asks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">[</span><span class="mi">201231</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="w">
+        </span><span class="p">[</span><span class="mi">201232</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span><span class="w">
+        </span><span class="p">[</span><span class="mi">201233</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span><span class="w">
+        </span><span class="p">[</span><span class="mi">201234</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span><span class="w">
+        </span><span class="p">[</span><span class="mi">201235</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1667835722653"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>String</td>
+<td>Yes</td>
+<td>Operation snapshot</td>
+</tr>
+<tr>
+<td>arg</td>
+<td>Object</td>
+<td>Yes</td>
+<td>snapshot details</td>
+</tr>
+<tr>
+<td>-&gt; <br /> instrument</td>
+<td>String</td>
+<td>Yes</td>
+<td>Instrument name</td>
+</tr>
+<tr>
+<td>-&gt; <br /> subscriptionId</td>
+<td>String</td>
+<td>Yes</td>
+<td>Subscription Id as configured on subscribe</td>
+</tr>
+<tr>
+<td>data</td>
+<td>Array</td>
+<td>Yes</td>
+<td>List of items</td>
+</tr>
+<tr>
+<td>--&gt; <br /> bids</td>
+<td>Array of double</td>
+<td>Yes</td>
+<td>List of double, first parameter is price, second quantity</td>
+</tr>
+<tr>
+<td>--&gt; <br /> asks</td>
+<td>Array of double</td>
+<td>Yes</td>
+<td>List of double, first parameter is price, second quantity</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>String</td>
+<td>Yes</td>
+<td>Unix epoch time</td>
+</tr>
+</tbody></table>
+<h2 id='order'>Order</h2>
+<p>Cyaptor -&gt; Client.<br / ></p>
+<h3 id='request'>Request</h3>
+<blockquote>
+<p>Order create request sent from Cypator</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"arg"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"instrument"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USD"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BUY"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"clOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VeYQxMUFGdtljI"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"orderType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LIMIT"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"tif"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FOK"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"account"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tag1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">201232.0</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1682422430612"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>String</td>
+<td>Yes</td>
+<td>Operation order</td>
+</tr>
+<tr>
+<td>arg</td>
+<td>Object</td>
+<td>Yes</td>
+<td>Order details</td>
+</tr>
+<tr>
+<td>-&gt; <br /> instrument</td>
+<td>String</td>
+<td>Yes</td>
+<td>Instrument name</td>
+</tr>
+<tr>
+<td>-&gt; <br /> side</td>
+<td>String</td>
+<td>Yes</td>
+<td>Side of the order. Values: <br /> BUY <br /> SELL</td>
+</tr>
+<tr>
+<td>-&gt; <br /> clOrderId</td>
+<td>String</td>
+<td>Yes</td>
+<td>Order id</td>
+</tr>
+<tr>
+<td>-&gt; <br /> orderType</td>
+<td>String</td>
+<td>Yes</td>
+<td>Type of order. Values: <br />  LIMIT <br />  MARKET</td>
+</tr>
+<tr>
+<td>-&gt; <br /> tif</td>
+<td>String</td>
+<td>Yes</td>
+<td>Time in force. Values:<br />  FOK <br /> IOC</td>
+</tr>
+<tr>
+<td>-&gt; <br /> account</td>
+<td>String</td>
+<td>Yes</td>
+<td>Optional tag, could be null</td>
+</tr>
+<tr>
+<td>-&gt; <br /> quantity</td>
+<td>Double</td>
+<td>Yes</td>
+<td>Order quantity</td>
+</tr>
+<tr>
+<td>-&gt; <br /> price</td>
+<td>Double</td>
+<td>Yes</td>
+<td>Order price</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>String</td>
+<td>Yes</td>
+<td>Unix epoch time</td>
+</tr>
+</tbody></table>
+<h3 id='response-acknowledgement'>Response (Acknowledgement)</h3>
+<blockquote>
+<p>Order acknowledgement success response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"arg"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"instrument"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USD"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BUY"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"clOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VeYQxMUFGdtljI"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"orderType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LIMIT"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"tif"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FOK"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"account"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tag1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">201232.0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"code"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1682422430612"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Order Single acknowledgement failure response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"arg"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"instrument"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BT/USD"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BUY"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"clOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VeYQxMUFGdtljI"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"orderType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LIMIT"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"tif"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FOK"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"account"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tag1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">201232.0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"code"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">50202</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"errMsg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unknown symbol"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1682422430612"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>String</td>
+<td>Yes</td>
+<td>Operation order</td>
+</tr>
+<tr>
+<td>arg</td>
+<td>Object</td>
+<td>Yes</td>
+<td>Order details</td>
+</tr>
+<tr>
+<td>-&gt; <br /> instrument</td>
+<td>String</td>
+<td>Yes</td>
+<td>Instrument name</td>
+</tr>
+<tr>
+<td>-&gt; <br /> side</td>
+<td>String</td>
+<td>Yes</td>
+<td>Side of the order. Values: <br />BUY <br /> SELL</td>
+</tr>
+<tr>
+<td>-&gt; <br /> clOrderId</td>
+<td>String</td>
+<td>Yes</td>
+<td>Order id, Echoed back</td>
+</tr>
+<tr>
+<td>-&gt; <br /> orderType</td>
+<td>String</td>
+<td>Yes</td>
+<td>Type of order. Values: <br /> LIMIT <br /> MARKET</td>
+</tr>
+<tr>
+<td>-&gt; <br /> tif</td>
+<td>String</td>
+<td>Yes</td>
+<td>Time in force. Values: <br /> FOK <br /> IOC</td>
+</tr>
+<tr>
+<td>-&gt; <br /> account</td>
+<td>String</td>
+<td>No</td>
+<td>Optional tag, could be null</td>
+</tr>
+<tr>
+<td>-&gt; <br /> quantity</td>
+<td>Double</td>
+<td>Yes</td>
+<td>Order quantity</td>
+</tr>
+<tr>
+<td>-&gt; <br /> price</td>
+<td>Double</td>
+<td>Yes</td>
+<td>Order price</td>
+</tr>
+<tr>
+<td>-&gt; <br /> code</td>
+<td>String</td>
+<td>Yes</td>
+<td>Zero for success, non zero in case of failure, refer error codes table for standard error. In case of a missing error code, any-non zero value is accepted</td>
+</tr>
+<tr>
+<td>-&gt; <br /> errMsg</td>
+<td>String</td>
+<td>No</td>
+<td>To be populate in case of failure only. Standard error defined in the table. In case of missing error code custom error message is accepted</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>String</td>
+<td>Yes</td>
+<td>Unix epoch time</td>
+</tr>
+</tbody></table>
+<h2 id='trade'>Trade</h2>
+<p>Client -&gt; Cypator<br / ></p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"trade"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"arg"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"instrument"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USD"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BUY"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"clOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uNQMAdtbxnVGJi"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DF34rfswe32"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"tradeId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sada24DSGF"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"orderType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FOK"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FILLED"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"cumQty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"lastQty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"leaveQty"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">201232</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1667835722653</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>String</td>
+<td>Yes</td>
+<td>Operation trade</td>
+</tr>
+<tr>
+<td>arg</td>
+<td>Object</td>
+<td>Yes</td>
+<td>Trade details</td>
+</tr>
+<tr>
+<td>-&gt; <br /> instrument</td>
+<td>String</td>
+<td>Yes</td>
+<td>Instrument name</td>
+</tr>
+<tr>
+<td>-&gt; <br /> side</td>
+<td>String</td>
+<td>Yes</td>
+<td>Side of the order. Values : <br /> BUY <br /> SELL</td>
+</tr>
+<tr>
+<td>-&gt; <br /> clOrderId</td>
+<td>String</td>
+<td>Yes</td>
+<td>client order id, Echoed back from order</td>
+</tr>
+<tr>
+<td>-&gt; <br /> orderId</td>
+<td>String</td>
+<td>Yes</td>
+<td>Order id</td>
+</tr>
+<tr>
+<td>-&gt; <br /> tradeId</td>
+<td>String</td>
+<td>Yes</td>
+<td>Trade id</td>
+</tr>
+<tr>
+<td>-&gt; <br /> orderType</td>
+<td>String</td>
+<td>Yes</td>
+<td>Type of order. Values: <br /> LIMIT  <br /> MARKET</td>
+</tr>
+<tr>
+<td>-&gt; <br /> tif</td>
+<td>String</td>
+<td>Yes</td>
+<td>Time in force. Values: <br /> FOK <br />  IOC</td>
+</tr>
+<tr>
+<td>-&gt; <br /> state</td>
+<td>String</td>
+<td>Yes</td>
+<td>Order status. Values: <br /> FILLED <br />  PARTIALLY_FILLED  <br /> REJECTED <br />  CANCELED</td>
+</tr>
+<tr>
+<td>-&gt; <br /> quantity</td>
+<td>Double</td>
+<td>Yes</td>
+<td>Quantity</td>
+</tr>
+<tr>
+<td>-&gt; <br /> cumQty</td>
+<td>Double</td>
+<td>Yes</td>
+<td>Cumulative quantity</td>
+</tr>
+<tr>
+<td>-&gt; <br /> lastQty</td>
+<td>Double</td>
+<td>Yes</td>
+<td>Last quantity</td>
+</tr>
+<tr>
+<td>-&gt; <br /> leaveQty</td>
+<td>Double</td>
+<td>Yes</td>
+<td>Leaves quantity</td>
+</tr>
+<tr>
+<td>-&gt; <br /> price</td>
+<td>Double</td>
+<td>Yes</td>
+<td>Price</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>String</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h1 id='websocket-taker-api'>Websocket Taker API</h1><h2 id='login-2'>Login</h2>
+<p>Client -&gt; Cypator. <br / >
+Both market and trade session needs to be authenticated before any requests can be made.</p>
+<h3 id='request-parameters-2'>Request parameters</h3>
+<blockquote>
+<p>Request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"logon"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"arg"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"apiKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"User1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"sign"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7L+zFQ+CEgGu5rzCj4+BdV2/uUHGqddA9pI6ztsRRPs="</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"server"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cs1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"client"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cc11"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1667835722651</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>String</td>
+<td>Yes</td>
+<td>Operation logon</td>
+</tr>
+<tr>
+<td>arg</td>
+<td>Object</td>
+<td>Yes</td>
+<td>Login details</td>
+</tr>
+<tr>
+<td>-&gt; <br /> apiKey</td>
+<td>String</td>
+<td>Yes</td>
+<td>API Key</td>
+</tr>
+<tr>
+<td>-&gt; <br /> sign</td>
+<td>String</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>-&gt; <br /> server</td>
+<td>String</td>
+<td>Yes</td>
+<td>Server id</td>
+</tr>
+<tr>
+<td>-&gt; <br /> client</td>
+<td>String</td>
+<td>Yes</td>
+<td>Client id</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>String</td>
+<td>Yes</td>
+<td>Unix epoch time</td>
+</tr>
+</tbody></table>
+<h3 id='response-2'>Response</h3>
+<blockquote>
+<p>Success Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"logon"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"arg"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1682346263287</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Error response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"logon"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"arg"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">50104</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"errMsg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invalid credentials"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1682346263287"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>String</td>
+<td>Yes</td>
+<td>Operation logon</td>
+</tr>
+<tr>
+<td>arg</td>
+<td>Object</td>
+<td>Yes</td>
+<td>Login details</td>
+</tr>
+<tr>
+<td>-&gt; <br />code</td>
+<td>int</td>
+<td>Yes</td>
+<td>0 - success <br / > non zero for failure</td>
+</tr>
+<tr>
+<td>-&gt; <br />errMsg</td>
+<td>String</td>
+<td>no</td>
+<td>Error message, populated only in case of error</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>String</td>
+<td>Yes</td>
+<td>Unix epoch time</td>
+</tr>
+</tbody></table>
+<h2 id='ping-2'>Ping</h2>
+<p>Client -&gt; Cypator. <br / >
 To keep the connection alive client needs to send a heartbeat message ping once every 30 seconds. If no heartbeat message is received for 30 seconds connection will be dropped.<br/>
-Rate limit : 1 request per 15 seconds Connection dropped in case of rate limit breach.
+Rate limit : 1 request per 15 seconds Connection dropped in case of rate limit breach.</p>
 
-> Request
+<blockquote>
+<p>Request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ping"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ping"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>String</td>
+<td>Yes</td>
+<td>Operation ping</td>
+</tr>
+</tbody></table>
+<h2 id='subscribe'>Subscribe</h2>
+<p>Client -&gt; Cyaptor. <br/>
+Client will subscribe to desired instruments to be able to retrieve a stream of market data.</p>
 
-```json
-{
-  "op": "ping"
-}
-```
+<blockquote>
+<p>Request Example</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"subscribe"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"arg"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"instrument"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USD"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BOTH"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"subscriptionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FhervfD"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"subscriptionRequestType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"snapshot"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"typeBook"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SPOT"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"aggBook"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"marketDepth"</span><span class="p">:</span><span class="mi">0</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1667835722651</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Success Response Example</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"subscribe"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"arg"</span><span class="p">:</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"instrument"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USD"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BOTH"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"subscriptionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FhervfD"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"subscriptionRequestType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"snapshot"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"typeBook"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SPOT"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"aggBook"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"marketDepth"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1667835722651"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Error response Example</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"subscribe"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"arg"</span><span class="p">:</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"instrument"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USD"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BOTH"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"subscriptionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FhervfD"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"subscriptionRequestType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"snapshot"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"typeBook"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SPOT"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"aggBook"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"marketDepth"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"errMsg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Duplicate market data request symbol"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">50206</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1667835722651"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='request-parameters-3'>Request parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>String</td>
+<td>Yes</td>
+<td>Operation subscribe</td>
+</tr>
+<tr>
+<td>arg</td>
+<td>Object</td>
+<td>Yes</td>
+<td>Subscription details</td>
+</tr>
+<tr>
+<td>-&gt; <br />instrument</td>
+<td>String</td>
+<td>Yes</td>
+<td>Instrument id</td>
+</tr>
+<tr>
+<td>-&gt; <br />side</td>
+<td>String</td>
+<td>Yes</td>
+<td>Side for subscription. Values BOTH</td>
+</tr>
+<tr>
+<td>-&gt; <br />subscriptionId</td>
+<td>String</td>
+<td>Yes</td>
+<td>Unique subscription id</td>
+</tr>
+<tr>
+<td>-&gt; <br />subscriptionRequestType</td>
+<td>String</td>
+<td>Yes</td>
+<td>Subscription type. Values:<br/> snapshot</td>
+</tr>
+<tr>
+<td>-&gt; <br />typeBook</td>
+<td>String</td>
+<td>Yes</td>
+<td>Type of book. Values: <br/> Spot</td>
+</tr>
+<tr>
+<td>-&gt; <br />aggBook</td>
+<td>Integer</td>
+<td>Yes</td>
+<td>Aggregate book. Values:<br/> 0 for false <br/> 1 for true</td>
+</tr>
+<tr>
+<td>-&gt; <br />marketDepth</td>
+<td>Integer</td>
+<td>Yes</td>
+<td>Market Depth. Values: <br/> 0 <br/>1</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>Long</td>
+<td>Yes</td>
+<td>Unix epoch time</td>
+</tr>
+</tbody></table>
+<h3 id='response-3'>Response</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>String</td>
+<td>Yes</td>
+<td>Operation subscribe</td>
+</tr>
+<tr>
+<td>arg</td>
+<td>Object</td>
+<td>Yes</td>
+<td>Subscription details</td>
+</tr>
+<tr>
+<td>-&gt; <br />instrument</td>
+<td>String</td>
+<td>Yes</td>
+<td>Instrument id</td>
+</tr>
+<tr>
+<td>-&gt; <br />side</td>
+<td>String</td>
+<td>Yes</td>
+<td>Side for subscription. Values BOTH</td>
+</tr>
+<tr>
+<td>-&gt; <br />subscriptionId</td>
+<td>String</td>
+<td>Yes</td>
+<td>Unique subscription id</td>
+</tr>
+<tr>
+<td>-&gt; <br />subscriptionRequestType</td>
+<td>String</td>
+<td>Yes</td>
+<td>Subscription type. Values: <br/> snapshot</td>
+</tr>
+<tr>
+<td>-&gt; <br />typeBook</td>
+<td>String</td>
+<td>Yes</td>
+<td>Type of book. Values: <br/> Spot</td>
+</tr>
+<tr>
+<td>-&gt; <br />aggBook</td>
+<td>Integer</td>
+<td>Yes</td>
+<td>Aggregate book. Values: <br/> 0 for false <br/> 1 for true</td>
+</tr>
+<tr>
+<td>-&gt; <br />marketDepth</td>
+<td>Integer</td>
+<td>Yes</td>
+<td>Market Depth. Values: <br/> 0 <br/> 1</td>
+</tr>
+<tr>
+<td>-&gt; <br />code</td>
+<td>int</td>
+<td>Yes</td>
+<td>Zero for success, non zero for failure</td>
+</tr>
+<tr>
+<td>-&gt; <br />errMsg</td>
+<td>String</td>
+<td>No</td>
+<td>Error message, populated only in case of error</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>Long</td>
+<td>Yes</td>
+<td>Unix epoch time</td>
+</tr>
+</tbody></table>
+<h2 id='unsubscribe'>Unsubscribe</h2>
+<p>Client -&gt; Cyaptor. <br/>
+To stop receiving market data unsubscribe call for the product needs to be made. Taker sends the below request to Cypator.</p>
 
-> Response
+<blockquote>
+<p>Request Example</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unsubscribe"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"arg"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"subscriptionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FhervfD"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"instrument"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USD"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"typeBook"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SPOT"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1667835722653</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Success Response Example</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unsubscribe"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"arg"</span><span class="p">:</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"subscriptionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FhervfD"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"instrument"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USD"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"typeBook"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SPOT"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1706601058528</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Error response Example</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1667835722653"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unsubscribe"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"arg"</span><span class="p">:</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"subscriptionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FhervfD"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"instrument"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USD"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"typeBook"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SPOT"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"errMsg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invalid subscription id"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">50251</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='request-parameters-4'>Request parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>String</td>
+<td>Yes</td>
+<td>Operation subscribe</td>
+</tr>
+<tr>
+<td>arg</td>
+<td>Object</td>
+<td>Yes</td>
+<td>Subscription details</td>
+</tr>
+<tr>
+<td>-&gt; <br />instrument</td>
+<td>String</td>
+<td>Yes</td>
+<td>Instrument id</td>
+</tr>
+<tr>
+<td>-&gt; <br />subscriptionId</td>
+<td>String</td>
+<td>Yes</td>
+<td>Unique subscription id</td>
+</tr>
+<tr>
+<td>-&gt; <br />typeBook</td>
+<td>String</td>
+<td>Yes</td>
+<td>Type of book. Values: <br/> Spot</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>Long</td>
+<td>Yes</td>
+<td>Unix epoch time</td>
+</tr>
+</tbody></table>
+<h3 id='response-4'>Response</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>String</td>
+<td>Operation subscribe</td>
+</tr>
+<tr>
+<td>arg</td>
+<td>Object</td>
+<td>Subscription details</td>
+</tr>
+<tr>
+<td>-&gt; <br />instrument</td>
+<td>String</td>
+<td>Instrument id</td>
+</tr>
+<tr>
+<td>-&gt; <br />subscriptionId</td>
+<td>String</td>
+<td>Unique subscription id</td>
+</tr>
+<tr>
+<td>-&gt; <br />typeBook</td>
+<td>String</td>
+<td>Type of book. Values: Spot</td>
+</tr>
+<tr>
+<td>-&gt; <br />code</td>
+<td>int</td>
+<td>Zero for success, non zero for failure</td>
+</tr>
+<tr>
+<td>-&gt; <br />errMsg</td>
+<td>String</td>
+<td>Error message, populated only in case of error</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>Long</td>
+<td>Unix epoch time</td>
+</tr>
+</tbody></table>
+<h2 id='market-data-snapshot'>Market data snapshot</h2>
+<p>Cypator -&gt; Client.<br/>
+Once client subscribed to desired instrument a stream of market data snapshot will be sent to him.</p>
 
-```json
-{
-  "op": "ping"
-}
-```
+<blockquote>
+<p>Snapshot</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"snapshot"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"arg"</span><span class="p">:</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"instrument"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USD"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"subscriptionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FhervfD"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w">
+    </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"bids"</span><span class="p">:</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+              </span><span class="p">[</span><span class="mf">42732.79</span><span class="p">,</span><span class="mf">0.1</span><span class="p">],</span><span class="w">
+              </span><span class="p">[</span><span class="mf">42732.78</span><span class="p">,</span><span class="mf">0.2</span><span class="p">],</span><span class="w">
+              </span><span class="p">[</span><span class="mf">42732.77</span><span class="p">,</span><span class="mf">0.3</span><span class="p">],</span><span class="w">
+              </span><span class="p">[</span><span class="mf">42732.76</span><span class="p">,</span><span class="mf">0.4</span><span class="p">],</span><span class="w">
+              </span><span class="p">[</span><span class="mf">42732.75</span><span class="p">,</span><span class="mf">0.5</span><span class="p">],</span><span class="w">
+              </span><span class="p">[</span><span class="mf">42732.74</span><span class="p">,</span><span class="mf">0.6</span><span class="p">],</span><span class="w">
+              </span><span class="p">[</span><span class="mf">42732.73</span><span class="p">,</span><span class="mf">0.6</span><span class="p">],</span><span class="w">
+              </span><span class="p">[</span><span class="mf">42732.72</span><span class="p">,</span><span class="mf">0.7</span><span class="p">],</span><span class="w">
+              </span><span class="p">[</span><span class="mf">42732.71</span><span class="p">,</span><span class="mf">0.8</span><span class="p">],</span><span class="w">
+              </span><span class="p">[</span><span class="mf">42732.70</span><span class="p">,</span><span class="mf">0.9</span><span class="p">]</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nl">"asks"</span><span class="p">:</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+              </span><span class="p">[</span><span class="mf">42733.70</span><span class="p">,</span><span class="mf">0.1</span><span class="p">],</span><span class="w">
+              </span><span class="p">[</span><span class="mf">42733.71</span><span class="p">,</span><span class="mf">0.2</span><span class="p">],</span><span class="w">
+              </span><span class="p">[</span><span class="mf">42733.72</span><span class="p">,</span><span class="mf">0.3</span><span class="p">],</span><span class="w">
+              </span><span class="p">[</span><span class="mf">42733.73</span><span class="p">,</span><span class="mf">0.4</span><span class="p">],</span><span class="w">
+              </span><span class="p">[</span><span class="mf">42733.74</span><span class="p">,</span><span class="mf">0.5</span><span class="p">],</span><span class="w">
+              </span><span class="p">[</span><span class="mf">42733.75</span><span class="p">,</span><span class="mf">0.6</span><span class="p">],</span><span class="w">
+              </span><span class="p">[</span><span class="mf">42733.76</span><span class="p">,</span><span class="mf">0.6</span><span class="p">],</span><span class="w">
+              </span><span class="p">[</span><span class="mf">42733.77</span><span class="p">,</span><span class="mf">0.7</span><span class="p">],</span><span class="w">
+              </span><span class="p">[</span><span class="mf">42733.78</span><span class="p">,</span><span class="mf">0.8</span><span class="p">],</span><span class="w">
+              </span><span class="p">[</span><span class="mf">42733.79</span><span class="p">,</span><span class="mf">0.9</span><span class="p">]</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='request-parameters-5'>Request parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>String</td>
+<td>Operation subscribe</td>
+</tr>
+<tr>
+<td>arg</td>
+<td>Object</td>
+<td>Subscription details</td>
+</tr>
+<tr>
+<td>-&gt; <br />instrument</td>
+<td>String</td>
+<td>Instrument name</td>
+</tr>
+<tr>
+<td>-&gt; <br />subscriptionId</td>
+<td>String</td>
+<td>Unique identifier for subscription</td>
+</tr>
+<tr>
+<td>data</td>
+<td>Array</td>
+<td>Array containing of object of bids and asks</td>
+</tr>
+<tr>
+<td>-&gt; <br />bids</td>
+<td>Array</td>
+<td>List of bids. First item is price, second item is quantity.</td>
+</tr>
+<tr>
+<td>-&gt; <br />asks</td>
+<td>Array</td>
+<td>List of asks. First item is price, second item is quantity.</td>
+</tr>
+</tbody></table>
+<h2 id='order-2'>Order</h2>
+<p>Client -&gt; Cyaptor. <br/>
+To place an order taker sends request to Cypator.</p>
 
-| Parameter | Type   | Required | Description    | 
-|-----------|--------|----------|----------------|
-| op        | String | Yes      | Operation ping |
-
-## Subscribe
-
-Client -> Cyaptor. <br/>
-Client will subscribe to desired instruments to be able to retrieve a stream of market data.
-
-> Request Example
-
-```json
-{
-  "op": "subscribe",
-  "arg": {
-    "instrument": "BTC/USD",
-    "side": "BOTH",
-    "subscriptionId": "FhervfD",
-    "subscriptionRequestType": "snapshot",
-    "typeBook": "SPOT",
-    "aggBook": 0,
-    "marketDepth":0
-  },
-  "ts": 1667835722651
-}
-```
-
-> Success Response Example
-
-```json
-{
-  "op": "subscribe",
-  "arg":
-  {
-    "instrument": "BTC/USD",
-    "side": "BOTH",
-    "subscriptionId": "FhervfD",
-    "subscriptionRequestType": "snapshot",
-    "typeBook": "SPOT",
-    "aggBook": 0,
-    "marketDepth": 0,
-    "code": 0
-  },
-  "ts": "1667835722651"
-}
-```
-
-> Error response Example
-
-```json
-{
-  "op": "subscribe",
-  "arg":
-  {
-    "instrument": "BTC/USD",
-    "side": "BOTH",
-    "subscriptionId": "FhervfD",
-    "subscriptionRequestType": "snapshot",
-    "typeBook": "SPOT",
-    "aggBook": 0,
-    "marketDepth": 0,
-    "errMsg": "Duplicate market data request symbol",
-    "code": 50206
-  },
-  "ts": "1667835722651"
-}
-```
-
-### Request parameters
-| Parameter                        | Type    | Required | Description                                               |
-|----------------------------------|---------|----------|-----------------------------------------------------------|
-| op                               | String  | Yes      | Operation subscribe                                       |
-| arg                              | Object  | Yes      | Subscription details                                      |
-| -> <br />instrument              | String  | Yes      | Instrument id                                             |
-| -> <br />side                    | String  | Yes      | Side for subscription. Values BOTH                        |
-| -> <br />subscriptionId          | String  | Yes      | Unique subscription id                                    |
-| -> <br />subscriptionRequestType | String  | Yes      | Subscription type. Values:<br/> snapshot                  |
-| -> <br />typeBook                | String  | Yes      | Type of book. Values: <br/> Spot                          |
-| -> <br />aggBook                 | Integer | Yes      | Aggregate book. Values:<br/> 0 for false <br/> 1 for true |
-| -> <br />marketDepth             | Integer | Yes      | Market Depth. Values: <br/> 0 <br/>1                      |
-| ts                               | Long    | Yes      | Unix epoch time                                           |
-
-
-### Response
-| Parameter                        | Type    | Required | Description                                                |
-|----------------------------------|---------|----------|------------------------------------------------------------|
-| op                               | String  | Yes      | Operation subscribe                                        |
-| arg                              | Object  | Yes      | Subscription details                                       |
-| -> <br />instrument              | String  | Yes      | Instrument id                                              |
-| -> <br />side                    | String  | Yes      | Side for subscription. Values BOTH                         |
-| -> <br />subscriptionId          | String  | Yes      | Unique subscription id                                     |
-| -> <br />subscriptionRequestType | String  | Yes      | Subscription type. Values: <br/> snapshot                  |
-| -> <br />typeBook                | String  | Yes      | Type of book. Values: <br/> Spot                           |
-| -> <br />aggBook                 | Integer | Yes      | Aggregate book. Values: <br/> 0 for false <br/> 1 for true |
-| -> <br />marketDepth             | Integer | Yes      | Market Depth. Values: <br/> 0 <br/> 1                      |
-| -> <br />code                    | int     | Yes      | Zero for success, non zero for failure                     |
-| -> <br />errMsg                  | String  | No       | Error message, populated only in case of error             |
-| ts                               | Long    | Yes      | Unix epoch time                                            |
-
-## Unsubscribe
-
-Client -> Cyaptor. <br/>
-To stop receiving market data unsubscribe call for the product needs to be made. Taker sends the below request to Cypator.
-
-> Request Example
-
-```json
-{
-  "op": "unsubscribe",
-  "arg": {
-    "subscriptionId": "FhervfD",
-    "instrument": "BTC/USD",
-    "typeBook": "SPOT"
-  },
-  "timestamp": 1667835722653
-}
-```
-
-> Success Response Example
-
-```json
-{
-    "op": "unsubscribe",
-    "arg":
-    {
-        "subscriptionId": "FhervfD",
-        "instrument": "BTC/USD",
-        "typeBook": "SPOT",
-        "code": "0"
-    },
-    "ts": 1706601058528
-}
-```
-
-> Error response Example
-
-```json
-{
-    "ts": "1667835722653",
-    "op": "unsubscribe",
-    "arg":
-    {
-        "subscriptionId": "FhervfD",
-        "instrument": "BTC/USD",
-        "typeBook": "SPOT",
-        "errMsg": "Invalid subscription id",
-        "code": 50251
-    }
-}
-```
-
-### Request parameters
-| Parameter               | Type   | Required | Description                      |
-|-------------------------|--------|----------|----------------------------------|
-| op                      | String | Yes      | Operation subscribe              |
-| arg                     | Object | Yes      | Subscription details             |
-| -> <br />instrument     | String | Yes      | Instrument id                    |
-| -> <br />subscriptionId | String | Yes      | Unique subscription id           |
-| -> <br />typeBook       | String | Yes      | Type of book. Values: <br/> Spot |
-| ts                      | Long   | Yes      | Unix epoch time                  |
-
-### Response
-| Parameter               | Type   | Description                                    |
-|-------------------------|--------|------------------------------------------------|
-| op                      | String | Operation subscribe                            |
-| arg                     | Object | Subscription details                           |
-| -> <br />instrument     | String | Instrument id                                  |
-| -> <br />subscriptionId | String | Unique subscription id                         |
-| -> <br />typeBook       | String | Type of book. Values: Spot                     |
-| -> <br />code           | int    | Zero for success, non zero for failure         |
-| -> <br />errMsg         | String | Error message, populated only in case of error |
-| ts                      | Long   | Unix epoch time                                |
-
-## Market data snapshot
-
-Cypator -> Client.<br/>
-Once client subscribed to desired instrument a stream of market data snapshot will be sent to him.
-
-> Snapshot
-
-```json
-{
-    "op": "snapshot",
-    "arg":
-    {
-        "instrument": "BTC/USD",
-        "subscriptionId": "FhervfD"
-    },
-    "data":
-    [
-        {
-            "bids":
-            [
-              [42732.79,0.1],
-              [42732.78,0.2],
-              [42732.77,0.3],
-              [42732.76,0.4],
-              [42732.75,0.5],
-              [42732.74,0.6],
-              [42732.73,0.6],
-              [42732.72,0.7],
-              [42732.71,0.8],
-              [42732.70,0.9]
-            ],
-            "asks":
-            [
-              [42733.70,0.1],
-              [42733.71,0.2],
-              [42733.72,0.3],
-              [42733.73,0.4],
-              [42733.74,0.5],
-              [42733.75,0.6],
-              [42733.76,0.6],
-              [42733.77,0.7],
-              [42733.78,0.8],
-              [42733.79,0.9]
-            ]
-        }
-    ]
-}
-```
-
-### Request parameters
-| Parameter               | Type   | Description                                                 |
-|-------------------------|--------|-------------------------------------------------------------|
-| op                      | String | Operation subscribe                                         |
-| arg                     | Object | Subscription details                                        |
-| -> <br />instrument     | String | Instrument name                                             |
-| -> <br />subscriptionId | String | Unique identifier for subscription                          |
-| data                    | Array  | Array containing of object of bids and asks                 |
-| -> <br />bids           | Array  | List of bids. First item is price, second item is quantity. |
-| -> <br />asks           | Array  | List of asks. First item is price, second item is quantity. |
-
-## Order
-
-Client -> Cyaptor. <br/>
-To place an order taker sends request to Cypator.
-
-
-> Order
-
-```json
-{
-  "op": "order",
-  "arg": {
-    "instrument": "BTC/USD",
-    "side": "BUY",
-    "clOrderId": "SDfcsef35",
-    "orderType": "LIMIT",
-    "tif": "FOK",
-    "account": "tag1",
-    "quantity": 100,
-    "price": 19123
-  },
-  "ts": 1667835722653
-}
-```
-
-> Order acknowledgement success
-
-```json
-{
-    "op": "order",
-    "arg":
-    {
-        "instrument": "BTC/USD",
-        "side": "BUY",
-        "clOrderId": "SDfcsef35",
-        "orderType": "LIMIT",
-        "tif": "FOK",
-        "account": "tag1",
-        "quantity": 100.0,
-        "price": 19123.0,
-        "code": 0
-    },
-    "ts": 1706601667000
-}
-```
-
-> Order acknowledgement failure
- 
-```json
-{
-    "ts": "1667835722653",
-    "op": "order",
-    "arg":
-    {
-        "instrument": "BTC/USD",
-        "side": "B",
-        "clOrderId": "SDfcsef35",
-        "orderType": "LIMIT",
-        "tif": "FOK",
-        "account": "tag1",
-        "quantity": 100,
-        "price": 19123,
-        "errMsg": "Unsupported side, only BUY or SELL allowed",
-        "code": 50301
-    }
-}
-```
-
-### Request parameters
-| Parameter           | Type   | Required | Description                                |
-|---------------------|--------|----------|--------------------------------------------|
-| op                  | String | Yes      | Operation subscribe                        |
-| arg                 | Object | Yes      | Subscription details                       |
-| -> <br />instrument | String | Yes      | Instrument name                            |
-| -> <br />side       | String | Yes      | Side of order. Values : Buy, Sell          |
-| -> <br />clOrderId  | String | Yes      | Unique identifier for order.               |
-| -> <br />orderType  | String | Yes      | Order type. Values : MARKET, LIMIT         |
-| -> <br />tif        | String | Yes      | Time in force for order. Values : FOK, IOC |
-| -> <br />account    | String | Yes      | Name of account                            |
-| -> <br />quantity   | Double | Yes      | Quantity of order                          |
-| -> <br />price      | Double | Yes      | Price                                      |
-
-### Response
-| Parameter           | Type   | Description                                    |
-|---------------------|--------|------------------------------------------------|
-| op                  | String | Operation subscribe                            |
-| arg                 | Object | Subscription details                           |
-| -> <br />instrument | String | Instrument name                                |
-| -> <br />side       | String | Side of order. Values : Buy, Sell              |
-| -> <br />clOrderId  | String | Unique identifier for order.                   |
-| -> <br />orderType  | String | Order type. Values : MARKET, LIMIT             |
-| -> <br />tif        | String | Time in force for order. Values : FOK, IOC     |
-| -> <br />account    | String | Name of account                                |
-| -> <br />quantity   | Double | Quantity of order                              |
-| -> <br />price      | Double | Price                                          |
-| -> <br />code       | int    | Zero for success, non zero for failure         |
-| -> <br />errMsg     | String | Error message, populated only in case of error |
-
+<blockquote>
+<p>Order</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"arg"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"instrument"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USD"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BUY"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"clOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SDfcsef35"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"orderType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LIMIT"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"tif"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FOK"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"account"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tag1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">19123</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1667835722653</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Order acknowledgement success</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"arg"</span><span class="p">:</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"instrument"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USD"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BUY"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"clOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SDfcsef35"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"orderType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LIMIT"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"tif"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FOK"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"account"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tag1"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">19123.0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1706601667000</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Order acknowledgement failure</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1667835722653"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"arg"</span><span class="p">:</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"instrument"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USD"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"B"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"clOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SDfcsef35"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"orderType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LIMIT"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"tif"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FOK"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"account"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tag1"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">19123</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"errMsg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unsupported side, only BUY or SELL allowed"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">50301</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='request-parameters-6'>Request parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>String</td>
+<td>Yes</td>
+<td>Operation subscribe</td>
+</tr>
+<tr>
+<td>arg</td>
+<td>Object</td>
+<td>Yes</td>
+<td>Subscription details</td>
+</tr>
+<tr>
+<td>-&gt; <br />instrument</td>
+<td>String</td>
+<td>Yes</td>
+<td>Instrument name</td>
+</tr>
+<tr>
+<td>-&gt; <br />side</td>
+<td>String</td>
+<td>Yes</td>
+<td>Side of order. Values : Buy, Sell</td>
+</tr>
+<tr>
+<td>-&gt; <br />clOrderId</td>
+<td>String</td>
+<td>Yes</td>
+<td>Unique identifier for order.</td>
+</tr>
+<tr>
+<td>-&gt; <br />orderType</td>
+<td>String</td>
+<td>Yes</td>
+<td>Order type. Values : MARKET, LIMIT</td>
+</tr>
+<tr>
+<td>-&gt; <br />tif</td>
+<td>String</td>
+<td>Yes</td>
+<td>Time in force for order. Values : FOK, IOC</td>
+</tr>
+<tr>
+<td>-&gt; <br />account</td>
+<td>String</td>
+<td>Yes</td>
+<td>Name of account</td>
+</tr>
+<tr>
+<td>-&gt; <br />quantity</td>
+<td>Double</td>
+<td>Yes</td>
+<td>Quantity of order</td>
+</tr>
+<tr>
+<td>-&gt; <br />price</td>
+<td>Double</td>
+<td>Yes</td>
+<td>Price</td>
+</tr>
+</tbody></table>
+<h3 id='response-5'>Response</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>String</td>
+<td>Operation subscribe</td>
+</tr>
+<tr>
+<td>arg</td>
+<td>Object</td>
+<td>Subscription details</td>
+</tr>
+<tr>
+<td>-&gt; <br />instrument</td>
+<td>String</td>
+<td>Instrument name</td>
+</tr>
+<tr>
+<td>-&gt; <br />side</td>
+<td>String</td>
+<td>Side of order. Values : Buy, Sell</td>
+</tr>
+<tr>
+<td>-&gt; <br />clOrderId</td>
+<td>String</td>
+<td>Unique identifier for order.</td>
+</tr>
+<tr>
+<td>-&gt; <br />orderType</td>
+<td>String</td>
+<td>Order type. Values : MARKET, LIMIT</td>
+</tr>
+<tr>
+<td>-&gt; <br />tif</td>
+<td>String</td>
+<td>Time in force for order. Values : FOK, IOC</td>
+</tr>
+<tr>
+<td>-&gt; <br />account</td>
+<td>String</td>
+<td>Name of account</td>
+</tr>
+<tr>
+<td>-&gt; <br />quantity</td>
+<td>Double</td>
+<td>Quantity of order</td>
+</tr>
+<tr>
+<td>-&gt; <br />price</td>
+<td>Double</td>
+<td>Price</td>
+</tr>
+<tr>
+<td>-&gt; <br />code</td>
+<td>int</td>
+<td>Zero for success, non zero for failure</td>
+</tr>
+<tr>
+<td>-&gt; <br />errMsg</td>
+<td>String</td>
+<td>Error message, populated only in case of error</td>
+</tr>
+</tbody></table>
 
 <aside class="notice">
 Cypator supports market orders (orderType) for both time in force (tif) IOC and FOK. it is recommended to send orders with time in force IOC for a better fill ratio (trade can be Filled, partially filled, or cancel) and with the conditions:<br/>
@@ -2888,7 +4443,7 @@ Cypator supports market orders (orderType) for both time in force (tif) IOC and 
 <br/>
 In the case of market order with time in force FOK, trade can be filled, or canceled.
 </aside>
-<h2 id='trade'>Trade</h2>
+<h2 id='trade-2'>Trade</h2>
 <p>Cypator -&gt; Client.<br/>
 As a response for an order Cypator will reply with a trade.</p>
 
@@ -2916,7 +4471,7 @@ As a response for an order Cypator will reply with a trade.</p>
         </span><span class="nl">"avgPrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">19123.2</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='request-parameters'>Request parameters</h3>
+</span></code></pre></div><h3 id='request-parameters-7'>Request parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
