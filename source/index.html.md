@@ -553,8 +553,7 @@ This message is used by the client to cancel any live order they may have. Appli
 In case Cypator is unable to cancel the order a Cancel Rejected (35=9) message will be sent as a response.<br/>
 In case Cypator was able to cancel the order an Execution Report (35=8) with status cancel for OrdStatus and ExecType (39=4, 150=0) will be sent back.
 
-<aside class="warning">All resting orders are COD (Cancel On Disconnect) once session/connection is lost all active orders will automatically be canceled immediately. <br/> It is the
-user’s responsibility to re-enter all orders that have been cancelled by COD</aside>
+<aside class="warning">All resting orders are COD (Cancel On Disconnect) once session/connection is lost all active orders will automatically be canceled immediately. It is the user’s responsibility to re-enter all orders that have been cancelled by COD </aside>
 
 > FIX 4.4  Client -> Cypator
 
