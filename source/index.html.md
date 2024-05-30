@@ -2014,7 +2014,7 @@ As a response for an order Cypator will reply with a trade.
 | BCH/BNB    | BCH	   | BNB	   | #.00	          | 1         | 9999	    | 0.01		        | #.00	                           | 1	                       | 200,000                  | 0.1              |
 | BCH/USDT   | BCH	   | USDT	  | #.00	          | 1         | 9999	    | 0.01		        | #.00	                           | 1	                       | 200,000                  | 0.1              |
 | BNB/USD    | BNB	   | USD	   | #.00	          | 1         | 9999	    | 0.01		        | #.0	                            | 1	                       | 74,000                   | 0.1              |
-| BTC/USD    | BTC	   | USD	   | #.00	          | 100       | 9999999  | 	0.01	        | #.0000                          | 0.01	                    | 1,200                    | 0.01             |
+| BTC/USD    | BTC	   | USD	   | #.00	          | 100       | 9999999  | 	0.01	        | #.0000                          | 0.0001	                  | 1,200                    | 0.0001           |
 | BTC/USDC   | BTC	   | USDC	  | #.00	          | 100       | 9999999  | 	0.01	        | #.0000                          | 0.01	                    | 1,200                    | 0.01             |
 | BTC/USDT   | BTC	   | USDT	  | #.00	          | 100       | 9999999  | 	0.01	        | #.0000                          | 0.01	                    | 1,200                    | 0.01             |
 | DOGE/USD   | DOGE	  | USD	   | #.00000        | 0.001     | 99	      | 0.00001	      | #.	                             | 1000	                    | 245,000,000              | 100              |
@@ -2023,7 +2023,7 @@ As a response for an order Cypator will reply with a trade.
 | DOT/USD	   | DOT	   | USD	   | #.0000	        | 0.01      | 999	     | 0.0001	       | #.00	                           | 100	                     | 3,500,000                | 1                |
 | DOT/USDC   | DOT	   | USDC	  | #.0000	        | 0.01      | 999	     | 0.0001	       | #.00	                           | 100	                     | 3,500,000                | 1                |
 | DOT/USDT   | DOT	   | USDT	  | #.0000	        | 0.01      | 999	     | 0.0001	       | #.00	                           | 100	                     | 3,500,000                | 1                |
-| ETH/USD	   | ETH	   | USD	   | #.00	          | 10        | 99999    | 0.01		        | #.0000                          | 0.1	                     | 17,000                   | 0.1              |
+| ETH/USD	   | ETH	   | USD	   | #.00	          | 10        | 99999    | 0.01		        | #.0000                          | 0.0001	                  | 17,000                   | 0.0001           |
 | ETH/USDC   | ETH	   | USDC	  | #.00	          | 10        | 99999    | 0.01		        | #.0000                          | 0.1	                     | 17,000                   | 0.1              |
 | ETH/USDT   | ETH	   | USDT	  | #.00	          | 10        | 99999    | 0.01		        | #.0000                          | 0.1	                     | 17,000                   | 0.1              |
 | LTC/USD	   | LTC	   | USD	   | #.0000	        | 0.01      | 9999	    | 0.0001	       | #.00	                           | 10	                      | 320,000                  | 1                |
@@ -2044,14 +2044,17 @@ As a response for an order Cypator will reply with a trade.
 | XRP/USDC   | XRP	   | USDC	  | #.00000        | 0.01      | 999	     | 0.00001	      | #.0	                            | 100	                     | 50,000,000               | 10               |
 | XRP/USDT   | XRP	   | USDT	  | #.00000        | 0.01      | 999	     | 0.00001	      | #.0	                            | 100	                     | 50,000,000               | 10               |
 | USDC/USDT  | USDC	  | USDT	  | #.000000        | 0.1       | 	  9     | 	    0.0001    | 	   #.                          | 	      1000              | 10,000,000                | 1                |
-| LINK/USD  | LINK	  | USD	  | #.000        | 0.1      | 	  999      | 	    0.001    | 	  #.0000                             | 	      0.1              | 200000                | 0.1                |
+| LINK/USD  | LINK	  | USD	  | #.000        | 0.1      | 	  999      | 	    0.001    | 	  #.0000                             | 	      0.1               | 200000                | 0.1              |
 
 
 
 
 # Version History
 
-### V1.1.1 - Wed, 1 May 2024
+### V1.1.3 - Thu, 30 May 2024
+Instrument table update
+
+### V1.1.2 - Wed, 1 May 2024
 Resting order GTC support  was added 
 
 ### V1.1.1 - Sun, 18 Feb 2024
