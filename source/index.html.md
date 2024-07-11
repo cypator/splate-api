@@ -2052,7 +2052,13 @@ As a response for an order Cypator will reply with a trade.
 # Version History
 
 ### V1.1.4 - Thu, 11 Jul 2024
-BTC/USD, BTC/USDT, BTC/USDC, ETH/USD, ETH/USDT, ETH/USDC Default Min Order Amount and Amount Increment were updated
+Default Min Order Amount and Amount Increment were updated for instruments:
+* BTC/USD
+* BTC/USDT
+* BTC/USDC
+* ETH/USD
+* ETH/USDC
+* ETH/USDT
 
 ### V1.1.3 - Thu, 30 May 2024
 Instrument table update
