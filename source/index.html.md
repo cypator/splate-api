@@ -2015,8 +2015,8 @@ As a response for an order Cypator will reply with a trade.
 | BCH/USDT   | BCH	   | USDT	  | #.00	          | 1         | 9999	    | 0.01		        | #.00	                           | 1	                       | 200,000                  | 0.1              |
 | BNB/USD    | BNB	   | USD	   | #.00	          | 1         | 9999	    | 0.01		        | #.0	                            | 1	                       | 74,000                   | 0.1              |
 | BTC/USD    | BTC	   | USD	   | #.00	          | 100       | 9999999  | 	0.01	        | #.0000                          | 0.0001	                  | 1,200                    | 0.0001           |
-| BTC/USDC   | BTC	   | USDC	  | #.00	          | 100       | 9999999  | 	0.01	        | #.0000                          | 0.0001	                  | 1,200                    | 0.01             |
-| BTC/USDT   | BTC	   | USDT	  | #.00	          | 100       | 9999999  | 	0.01	      | #.0000                          | 0.0001	                  | 1,200                    | 0.01             |
+| BTC/USDC   | BTC	   | USDC	  | #.00	          | 100       | 9999999  | 	0.01	        | #.0000                          | 0.0001	                  | 1,200                    | 0.0001           |
+| BTC/USDT   | BTC	   | USDT	  | #.00	          | 100       | 9999999  | 	0.01	      | #.0000                          | 0.0001	                  | 1,200                    | 0.0001           |
 | DOGE/USD   | DOGE	  | USD	   | #.00000        | 0.001     | 99	      | 0.00001	      | #.	                             | 1000	                    | 245,000,000              | 100              |
 | DOGE/USDC  | DOGE	  | USDC	  | #.00000        | 0.001     | 99	      | 0.00001	      | #.	                             | 1000	                    | 245,000,000              | 100              |
 | DOGE/USDT  | DOGE	  | USDT	  | #.00000        | 0.001     | 99	      | 0.00001	      | #.	                             | 1000	                    | 245,000,000              | 100              |
@@ -2050,6 +2050,9 @@ As a response for an order Cypator will reply with a trade.
 
 
 # Version History
+
+### V1.1.4 - Thu, 11 Jul 2024
+BTC/USD, BTC/USDT, BTC/USDC, ETH/USD, ETH/USDT, ETH/USDC Default Min Order Amount and Amount Increment were updated
 
 ### V1.1.3 - Thu, 30 May 2024
 Instrument table update
