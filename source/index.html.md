@@ -2053,6 +2053,7 @@ As a response for an order Cypator will reply with a trade.
 
 ### V1.1.4 - Thu, 11 Jul 2024
 Default Min Order Amount and Amount Increment were updated for instruments:
+
 * BTC/USD
 * BTC/USDT
 * BTC/USDC
