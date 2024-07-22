@@ -432,6 +432,11 @@ In the case of market order with time in force FOK, trade can be filled (39=2) o
 </aside>
 
 
+<aside class="notice">
+Cypator supports Term orders only for time in force (59) FOK, client will need to state the term asset ib tag Currency (15) e.g. for symbols BTC/USD client will send USD on tag Currency <br/>
+</aside>
+
+
 ## Order Reject
 
 This message is used by Cypator to reject an order message. This can happen if the order doesn’t comply with the FIX dictionary, naming issue, or exceeding throughput limitation
