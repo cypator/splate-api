@@ -2057,6 +2057,9 @@ As a response for an order Cypator will reply with a trade.
 
 # Version History
 
+### V1.2.0 - Thu, 11 Jul 2024
+Added Term Currency support for FIX Taker API
+
 ### V1.1.4 - Thu, 11 Jul 2024
 Default Min Order Amount and Amount Increment were updated for instruments:
 
@@ -2091,6 +2094,3 @@ Instrument table update
 
 ### V1.0.1 - Fri, 3 Nov 2023
 Instrument table update
-
-### V1.0.0 - Wed, 6 Sep 2023
-First issue
