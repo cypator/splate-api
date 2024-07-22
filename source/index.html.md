@@ -434,6 +434,7 @@ In the case of market order with time in force FOK, trade can be filled (39=2) o
 
 <aside class="notice">
 Cypator supports Term orders only for time in force (59) FOK, client will need to state the term asset ib tag Currency (15) e.g. for symbols BTC/USD client will send USD on tag Currency <br/>
+We include only those LPs that participate in term (Not all do). <br/>  
 </aside>
 
 
