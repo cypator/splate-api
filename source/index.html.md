@@ -365,9 +365,12 @@ This message is used to subscribe/unsubscribe to market data rate information.
 | -><br />270 | MDEntryPx          | Y         | Price of entry                                                             |
 | -><br />271 | MDEntrySize        | Y         | Quantity  of entry                                                         |
 
+<aside class="notice">
 In the event Cypator disables an instrument, it will send a message to the Taker side to clear its book for that instrument. This is done in order to prevent a reject or timeout for an order generated after the disablement of the instrument.
 The clear book message will be the standard 35=W message per instrument with 268=0.
-An example of the message:
+An example can bee seen on the right.
+</aside>
+
 
 > FIX 4.4 Cypator -> Client
 
