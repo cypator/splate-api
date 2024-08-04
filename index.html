@@ -1213,9 +1213,11 @@ The ECN also supports layers (also known elsewhere as price bands or tiers). Quo
 </tr>
 </tbody></table>
 
-<p>In the event Cypator disables an instrument, it will send a message to the Taker side to clear its book for that instrument. This is done in order to prevent a reject or timeout for an order generated after the disablement of the instrument.
+<aside class="notice">
+In the event Cypator disables an instrument, it will send a message to the Taker side to clear its book for that instrument. This is done in order to prevent a reject or timeout for an order generated after the disablement of the instrument.
 The clear book message will be the standard 35=W message per instrument with 268=0.
-An example of the message:</p>
+An example can bee seen on the right.
+</aside>
 
 <blockquote>
 <p>FIX 4.4 Cypator -&gt; Client</p>
