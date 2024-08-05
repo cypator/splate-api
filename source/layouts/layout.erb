@@ -62,6 +62,7 @@ under the License.
       $(function() { setupCodeCopy(); });
     </script>
     <% end %>
+    <%= favicon_tag 'https://cypator.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fcypator.com%2F&#038;format=xml' %>
   </head>
 
   <body class="<%= page_classes %>" data-languages="<%=h language_tabs.map{ |lang| lang.is_a?(Hash) ? lang.keys.first : lang }.to_json %>">
