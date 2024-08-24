@@ -2060,6 +2060,9 @@ As a response for an order Cypator will reply with a trade.
 
 # Version History
 
+### V1.2.1 - Sat, 24 Aug 2024
+SOL instrument minimum amount was changed to 1 from 10 
+
 ### V1.2.0 - Thu, 11 Jul 2024
 Added Term Currency support for FIX Taker API
 
@@ -2095,5 +2098,3 @@ Taker API, Market Data Request (35=V) added support for top of book (TOB)
 ### V1.0.2 - Thu, 9 Nov 2023
 Instrument table update
 
-### V1.0.1 - Fri, 3 Nov 2023
-Instrument table update
