@@ -725,13 +725,13 @@ The Order Status Request message is used by the client to generate an order stat
 8=FIX.4.2|9=90|35=H|49=cc11|56=cs1|34=16|52=20240902-08:40:11|55=BTC/USD|54=1|37=223456OID|11=223456COID|10=168
 ```
 
-| Tag | Name               | Mandatory | Description                                                     | 
-|-----|--------------------|-----------|-----------------------------------------------------------------|
-| 35  | MsgType            | Y         | H                                                               |
-| 37  | OrderID            | Y         | Unique identifier for Order as assigned by Cypator              |
-| 11  | ClOrdID            | Y         | Unique identifier for Order as assigned by Client on the ER ack |
-| 55  | Symbol             | Y         |                                                                 |
-| 54  | Side               | Y         |                                                                 |
+| Tag | Name               | Mandatory | Description                                                             | 
+|-----|--------------------|-----------|-------------------------------------------------------------------------|
+| 35  | MsgType            | Y         | H                                                                       |
+| 37  | OrderID            | Y         | Unique identifier for Order as assigned by Cypator on the ER (35=8) ack |
+| 11  | ClOrdID            | Y         | Unique identifier for Order as assigned by Client on the NOS (35=D)     |
+| 55  | Symbol             | Y         |                                                                         |
+| 54  | Side               | Y         |                                                                         |
 
 
 # FIX Maker API
