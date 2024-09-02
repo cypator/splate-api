@@ -703,6 +703,37 @@ Indicate that no trades were found that matched the selection criteria specified
 | 58  | Text               | N         | Free text                                                                                                                                                                                                                                                                                                                                                                                                 |
 
 
+## Order Status Request
+
+The Order Status Request message is used by the client to generate an order status message and get details about it.
+
+* If information exists client will receive an Execution Report message with the order status and order information.  
+* If information is missing client will get a Business Message Reject with the reject reason.
+
+<aside class="notice"> The Fields Symbol (55) and Side (54) are mandatory fields for Order Status Request but are not been used to query the information </aside>
+
+> FIX 4.4  Client -> Cypator
+
+```plaintext 
+8=FIX.4.4|9=90|35=H|49=cc11|56=cs1|34=16|52=20240902-08:40:11|55=BTC/USD|54=1|37=223456OID|11=223456COID|10=168
+```
+
+> FIX 4.2  Client -> Cypator
+
+```plaintext 
+
+8=FIX.4.2|9=90|35=H|49=cc11|56=cs1|34=16|52=20240902-08:40:11|55=BTC/USD|54=1|37=223456OID|11=223456COID|10=168
+```
+
+| Tag | Name               | Mandatory | Description                                                     | 
+|-----|--------------------|-----------|-----------------------------------------------------------------|
+| 35  | MsgType            | Y         | H                                                               |
+| 37  | OrderID            | Y         | Unique identifier for Order as assigned by Cypator              |
+| 11  | ClOrdID            | Y         | Unique identifier for Order as assigned by Client on the ER ack |
+| 55  | Symbol             | Y         |                                                                 |
+| 54  | Side               | Y         |                                                                 |
+
+
 # FIX Maker API
 
 ## Logon
@@ -998,30 +1029,30 @@ For an IOC type order, there are two additional possible responses in addition t
 8=FIX.4.2|9=228|35=8|34=114|49=cs1|52=20221031-09:11:04.480|56=cc21|6=19123.2|11=1805964193|14=100|15=BTC|17=CAfoHyfD|20=2|31=19123.2|32=100|37=A010tlPyxyh|38=100|39=2|41=1805964193|44=19123.2|54=1|55=BTC/USD|60=20221031-11:11:04.480|64=202210304|150=2|151=0|10=136|
 ```
 
-| Tag | Name                                                | Mandatory                     | Description                                                                                                                                                                                                           | 
-|-----|-----------------------------------------------------|-------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 35  | MsgType                                             | Y                             | 8                                                                                                                                                                                                                     |
-| 1   | Account                                             | N                             | Client Account Name                                                                                                                                                                                                   |
-| 11  | ClOrdID                                             | Y                             | Client Order ID                                                                                                                                                                                                       |
-| 37  | OrderID                                             | Y                             | Cypator unique order ID for the Trade                                                                                                                                                                                 |
-| 17  | ExecID                                              | Y                             | Cypator Execution ID. Unique ID in each execution report                                                                                                                                                              |
-| 20  | ExecTransType                                       | Y - FIX 4.2 <br /> N- FIX 4.4 | Only applicable to Fix 4.2 <br /> 0= New <br /> 1 = Cancel <br /> 2 = Correct                                                                                                                                         |
-| 150 | ExecType                                            | Y                             | FIX 4.2 <br /> 0 = New <br /> 1 = Partially Fill <br /> 2 = Fill <br /> 4 = Canceled <br /> 8 = Rejected <br /> FIX 4.4 <br /> 0 = New <br /> F = Trade (partial fill or fill)<br /> 4 = Canceled <br /> 8 = Rejected |
-| 39  | OrdStatus                                           | Y                             | 0 = New <br /> 1 = Partially Fill <br /> 2 = Fill <br /> 4 = Canceled <br /> 8 = Rejected                                                                                                                             |
-| 64  | FutSettDate                                         | N                             | Settlement date for order fills if exists.  In YYYYMMDD format                                                                                                                                                        |
-| 15  | Currency                                            | N                             | The currency or coin unit that represents the quantity                                                                                                                                                                |
-| 54  | Side                                                | Y                             | 1 (Buy) <br /> 2 (Sell)                                                                                                                                                                                               |
-| 55  | Symbol                                              | Y                             | The Asset - Coin and currency combination, e.g. EUR/USD, BTC/USD, ETH/BTC                                                                                                                                             |
-| 38  | OrderQty                                            | N                             | Order quantity specified by the Client. Not present in Order Reject                                                                                                                                                   |
-| 14  | CumQty                                              | Y                             | The amount that has been filled so far                                                                                                                                                                                |
-| 6   | AvgPx                                               | N                             | Average price of all fills on for the order                                                                                                                                                                           |
-| 31  | LastPx                                              | N                             | Trade price.                                                                                                                                                                                                          |
-| 32  | LastQty (For Fix4.4) <br /> LastShares (For Fix4.2) | Y                             | Amount bought or sold on this fill                                                                                                                                                                                    |
-| 44  | Price                                               | Y                             | Order price                                                                                                                                                                                                           |
-| 151 | LeavesQty                                           | Y                             | Quantity remaining of this order                                                                                                                                                                                      |
-| 60  | TransactTime                                        | Y                             | The transaction timestamp of the order                                                                                                                                                                                |
-| 103 | OrdRejReason                                        | N                             | Error code. Present in Order Reject                                                                                                                                                                                   |
-| 58  | Text                                                | N                             | Error message. Present in Order Reject                                                                                                                                                                                |
+| Tag | Name                                                | Mandatory                     | Description                                                                                                                                                                                                                                                       | 
+|-----|-----------------------------------------------------|-------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 35  | MsgType                                             | Y                             | 8                                                                                                                                                                                                                                                                 |
+| 1   | Account                                             | N                             | Client Account Name                                                                                                                                                                                                                                               |
+| 11  | ClOrdID                                             | Y                             | Client Order ID                                                                                                                                                                                                                                                   |
+| 37  | OrderID                                             | Y                             | Cypator unique order ID for the Trade                                                                                                                                                                                                                             |
+| 17  | ExecID                                              | Y                             | Cypator Execution ID. Unique ID in each execution report                                                                                                                                                                                                          |
+| 20  | ExecTransType                                       | Y - FIX 4.2 <br /> N- FIX 4.4 | Only applicable to Fix 4.2 <br /> 0= New <br /> 1 = Cancel <br /> 2 = Correct                                                                                                                                                                                     |
+| 150 | ExecType                                            | Y                             | FIX 4.2 <br /> 0 = New <br /> 1 = Partially Fill <br /> 2 = Fill <br /> 4 = Canceled <br /> 8 = Rejected <br /> FIX 4.4 <br /> 0 = New <br /> F = Trade (partial fill or fill)<br /> 4 = Canceled <br /> 8 = Rejected <br /> A = Pending New <br /> 9 = Suspended |
+| 39  | OrdStatus                                           | Y                             | 0 = New <br /> 1 = Partially Fill <br /> 2 = Fill <br /> 4 = Canceled <br /> 8 = Rejected <br /> A = Pending New <br /> 9 = Suspended                                                                                                                             |
+| 64  | FutSettDate                                         | N                             | Settlement date for order fills if exists.  In YYYYMMDD format                                                                                                                                                                                                    |
+| 15  | Currency                                            | N                             | The currency or coin unit that represents the quantity                                                                                                                                                                                                            |
+| 54  | Side                                                | Y                             | 1 (Buy) <br /> 2 (Sell)                                                                                                                                                                                                                                           |
+| 55  | Symbol                                              | Y                             | The Asset - Coin and currency combination, e.g. EUR/USD, BTC/USD, ETH/BTC                                                                                                                                                                                         |
+| 38  | OrderQty                                            | N                             | Order quantity specified by the Client. Not present in Order Reject                                                                                                                                                                                               |
+| 14  | CumQty                                              | Y                             | The amount that has been filled so far                                                                                                                                                                                                                            |
+| 6   | AvgPx                                               | N                             | Average price of all fills on for the order                                                                                                                                                                                                                       |
+| 31  | LastPx                                              | N                             | Trade price.                                                                                                                                                                                                                                                      |
+| 32  | LastQty (For Fix4.4) <br /> LastShares (For Fix4.2) | Y                             | Amount bought or sold on this fill                                                                                                                                                                                                                                |
+| 44  | Price                                               | Y                             | Order price                                                                                                                                                                                                                                                       |
+| 151 | LeavesQty                                           | Y                             | Quantity remaining of this order                                                                                                                                                                                                                                  |
+| 60  | TransactTime                                        | Y                             | The transaction timestamp of the order                                                                                                                                                                                                                            |
+| 103 | OrdRejReason                                        | N                             | Error code. Present in Order Reject                                                                                                                                                                                                                               |
+| 58  | Text                                                | N                             | Error message. Present in Order Reject                                                                                                                                                                                                                            |
 
 
 
@@ -2059,6 +2090,9 @@ As a response for an order Cypator will reply with a trade.
 
 
 # Version History
+
+### V1.3.0 - Mon, 02 Sep 2024
+Added Support for Order Status Request
 
 ### V1.2.1 - Sat, 24 Aug 2024
 SOL instrument minimum amount was changed to 1 from 10 
