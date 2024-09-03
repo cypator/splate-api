@@ -710,7 +710,8 @@ The Order Status Request message is used by the client to generate an order stat
 * If information exists client will receive an Execution Report message with the order status and order information.  
 * If information is missing client will get a Business Message Reject with the reject reason.
 
-<aside class="notice"> The Fields Symbol (55) and Side (54) are mandatory fields for Order Status Request but are not been used to query the information </aside>
+<aside class="notice">The Fields Symbol (55) and Side (54) are mandatory fields for Order Status Request but are not been used to query the information </aside>
+<aside class="warning">Field ExecID 17 will not be sent even if status is FILL, for trade info please use Trade Capture Report (35=AE)</aside>
 
 > FIX 4.4  Client -> Cypator
 
