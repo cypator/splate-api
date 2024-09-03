@@ -2051,7 +2051,9 @@ Please note – an Order (if not of type FOK) may result in several trades and m
 <li>If information is missing client will get a Business Message Reject with the reject reason.</li>
 </ul>
 
-<aside class="notice"> The Fields Symbol (55) and Side (54) are mandatory fields for Order Status Request but are not been used to query the information </aside>
+<aside class="notice">The Fields Symbol (55) and Side (54) are mandatory fields for Order Status Request but are not been used to query the information </aside>
+
+<aside class="warning">Field ExecID 17 will not be sent even if status is FILL, for trade info please use Trade Capture Report (35=AE)</aside>
 
 <blockquote>
 <p>FIX 4.4  Client -&gt; Cypator</p>
