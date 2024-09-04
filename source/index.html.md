@@ -711,6 +711,7 @@ The Order Status Request message is used by the client to generate an order stat
 * If information is missing client will get a Business Message Reject with the reject reason.
 
 <aside class="notice">The Fields Symbol (55) and Side (54) are mandatory fields for Order Status Request but are not been used to query the information </aside>
+<aside class="notice">Cypator will always send the last status of the order. In the case of Partially filled, last status will be Canceled but tags CumQty (14) and LeaveQty (150) will indicate that the order was Partially filled</aside>
 <aside class="warning">Field ExecID 17 will not be sent even if status is FILL, for trade info please use Trade Capture Report (35=AE)</aside>
 
 > FIX 4.4  Client -> Cypator
