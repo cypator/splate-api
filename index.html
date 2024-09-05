@@ -2051,7 +2051,7 @@ Please note – an Order (if not of type FOK) may result in several trades and m
 <li>If information is missing client will get a Business Message Reject with the reject reason.</li>
 </ul>
 
-<aside class="notice">The Fields Symbol (55) and Side (54) are mandatory fields for Order Status Request but are not been used to query the information </aside>
+<aside class="notice">The Fields Symbol (55) and Side (54) are mandatory fields for Order Status Request but are not been used to query the information <br /> <br />  ExecType will always be ORDER_STATUS </aside>
 
 <aside class="notice">Cypator will always send the last status of the order. In the case of Partially filled, last status will be Canceled but tags CumQty (14) and LeaveQty (150) will indicate that the order was Partially filled</aside>
 
