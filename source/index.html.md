@@ -649,6 +649,7 @@ Used to report a trade between counterparties.
 | 37  | -><br /> OrderID         | Y         | Cypator unique order ID for the Trade                                                                          |
 | 15  | -><br /> Currency/Coin   | N         | Identifies currency or coin used for price                                                                     |
 | 453 | -><br /> NoPartyIDs      | N         | Number of parties                                                                                              |
+| 1   | -><br /> Account         | N         | Counterparty Name                                                                                      |
 | 448 | ->-><br /> PartyID       | N         | ID of the counterparty                                                                                         |
 | 447 | ->-><br /> PartyIDSource | N         | C – Generally accepted market participant                                                                      |
 | 452 | ->-><br /> PartyRole     | N         | The role of the party 17 – Contra Firm (the counterparty)                                                      |
