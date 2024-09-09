@@ -731,7 +731,7 @@ The Order Status Request message is used by the client to generate an order stat
 | Tag | Name               | Mandatory | Description                                                             | 
 |-----|--------------------|-----------|-------------------------------------------------------------------------|
 | 35  | MsgType            | Y         | H                                                                       |
-| 37  | OrderID            | N         | Unique identifier for Order as assigned by Cypator on the ER (35=8) ack |
+| 37  | OrderID            | Y         | Unique identifier for Order as assigned by Cypator on the ER (35=8) ack |
 | 11  | ClOrdID            | Y         | Unique identifier for Order as assigned by Client on the NOS (35=D)     |
 | 55  | Symbol             | Y         |                                                                         |
 | 54  | Side               | Y         |                                                                         |
