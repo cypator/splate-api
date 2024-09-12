@@ -2078,9 +2078,9 @@ As a response for an order Cypator will reply with a trade.
 | SHIB/USD   | SHIB	  | USD	   | #.000000000    | 0.0000001 | 0.0009   | 0.000000001   | #.	                             | 1000000                  | 90,000,000,000           | 100,000          |
 | SHIB/USDC  | SHIB	  | USDC	  | #.000000000    | 0.0000001 | 0.0009   | 0.000000001   | #.	                             | 1000000                  | 90,000,000,000           | 100,000          |
 | SHIB/USDT  | SHIB	  | USDT	  | #.000000000    | 0.0000001 | 0.0009   | 0.000000001   | #.	                             | 1000000                  | 90,000,000,000           | 100,000          |
-| SOL/USD	   | SOL	   | USD	   | #.0000         | 0.01      | 999	     | 0.0001	       | #.00	                           | 1	                       | 1,500,000                | 1                |
-| SOL/USDC   | SOL	   | USDC	  | #.0000         | 0.01      | 999	     | 0.0001	       | #.00	                           | 1	                       | 1,500,000                | 1                |
-| SOL/USDT   | SOL	   | USDT	  | #.0000         | 0.01      | 999	     | 0.0001	       | #.00	                           | 1	                       | 1,500,000                | 1                |
+| SOL/USD	   | SOL	   | USD	   | #.000         | 0.01      | 999	     | 0.0001	       | #.00	                           | 1	                       | 1,500,000                | 1                |
+| SOL/USDC   | SOL	   | USDC	  | #.000         | 0.01      | 999	     | 0.0001	       | #.00	                           | 1	                       | 1,500,000                | 1                |
+| SOL/USDT   | SOL	   | USDT	  | #.000         | 0.01      | 999	     | 0.0001	       | #.00	                           | 1	                       | 1,500,000                | 1                |
 | USDC/USD   | USDC	  | USD	   | #.000000         | 0.1       | 9	       | 0.0001	       | #.00	                           | 1	                       | 99,000,000               | 1                |
 | USDT/USD   | USDT	  | USD	   | #.000000         | 0.1       | 9	       | 0.0001	       | #.00	                           | 1	                       | 99,000,000               | 1                |
 | XRP/USD	   | XRP	   | USD	   | #.00000        | 0.01      | 999	     | 0.00001	      | #.0	                            | 100	                     | 50,000,000               | 10               |
@@ -2093,6 +2093,9 @@ As a response for an order Cypator will reply with a trade.
 
 
 # Version History
+
+### V1.3.1 - Thu, 12 Sep 2024
+Updated SOL precision from 4 digits to 3
 
 ### V1.3.0 - Mon, 02 Sep 2024
 Added Support for Order Status Request
