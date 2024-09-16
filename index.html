@@ -495,6 +495,9 @@
                     <a href="#order-2" class="toc-h2 toc-link" data-title="Order">Order</a>
                   </li>
                   <li>
+                    <a href="#order-3" class="toc-h2 toc-link" data-title="Order">Order</a>
+                  </li>
+                  <li>
                     <a href="#trade-2" class="toc-h2 toc-link" data-title="Trade">Trade</a>
                   </li>
               </ul>
@@ -2910,7 +2913,7 @@ Cypator will provide a unique ClOrdID <11>.</p>
 <span class="nb">echo</span> <span class="s2">"Result: </span><span class="nv">$result</span><span class="s2">"</span>
 
 </code></pre></div><h1 id='websocket-maker-api'>Websocket Maker API</h1><h2 id='login'>Login</h2>
-<p>Client -&gt; Cyaptor. <br / >
+<p>Client -&gt; Cyaptor. <br />
 Both market and trade session needs to be authenticated before any requests can be made.</p>
 <h3 id='request-parameters'>Request parameters</h3>
 <blockquote>
@@ -3026,7 +3029,7 @@ Both market and trade session needs to be authenticated before any requests can 
 <td>-&gt; <br />code</td>
 <td>int</td>
 <td>Yes</td>
-<td>0 - success <br / > non zero for failure</td>
+<td>0 - success <br /> non zero for failure</td>
 </tr>
 <tr>
 <td>-&gt; <br />errMsg</td>
@@ -3042,7 +3045,7 @@ Both market and trade session needs to be authenticated before any requests can 
 </tr>
 </tbody></table>
 <h2 id='ping'>Ping</h2>
-<p>Client -&gt; Cypator.<br / >
+<p>Client -&gt; Cypator.<br />
 To keep the connection alive client needs to send a heartbeat message ping once every 30 seconds. If no heartbeat message is received for 30 seconds connection will be dropped.</p>
 
 <blockquote>
@@ -3075,7 +3078,7 @@ To keep the connection alive client needs to send a heartbeat message ping once 
 </tr>
 </tbody></table>
 <h2 id='subscription'>Subscription</h2>
-<p>Cyaptor -&gt; Client.<br / >
+<p>Cyaptor -&gt; Client.<br />
 Subscription request sent from Cypator to Maker. this message will be used for both subscribe and unsubscribe instrument.</p>
 <h3 id='request-parameter'>Request parameter</h3>
 <blockquote>
@@ -3274,7 +3277,7 @@ Subscription request sent from Cypator to Maker. this message will be used for b
 </tr>
 </tbody></table>
 <h2 id='market-data'>Market Data</h2>
-<p>Client -&gt; Cypator.<br / >
+<p>Client -&gt; Cypator.<br />
 For snapshot message, Cypator won’t send an acknowledgement.</p>
 
 <blockquote>
@@ -3366,7 +3369,7 @@ For snapshot message, Cypator won’t send an acknowledgement.</p>
 </tr>
 </tbody></table>
 <h2 id='order'>Order</h2>
-<p>Cyaptor -&gt; Client.<br / ></p>
+<p>Cyaptor -&gt; Client.<br/></p>
 <h3 id='request'>Request</h3>
 <blockquote>
 <p>Order create request sent from Cypator</p>
@@ -3592,7 +3595,7 @@ For snapshot message, Cypator won’t send an acknowledgement.</p>
 </tr>
 </tbody></table>
 <h2 id='trade'>Trade</h2>
-<p>Client -&gt; Cypator<br / ></p>
+<p>Client -&gt; Cypator<br /></p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"trade"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"arg"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -3718,7 +3721,7 @@ For snapshot message, Cypator won’t send an acknowledgement.</p>
 </tr>
 </tbody></table>
 <h1 id='websocket-taker-api'>Websocket Taker API</h1><h2 id='login-2'>Login</h2>
-<p>Client -&gt; Cypator. <br / >
+<p>Client -&gt; Cypator. <br />
 Both market and trade session needs to be authenticated before any requests can be made.</p>
 <h3 id='request-parameters-2'>Request parameters</h3>
 <blockquote>
@@ -3834,7 +3837,7 @@ Both market and trade session needs to be authenticated before any requests can 
 <td>-&gt; <br />code</td>
 <td>int</td>
 <td>Yes</td>
-<td>0 - success <br / > non zero for failure</td>
+<td>0 - success <br /> non zero for failure</td>
 </tr>
 <tr>
 <td>-&gt; <br />errMsg</td>
@@ -3850,7 +3853,7 @@ Both market and trade session needs to be authenticated before any requests can 
 </tr>
 </tbody></table>
 <h2 id='ping-2'>Ping</h2>
-<p>Client -&gt; Cypator. <br / >
+<p>Client -&gt; Cypator. <br />
 To keep the connection alive client needs to send a heartbeat message ping once every 30 seconds. If no heartbeat message is received for 30 seconds connection will be dropped.<br/>
 Rate limit : 1 request per 15 seconds Connection dropped in case of rate limit breach.</p>
 
@@ -4437,7 +4440,7 @@ To place an order taker sends request to Cypator.</p>
 <td>-&gt; <br />tif</td>
 <td>String</td>
 <td>Yes</td>
-<td>Time in force for order. Values : FOK, IOC</td>
+<td>Time in force for order. Values : FOK, IOC, GOOD_TILL_CANCEL</td>
 </tr>
 <tr>
 <td>-&gt; <br />account</td>
@@ -4492,6 +4495,11 @@ To place an order taker sends request to Cypator.</p>
 <td>Unique identifier for order.</td>
 </tr>
 <tr>
+<td>-&gt; <br />orderId</td>
+<td>String</td>
+<td>Order id generated by Cypator for the placed order.</td>
+</tr>
+<tr>
 <td>-&gt; <br />orderType</td>
 <td>String</td>
 <td>Order type. Values : MARKET, LIMIT</td>
@@ -4499,7 +4507,7 @@ To place an order taker sends request to Cypator.</p>
 <tr>
 <td>-&gt; <br />tif</td>
 <td>String</td>
-<td>Time in force for order. Values : FOK, IOC</td>
+<td>Time in force for order. Values : FOK, IOC, GOOD_TILL_CANCEL</td>
 </tr>
 <tr>
 <td>-&gt; <br />account</td>
@@ -4536,6 +4544,166 @@ Cypator supports market orders (orderType) for both time in force (tif) IOC and 
 <br/>
 In the case of market order with time in force FOK, trade can be filled, or canceled.
 </aside>
+<h2 id='order-3'>Order</h2>
+<p>Active GTC orders can be canceled by sending a cancel request to Cypator either using client order id or order id. If 
+order cancellation succeeds a trade with canceled state will be sent to the client. If order cancellation fails order cancellation failure message will be sent to client.</p>
+
+<blockquote>
+<p>Order Cancellation using client order id</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cancel_order"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"arg"</span><span class="p">:</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"clOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"f8e065c2-087e-4f22-b5b9-748ba2fed2fb"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"instrument"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USD"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1667835722653"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='request-parameters-7'>Request parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>String</td>
+<td>Yes</td>
+<td>Operation cancel_order</td>
+</tr>
+<tr>
+<td>arg</td>
+<td>Object</td>
+<td>Yes</td>
+<td>Order cancellation details</td>
+</tr>
+<tr>
+<td>-&gt; <br />clOrderId</td>
+<td>String</td>
+<td>Yes</td>
+<td>Client Order id</td>
+</tr>
+<tr>
+<td>-&gt; <br />instrument</td>
+<td>String</td>
+<td>Yes</td>
+<td>Instrument name</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Order Cancellation using order id</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cancel_order"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"arg"</span><span class="p">:</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A010uoqUy4S"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"instrument"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USD"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1726392007830"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre></div><h3 id='request-parameters-8'>Request parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>String</td>
+<td>Yes</td>
+<td>Operation cancel_order</td>
+</tr>
+<tr>
+<td>arg</td>
+<td>Object</td>
+<td>Yes</td>
+<td>Order cancellation details</td>
+</tr>
+<tr>
+<td>-&gt; <br />orderId</td>
+<td>String</td>
+<td>Yes</td>
+<td>Order id generated by Cypator</td>
+</tr>
+<tr>
+<td>-&gt; <br />instrument</td>
+<td>String</td>
+<td>Yes</td>
+<td>Instrument name</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Order Cancellation failure
+<code>json
+{
+    &quot;op&quot;: &quot;cancel_order&quot;,
+    &quot;arg&quot;:
+    {
+        &quot;clOrderId&quot;: &quot;cee79af3-8dac-4a2c-be7f-d73793f93b5d&quot;,
+        &quot;orderId&quot;: &quot;A010uoqWW5g&quot;,
+        &quot;instrument&quot;: &quot;BTC/USD&quot;,
+        &quot;code&quot;: 1,
+        &quot;errMsg&quot;: &quot;Order cancellation failed for clientOrderId [cee79af3-8dac-4a2c-be7f-d73793f93b5d] error [error message]&quot;
+    },
+    &quot;ts&quot;: 1726392515132
+}
+</code></p>
+<h3 id='response-parameters'>Response parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>String</td>
+<td>Operation cancel_order</td>
+</tr>
+<tr>
+<td>arg</td>
+<td>Object</td>
+<td>Order cancellation details</td>
+</tr>
+<tr>
+<td>-&gt; <br />orderId</td>
+<td>String</td>
+<td>Order id generated by Cypator</td>
+</tr>
+<tr>
+<td>-&gt; <br />clOrderId</td>
+<td>String</td>
+<td>Client Order id</td>
+</tr>
+<tr>
+<td>-&gt; <br />instrument</td>
+<td>String</td>
+<td>Instrument name</td>
+</tr>
+<tr>
+<td>-&gt; <br />code</td>
+<td>String</td>
+<td>Error code</td>
+</tr>
+<tr>
+<td>-&gt; <br />errMsg</td>
+<td>String</td>
+<td>Error message containing reason for cancellation failure</td>
+</tr>
+</tbody></table>
+</blockquote>
 <h2 id='trade-2'>Trade</h2>
 <p>Cypator -&gt; Client.<br/>
 As a response for an order Cypator will reply with a trade.</p>
@@ -4564,7 +4732,7 @@ As a response for an order Cypator will reply with a trade.</p>
         </span><span class="nl">"avgPrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">19123.2</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='request-parameters-7'>Request parameters</h3>
+</span></code></pre></div><h3 id='request-parameters-9'>Request parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
