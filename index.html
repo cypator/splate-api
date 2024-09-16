@@ -387,7 +387,7 @@
                     <a href="#new-order-single" class="toc-h2 toc-link" data-title="New Order Single">New Order Single</a>
                   </li>
                   <li>
-                    <a href="#order-reject" class="toc-h2 toc-link" data-title="Order Reject">Order Reject</a>
+                    <a href="#reject" class="toc-h2 toc-link" data-title="Reject">Reject</a>
                   </li>
                   <li>
                     <a href="#execution-report" class="toc-h2 toc-link" data-title="Execution Report">Execution Report</a>
@@ -440,7 +440,7 @@
                     <a href="#new-order-single-2" class="toc-h2 toc-link" data-title="New Order Single">New Order Single</a>
                   </li>
                   <li>
-                    <a href="#order-reject-2" class="toc-h2 toc-link" data-title="Order Reject">Order Reject</a>
+                    <a href="#reject-2" class="toc-h2 toc-link" data-title="Reject">Reject</a>
                   </li>
                   <li>
                     <a href="#execution-report-2" class="toc-h2 toc-link" data-title="Execution Report">Execution Report</a>
@@ -1360,8 +1360,8 @@ In the case of market order with time in force FOK, trade can be filled (39=2) o
 Cypator supports Term orders only for time in force (59) FOK, client will need to state the term asset in tag Currency (15) e.g. for symbol BTC/USD client will send USD on tag Currency <br/>
 We include only those LPs that participate in term (Not all do). <br/>  
 </aside>
-<h2 id='order-reject'>Order Reject</h2>
-<p>This message is used by Cypator to reject an order message. This can happen if the order doesn’t comply with the FIX dictionary, naming issue, or exceeding throughput limitation</p>
+<h2 id='reject'>Reject</h2>
+<p>This message is used by Cypator to reject any message. This can happen if the message doesn’t comply with the FIX dictionary, naming issue, or bad input.</p>
 
 <table><thead>
 <tr>
@@ -2572,8 +2572,8 @@ Cypator will provide a unique ClOrdID <11>.</p>
 <td>Not supported in phase 1- Required for Good-Till-Date order request. Date and Time of the order expiration specified in YYYYMMDD-HH:MM:SS format. Expressed in GMT.</td>
 </tr>
 </tbody></table>
-<h2 id='order-reject-2'>Order Reject</h2>
-<p>This message is used by the Maker to reject an order message. This can happen if the order doesn’t comply with the FIX dictionary, naming issue, or exceeding throughput limitation</p>
+<h2 id='reject-2'>Reject</h2>
+<p>This message is used by Cypator to reject any message. This can happen if the message doesn’t comply with the FIX dictionary, naming issue, or bad input.</p>
 
 <table><thead>
 <tr>
