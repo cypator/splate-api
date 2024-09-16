@@ -1137,7 +1137,7 @@ echo "Result: $result"
 
 ## Login
 
-Client -> Cyaptor. <br / >
+Client -> Cyaptor. <br />
 Both market and trade session needs to be authenticated before any requests can be made.
 
 ### Request parameters
@@ -1199,14 +1199,14 @@ Both market and trade session needs to be authenticated before any requests can 
 |-----------------|----------|----------|------------------------------------------------|
 | op              | String   | Yes      | Operation logon                                |
 | arg             | Object   | Yes      | Login details                                  |
-| -> <br />code   | int      | Yes      | 0 - success <br / > non zero for failure       |
+| -> <br />code   | int      | Yes      | 0 - success <br /> non zero for failure       |
 | -> <br />errMsg | String   | no       | Error message, populated only in case of error |
 | ts              | String   | Yes      | Unix epoch time                                |
 
 
 ## Ping
 
-Client -> Cypator.<br / >
+Client -> Cypator.<br />
 To keep the connection alive client needs to send a heartbeat message ping once every 30 seconds. If no heartbeat message is received for 30 seconds connection will be dropped.
 
 > Request
@@ -1232,7 +1232,7 @@ To keep the connection alive client needs to send a heartbeat message ping once 
 
 ## Subscription
 
-Cyaptor -> Client.<br / >
+Cyaptor -> Client.<br />
 Subscription request sent from Cypator to Maker. this message will be used for both subscribe and unsubscribe instrument.
 
 ### Request parameter
@@ -1333,7 +1333,7 @@ Subscription request sent from Cypator to Maker. this message will be used for b
 
 ## Market Data
 
-Client -> Cypator.<br / >
+Client -> Cypator.<br />
 For snapshot message, Cypator won’t send an acknowledgement.
 
 > snapshot
@@ -1381,7 +1381,7 @@ For snapshot message, Cypator won’t send an acknowledgement.
 
 ## Order
 
-Cyaptor -> Client.<br / >
+Cyaptor -> Client.<br/>
 
 ### Request
 
@@ -1484,7 +1484,7 @@ Cyaptor -> Client.<br / >
 
 ## Trade
 
-Client -> Cypator<br / >
+Client -> Cypator<br />
 
 ```json
 {
@@ -1532,7 +1532,7 @@ Client -> Cypator<br / >
 
 ## Login
 
-Client -> Cypator. <br / >
+Client -> Cypator. <br />
 Both market and trade session needs to be authenticated before any requests can be made.
 
 ### Request parameters
@@ -1594,13 +1594,13 @@ Both market and trade session needs to be authenticated before any requests can 
 |-----------------|----------|----------|------------------------------------------------|
 | op              | String   | Yes      | Operation logon                                |
 | arg             | Object   | Yes      | Login details                                  |
-| -> <br />code   | int      | Yes      | 0 - success <br / > non zero for failure       |
+| -> <br />code   | int      | Yes      | 0 - success <br /> non zero for failure       |
 | -> <br />errMsg | String   | no       | Error message, populated only in case of error |
 | ts              | String   | Yes      | Unix epoch time                                |
 
 ## Ping
 
-Client -> Cypator. <br / >
+Client -> Cypator. <br />
 To keep the connection alive client needs to send a heartbeat message ping once every 30 seconds. If no heartbeat message is received for 30 seconds connection will be dropped.<br/>
 Rate limit : 1 request per 15 seconds Connection dropped in case of rate limit breach.
 
@@ -1922,34 +1922,35 @@ To place an order taker sends request to Cypator.
 ```
 
 ### Request parameters
-| Parameter           | Type   | Required | Description                                |
-|---------------------|--------|----------|--------------------------------------------|
-| op                  | String | Yes      | Operation subscribe                        |
-| arg                 | Object | Yes      | Subscription details                       |
-| -> <br />instrument | String | Yes      | Instrument name                            |
-| -> <br />side       | String | Yes      | Side of order. Values : Buy, Sell          |
-| -> <br />clOrderId  | String | Yes      | Unique identifier for order.               |
-| -> <br />orderType  | String | Yes      | Order type. Values : MARKET, LIMIT         |
-| -> <br />tif        | String | Yes      | Time in force for order. Values : FOK, IOC |
-| -> <br />account    | String | Yes      | Name of account                            |
-| -> <br />quantity   | Double | Yes      | Quantity of order                          |
-| -> <br />price      | Double | Yes      | Price                                      |
+| Parameter           | Type   | Required | Description                                                  |
+|---------------------|--------|----------|--------------------------------------------------------------|
+| op                  | String | Yes      | Operation subscribe                                          |
+| arg                 | Object | Yes      | Subscription details                                         |
+| -> <br />instrument | String | Yes      | Instrument name                                              |
+| -> <br />side       | String | Yes      | Side of order. Values : Buy, Sell                            |
+| -> <br />clOrderId  | String | Yes      | Unique identifier for order.                                 |
+| -> <br />orderType  | String | Yes      | Order type. Values : MARKET, LIMIT                           |
+| -> <br />tif        | String | Yes      | Time in force for order. Values : FOK, IOC, GOOD_TILL_CANCEL |
+| -> <br />account    | String | Yes      | Name of account                                              |
+| -> <br />quantity   | Double | Yes      | Quantity of order                                            |
+| -> <br />price      | Double | Yes      | Price                                                        |
 
 ### Response
-| Parameter           | Type   | Description                                    |
-|---------------------|--------|------------------------------------------------|
-| op                  | String | Operation subscribe                            |
-| arg                 | Object | Subscription details                           |
-| -> <br />instrument | String | Instrument name                                |
-| -> <br />side       | String | Side of order. Values : Buy, Sell              |
-| -> <br />clOrderId  | String | Unique identifier for order.                   |
-| -> <br />orderType  | String | Order type. Values : MARKET, LIMIT             |
-| -> <br />tif        | String | Time in force for order. Values : FOK, IOC     |
-| -> <br />account    | String | Name of account                                |
-| -> <br />quantity   | Double | Quantity of order                              |
-| -> <br />price      | Double | Price                                          |
-| -> <br />code       | int    | Zero for success, non zero for failure         |
-| -> <br />errMsg     | String | Error message, populated only in case of error |
+| Parameter           | Type   | Description                                         |
+|---------------------|--------|-----------------------------------------------------|
+| op                  | String | Operation subscribe                                 |
+| arg                 | Object | Subscription details                                |
+| -> <br />instrument | String | Instrument name                                     |
+| -> <br />side       | String | Side of order. Values : Buy, Sell                   |
+| -> <br />clOrderId  | String | Unique identifier for order.                        |
+| -> <br />orderId    | String | Order id generated by Cypator for the placed order. |
+| -> <br />orderType  | String | Order type. Values : MARKET, LIMIT                  |
+| -> <br />tif        | String | Time in force for order. Values : FOK, IOC          |
+| -> <br />account    | String | Name of account                                     |
+| -> <br />quantity   | Double | Quantity of order                                   |
+| -> <br />price      | Double | Price                                               |
+| -> <br />code       | int    | Zero for success, non zero for failure              |
+| -> <br />errMsg     | String | Error message, populated only in case of error      |
 
 
 <aside class="notice">
@@ -1961,6 +1962,54 @@ Cypator supports market orders (orderType) for both time in force (tif) IOC and 
 In the case of market order with time in force FOK, trade can be filled, or canceled.
 </aside>
 
+## Order
+
+Active GTC orders can be canceled by sending a cancel request to Cypator either using client order id or order id. If 
+order cancellation succeeds a trade with canceled state will be sent to the client. If order cancellation fails order cancellation failure message will be sent to client.
+
+> Order Cancellation using client order id
+
+```json
+{
+  "op": "cancel_order",
+  "arg":
+  {
+    "clOrderId": "f8e065c2-087e-4f22-b5b9-748ba2fed2fb",
+    "instrument": "BTC/USD"
+  },
+  "ts": "1667835722653"
+}
+```
+> Order Cancellation using order id
+
+```json
+{
+    "op": "cancel_order",
+    "arg":
+    {
+        "orderId": "A010uoqUy4S",
+        "instrument": "BTC/USD"
+    },
+    "ts": "1726392007830"
+}
+
+```
+
+> Order Cancellation failure
+```json
+{
+    "op": "cancel_order",
+    "arg":
+    {
+        "clOrderId": "cee79af3-8dac-4a2c-be7f-d73793f93b5d",
+        "orderId": "A010uoqWW5g",
+        "instrument": "BTC/USD",
+        "code": 1,
+        "errMsg": "Order cancellation failed for clientOrderId [cee79af3-8dac-4a2c-be7f-d73793f93b5d] error [error message]"
+    },
+    "ts": 1726392515132
+}
+```
 
 ## Trade
 
