@@ -1508,7 +1508,19 @@ We include only those LPs that participate in term (Not all do). <br/>
 <td>1</td>
 <td>Account</td>
 <td>N</td>
-<td>Client Account Name</td>
+<td>Counterparty account name, supported only in Direct mode (non prime broker flow)</td>
+</tr>
+<tr>
+<td>198</td>
+<td>SecondaryOrderID</td>
+<td>N</td>
+<td>Counterparty order ID, supported only in Direct mode (non prime broker flow)</td>
+</tr>
+<tr>
+<td>527</td>
+<td>SecondaryExecID</td>
+<td>N</td>
+<td>Counterparty exec ID, supported only in Direct mode (non prime broker flow)</td>
 </tr>
 <tr>
 <td>11</td>
@@ -1557,6 +1569,12 @@ We include only those LPs that participate in term (Not all do). <br/>
 <td>Currency</td>
 <td>N</td>
 <td>The currency or coin unit that represents the quantity</td>
+</tr>
+<tr>
+<td>40</td>
+<td>OrdType</td>
+<td>N</td>
+<td>1 = Market <br /> 2 = Limit</td>
 </tr>
 <tr>
 <td>54</td>
@@ -1882,6 +1900,12 @@ In case Cypator was able to cancel the order an Execution Report (35=8) with sta
 <td>Cypator Execution ID. Unique ID in each execution report</td>
 </tr>
 <tr>
+<td>527</td>
+<td>SecondaryExecID</td>
+<td>N</td>
+<td>Counterparty exec ID, supported only in Direct mode (non prime broker flow)</td>
+</tr>
+<tr>
 <td>552</td>
 <td>NoSides</td>
 <td>Y</td>
@@ -1912,16 +1936,28 @@ In case Cypator was able to cancel the order an Execution Report (35=8) with sta
 <td>Identifies currency or coin used for price</td>
 </tr>
 <tr>
+<td>1</td>
+<td>-&gt;<br /> Account</td>
+<td>N</td>
+<td>Counterparty account name, supported only in Direct mode (non prime broker flow)</td>
+</tr>
+<tr>
+<td>40</td>
+<td>-&gt;<br /> OrdType</td>
+<td>N</td>
+<td>1 = Market <br /> 2 = Limit</td>
+</tr>
+<tr>
+<td>198</td>
+<td>-&gt;<br /> SecondaryOrderID</td>
+<td>N</td>
+<td>Counterparty order ID, supported only in Direct mode (non prime broker flow)</td>
+</tr>
+<tr>
 <td>453</td>
 <td>-&gt;<br /> NoPartyIDs</td>
 <td>N</td>
 <td>Number of parties</td>
-</tr>
-<tr>
-<td>1</td>
-<td>-&gt;<br /> Account</td>
-<td>N</td>
-<td>Counterparty Name</td>
 </tr>
 <tr>
 <td>448</td>
