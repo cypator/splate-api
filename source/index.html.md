@@ -2122,6 +2122,9 @@ As a response for an order Cypator will reply with a trade.
 
 # Instruments
 
+<a href="doc/test.xlsx" download>Download File</a>
+
+
 | Name       | Coin 1 | Coin 2 | Digit to round | Min Price | Max Price | Price Increment | Amount Format in Market data book | Default Min Order Amount | Default Max Order Amount | Amount Increment |
 |------------|--------|--------|----------------|-----------|----------|---------------|---------------------------------|--------------------------|--------------------------|------------------|
 | ADA/USD	   | ADA	   | USD 	  | #.000000       | 0.001     | 999	     | 0.000001	     | #.	                             | 1000	                    | 62,000,000               | 10               |
