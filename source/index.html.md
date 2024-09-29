@@ -2177,6 +2177,8 @@ As a response for an order Cypator will reply with a trade.
 
 # Version History
 
+[Instruments](Instruments.csv)
+
 ### V1.3.1 - Thu, 12 Sep 2024
 Updated SOL precision from 4 digits to 3
 
