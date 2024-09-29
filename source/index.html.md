@@ -2122,7 +2122,7 @@ As a response for an order Cypator will reply with a trade.
 
 # Instruments
 
-<a href="doc/test.xlsx" download>Download File</a>
+<a href="doc/Instruments.csv" download>For a more extended list of instruments</a>
 
 
 | Name       | Coin 1 | Coin 2 | Digit to round | Min Price | Max Price | Price Increment | Amount Format in Market data book | Default Min Order Amount | Default Max Order Amount | Amount Increment |
@@ -2176,8 +2176,6 @@ As a response for an order Cypator will reply with a trade.
 
 
 # Version History
-
-[Instruments](Instruments.csv)
 
 ### V1.3.1 - Thu, 12 Sep 2024
 Updated SOL precision from 4 digits to 3
