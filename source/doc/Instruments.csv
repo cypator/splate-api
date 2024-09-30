@@ -1,5 +1,5 @@
 Name,Coin 1,Coin 2,Digit to round,Min Price,Max Price,Price Increment,Amount Format in Market data book,Default Min Order Amount,Default Max Order Amount,Amount Increment
-1INCH/EUR1,1INCH,EUR,#.00000,0.01,999,0.00001,#.00,10,2400000,1
+1INCH/EUR,1INCH,EUR,#.00000,0.01,999,0.00001,#.00,10,2400000,1
 1INCH/USD,1INCH,USD,#.00000,0.01,999,0.00001,#.00,10,2400000,1
 AAVE/EUR,AAVE,EUR,#.00,1,9999,0.01,#.00,0.01,200000,0.01
 AAVE/USD,AAVE,USD,#.00,1,9999,0.01,#.00,0.01,200000,0.01
