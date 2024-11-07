@@ -2107,6 +2107,8 @@ Please note – an Order (if not of type FOK) may result in several trades and m
 
 <aside class="notice">Cypator will always send the last status of the order. In the case of Partially filled, last status will be Canceled but tags CumQty (14) and LeaveQty (150) will indicate that the order was Partially filled.</aside>
 
+<aside class="notice">It may happen that an Order Status message will be replay with BusinessMessageReject (35=j), which can occur if a client had sent the request before DB was updated. In this case, we recommend to re-send the request </aside>
+
 <aside class="warning">Field ExecID 17 will not be sent even if status is FILL, for trade info please use Trade Capture Report (35=AE).</aside>
 
 <blockquote>
