@@ -721,6 +721,7 @@ The Order Status Request message is used by the client to generate an order stat
 <aside class="notice">ExecType will always be ORDER_STATUS.</aside>
 <aside class="notice">In case of a Timeout, until issue is resolved order OrdStatus (39) will be SUSPENDED (9), Once resolved it will be CANCELED / FILLED with sizes noted.</aside>
 <aside class="notice">Cypator will always send the last status of the order. In the case of Partially filled, last status will be Canceled but tags CumQty (14) and LeaveQty (150) will indicate that the order was Partially filled.</aside>
+<aside class="notice">It may happen that an Order Status message will be replay with BusinessMessageReject (35=j), which can occur if a client had sent the request before DB was updated. In this case, we recommend to re-send the request </aside>
 <aside class="warning">Field ExecID 17 will not be sent even if status is FILL, for trade info please use Trade Capture Report (35=AE).</aside>
 
 > FIX 4.4  Client -> Cypator
